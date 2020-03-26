@@ -7,19 +7,19 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+
 @Repository
-@CacheConfig(cacheManager = "cacheableRepositoryManager", cacheNames = {"repository-cache"})
+@CacheConfig(cacheNames = {"cache-rep-example"})
 public class CacheableRepository {
 
     @Autowired
     ExternalService externalService;
 
-
     public void setExternalService(ExternalService externalService) {
         this.externalService = externalService;
     }
 
-    @Cacheable(key = "#root.methodName")
+    @Cacheable(key = "{#root.methodName}")
     public List<String> getCachedList() {
         return externalService.getList();
     }
