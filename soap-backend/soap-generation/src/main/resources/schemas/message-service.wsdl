@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+				  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap12/"
+				  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+				  xmlns:ns1="http://github.com/hofls/types/"
+				  xmlns:tns="http://github.com/hofls/"
+				  targetNamespace="http://github.com/hofls/">
+	<wsdl:types>
+		<xs:schema>
+			<xs:import namespace="http://github.com/hofls/types/" schemaLocation="message-service.types.xsd"/>
+		</xs:schema>
+	</wsdl:types>
+
+	<wsdl:message name="getMessageInput">
+		<wsdl:part name="body" element="ns1:getMessageRequest"/>
+	</wsdl:message>
+	<wsdl:message name="getMessageOutput">
+		<wsdl:part name="body" element="ns1:getMessageResponse"/>
+	</wsdl:message>
+
+	<wsdl:portType name="messageServicePortType">
+		<wsdl:operation name="getMessage">
+			<wsdl:input message="tns:getMessageInput"/>
+			<wsdl:output message="tns:getMessageOutput"/>
+		</wsdl:operation>
+	</wsdl:portType>
+
+	<wsdl:binding name="messageServiceBinding" type="tns:messageServicePortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="getMessage">
+			<soap:operation soapAction="getMessage"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+
+	<wsdl:service name="messageService">
+		<wsdl:port name="messageServicePort" binding="tns:messageServiceBinding"/>
+	</wsdl:service>
+
+</wsdl:definitions>
