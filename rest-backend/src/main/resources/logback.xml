@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+    <property name="logs.directory" value="/var/log/rest-backend" />
+
+    <logger level="INFO" name="org.springframework" />
+    <logger level="DEBUG" name="hofls.com.github" />
+
+    <!-- REST: -->
+    <springProfile name="!run-locally">
+        <appender name="REST_SERVICES" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>${logs.directory}/rest/services.log</file>
+            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                <fileNamePattern>${logs.directory}/rest/services-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+                <maxFileSize>30MB</maxFileSize>
+                <maxHistory>7</maxHistory>
+            </rollingPolicy>
+            <encoder>
+                <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+            </encoder>
+        </appender>
+        <logger level="INFO" additivity="false" name="hofls.com.github.rest" >
+            <appender-ref ref="REST_SERVICES"/>
+        </logger>
+    </springProfile>
+
+</configuration>
