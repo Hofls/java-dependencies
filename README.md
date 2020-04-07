@@ -6,7 +6,8 @@ List of features:
 * graphql - if rest is not cool enough
 * hibernate - when working with DB and level of abstraction is too low
 * java-spring - code examples of java / spring / spring-boot
-* JHipster - if you dont feel like creating huge project stub manually
+* jhipster - if you dont feel like creating huge project stub manually
+* lombok - reduces java verbosity (why waste time say lot word when few word do trick)
 * mapstruct - automate object conversion (e.g. between entities and DTOs) 
 * project-template - same as JHipster but way smaller
 * rest-backend - API for interaction with backend (+swagger)
