@@ -6,6 +6,7 @@ List of features:
 * graphql - if rest is not cool enough
 * hibernate - when working with DB and level of abstraction is too low
 * JHipster - if you dont feel like creating huge project stub manually
+* mapstruct - automate object conversion (e.g. between entities and DTOs) 
 * project-template - same as JHipster but way smaller
 * rest-backend - API for interaction with backend (+swagger)
 * soap-backend - interact with backend (oldschool way)
