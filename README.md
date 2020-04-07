@@ -5,6 +5,7 @@ List of features:
 * embedded-postgress - database tests with embedded postgress (when h2db is not enough)
 * graphql - if rest is not cool enough
 * hibernate - when working with DB and level of abstraction is too low
+* java-spring - code examples of java / spring / spring-boot
 * JHipster - if you dont feel like creating huge project stub manually
 * mapstruct - automate object conversion (e.g. between entities and DTOs) 
 * project-template - same as JHipster but way smaller
