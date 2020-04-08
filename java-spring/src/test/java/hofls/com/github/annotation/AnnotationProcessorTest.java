@@ -1,24 +1,23 @@
 package hofls.com.github.annotation;
 
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-@RunWith(SpringRunner.class)
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
 public class AnnotationProcessorTest {
 
-    @Rule
-    public ExpectedException expectedEx = ExpectedException.none();
-
     @Test
     public void should_find_possessed_field() throws IllegalAccessException {
-        expectedEx.expect(RuntimeException.class);
-        expectedEx.expectMessage("Field is possessed by evil! PS Deus wult");
-        AnnotationProcessor.throwIfPossessed(new SketchyClass(0, 666, ""));
+        Exception exception = Assertions.assertThrows(RuntimeException.class, () -> {
+            AnnotationProcessor.throwIfPossessed(new SketchyClass(0, 666, ""));
+        });
+        assertEquals("Field is possessed by evil! PS Deus wult", exception.getMessage());
     }
 
     @Test

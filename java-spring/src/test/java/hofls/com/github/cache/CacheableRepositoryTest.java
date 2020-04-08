@@ -1,19 +1,19 @@
 package hofls.com.github.cache;
 
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Arrays;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
 public class CacheableRepositoryTest {
 
@@ -32,7 +32,7 @@ public class CacheableRepositoryTest {
         verify(mockedService, times(0)).getList();
         for (int i = 0; i < 10; i++) {
             List<String> actualList = cacheableRepository.getCachedList();
-            Assert.assertEquals(expectedList, actualList);
+            assertEquals(expectedList, actualList);
         }
         verify(mockedService, times(1)).getList();
     }
@@ -49,9 +49,9 @@ public class CacheableRepositoryTest {
         verify(mockedService, times(0)).getListBy(889L);
         for (int i = 0; i < 10; i++) {
             List<String> actualListA = cacheableRepository.getCachedListBy(7L);
-            Assert.assertEquals(expectedListA, actualListA);
+            assertEquals(expectedListA, actualListA);
             List<String> actualListB = cacheableRepository.getCachedListBy(889L);
-            Assert.assertEquals(expectedListB, actualListB);
+            assertEquals(expectedListB, actualListB);
         }
         verify(mockedService, times(1)).getListBy(7L);
         verify(mockedService, times(1)).getListBy(889L);

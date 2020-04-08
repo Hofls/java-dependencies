@@ -1,7 +1,9 @@
 package hofls.com.github.generics;
 
-import org.junit.Assert;
-import org.junit.Test;
+
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GenericExampleTest {
 
@@ -10,7 +12,7 @@ public class GenericExampleTest {
         GenericExample.CustomList<String> list = new GenericExample.CustomList<>();
         list.add("abc");
         list.add("def");
-        Assert.assertEquals("abc", list.getFirst());
+        assertEquals("abc", list.getFirst());
     }
 
 }

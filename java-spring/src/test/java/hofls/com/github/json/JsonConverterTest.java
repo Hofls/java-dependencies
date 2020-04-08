@@ -1,11 +1,12 @@
 package hofls.com.github.json;
 
 import org.apache.commons.io.IOUtils;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class JsonConverterTest {
 
@@ -14,14 +15,14 @@ public class JsonConverterTest {
         Phone phone = getPhoneObject();
         String actualJson = JsonConverter.objectToJson(phone);
         String expectedJson = getPhoneJson();
-        Assert.assertEquals(expectedJson, actualJson);
+        assertEquals(expectedJson, actualJson);
     }
 
     @Test
     public void should_convert_json_to_object() throws Exception {
         Phone expectedPhone = getPhoneObject();
         Phone actualPhone = JsonConverter.jsonToObject(getPhoneJson(), Phone.class);
-        Assert.assertEquals(expectedPhone, actualPhone);
+        assertEquals(expectedPhone, actualPhone);
     }
 
     private Phone getPhoneObject() {

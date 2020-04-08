@@ -1,8 +1,10 @@
 package hofls.com.github.clone;
 
 import org.apache.commons.lang3.SerializationUtils;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
 
 public class ObjectToCloneTest {
 
@@ -14,8 +16,8 @@ public class ObjectToCloneTest {
         /** Creates deep copy (deep clone) of an object */
         ObjectToClone cloned = SerializationUtils.clone(original);
 
-        Assert.assertNotSame(original, cloned);
-        Assert.assertNotSame(original.getSubObjects(), cloned.getSubObjects());
-        Assert.assertEquals(original.getSubObjects().get(0), cloned.getSubObjects().get(0));
+        assertNotSame(original, cloned);
+        assertNotSame(original.getSubObjects(), cloned.getSubObjects());
+        assertEquals(original.getSubObjects().get(0), cloned.getSubObjects().get(0));
     }
 }
