@@ -11,6 +11,7 @@ List of features:
 * `mapstruct` - automate object conversion (e.g. between entities and DTOs) 
 * `project-template` - same as JHipster but way smaller
 * `rabbit-mq` - allows components of distributed app to communicate with each other
+* `redis` - in-memory data store (often used as session cache for disributed systems), simple MQ
 * `rest-backend` - API for interaction with backend (+swagger)
 * `soap-backend` - interact with backend (oldschool way)
 * `spring-boot-admin` - when you need fancy app monitoring with GUI
