@@ -16,7 +16,7 @@ public class ErrorController {
 
     @ApiOperation(value = "Throws different errors, based on id", notes = "")
     @GetMapping(value="{id}")
-    public Human throwError(@PathVariable(value = "id") String id) {
+    public Human throwError(@PathVariable String id) {
         if ("1".equals(id)) {
             throw new BadRequestException("Sample exception, it is clients fault (400 code)");
         } else if ("2".equals(id)) {

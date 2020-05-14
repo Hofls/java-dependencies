@@ -25,7 +25,7 @@ public class HumanController {
 
     @ApiOperation(value = "Returns particular humans", notes = "")
     @GetMapping(value="{id}")
-    public Human getHuman(@PathVariable(value = "id") Long id) {
+    public Human getHuman(@PathVariable Long id) {
         return people.get(id);
     }
 
@@ -55,14 +55,14 @@ public class HumanController {
 
     @ApiOperation(value = "Updates humans in the list", notes = "")
     @PutMapping(value="{id}")
-    public void updateHuman( @PathVariable(value = "id") Long id, @RequestBody Human human) {
+    public void updateHuman(@PathVariable Long id, @RequestBody Human human) {
         people.remove(id);
         people.put(id, human);
     }
 
     @ApiOperation(value = "Removes humans from the list", notes = "")
     @DeleteMapping(value="{id}")
-    public void removeHuman( @PathVariable(value = "id") Long id) {
+    public void removeHuman(@PathVariable Long id) {
         people.remove(id);
     }
 
