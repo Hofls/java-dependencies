@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class Mirror {
 
     @ApiOperation(value = "Reflects value back", notes = "")
-    @GetMapping(value="{id}")
-    public String reflect(@PathVariable(value = "id") String value) {
+    @GetMapping(value="{value}")
+    public String reflect(@PathVariable String value) {
         return value + " (reflected)";
     }
 
