@@ -15,7 +15,7 @@ public class GenericUtilsExample {
         }
 
         return elements.stream()
-                .filter(Objects::isNull)
+                .filter(Objects::nonNull)
                 .collect(Collectors.toList());
     }
 
