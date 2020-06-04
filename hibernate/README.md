@@ -6,8 +6,18 @@
 * Connect with h2db console:
     * Open [link](http://localhost:8080/h2-console) in the browser
     * Fill the fields:
-    * `User Name` is empty
-    * `JDBC URL` -  `jdbc:h2:file:~/example-db`
+        * `User Name` is empty
+        * `Driver`: `org.h2.Driver`
+        * `JDBC URL` -  `jdbc:h2:file:~/example-db`
+    
+#### Open h2 console while running tests (on breakpoint)
+* Insert `Server.createWebServer` code in test (look at example in `StudentRepositoryTestV2`)
+* Insert thread breakpoint (By default - breakpoint stops entire VM)
+* Run tests in debug mode, on breakpoint open [link](http://localhost:8086/)
+    * Fill the fields:
+        * `User Name` is empty
+        * `Driver`: `org.h2.Driver`
+        * `JDBC URL`: `jdbc:h2:mem:test-db`
 
 #### Application server
 * Maven = execute `mvn clean install`

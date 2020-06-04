@@ -1,5 +1,7 @@
 package hofls.com.github.javahibernateexample.storage.university;
 
+import org.h2.tools.Server;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,6 +11,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -21,6 +24,13 @@ public class StudentRepositoryTestV2 {
 
     @Resource
     private StudentRepository studentRepository;
+
+    @BeforeClass
+    public static void initTest() throws SQLException {
+        Server webServer = Server.createWebServer("-web", "-webAllowOthers", "-webPort", "8086");
+        webServer.start();
+    }
+
 
     @Test
     @Sql("student/delete_test.sql")
