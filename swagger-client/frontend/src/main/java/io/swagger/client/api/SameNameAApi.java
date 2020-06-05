@@ -27,6 +27,7 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
+import io.swagger.client.model.MainUser;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -34,14 +35,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MirrorServiceApi {
+public class SameNameAApi {
     private ApiClient apiClient;
 
-    public MirrorServiceApi() {
+    public SameNameAApi() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public MirrorServiceApi(ApiClient apiClient) {
+    public SameNameAApi(ApiClient apiClient) {
         this.apiClient = apiClient;
     }
 
@@ -54,19 +55,17 @@ public class MirrorServiceApi {
     }
 
     /**
-     * Build call for reflectUsingGET
-     * @param value value (required)
+     * Build call for getUserUsingGET
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call reflectUsingGETCall(String value, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call getUserUsingGETCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/mirror/{value}"
-            .replaceAll("\\{" + "value" + "\\}", apiClient.escapeString(value.toString()));
+        String localVarPath = "/same-name-userA";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -104,53 +103,45 @@ public class MirrorServiceApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call reflectUsingGETValidateBeforeCall(String value, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
-        // verify the required parameter 'value' is set
-        if (value == null) {
-            throw new ApiException("Missing the required parameter 'value' when calling reflectUsingGET(Async)");
-        }
+    private com.squareup.okhttp.Call getUserUsingGETValidateBeforeCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
 
-        com.squareup.okhttp.Call call = reflectUsingGETCall(value, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getUserUsingGETCall(progressListener, progressRequestListener);
         return call;
 
     }
 
     /**
-     * Reflects value back
+     * getUser
      * 
-     * @param value value (required)
-     * @return String
+     * @return MainUser
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public String reflectUsingGET(String value) throws ApiException {
-        ApiResponse<String> resp = reflectUsingGETWithHttpInfo(value);
+    public MainUser getUserUsingGET() throws ApiException {
+        ApiResponse<MainUser> resp = getUserUsingGETWithHttpInfo();
         return resp.getData();
     }
 
     /**
-     * Reflects value back
+     * getUser
      * 
-     * @param value value (required)
-     * @return ApiResponse&lt;String&gt;
+     * @return ApiResponse&lt;MainUser&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<String> reflectUsingGETWithHttpInfo(String value) throws ApiException {
-        com.squareup.okhttp.Call call = reflectUsingGETValidateBeforeCall(value, null, null);
-        Type localVarReturnType = new TypeToken<String>(){}.getType();
+    public ApiResponse<MainUser> getUserUsingGETWithHttpInfo() throws ApiException {
+        com.squareup.okhttp.Call call = getUserUsingGETValidateBeforeCall(null, null);
+        Type localVarReturnType = new TypeToken<MainUser>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     * Reflects value back (asynchronously)
+     * getUser (asynchronously)
      * 
-     * @param value value (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call reflectUsingGETAsync(String value, final ApiCallback<String> callback) throws ApiException {
+    public com.squareup.okhttp.Call getUserUsingGETAsync(final ApiCallback<MainUser> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -171,8 +162,8 @@ public class MirrorServiceApi {
             };
         }
 
-        com.squareup.okhttp.Call call = reflectUsingGETValidateBeforeCall(value, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        com.squareup.okhttp.Call call = getUserUsingGETValidateBeforeCall(progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<MainUser>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

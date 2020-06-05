@@ -14,21 +14,21 @@
 package io.swagger.client.api;
 
 import io.swagger.client.ApiException;
+import io.swagger.client.model.User;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
 /**
- * API tests for MirrorServiceApi
+ * API tests for SameNameBApi
  */
+public class SameNameBApiTest {
 
-public class MirrorServiceApiTest {
-
-    private final MirrorServiceApi api = new MirrorServiceApi();
+    private final SameNameBApi api = new SameNameBApi();
 
     
     /**
-     * Reflects value back
+     * getUser
      *
      * 
      *
@@ -36,10 +36,9 @@ public class MirrorServiceApiTest {
      *          if the Api call fails
      */
     @Test
-    public void reflectUsingGETTest() throws ApiException {
-        String response = api.reflectUsingGET("some text");
-        assertEquals("some text (reflected)", response);
-
+    public void getUserUsingGET1Test() throws ApiException {
+        User response = api.getUserUsingGET1();
+        assertEquals("NYC, ST John street 23", response.getAddress());
         // TODO: test validations
     }
     

@@ -4,12 +4,12 @@ All URIs are relative to *https://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**reflectUsingGET**](MirrorServiceApi.md#reflectUsingGET) | **GET** /mirror/{id} | Reflects value back
+[**reflectUsingGET**](MirrorServiceApi.md#reflectUsingGET) | **GET** /mirror/{value} | Reflects value back
 
 
 <a name="reflectUsingGET"></a>
 # **reflectUsingGET**
-> String reflectUsingGET(id)
+> String reflectUsingGET(value)
 
 Reflects value back
 
@@ -21,9 +21,9 @@ Reflects value back
 
 
 MirrorServiceApi apiInstance = new MirrorServiceApi();
-String id = "id_example"; // String | id
+String value = "value_example"; // String | value
 try {
-    String result = apiInstance.reflectUsingGET(id);
+    String result = apiInstance.reflectUsingGET(value);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling MirrorServiceApi#reflectUsingGET");
@@ -35,7 +35,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **String**| id |
+ **value** | **String**| value |
 
 ### Return type
 
