@@ -14,6 +14,9 @@ Contains plugins that are usefil in any java project
 * `spotbugs` - spots bugs (better use SonarQube)
     * to run manually - `mvn spotbugs:check`
     * full report - `mvn spotbugs:gui`
+    * alternatives:
+        * https://pmd.github.io/
+        * https://checkstyle.sourceforge.io/
 * `pitest` - runs mutation tests
     * to run manually - `mvn pitest:mutationCoverage`
     * full report is located in folder `target/pit-reports`
@@ -33,6 +36,9 @@ Contains plugins that are usefil in any java project
 * `spotbugs` - spots bugs (better use SonarQube)
     * to run manually - `gradlew check`
     * full report - `build/reports/spotbugs/main.html`
+    * alternatives:
+        * https://pmd.github.io/
+        * https://checkstyle.sourceforge.io/
 * `pitest` - runs mutation tests
     * to run manually - `gradlew pitest`
     * full report is located in folder `build/reports/pitest/index.html`
