@@ -9,6 +9,7 @@ List of features:
 * `jhipster` - if you dont feel like creating huge project stub manually
 * `lombok` - reduces java verbosity (why waste time say lot word when few word do trick)
 * `mapstruct` - automate object conversion (e.g. between entities and DTOs) 
+* `micrometer` - monitor application state
 * `project-template` - same as JHipster but way smaller
 * `rabbit-mq` - allows components of distributed app to communicate with each other
 * `redis` - in-memory data store (often used as session cache for disributed systems), simple MQ
