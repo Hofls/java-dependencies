@@ -23,7 +23,7 @@ jobs:
 
     steps:
       - checkout
-        path: ~/java-dependencies-examples
+          path: ~/java-dependencies-examples
 
       # Download and cache dependencies
       - restore_cache:
