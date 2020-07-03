@@ -1,5 +1,12 @@
 # Simple Java project template 
-Contains plugins that are usefil in any java project
+Contains plugins that are useful in any java project
+
+# Main principles:
+* At least two profiles:
+    * Run locally - fast, without plugins/tests 
+    * Build - slow, with all the plugins and tests. If somebody forgets to build locally before pushing code - build on server will most likely fail, which serves as a reminder.
+* Hot-swap (code reloading) should be present
+* Should be possible to run specific test in isolation (Ctrl+Shift+F10)
 
 # Maven
 * To build `mvn clean install`
