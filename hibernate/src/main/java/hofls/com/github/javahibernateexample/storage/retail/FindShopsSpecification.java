@@ -11,11 +11,17 @@ import java.util.List;
 
 public class FindShopsSpecification implements Specification<Shop> {
 
+    private String shopName;
+
+    public FindShopsSpecification(String shopName) {
+        this.shopName = shopName;
+    }
+
     @Override
     public Predicate toPredicate(Root<Shop> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
         final List<Predicate> predicates = new ArrayList<>();
 
-        predicates.add(root.get("name").in("Potato shop"));
+        predicates.add(root.get("name").in(shopName));
 
         return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
     }
