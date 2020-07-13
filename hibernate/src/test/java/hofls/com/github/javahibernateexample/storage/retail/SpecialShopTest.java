@@ -3,7 +3,6 @@ package hofls.com.github.javahibernateexample.storage.retail;
 import hofls.com.github.javahibernateexample.storage.JpaConfig;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -16,26 +15,13 @@ import static org.junit.Assert.assertEquals;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { JpaConfig.class })
 @Transactional
-public class ShopRepositoryTest {
+public class SpecialShopTest {
 
     @Resource
     private ShopRepository shopRepository;
 
-
     @Test
-    public void single_specification() {
-        Shop shop = new Shop();
-        shop.setName("Potato shop");
-        shopRepository.save(shop);
-
-        List<Shop> shops = shopRepository.findAll(new FindShopsSpecification("Potato shop"));
-
-        assertEquals(1, shops.size());
-        assertEquals("Potato shop", shops.get(0).getName());
-    }
-
-    @Test
-    public void multiple_specifications() {
+    public void multiple_predicates() {
         Shop bananaShop = new Shop();
         bananaShop.setName("Banana shop");
         shopRepository.save(bananaShop);
@@ -44,10 +30,7 @@ public class ShopRepositoryTest {
         tomatoShop.setName("Tomato shop");
         shopRepository.save(tomatoShop);
 
-        FindShopsSpecification bananaSpec = new FindShopsSpecification("Banana shop");
-        FindShopsSpecification tomatoSpec = new FindShopsSpecification("Tomato shop");
-        Specification<Shop> combinedSpec = Specification.where(bananaSpec).or(tomatoSpec);
-        List<Shop> shops = shopRepository.findAll(combinedSpec);
+        List<Shop> shops = shopRepository.findAll(new SpecialShopSpecification());
 
         assertEquals(2, shops.size());
         assertEquals("Banana shop", shops.get(0).getName());
