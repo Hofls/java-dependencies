@@ -23,7 +23,7 @@ public class ShopRepositoryTest {
 
 
     @Test
-    public void single_specificaiton() {
+    public void single_specification() {
         Shop shop = new Shop();
         shop.setName("Potato shop");
         shopRepository.save(shop);
