@@ -1,9 +1,7 @@
 package com.github.hofls.lombok;
 
-import lombok.Data;
-import lombok.NonNull;
+import lombok.*;
 import lombok.extern.slf4j.Slf4j;
-import lombok.var;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,6 +11,8 @@ import java.util.List;
 public class LombokDemo {
 
     @Data
+    @EqualsAndHashCode
+    @ToString
     public static class Entity {
         private String text;
         private Integer number;
