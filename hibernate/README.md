@@ -11,7 +11,7 @@
         * `JDBC URL` -  `jdbc:h2:file:~/example-db`
     
 #### Open h2 console while running tests (on breakpoint)
-* Insert `Server.createWebServer` code in test (look at example in `StudentRepositoryTestV2`)
+* Insert `Server.createWebServer` code in test (look at example in `H2Configuration`)
 * Insert thread breakpoint (By default - breakpoint stops entire VM)
 * Run tests in debug mode, on breakpoint open [link](http://localhost:8086/)
     * Fill the fields:
