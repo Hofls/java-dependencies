@@ -5,6 +5,7 @@ import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 public class ParametersInPath {
@@ -13,4 +14,6 @@ public class ParametersInPath {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate localDate;
 
+    @ApiModelProperty(value = "Not working. TODO: figure this out", example = "[\"Football\",\"Music\"]")
+    private List<String> hobbies;
 }
