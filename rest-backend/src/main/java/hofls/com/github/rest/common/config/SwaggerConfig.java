@@ -22,7 +22,8 @@ public class SwaggerConfig {
                 .useDefaultResponseMessages(false)
                 .apiInfo(apiInfo())
                 .tags(new Tag("people-service", "List of people (rest architecture example)"))
-                .tags(new Tag("errors-service", "Different http errors"));
+                .tags(new Tag("errors-service", "Different http errors"))
+                .tags(new Tag("parameters-controller", "Parameters example (body/path)"));
     }
 
     private ApiInfo apiInfo() {

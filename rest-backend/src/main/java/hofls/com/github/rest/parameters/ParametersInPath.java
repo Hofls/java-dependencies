@@ -1,0 +1,16 @@
+package hofls.com.github.rest.parameters;
+
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDate;
+
+@Data
+public class ParametersInPath {
+
+    @ApiModelProperty(value = "In path only with @DateTimeFormat", example = "1988-02-21")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private LocalDate localDate;
+
+}
