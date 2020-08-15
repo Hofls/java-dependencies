@@ -29,7 +29,7 @@ Then launch server and open link [http://localhost:8080/rest-backend/swagger-ui.
 
 #### Gradle
 * Run locally:
-    * Pick one^  
+    * Pick one:
         * logs in console - `gradlew bootRun --args='--spring.profiles.active=run-locally'`
         * logs in file -  `gradlew bootRun`
     * Then open link in the browser [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
