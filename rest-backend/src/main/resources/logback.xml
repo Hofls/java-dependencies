@@ -6,8 +6,24 @@
     <logger level="INFO" name="org.springframework" />
     <logger level="DEBUG" name="hofls.com.github" />
 
-    <!-- REST: -->
     <springProfile name="!run-locally">
+        <!-- ALL: -->
+        <appender name="APPENDS_ALL" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>${logs.directory}/all.log</file>
+            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                <fileNamePattern>${logs.directory}/all-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+                <maxFileSize>30MB</maxFileSize>
+                <maxHistory>7</maxHistory>
+            </rollingPolicy>
+            <encoder>
+                <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+            </encoder>
+        </appender>
+        <root level="INFO">
+            <appender-ref ref="APPENDS_ALL" />
+        </root>
+
+        <!-- REST: -->
         <appender name="REST_SERVICES" class="ch.qos.logback.core.rolling.RollingFileAppender">
             <file>${logs.directory}/rest/services.log</file>
             <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
