@@ -14,6 +14,6 @@ public class ParametersInPath {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate localDate;
 
-    @ApiModelProperty(value = "Not working. TODO: figure this out", example = "[\"Football\",\"Music\"]")
+    @ApiModelProperty(value = "Not working. TODO: figure this out", example = "['Football','Music']")
     private List<String> hobbies;
 }
