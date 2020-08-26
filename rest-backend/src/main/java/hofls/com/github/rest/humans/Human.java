@@ -11,6 +11,6 @@ public class Human {
     private String name;
     @ApiModelProperty(value = "Main profession", example = "Blacksmith")
     private String profession;
-    @ApiModelProperty(value = "Objects of profound interest", example = "['Football','Music']")
+    @ApiModelProperty(value = "Objects of profound interest", example = "[\"Football\",\"Music\"]")
     private List<String> hobbies;
 }

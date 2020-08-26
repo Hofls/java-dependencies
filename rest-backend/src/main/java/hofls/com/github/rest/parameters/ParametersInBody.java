@@ -12,7 +12,7 @@ public class ParametersInBody {
     @ApiModelProperty(value = "Nothing special", example = "1988-02-21")
     private LocalDate localDate;
 
-    @ApiModelProperty(value = "Nothing special", example = "['Football','Music']")
+    @ApiModelProperty(value = "Nothing special", example = "[\"Football\",\"Music\"]")
     private List<String> hobbies;
 
 }
