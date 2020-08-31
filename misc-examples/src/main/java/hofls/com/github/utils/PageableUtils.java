@@ -1,4 +1,4 @@
-package hofls.com.github.pageable;
+package hofls.com.github.utils;
 
 import java.util.ArrayList;
 import java.util.List;
