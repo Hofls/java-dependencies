@@ -1,5 +1,8 @@
 
+* If `install` throws error, to get more info: `mvn -X install`
 * To look at all dependencies: `mvn dependency:tree`
+* To find unused dependencies: `mvn dependency:analyze`
+* To run spring boot `jar` in container - look at `devops` repository
 * To deploy to artifactory:
     ```
         <distributionManagement>
