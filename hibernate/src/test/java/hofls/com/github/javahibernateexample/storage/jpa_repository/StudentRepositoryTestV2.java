@@ -65,4 +65,12 @@ public class StudentRepositoryTestV2 {
         assertEquals(Arrays.asList(expectedStudent), studentRepository.findBadBoys());
     }
 
+    @Test
+    @Sql("student/findBadBoys_test.sql")
+    public void findBadBoys2_test() {
+        Student expectedStudent = studentRepository.findById(546L).get();
+        List<Student> actual = studentRepository.findBadBoys("Satan", "Hell");
+        assertEquals(Arrays.asList(expectedStudent), actual);
+    }
+
 }
