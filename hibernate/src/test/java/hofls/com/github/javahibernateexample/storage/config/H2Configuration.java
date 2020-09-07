@@ -10,9 +10,15 @@ import java.sql.SQLException;
 public class H2Configuration {
 
     @Bean
-    public Server createH2Server() throws SQLException {
-        Server h2Server = Server.createWebServer("-web", "-webAllowOthers", "-webPort", "8086");
-        h2Server.start();
-        return h2Server;
+    public Server createH2Server()  {
+        try {
+            Server h2Server = Server.createWebServer("-web", "-webAllowOthers", "-webPort", "8086");
+            h2Server.start();
+            return h2Server;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
     }
 }
