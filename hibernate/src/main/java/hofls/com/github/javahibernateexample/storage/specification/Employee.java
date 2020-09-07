@@ -15,6 +15,6 @@ public class Employee {
 
     private String name;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Shop shop;
 }
