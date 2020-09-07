@@ -18,9 +18,9 @@ public class SubquerySpecification implements Specification<Employee> {
         // Returns IDS of employees that work at shop with specific name
         Subquery<Long> subquery = criteriaQuery.subquery(Long.class);
         Root<Employee> rootEmployee = subquery.from(Employee.class);
-        subquery.select(rootEmployee.get("id"));
-        Join<Employee, Shop> shopJoin = rootEmployee.join("shop", JoinType.LEFT);
-        Predicate shopHasName = criteriaBuilder.equal(shopJoin.get("name"), name);
+        subquery.select(rootEmployee.get(Employee_.ID));
+        Join<Employee, Shop> shopJoin = rootEmployee.join(Employee_.SHOP, JoinType.LEFT);
+        Predicate shopHasName = criteriaBuilder.equal(shopJoin.get(Shop_.NAME), name);
         subquery.where(shopHasName);
 
         // Finds employees by IDS

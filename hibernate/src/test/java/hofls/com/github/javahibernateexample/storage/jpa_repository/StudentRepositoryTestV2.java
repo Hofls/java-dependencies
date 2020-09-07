@@ -1,10 +1,11 @@
 package hofls.com.github.javahibernateexample.storage.jpa_repository;
 
+import hofls.com.github.javahibernateexample.storage.JpaConfig;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -16,8 +17,8 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-@SpringBootApplication(scanBasePackages = {"hofls.com.github.javahibernateexample"})
 @RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = { JpaConfig.class })
 @Transactional
 public class StudentRepositoryTestV2 {
 

@@ -25,6 +25,9 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test:2.2.2.RELEASE'
     compileOnly 'org.projectlombok:lombok:1.18.8'
     annotationProcessor 'org.projectlombok:lombok:1.18.8'
+
+    /* To generate model on build. (Classes like Campus_, Student_) */
+    annotationProcessor('org.hibernate:hibernate-jpamodelgen:5.4.10.Final')
 }
 
 group = 'hofls.com.github'

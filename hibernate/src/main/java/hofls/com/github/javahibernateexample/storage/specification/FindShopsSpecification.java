@@ -21,7 +21,7 @@ public class FindShopsSpecification implements Specification<Shop> {
     public Predicate toPredicate(Root<Shop> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
         final List<Predicate> predicates = new ArrayList<>();
 
-        predicates.add(root.get("name").in(shopName));
+        predicates.add(root.get(Shop_.NAME).in(shopName));
 
         return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
     }

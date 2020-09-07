@@ -14,12 +14,12 @@ public class PredicateSpecification implements Specification<Shop> {
     @Override
     public Predicate toPredicate(Root<Shop> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
         final List<Predicate> predicatesA = new ArrayList<>();
-        predicatesA.add(root.get("name").in("Banana shop"));
-        predicatesA.add(root.get("id").in("1"));
+        predicatesA.add(root.get(Shop_.NAME).in("Banana shop"));
+        predicatesA.add(root.get(Shop_.ID).isNotNull());
 
         final List<Predicate> predicatesB = new ArrayList<>();
-        predicatesB.add(root.get("name").in("Tomato shop"));
-        predicatesB.add(root.get("id").in("2"));
+        predicatesB.add(root.get(Shop_.NAME).in("Tomato shop"));
+        predicatesB.add(root.get(Shop_.ID).isNotNull());
 
         Predicate predicateA = criteriaBuilder.and(predicatesA.get(0), predicatesA.get(1));
         Predicate predicateB = criteriaBuilder.and(predicatesB.get(0), predicatesB.get(1));
