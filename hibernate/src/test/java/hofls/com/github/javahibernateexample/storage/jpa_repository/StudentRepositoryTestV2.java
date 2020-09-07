@@ -3,6 +3,8 @@ package hofls.com.github.javahibernateexample.storage.jpa_repository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -40,6 +42,20 @@ public class StudentRepositoryTestV2 {
         Student expectedStudentB = studentRepository.findById(546L).get();
         List<Student> actualStudentsB = studentRepository.findByCampusId(984L);
         assertEquals(Arrays.asList(expectedStudentB), actualStudentsB);
+    }
+
+    @Test
+    @Sql("student/findAll_test.sql")
+    public void findAll_test() {
+        Page<Student> studentsA = studentRepository.findAll(PageRequest.of(0, 1));
+        assertEquals(1, studentsA.getSize());
+        assertEquals(2, studentsA.getTotalPages());
+        assertEquals(234, studentsA.getContent().get(0).getId());
+
+        Page<Student> studentsB = studentRepository.findAll(PageRequest.of(1, 1));
+        assertEquals(1, studentsB.getSize());
+        assertEquals(2, studentsB.getTotalPages());
+        assertEquals(546, studentsB.getContent().get(0).getId());
     }
 
     @Test
