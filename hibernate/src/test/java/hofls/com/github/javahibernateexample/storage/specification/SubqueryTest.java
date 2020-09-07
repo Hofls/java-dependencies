@@ -4,6 +4,7 @@ import hofls.com.github.javahibernateexample.storage.JpaConfig;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
@@ -20,20 +21,9 @@ public class SubqueryTest {
     @Resource
     private EmployeeRepository employeeRepository;
 
-    @Resource
-    private ShopRepository shopRepository;
-
     @Test
-    public void multiple_predicates() {
-        Shop bananaShop = new Shop();
-        bananaShop.setName("Banana shop");
-        shopRepository.save(bananaShop);
-
-        Employee employee = new Employee();
-        employee.setName("David");
-        employee.setShop(bananaShop);
-        employeeRepository.save(employee);
-
+    @Sql("find_with_subquery.sql")
+    public void find_with_subquery() {
         List<Employee> employees = employeeRepository.findAll(new SubquerySpecification("Banana shop"));
 
         assertEquals(1, employees.size());

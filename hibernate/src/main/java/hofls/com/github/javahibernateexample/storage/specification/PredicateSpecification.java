@@ -9,7 +9,7 @@ import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SpecialShopSpecification implements Specification<Shop> {
+public class PredicateSpecification implements Specification<Shop> {
 
     @Override
     public Predicate toPredicate(Root<Shop> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {

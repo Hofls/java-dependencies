@@ -15,7 +15,7 @@ import static org.junit.Assert.assertEquals;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { JpaConfig.class })
 @Transactional
-public class SpecialShopTest {
+public class PredicateSpecificationTest {
 
     @Resource
     private ShopRepository shopRepository;
@@ -30,7 +30,7 @@ public class SpecialShopTest {
         tomatoShop.setName("Tomato shop");
         shopRepository.save(tomatoShop);
 
-        List<Shop> shops = shopRepository.findAll(new SpecialShopSpecification());
+        List<Shop> shops = shopRepository.findAll(new PredicateSpecification());
 
         assertEquals(2, shops.size());
         assertEquals("Banana shop", shops.get(0).getName());
