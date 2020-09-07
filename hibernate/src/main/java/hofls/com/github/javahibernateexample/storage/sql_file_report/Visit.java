@@ -1,4 +1,4 @@
-package hofls.com.github.javahibernateexample.storage.sql_file;
+package hofls.com.github.javahibernateexample.storage.sql_file_report;
 
 
 import lombok.Data;
