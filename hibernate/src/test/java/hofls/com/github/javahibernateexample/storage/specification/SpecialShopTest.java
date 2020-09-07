@@ -1,4 +1,4 @@
-package hofls.com.github.javahibernateexample.storage.retail;
+package hofls.com.github.javahibernateexample.storage.specification;
 
 import hofls.com.github.javahibernateexample.storage.JpaConfig;
 import org.junit.Test;

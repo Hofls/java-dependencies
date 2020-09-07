@@ -1,4 +1,4 @@
-package hofls.com.github.javahibernateexample.storage.retail;
+package hofls.com.github.javahibernateexample.storage.specification;
 
 
 import lombok.Data;
@@ -6,11 +6,10 @@ import lombok.Data;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 @Entity
 @Data
-public class Employee {
+public class Shop {
 
     @Id
     @GeneratedValue
@@ -18,6 +17,4 @@ public class Employee {
 
     private String name;
 
-    @ManyToOne
-    private Shop shop;
 }

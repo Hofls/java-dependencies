@@ -1,4 +1,4 @@
-package hofls.com.github.javahibernateexample.storage.report;
+package hofls.com.github.javahibernateexample.storage.sql_file;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;

@@ -1,7 +1,6 @@
-package hofls.com.github.javahibernateexample.storage.university;
+package hofls.com.github.javahibernateexample.storage.jpa_repository;
 
 
-import hofls.com.github.javahibernateexample.storage.university.Campus;
 import lombok.Data;
 
 import javax.persistence.*;

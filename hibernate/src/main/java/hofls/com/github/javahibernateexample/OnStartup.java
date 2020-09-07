@@ -1,7 +1,7 @@
 package hofls.com.github.javahibernateexample;
 
-import hofls.com.github.javahibernateexample.storage.university.Student;
-import hofls.com.github.javahibernateexample.storage.university.StudentRepository;
+import hofls.com.github.javahibernateexample.storage.jpa_repository.Student;
+import hofls.com.github.javahibernateexample.storage.jpa_repository.StudentRepository;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;

@@ -1,4 +1,4 @@
-package hofls.com.github.javahibernateexample.storage.report;
+package hofls.com.github.javahibernateexample.storage.sql_file;
 
 import org.junit.Assert;
 import org.junit.Test;

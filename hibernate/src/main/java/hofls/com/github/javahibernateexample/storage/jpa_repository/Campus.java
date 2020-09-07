@@ -1,4 +1,4 @@
-package hofls.com.github.javahibernateexample.storage.retail;
+package hofls.com.github.javahibernateexample.storage.jpa_repository;
 
 
 import lombok.Data;
@@ -9,7 +9,7 @@ import javax.persistence.Id;
 
 @Entity
 @Data
-public class Shop {
+public class Campus {
 
     @Id
     @GeneratedValue

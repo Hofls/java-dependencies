@@ -1,7 +1,7 @@
 -- there is "AGE" function in POSTGRES, but there is no such function in H2DB, so lets create one
-CREATE ALIAS AGE FOR "hofls.com.github.javahibernateexample.storage.report.VisitCountTest.age";
+CREATE ALIAS AGE FOR "hofls.com.github.javahibernateexample.storage.sql_file.VisitCountTest.age";
 -- there is "DATE_PART" function in POSTGRES, but there is no such function in H2DB, so lets create one
-CREATE ALIAS DATE_PART FOR "hofls.com.github.javahibernateexample.storage.report.VisitCountTest.datePart";
+CREATE ALIAS DATE_PART FOR "hofls.com.github.javahibernateexample.storage.sql_file.VisitCountTest.datePart";
 
 -- this visit is excluded from report (because of branchId)
 INSERT INTO visit (id, branchId, birthDate, accidentDate)
