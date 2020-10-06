@@ -2,13 +2,19 @@ package hofls.com.github.datastructure;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.TreeMap;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Other useful data structures:
+ * HashMap - O(1) insert/get/delete
+ * ArrayList
+ * HashSet
+ * Stack
+ * Queue
+ * LinkedList
+ */
 public class TreeMapTest {
 
     /**
