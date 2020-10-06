@@ -29,13 +29,13 @@ public class TreeMapTest {
         map.put(33, "C");
         map.put(43, "D");
 
-        Set<Integer> keysA = map.navigableKeySet().subSet(23, 43); // elements >= 23 && < 33
-        assertEquals(keysA, new HashSet<>(Arrays.asList(23, 33)));
+        Set<Integer> keysA = map.navigableKeySet().subSet(22, 44); // elements >= 22 && < 44
+        assertEquals(new HashSet<>(Arrays.asList(23, 33, 43)), keysA);
 
-        Set<Integer> keysB = map.navigableKeySet().headSet(33); // all elements < 33
-        assertEquals(keysB, new HashSet<>(Arrays.asList(10, 23)));
+        Set<Integer> keysB = map.navigableKeySet().headSet(30); // all elements < 30
+        assertEquals(new HashSet<>(Arrays.asList(10, 23)), keysB);
 
-        Set<Integer> keysC = map.navigableKeySet().tailSet(33); // all elements >= 33
-        assertEquals(keysC, new HashSet<>(Arrays.asList(33, 43)));
+        Set<Integer> keysC = map.navigableKeySet().tailSet(30); // all elements >= 30
+        assertEquals(new HashSet<>(Arrays.asList(33, 43)), keysC);
     }
 }
