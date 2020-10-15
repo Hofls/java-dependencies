@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static hofls.com.github.collection.CollectionUtils.safe;
+import static hofls.com.github.utils.CollectionUtils.safe;
 
 class CollectionUtilsTest {
 
