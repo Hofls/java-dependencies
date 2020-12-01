@@ -1,4 +1,4 @@
-package hofls.com.github.rest.humans;
+package hofls.com.github.rest.api.example.types;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

@@ -1,4 +1,4 @@
-package hofls.com.github.rest.parameters;
+package hofls.com.github.rest.parameters.types;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

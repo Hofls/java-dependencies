@@ -1,14 +1,17 @@
-package hofls.com.github.rest.errors;
+package hofls.com.github.rest.validation;
 
 import hofls.com.github.rest.common.exception.exceptions.BadRequestException;
 import hofls.com.github.rest.common.exception.exceptions.InternalServerException;
-import hofls.com.github.rest.humans.Human;
+import hofls.com.github.rest.api.example.types.Human;
+import hofls.com.github.rest.validation.types.ObjectInBody;
+import hofls.com.github.rest.validation.types.ObjectInPath;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+/** Validation + Errors */
 @Api(tags = {"errors-service"})
 @RequestMapping("/errors")
 @RestController

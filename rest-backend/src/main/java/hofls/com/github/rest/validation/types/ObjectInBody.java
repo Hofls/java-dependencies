@@ -1,4 +1,4 @@
-package hofls.com.github.rest.errors;
+package hofls.com.github.rest.validation.types;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

@@ -1,5 +1,7 @@
-package hofls.com.github.rest.humans;
+package hofls.com.github.rest.api.example;
 
+import hofls.com.github.rest.api.example.types.Human;
+import hofls.com.github.rest.api.example.types.HumanFilter;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/** CRUD API example */
 @Api(tags = {"people-service"})
 @RequestMapping("/people")
 @RestController
@@ -23,7 +26,7 @@ public class HumanController {
         return people;
     }
 
-    @ApiOperation(value = "Returns particular humans", notes = "")
+    @ApiOperation(value = "Returns human by id", notes = "")
     @GetMapping(value="{id}")
     public Human getHuman(@PathVariable Long id) {
         return people.get(id);
