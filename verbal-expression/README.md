@@ -1,0 +1,1 @@
+Great alternative to regex
