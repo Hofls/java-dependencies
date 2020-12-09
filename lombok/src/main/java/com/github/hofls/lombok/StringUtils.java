@@ -1,9 +1,9 @@
-package ru.emias.mobile.doctor.server.utils;
+package com.github.hofls.lombok;
 
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
-public final class StringUtils {
+public class StringUtils {
 
     public boolean isEmpty(String value) {
         return value == null || "".equals(value);
