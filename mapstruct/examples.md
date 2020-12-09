@@ -1,6 +1,6 @@
 ### Converts document V5 to document V4
 ```
-@Mapper(unmappedTargetPolicy = ReportingPolicy.ERROR)
+@Mapper(unmappedTargetPolicy = ReportingPolicy.ERROR, uses = { DateUtils.class })
 public interface DocumentMapper {
 
     DocumentMapper INSTANCE = Mappers.getMapper(DocumentMapper.class);
@@ -16,6 +16,10 @@ public interface DocumentMapper {
     @Mapping(source = "value", target = "description")
     @Mapping(target = "definedByCct", ignore = true)
     TagV4 toV4(TagV5 tag);
+
+    /** Execute any java code! */
+    @Mapping(target = "time", expression = "java( java.time.LocalDateTime.now() )")
+    Notification xmlToDto(Notification xml);
     
     /** List to single entity */
     default SignatureV4 toV4(
