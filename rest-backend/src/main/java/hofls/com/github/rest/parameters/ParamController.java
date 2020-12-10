@@ -29,4 +29,12 @@ public class ParamController {
         return id;
     }
 
+    @ApiOperation(value = "Request header example", notes = "")
+    @GetMapping
+    public String headerExample(
+            @ApiParam(required = true, example = "Larry Dotter")
+            @RequestHeader String bookName) {
+        return bookName;
+    }
+
 }
