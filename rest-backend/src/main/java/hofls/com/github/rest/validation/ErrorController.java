@@ -2,7 +2,7 @@ package hofls.com.github.rest.validation;
 
 import hofls.com.github.rest.common.exception.exceptions.BadRequestException;
 import hofls.com.github.rest.common.exception.exceptions.InternalServerException;
-import hofls.com.github.rest.api.example.types.Student;
+import hofls.com.github.rest.api.example.types.Human;
 import hofls.com.github.rest.validation.types.ObjectInBody;
 import hofls.com.github.rest.validation.types.ObjectInPath;
 import io.swagger.annotations.Api;
@@ -19,13 +19,13 @@ public class ErrorController {
 
     @ApiOperation(value = "Throws different errors, based on id", notes = "")
     @GetMapping(value="{id}")
-    public Student throwError(@PathVariable String id) {
+    public Human throwError(@PathVariable String id) {
         if ("1".equals(id)) {
             throw new BadRequestException("Sample exception, it is clients fault (400 code)");
         } else if ("2".equals(id)) {
             throw new InternalServerException("Sample exception, it is servers fault (500 code)");
         } else {
-            Student human = new Student();
+            Human human = new Human();
             human.setName("Helga");
             human.setProfession("Archer");
             return human;
