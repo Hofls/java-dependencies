@@ -14,14 +14,18 @@ public class NonDevBean {
     @Value("${spring.profiles.active:}")
     private String activeProfile;
 
-    @Value("${property-example}")
-    private String propertyExample;
+    @Value("${redefined-property}")
+    private String redefinedProperty;
+
+    @Value("${common-property}")
+    private String commonProperty;
 
     @PostConstruct
     public void init() {
         System.out.println("NonDevBean init");
         System.out.println("NonDevBean.activeProfile = " + activeProfile);
-        System.out.println("NonDevBean.propertyExample = " + propertyExample);
+        System.out.println("NonDevBean.redefinedProperty = " + redefinedProperty);
+        System.out.println("NonDevBean.commonProperty = " + commonProperty);
     }
 
 }

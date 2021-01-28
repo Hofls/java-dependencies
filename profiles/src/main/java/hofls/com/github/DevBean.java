@@ -14,14 +14,18 @@ public class DevBean {
     @Value("${spring.profiles.active:}")
     private String activeProfile;
 
-    @Value("${property-example}")
-    private String propertyExample;
+    @Value("${redefined-property}")
+    private String redefinedProperty;
+
+    @Value("${common-property}")
+    private String commonProperty;
 
     @PostConstruct
     public void init() {
         System.out.println("DevBean init");
         System.out.println("DevBean.activeProfile = " + activeProfile);
-        System.out.println("DevBean.propertyExample = " + propertyExample);
+        System.out.println("DevBean.redefinedProperty = " + redefinedProperty);
+        System.out.println("DevBean.commonProperty = " + commonProperty);
     }
 
 }
