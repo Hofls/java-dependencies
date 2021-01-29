@@ -7,15 +7,22 @@ import java.util.Arrays;
 import java.util.List;
 
 
-@Slf4j
+@Slf4j // generates logger field
 public class LombokDemo {
 
-    @Data
-    @EqualsAndHashCode
-    @ToString
+    @Data // mutators, @EqualsAndHashCode, @ToString
     public static class Entity {
         private String text;
         private Integer number;
+    }
+
+    @Data
+    @EqualsAndHashCode
+    public static class Shop {
+        @EqualsAndHashCode.Exclude
+        private Integer id;
+        private String address;
+        private String description;
     }
 
     public static List<Integer> generateArray(@NonNull Integer arg) {
