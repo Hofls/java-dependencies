@@ -4,6 +4,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
+/**
+ * @see hofls.com.github.junit.TestUtils
+ */
 public class JsonConverter {
 
     private static ObjectMapper mapper = new ObjectMapper();
