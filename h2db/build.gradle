@@ -21,8 +21,12 @@ dependencies {
     implementation 'com.h2database:h2:1.4.200'
     implementation 'org.postgresql:postgresql:42.2.9'
     testImplementation 'org.springframework.boot:spring-boot-starter-test:2.2.2.RELEASE'
+    // Lombok:
     compileOnly 'org.projectlombok:lombok:1.18.8'
     annotationProcessor 'org.projectlombok:lombok:1.18.8'
+    // Lombok for tests:
+    testCompileOnly 'org.projectlombok:lombok:1.18.16'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.16'
 }
 
 group = 'hofls.com.github'
