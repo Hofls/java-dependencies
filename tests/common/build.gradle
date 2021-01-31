@@ -1,0 +1,39 @@
+plugins {
+	id 'org.springframework.boot' version '2.2.6.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id 'info.solidsoft.pitest' version '1.4.6'
+	id 'java'
+	id 'jacoco'
+}
+
+group = 'com.github'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+}
+
+test {
+	useJUnitPlatform() // Needed for JUnit 5
+	finalizedBy jacocoTestReport // report is always generated after tests run
+}
+jacocoTestReport {
+	dependsOn test // tests are required to run before generating the report
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+	testImplementation "com.tngtech.archunit:archunit-junit5-api:0.13.1"
+	testRuntimeOnly "com.tngtech.archunit:archunit-junit5-engine:0.13.1"
+}
+
+pitest {
+	targetClasses = ['com.github.hofls.javatests.*']
+	outputFormats = ['HTML']
+	timestampedReports = false
+	mutationThreshold = 100
+}
