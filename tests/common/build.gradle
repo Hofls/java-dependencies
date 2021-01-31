@@ -25,6 +25,7 @@ jacocoTestReport {
 dependencies {
 	implementation(group: 'org.springframework.boot', name: 'spring-boot-starter-web')
 	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'org.apache.cxf:cxf-rt-features-logging:3.2.0'
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}

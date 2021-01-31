@@ -3,6 +3,9 @@ package com.github.hofls.javatests.utils;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import org.apache.cxf.helpers.IOUtils;
+
+import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -10,6 +13,10 @@ public class TestUtils {
 
     private static ObjectWriter objectWriter =
             new ObjectMapper().writer().withDefaultPrettyPrinter();
+
+    public static String readFile(Class clazz, String filename) throws IOException {
+        return IOUtils.toString(clazz.getResourceAsStream(filename));
+    }
 
     /** Converts objects to JSON and compares them */
     public static void assertEqualJson(Object expectedObj, Object actualObj)
