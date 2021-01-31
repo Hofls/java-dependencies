@@ -1,23 +1,15 @@
 package hofls.com.github.javahibernateexample.storage.specification;
 
-import hofls.com.github.javahibernateexample.storage.JpaConfig;
-import org.hibernate.Hibernate;
+import hofls.com.github.javahibernateexample.storage.junit.BaseTest;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
-import javax.transaction.Transactional;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = { JpaConfig.class })
-@Transactional
-public class SubqueryTest {
+public class SubqueryTest extends BaseTest {
 
     @Resource
     private EmployeeRepository employeeRepository;

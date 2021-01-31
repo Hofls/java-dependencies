@@ -19,7 +19,7 @@
         * `Driver`: `org.h2.Driver`
         * `JDBC URL`: `jdbc:h2:mem:test-db`
 
-#### Application server
+#### Application server (OUTDATED)
 * Maven = execute `mvn clean install`
      * `.war` file location - `target/java-hibernate-example.war`
 * Gradle = execute `gradlew bootWar`
@@ -32,7 +32,7 @@
     * `JDBC URL` -  `jdbc:h2:file:~/example-db`
 * PS Tested on Wildfly & Tomcat
 
-#### Usage with non-embedded DB (Postgres)
+#### Usage with non-embedded DB (Postgres) -  (OUTDATED)
 * Install and run postgres
 * Set user, password and url in file `storage-postgres.properties`
 * Activate postgres configuration:

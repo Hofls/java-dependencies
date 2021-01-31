@@ -1,20 +1,13 @@
 package hofls.com.github.javahibernateexample.storage.jpa_repository;
 
-import hofls.com.github.javahibernateexample.storage.JpaConfig;
+import hofls.com.github.javahibernateexample.storage.junit.BaseTest;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
-import javax.transaction.Transactional;
 
 import static org.junit.Assert.assertEquals;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = { JpaConfig.class })
-@Transactional
-public class StudentRepositoryTest {
+public class StudentRepositoryTest extends BaseTest {
 
     @Resource
     private StudentRepository studentRepository;
