@@ -1,4 +1,4 @@
-package hofls.com.github.junit;
+package com.github.hofls.javatests.utils;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
