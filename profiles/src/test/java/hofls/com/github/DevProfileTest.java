@@ -20,7 +20,6 @@ class DevProfileTest {
     @Test
     void should_run_as_dev() {
         assertEquals("dev-profile", activeProfile);
-        // look at console output
     }
 
 }

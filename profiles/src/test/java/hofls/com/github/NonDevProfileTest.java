@@ -17,9 +17,8 @@ class NonDevProfileTest {
     private String activeProfile;
 
     @Test
-    void should_run_as_dev() {
+    void should_run_with_any_profile() {
         assertEquals("", activeProfile);
-        // look at console output
     }
 
 }
