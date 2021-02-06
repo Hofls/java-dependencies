@@ -3,10 +3,9 @@
  */
 
 plugins {
-    id 'org.springframework.boot' version '2.2.2.RELEASE'
+    id 'org.springframework.boot' version '2.4.1'
     id 'io.spring.dependency-management' version '1.0.8.RELEASE'
     id 'java'
-    id 'war'
 }
 
 repositories {
@@ -15,19 +14,12 @@ repositories {
 }
 
 dependencies {
-    implementation(group: 'org.springframework.boot', name: 'spring-boot-starter-web', version:'2.2.2.RELEASE') {
-        exclude(module: 'tomcat-embed-websocket') /* Because of this exclusion - app is able to run on any application server (otherwise it runs only on Tomcat) */
-    }
-    implementation 'org.springframework.data:spring-data-jpa:2.2.2.RELEASE'
-    implementation 'org.hibernate:hibernate-entitymanager:5.4.10.Final'
-    implementation 'org.postgresql:postgresql:42.2.9'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.2.2.RELEASE'
-    compileOnly 'org.projectlombok:lombok:1.18.8'
-    annotationProcessor 'org.projectlombok:lombok:1.18.8'
-
-    testCompile "org.testcontainers:testcontainers:1.14.0"
-    testCompile "org.testcontainers:postgresql:1.14.0"
-    testCompile 'com.zaxxer:HikariCP-java6:2.3.8'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.postgresql:postgresql:42.2.9'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.testcontainers:postgresql:1.15.1'
 }
 
 group = 'hofls.com.github'
@@ -36,5 +28,3 @@ sourceCompatibility = '1.8'
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
-
-bootWar.dependsOn 'test'

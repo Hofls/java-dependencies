@@ -1,65 +1,40 @@
 package hofls.com.github.javahibernateexample.storage;
 
 import org.junit.Test;
-import org.testcontainers.containers.PostgreSQLContainer;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.LogManager;
 
-import static org.rnorth.visibleassertions.VisibleAssertions.assertEquals;
-import static org.rnorth.visibleassertions.VisibleAssertions.assertNotEquals;
+import static org.junit.Assert.assertEquals;
 
-public class SimplePostgreSQLTest extends AbstractContainerDatabaseTest {
 
-    static {
-        // Postgres JDBC driver uses JUL; disable it to avoid annoying, irrelevant, stderr logs during connection testing
-        LogManager.getLogManager().getLogger("").setLevel(Level.OFF);
+public class SimplePostgreSQLTest extends BaseTest {
+
+    @Test
+    public void simple_test() throws SQLException {
+        ResultSet resultSet = performQuery("SELECT 1");
+        int resultSetInt = resultSet.getInt(1);
+        assertEquals(1, resultSetInt);
     }
 
     @Test
-    public void testSimple() throws SQLException {
-        try (PostgreSQLContainer postgres = new PostgreSQLContainer<>()) {
-            postgres.start();
-
-            ResultSet resultSet = performQuery(postgres, "SELECT 1");
-            int resultSetInt = resultSet.getInt(1);
-            assertEquals("A basic SELECT query succeeds", 1, resultSetInt);
-        }
+    public void uniqueFunctions_test1() throws SQLException {
+        String query = "select date_part('year', (timestamp '1957-06-13'))";
+        String actual = performQuery(query).getString(1);
+        assertEquals("1957", actual);
     }
 
     @Test
-    public void testCommandOverride() throws SQLException {
-        try (PostgreSQLContainer postgres = new PostgreSQLContainer<>().withCommand("postgres -c max_connections=42")) {
-            postgres.start();
-
-            ResultSet resultSet = performQuery(postgres, "SELECT current_setting('max_connections')");
-            String result = resultSet.getString(1);
-            assertEquals("max_connections should be overriden", "42", result);
-        }
+    public void uniqueFunctions_test2() throws SQLException {
+        String query = "select extract(month from interval '2 years 3 months')";
+        String actual = performQuery(query).getString(1);
+        assertEquals("3", actual);
     }
 
     @Test
-    public void testUnsetCommand() throws SQLException {
-        try (PostgreSQLContainer postgres = new PostgreSQLContainer<>().withCommand("postgres -c max_connections=42").withCommand()) {
-            postgres.start();
-
-            ResultSet resultSet = performQuery(postgres, "SELECT current_setting('max_connections')");
-            String result = resultSet.getString(1);
-            assertNotEquals("max_connections should not be overriden", "42", result);
-        }
-    }
-
-    @Test
-    public void testExplicitInitScript() throws SQLException {
-        try (PostgreSQLContainer postgres = new PostgreSQLContainer<>().withInitScript("somepath/init_postgresql.sql")) {
-            postgres.start();
-
-            ResultSet resultSet = performQuery(postgres, "SELECT foo FROM bar");
-
-            String firstColumnValue = resultSet.getString(1);
-            assertEquals("Value from init script should equal real value", "hello world", firstColumnValue);
-        }
+    public void uniqueFunctions_test3() throws SQLException {
+        String query = "select justify_hours(interval '27 hours')";
+        String actual = performQuery(query).getString(1);
+        assertEquals("1 day 03:00:00", actual);
     }
 }
