@@ -1,4 +1,4 @@
-package hofls.com.github.javahibernateexample.storage;
+package hofls.com.github.postgres;
 
 import org.junit.Test;
 

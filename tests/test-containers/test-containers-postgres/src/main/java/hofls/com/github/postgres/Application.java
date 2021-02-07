@@ -1,4 +1,4 @@
-package hofls.com.github.javahibernateexample;
+package hofls.com.github.postgres;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

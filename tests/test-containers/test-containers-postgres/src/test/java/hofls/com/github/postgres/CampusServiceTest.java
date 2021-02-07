@@ -1,7 +1,7 @@
-package hofls.com.github.javahibernateexample.storage;
+package hofls.com.github.postgres;
 
-import hofls.com.github.javahibernateexample.campus.Campus;
-import hofls.com.github.javahibernateexample.campus.CampusService;
+import hofls.com.github.postgres.campus.Campus;
+import hofls.com.github.postgres.campus.CampusService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.jdbc.Sql;

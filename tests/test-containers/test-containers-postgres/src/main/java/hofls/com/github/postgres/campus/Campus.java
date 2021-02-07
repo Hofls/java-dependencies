@@ -1,4 +1,4 @@
-package hofls.com.github.javahibernateexample.campus;
+package hofls.com.github.postgres.campus;
 
 
 

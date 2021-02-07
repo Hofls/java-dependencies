@@ -1,6 +1,5 @@
-package hofls.com.github.javahibernateexample.storage;
+package hofls.com.github.postgres;
 
-import hofls.com.github.javahibernateexample.Application;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
