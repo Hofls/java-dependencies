@@ -9,6 +9,7 @@ import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+// More advanced version located at tests/common
 public class TestUtils {
 
     private static ObjectWriter objectWriter =

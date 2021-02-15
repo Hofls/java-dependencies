@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import org.apache.cxf.helpers.IOUtils;
+import org.springframework.util.StringUtils;
 
 import java.io.IOException;
 
@@ -12,6 +13,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestUtils {
 
+    private static final String CRLF = "\r\n";
+    private static final String LF = "\n";
     private static final ObjectWriter objectWriter =
             new ObjectMapper()
                     .configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true)
@@ -22,17 +25,40 @@ public class TestUtils {
         return IOUtils.toString(clazz.getResourceAsStream(filename));
     }
 
-    /** Converts objects to JSON and compares them */
+    /** Преборазует объекты в JSON и выполняет сравнение */
     public static void assertEqualJson(Object expectedObj, Object actualObj)
             throws JsonProcessingException {
-        String expectedJson = objectToJson(expectedObj);
-        String actualJson = objectToJson(actualObj);
-        assertEquals(toLF(expectedJson), toLF(actualJson));
+        assertEqualJson(expectedObj, actualObj, "");
     }
 
-    /** Replaces CRLF with LF */
-    private static String toLF(String text){
-        return text.replaceAll("\r\n", "\n");
+    /** Преборазует объекты в JSON и выполняет сравнение */
+    public static void assertEqualJson(Object expectedObj, Object actualObj, String ignoredField)
+            throws JsonProcessingException {
+        String expectedJson = toLF(objectToJson(expectedObj));
+        String actualJson = toLF(objectToJson(actualObj));
+        expectedJson = removeLinesWithField(expectedJson, ignoredField);
+        actualJson = removeLinesWithField(actualJson, ignoredField);
+        assertEquals(expectedJson, actualJson);
+    }
+
+    private static String removeLinesWithField(String text, String ignoredField) {
+        if (StringUtils.isEmpty(ignoredField)) {
+            return text;
+        }
+        String ignored = "\"" + ignoredField + "\" :";
+
+        StringBuilder builder = new StringBuilder();
+        for (String line : text.split(LF)) {
+            if (!line.contains(ignored)) {
+                builder.append(line).append(LF);
+            }
+        }
+        return builder.toString();
+    }
+
+    /** Заменяет CRLF на LF */
+    private static String toLF(String text) {
+        return text.replaceAll(CRLF, LF);
     }
 
     public static String objectToJson(Object object) throws JsonProcessingException {
