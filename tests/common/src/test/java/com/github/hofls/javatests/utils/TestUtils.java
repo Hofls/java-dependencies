@@ -11,6 +11,13 @@ import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Why use json to compare objects?
+ * No need to write/read/maintain a bunch of asserts in code.
+ * JSON comparison shows entire object diff.
+ * Somebody added new field to object, but forgot about tests?
+ * No problem, tests will remind about themself by failing.
+ */
 public class TestUtils {
 
     private static final String CRLF = "\r\n";
