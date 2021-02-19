@@ -12,5 +12,4 @@
 # Java code in another repositories:
 * `devops`
     * `Docker`
-    * `Monitoring`
 * `architecture`
