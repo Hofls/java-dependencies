@@ -15,12 +15,8 @@ repositories {
 }
 
 dependencies {
-    implementation(group: 'org.springframework.boot', name: 'spring-boot-starter-web', version:'2.1.3.RELEASE') {
-        exclude(module: 'tomcat-embed-websocket') /* Because of this exclusion - app is able to run on any application server (otherwise it runs only on Tomcat) */
-    }
+    implementation(group: 'org.springframework.boot', name: 'spring-boot-starter-web', version:'2.1.3.RELEASE')
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
-    implementation 'io.micrometer:micrometer-core:1.1.4'
-    implementation 'io.micrometer:micrometer-registry-prometheus:1.1.4'
 }
 
 group = 'hofls.com.github'
