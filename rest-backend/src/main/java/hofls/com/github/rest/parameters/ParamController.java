@@ -20,8 +20,8 @@ public class ParamController {
 
     @ApiOperation(value = "Post method example")
     @PostMapping("post-method")
-    public String postMethod(@Valid @RequestBody ParametersInBody objectInBody,
-                             @Valid ParametersInPath objectInPath) {
+    public String postMethod(@RequestBody ParametersInBody objectInBody,
+                             ParametersInPath objectInPath) {
         return "Hey";
     }
 
