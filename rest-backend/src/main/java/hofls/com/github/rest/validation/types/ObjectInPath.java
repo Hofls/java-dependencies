@@ -18,4 +18,7 @@ public class ObjectInPath {
     @NotNull
     @ApiModelProperty(example="100")
     private Integer fieldB;
+
+    @ApiModelProperty(required = true) // only works for swagger-ui (try to send request via curl)
+    private String notReallyRequired;
 }

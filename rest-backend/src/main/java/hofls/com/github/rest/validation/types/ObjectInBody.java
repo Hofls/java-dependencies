@@ -31,7 +31,7 @@ public class ObjectInBody {
         @AssertTrue(message = "Values should be bigger!")
         @ApiModelProperty(hidden = true)
         public boolean isValuesBigEnough() {
-            // method name is crucial! if it doesnt start with "is" - nothing happens
+            // method name is crucial! if it doesn't start with "is" - nothing happens
             boolean isFieldABigEnough = fieldA != null && fieldA.length() > 8;
             boolean isFieldBbigEnough = fieldB > 100000;
             return isFieldABigEnough && isFieldBbigEnough;
