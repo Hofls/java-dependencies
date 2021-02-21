@@ -1,4 +1,4 @@
-# Session based auth
+# Token based auth
 Essence:
 * API user generates token, then sends token in header with each request.
 

@@ -1,0 +1,8 @@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            clientId: INSERT_CLIENT_ID_HERE
+            clientSecret: INSERT_CLIENT_SECRET_HERE
