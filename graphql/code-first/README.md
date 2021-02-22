@@ -12,8 +12,8 @@
 ```
 {
   foods {
-    id,
-    isGood,
+    id
+    isGood
     name
   }
 }
