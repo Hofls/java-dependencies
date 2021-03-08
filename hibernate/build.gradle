@@ -26,6 +26,9 @@ dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.8'
     annotationProcessor 'org.projectlombok:lombok:1.18.8'
 
+    // JSON:
+    implementation 'com.vladmihalcea:hibernate-types-52:2.9.11'
+
     // Audit:
     implementation 'org.javers:javers-spring-boot-starter-sql:5.13.0'
 
