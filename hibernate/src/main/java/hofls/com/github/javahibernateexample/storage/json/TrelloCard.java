@@ -16,7 +16,8 @@ import java.util.List;
 @Entity
 @Data
 @TypeDefs({
-        @TypeDef(name = "json", typeClass = JsonStringType.class)
+        @TypeDef(name = "json", typeClass = JsonStringType.class),
+        @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
 })
 public class TrelloCard {
 
@@ -24,7 +25,7 @@ public class TrelloCard {
     @GeneratedValue
     private long id;
 
-    @Type(type = "json")
+    @Type(type = "json") // better use jsonb
     private Info info;
 
     @Data
