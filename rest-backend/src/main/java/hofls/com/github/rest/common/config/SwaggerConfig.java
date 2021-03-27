@@ -23,7 +23,8 @@ public class SwaggerConfig {
                 .apiInfo(apiInfo())
                 .tags(new Tag("people-service", "List of people (rest architecture example)"))
                 .tags(new Tag("errors-service", "Different http errors"))
-                .tags(new Tag("parameters-controller", "Parameters example (body/path)"));
+                .tags(new Tag("parameters-controller", "Parameters example (body/path)"))
+                .tags(new Tag("responses-controller", "Responses example"));
     }
 
     private ApiInfo apiInfo() {
