@@ -5,6 +5,7 @@ import hofls.com.github.rest.common.exception.exceptions.InternalServerException
 import hofls.com.github.rest.api.example.types.Human;
 import hofls.com.github.rest.validation.types.ObjectInBody;
 import hofls.com.github.rest.validation.types.ObjectInPath;
+import hofls.com.github.rest.validation.types.RegexObject;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
@@ -33,11 +34,22 @@ public class ErrorController {
 
     }
 
-    @ApiOperation(value = "Validates object", notes = "")
-    @PostMapping("validate")
-    public Long validationExample(@Valid @RequestBody ObjectInBody objectInBody, @Valid ObjectInPath objectInPath) {
+    @ApiOperation(value = "Body validation ")
+    @PostMapping("body")
+    public Long bodyValidation(@Valid @RequestBody ObjectInBody objectInBody) {
         return 777L;
     }
 
+    @ApiOperation(value = "Path validaton")
+    @PostMapping("path")
+    public Long pathValidation(@Valid ObjectInPath objectInPath) {
+        return 777L;
+    }
+
+    @ApiOperation(value = "Regex validation")
+    @PostMapping("regex")
+    public Long regexValidation(@Valid @RequestBody RegexObject objectInBody, @Valid RegexObject objectInPath) {
+        return 777L;
+    }
 
 }
