@@ -6,12 +6,16 @@ import java.util.Optional;
 
 public class NullCheckDemo {
 
+    public static String getAreaName_BEST_EXAMPLE(Address address) {
+        return NullUtils.safe(() -> address.getCustomType().getArea().getName());
+    }
+
     public static String getAreaName_GOOD_EXAMPLE(Address address) {
         return Optional.ofNullable(address)
                 .map(Address::getCustomType)
                 .map(CustomType::getArea)
                 .map(Area::getName)
-                .orElse("");
+                .orElse(null);
     }
 
     public static String getAreaName_BAD_EXAMPLE(Address address) {
@@ -21,7 +25,7 @@ public class NullCheckDemo {
                 && address.getCustomType().getArea().getName() != null) {
             return address.getCustomType().getArea().getName();
         } else {
-            return "";
+            return null;
         }
     }
 

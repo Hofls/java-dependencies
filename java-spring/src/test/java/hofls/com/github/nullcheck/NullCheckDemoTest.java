@@ -10,8 +10,10 @@ public class NullCheckDemoTest {
     public void should_convert_null_to_string() throws Exception {
         String actual_a = NullCheckDemo.getAreaName_GOOD_EXAMPLE(null);
         String actual_b = NullCheckDemo.getAreaName_BAD_EXAMPLE(null);
-        assertEquals("", actual_a);
-        assertEquals("", actual_b);
+        String actual_c = NullCheckDemo.getAreaName_BEST_EXAMPLE(null);
+        assertEquals(null, actual_a);
+        assertEquals(null, actual_b);
+        assertEquals(null, actual_c);
     }
 
     @Test
@@ -21,8 +23,10 @@ public class NullCheckDemoTest {
 
         String actual_a = NullCheckDemo.getAreaName_GOOD_EXAMPLE(address);
         String actual_b = NullCheckDemo.getAreaName_BAD_EXAMPLE(address);
-        assertEquals("", actual_a);
-        assertEquals("", actual_b);
+        String actual_c = NullCheckDemo.getAreaName_BEST_EXAMPLE(address);
+        assertEquals(null, actual_a);
+        assertEquals(null, actual_b);
+        assertEquals(null, actual_c);
     }
 
     @Test
@@ -38,8 +42,10 @@ public class NullCheckDemoTest {
 
         String actual_a = NullCheckDemo.getAreaName_GOOD_EXAMPLE(address);
         String actual_b = NullCheckDemo.getAreaName_BAD_EXAMPLE(address);
+        String actual_c = NullCheckDemo.getAreaName_BEST_EXAMPLE(address);
         assertEquals("Saharan desert", actual_a);
         assertEquals("Saharan desert", actual_b);
+        assertEquals("Saharan desert", actual_c);
     }
 
 
