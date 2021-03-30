@@ -1,4 +1,4 @@
-package hofls.com.github.nullcheck;
+package hofls.com.github.nullsafe;
 
 import org.junit.jupiter.api.Test;
 

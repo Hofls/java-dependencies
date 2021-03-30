@@ -1,5 +1,8 @@
-package hofls.com.github.nullcheck;
+package hofls.com.github.nullsafe;
 
+import hofls.com.github.nullsafe.types.Address;
+import hofls.com.github.nullsafe.types.Area;
+import hofls.com.github.nullsafe.types.CustomType;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -18,8 +21,8 @@ public class NullCheckDemoTest {
 
     @Test
     public void should_convert_half_filled_object_to_string() throws Exception {
-        NullCheckDemo.Address address = new NullCheckDemo.Address();
-        address.setCustomType(new NullCheckDemo.CustomType());
+        Address address = new Address();
+        address.setCustomType(new CustomType());
 
         String actual_a = NullCheckDemo.getAreaName_GOOD_EXAMPLE(address);
         String actual_b = NullCheckDemo.getAreaName_BAD_EXAMPLE(address);
@@ -31,13 +34,13 @@ public class NullCheckDemoTest {
 
     @Test
     public void should_convert_fully_filled_object_to_string() throws Exception {
-        NullCheckDemo.Area area = new NullCheckDemo.Area();
+        Area area = new Area();
         area.setName("Saharan desert");
 
-        NullCheckDemo.CustomType customType = new NullCheckDemo.CustomType();
+        CustomType customType = new CustomType();
         customType.setArea(area);
 
-        NullCheckDemo.Address address = new NullCheckDemo.Address();
+        Address address = new Address();
         address.setCustomType(customType);
 
         String actual_a = NullCheckDemo.getAreaName_GOOD_EXAMPLE(address);

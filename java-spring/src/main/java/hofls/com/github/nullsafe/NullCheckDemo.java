@@ -1,5 +1,8 @@
-package hofls.com.github.nullcheck;
+package hofls.com.github.nullsafe;
 
+import hofls.com.github.nullsafe.types.Address;
+import hofls.com.github.nullsafe.types.Area;
+import hofls.com.github.nullsafe.types.CustomType;
 import lombok.Data;
 
 import java.util.Optional;
@@ -29,19 +32,6 @@ public class NullCheckDemo {
         }
     }
 
-    @Data
-    public static class Address {
-        private CustomType customType;
-    }
 
-    @Data
-    public static class CustomType {
-        private Area area;
-    }
-
-    @Data
-    public static class Area {
-        private String name;
-    }
 
 }
