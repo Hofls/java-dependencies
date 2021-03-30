@@ -1,20 +1,24 @@
 package hofls.com.github.nullsafe;
 
+import hofls.com.github.nullsafe.types.Area;
 import org.junit.jupiter.api.Test;
 
+import static hofls.com.github.nullsafe.NullUtils.safe;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class NullUtilsTest {
 
     @Test
     void testSafe1() {
-        String actual = NullUtils.safe(() -> { throw new NullPointerException(); }, "default");
+        Area area = null;
+        String actual = safe(() -> area.getName(), "default");
         assertEquals("default", actual);
     }
 
     @Test
     void testSafe2() {
-        String actual = NullUtils.safe(() -> { throw new NullPointerException(); });
+        Area area = null;
+        String actual = safe(() -> area.getName());
         assertEquals(null, actual);
     }
 }

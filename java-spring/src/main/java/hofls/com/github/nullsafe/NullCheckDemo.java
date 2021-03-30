@@ -3,14 +3,15 @@ package hofls.com.github.nullsafe;
 import hofls.com.github.nullsafe.types.Address;
 import hofls.com.github.nullsafe.types.Area;
 import hofls.com.github.nullsafe.types.CustomType;
-import lombok.Data;
 
 import java.util.Optional;
+
+import static hofls.com.github.nullsafe.NullUtils.safe;
 
 public class NullCheckDemo {
 
     public static String getAreaName_BEST_EXAMPLE(Address address) {
-        return NullUtils.safe(() -> address.getCustomType().getArea().getName());
+        return safe(() -> address.getCustomType().getArea().getName());
     }
 
     public static String getAreaName_MEDIOCRE_EXAMPLE(Address address) {
