@@ -7,7 +7,7 @@ public class NullUtils {
     public static <T> T safe(Supplier<T> supplier) {
         try {
             return supplier.get();
-        } catch (NullPointerException e) {
+        } catch (NullPointerException | IndexOutOfBoundsException e) {
             return null;
         }
     }
@@ -15,7 +15,7 @@ public class NullUtils {
     static <T> T safe(Supplier<T> supplier, T defaultValue) {
         try {
             return supplier.get();
-        } catch (NullPointerException e) {
+        } catch (NullPointerException | IndexOutOfBoundsException e) {
             return defaultValue;
         }
     }
