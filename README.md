@@ -9,7 +9,11 @@
 * `ZGC` - low pause times, good for large heap sizes (up to 4 terabytes)
 * `Shenandoah` - low pause times, good for large heap sizes 
 
+# Parameters
+* `–Xms256m` - initial heap size
+* `–Xmx1024m` - maximum heap size
+* `-Duser.timezone=Asia/Tokyo` - timezone
+
 # Java code in another repositories:
 * `devops`
-    * `Docker`
 * `architecture`
