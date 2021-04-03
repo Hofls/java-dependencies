@@ -32,13 +32,13 @@ public class TestUtils {
         return IOUtils.toString(clazz.getResourceAsStream(filename));
     }
 
-    /** Преборазует объекты в JSON и выполняет сравнение */
+    /** Converts objects to JSON and compares them */
     public static void assertEqualJson(Object expectedObj, Object actualObj)
             throws JsonProcessingException {
         assertEqualJson(expectedObj, actualObj, "");
     }
 
-    /** Преборазует объекты в JSON и выполняет сравнение */
+    /** Converts objects to JSON and compares them */
     public static void assertEqualJson(Object expectedObj, Object actualObj, String ignoredField)
             throws JsonProcessingException {
         String expectedJson = toLF(objectToJson(expectedObj));
@@ -63,7 +63,7 @@ public class TestUtils {
         return builder.toString();
     }
 
-    /** Заменяет CRLF на LF */
+    /** Replaces CRLF with LF */
     private static String toLF(String text) {
         return text.replaceAll(CRLF, LF);
     }
