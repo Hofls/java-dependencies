@@ -1,4 +1,5 @@
 
+* Update dependencies to the latest versions: `mvn versions:use-latest-releases`
 * If `install` throws error, to get more info: `mvn -X install`
 * To look at all dependencies: `mvn dependency:tree`
 * To find unused dependencies: `mvn dependency:analyze`
