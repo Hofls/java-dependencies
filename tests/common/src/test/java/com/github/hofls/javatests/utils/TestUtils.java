@@ -28,6 +28,11 @@ public class TestUtils {
                     .writer()
                     .withDefaultPrettyPrinter();
 
+    /**
+     * To generate file in 'resources' folder (IntelliJ IDEA)
+     * 1. Add annotation "@Sql("expectedFile.json")"
+     * 2. Select annotation, press Alt+Enter
+     * */
     public static String readFile(Class clazz, String filename) throws IOException {
         return IOUtils.toString(clazz.getResourceAsStream(filename));
     }
