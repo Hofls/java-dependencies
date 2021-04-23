@@ -9,7 +9,7 @@
 * Move everything to the same folder
 * Open console, execute:
     * `java -javaagent:./jmx_prometheus_javaagent-0.14.0.jar=8081:config.yaml -jar rest-backend.jar`
-* Open http://localhost:8081/ to look at metrics, [example](example.txt)
+* Open http://localhost:8081/metrics to look at metrics, [example](example.txt)
 
 ##### Getting started (.war)
 * The only difference - add `-javaagent` to `JAVA_OPTS` at `${wildfly}/bin/standalone.conf`
