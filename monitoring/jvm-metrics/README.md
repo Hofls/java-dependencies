@@ -1,7 +1,7 @@
 ##### Getting started (.jar)
 * Install java
     * To check - `java --version`
-* Get any .jar file, e.g. `rest-backend.jar` from `docker/java-rest-backend`
+* Get any .jar file, e.g. `rest-backend.jar` from `devops/docker/java-rest-backend`
     * Make sure its working - `java -jar rest-backend.jar`
 * Download [jmx exporter (jar)](https://github.com/prometheus/jmx_exporter)
 * Download [example config](https://github.com/prometheus/jmx_exporter/tree/master/example_configs)
