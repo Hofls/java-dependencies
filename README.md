@@ -10,8 +10,12 @@
 * `Shenandoah` - low pause times, good for large heap sizes 
 
 # Parameters
-* `–Xms256m` - initial heap size
-* `–Xmx1024m` - maximum heap size
+* Memory:
+    * Absolute:
+        * `–Xms256m` - initial heap size
+        * `–Xmx1024m` - maximum heap size
+    * Relative:
+        * `-XX:MaxRAMPercentage=80.0` - use up to 80% of RAM as heap
 * `-Duser.timezone=Asia/Tokyo` - timezone
 
 # Java code in another repositories:
