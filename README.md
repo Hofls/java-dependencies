@@ -17,6 +17,7 @@
     * Relative:
         * `-XX:MaxRAMPercentage=80.0` - use up to 80% of RAM as heap
 * `-Duser.timezone=Asia/Tokyo` - timezone
+* `-Dhttp.proxyHost=23.221.54.132 -Dhttp.proxyPort=3128` - proxy
 
 # Java code in another repositories:
 * `devops`
