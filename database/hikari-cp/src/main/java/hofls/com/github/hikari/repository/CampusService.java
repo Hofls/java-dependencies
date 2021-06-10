@@ -10,14 +10,6 @@ public class CampusService {
     @Resource
     private CampusRepository campusRepository;
 
-    public Campus findById(Long id) {
-        if (id == null) {
-            throw new IllegalArgumentException("Unknown ID!");
-        }
-        return campusRepository.findById(id).get();
-    }
-
-
     public Campus save(String name) {
         Campus campus = new Campus();
         campus.setName(name);

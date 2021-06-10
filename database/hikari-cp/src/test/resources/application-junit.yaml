@@ -8,4 +8,6 @@ spring:
           new_generator_mappings: false
         format_sql: true
   datasource:
-    jdbcUrl: jdbc:h2:mem:test-db;DB_CLOSE_DELAY=-1
+    hikari:
+      jdbcUrl: jdbc:h2:mem:test-db;DB_CLOSE_DELAY=-1
+      leak-detection-threshold: 2000

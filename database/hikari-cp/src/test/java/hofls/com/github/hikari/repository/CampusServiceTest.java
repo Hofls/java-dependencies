@@ -2,9 +2,6 @@ package hofls.com.github.hikari.repository;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.jdbc.Sql;
-import org.springframework.test.context.jdbc.SqlConfig;
-
 import static org.junit.Assert.assertEquals;
 
 public class CampusServiceTest extends BaseTest {
@@ -16,7 +13,14 @@ public class CampusServiceTest extends BaseTest {
     private CampusRepository repository;
 
     @Test
-    public void findById_test2() {
+    public void connection_leak() throws Exception {
+        // Transaction open for 3 seconds, while leak-detection-threshold = 2 seconds
+        // Look at the logs, leak should be detected
+        Thread.sleep(3000);
+    }
+
+    @Test
+    public void normal_test() {
         service.save("New name");
         Campus campus = repository.findAll().get(0);
         assertEquals("New name", campus.getName());
