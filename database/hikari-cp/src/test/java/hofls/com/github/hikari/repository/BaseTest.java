@@ -1,6 +1,6 @@
-package hofls.com.github.javahibernateexample.storage.jpa_repository;
+package hofls.com.github.hikari.repository;
 
-import hofls.com.github.javahibernateexample.Application;
+import hofls.com.github.hikari.Application;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;

@@ -1,4 +1,4 @@
-package hofls.com.github.javahibernateexample.config;
+package hofls.com.github.hikari.config;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;

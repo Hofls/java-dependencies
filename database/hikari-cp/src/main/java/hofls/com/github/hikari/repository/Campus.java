@@ -1,14 +1,12 @@
-package hofls.com.github.javahibernateexample.storage.jpa_repository;
+package hofls.com.github.hikari.repository;
 
 
-import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-@Data
 public class Campus {
 
     @Id
@@ -17,4 +15,11 @@ public class Campus {
 
     private String name;
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

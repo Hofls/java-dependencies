@@ -1,4 +1,4 @@
-package hofls.com.github.javahibernateexample.storage.jpa_repository;
+package hofls.com.github.hikari.repository;
 
 import org.springframework.stereotype.Service;
 
@@ -15,6 +15,13 @@ public class CampusService {
             throw new IllegalArgumentException("Unknown ID!");
         }
         return campusRepository.findById(id).get();
+    }
+
+
+    public Campus save(String name) {
+        Campus campus = new Campus();
+        campus.setName(name);
+        return campusRepository.save(campus);
     }
 
 }

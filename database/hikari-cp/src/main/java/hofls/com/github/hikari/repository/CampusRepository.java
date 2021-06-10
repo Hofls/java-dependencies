@@ -1,4 +1,4 @@
-package hofls.com.github.javahibernateexample.storage.jpa_repository;
+package hofls.com.github.hikari.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
