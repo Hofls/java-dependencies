@@ -1,1 +1,4 @@
 helloMessage: "Hi everybody!! its a default profile"
+custom:
+  properties:
+    hello: "Hola!"
