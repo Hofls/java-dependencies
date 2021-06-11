@@ -120,6 +120,13 @@ public final class DateUtils {
         return null;
     }
 
+    public static LocalDateTime toLocalDateTime(Date dateToConvert) {
+        if (dateToConvert == null) {
+            return null;
+        }
+        return dateToConvert.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+    }
+
     public static String format(Date date, String format) {
         if (date == null) {
             return "";
