@@ -11,6 +11,6 @@ class FileToStringTest {
     @Test
     void testGetRootReadme() throws IOException {
         String result = fileToString.getRootReadme();
-        Assertions.assertTrue(result.startsWith("# java-dependencies-examples"));
+        Assertions.assertTrue(result.contains("HotSpot"));
     }
 }

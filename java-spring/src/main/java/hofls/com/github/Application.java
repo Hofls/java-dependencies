@@ -9,7 +9,7 @@ import java.util.Locale;
 @SpringBootApplication
 public class Application extends SpringBootServletInitializer {
 
-	public static void main(String[] args) throws Throwable {
+	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}
 
