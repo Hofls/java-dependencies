@@ -33,24 +33,30 @@ public class TestUtils {
      * 1. Add annotation "@Sql("expectedFile.json")"
      * 2. Select annotation, press Alt+Enter
      * */
-    public static String readFile(Class clazz, String filename) throws IOException {
-        return IOUtils.toString(clazz.getResourceAsStream(filename));
+    public static String readFile(Class clazz, String filename) {
+        try {
+            return IOUtils.toString(clazz.getResourceAsStream(filename));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /** Converts objects to JSON and compares them */
-    public static void assertEqualJson(Object expectedObj, Object actualObj)
-            throws JsonProcessingException {
+    public static void assertEqualJson(Object expectedObj, Object actualObj) {
         assertEqualJson(expectedObj, actualObj, "");
     }
 
     /** Converts objects to JSON and compares them */
-    public static void assertEqualJson(Object expectedObj, Object actualObj, String ignoredField)
-            throws JsonProcessingException {
-        String expectedJson = toLF(objectToJson(expectedObj));
-        String actualJson = toLF(objectToJson(actualObj));
-        expectedJson = removeLinesWithField(expectedJson, ignoredField);
-        actualJson = removeLinesWithField(actualJson, ignoredField);
-        assertEquals(expectedJson, actualJson);
+    public static void assertEqualJson(Object expectedObj, Object actualObj, String ignoredField) {
+        try {
+            String expectedJson = toLF(objectToJson(expectedObj));
+            String actualJson = toLF(objectToJson(actualObj));
+            expectedJson = removeLinesWithField(expectedJson, ignoredField);
+            actualJson = removeLinesWithField(actualJson, ignoredField);
+            assertEquals(expectedJson, actualJson);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private static String removeLinesWithField(String text, String ignoredField) {
@@ -73,11 +79,15 @@ public class TestUtils {
         return text.replaceAll(CRLF, LF);
     }
 
-    public static String objectToJson(Object object) throws JsonProcessingException {
-        if (object instanceof String) {
-            return (String) object;
-        } else {
-            return objectWriter.writeValueAsString(object);
+    public static String objectToJson(Object object) {
+        try {
+            if (object instanceof String) {
+                return (String) object;
+            } else {
+                return objectWriter.writeValueAsString(object);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 }

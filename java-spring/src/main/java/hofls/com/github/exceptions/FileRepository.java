@@ -7,6 +7,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.List;
 
+/** Checked VS Unchecked exceptions */
 public class FileRepository {
 
     // GOOD - callers not forced to handle anything, but they still can
