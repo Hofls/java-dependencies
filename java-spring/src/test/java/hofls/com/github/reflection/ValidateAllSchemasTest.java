@@ -9,7 +9,7 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Alternative - manually maintaning list of classes
+ * Alternative - manually maintaining list of classes
  * Each time you add a new class - you need to update list
  * Automatically is better than manually
  */
