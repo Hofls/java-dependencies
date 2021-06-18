@@ -28,11 +28,12 @@ dependencies {
     implementation 'commons-io:commons-io:2.6'
     implementation 'org.apache.commons:commons-lang3:3.10'
 
+    implementation 'org.reflections:reflections:0.9.12'
+
     // JAXB
     compile('javax.xml.bind:jaxb-api:2.3.0')
     compile('javax.activation:activation:1.1')
     compile('org.glassfish.jaxb:jaxb-runtime:2.3.0')
-
 
     implementation 'org.aspectj:aspectjweaver:1.9.5'
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
