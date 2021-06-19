@@ -20,7 +20,7 @@ public class BadSolutionTest extends BaseTest {
     }
 
     @Test
-    public void consecutive_lock_throws()  {
+    public void consecutive_lock_should_throw()  {
         long id = service.createNotification();
         service.badLock(id);
 
@@ -32,7 +32,7 @@ public class BadSolutionTest extends BaseTest {
 
     /** Didn't threw, but should (look at GoodSolutionTest) */
     @Test
-    public void parallel_lock_didnt_threw() throws InterruptedException {
+    public void parallel_lock_should_throw() throws InterruptedException {
         long id = service.createNotification();
         new Thread(() -> service.badLock(id)).start();
         new Thread(() -> service.badLock(id)).start();
