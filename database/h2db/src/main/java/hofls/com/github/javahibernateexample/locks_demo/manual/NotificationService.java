@@ -1,6 +1,7 @@
 package hofls.com.github.javahibernateexample.locks_demo.manual;
 
 import lombok.val;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,10 +11,10 @@ import javax.annotation.Resource;
 @Service
 public class NotificationService {
 
-    @Resource
+    @Autowired
     private NotificationRepository notificationRepository;
 
-    @Resource
+    @Autowired
     private NotificationLockRepository notificationLockRepository;
 
     @Transactional

@@ -1,7 +1,6 @@
-package hofls.com.github.javahibernateexample.locks_demo.demo;
+package hofls.com.github.javahibernateexample.locks_demo.manual;
 
 import hofls.com.github.javahibernateexample.hello_world.BaseTest;
-import hofls.com.github.javahibernateexample.locks_demo.manual.NotificationService;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.springframework.beans.factory.annotation.Autowired;
