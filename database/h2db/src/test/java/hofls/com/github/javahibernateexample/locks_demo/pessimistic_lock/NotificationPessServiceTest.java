@@ -1,7 +1,7 @@
 package hofls.com.github.javahibernateexample.locks_demo.pessimistic_lock;
 
 import hofls.com.github.javahibernateexample.hello_world.BaseTest;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -51,8 +51,8 @@ public class NotificationPessServiceTest extends BaseTest {
             service.pessimisticLock(id);
             validateCountdown.countDown();
         } catch (Exception e) {
-            validateCountdown.countDown();
             exceptions.add(e);
+            validateCountdown.countDown();
             throw e;
         }
     }

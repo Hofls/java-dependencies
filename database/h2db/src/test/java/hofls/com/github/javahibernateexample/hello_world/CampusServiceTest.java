@@ -3,14 +3,15 @@ package hofls.com.github.javahibernateexample.hello_world;
 import hofls.com.github.javahibernateexample.common.TestUtils;
 import lombok.val;
 import lombok.var;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
 
 import java.io.IOException;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 public class CampusServiceTest extends BaseWithTransaction {
 

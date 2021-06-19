@@ -6,7 +6,6 @@ plugins {
     id 'org.springframework.boot' version '2.2.2.RELEASE'
     id 'io.spring.dependency-management' version '1.0.8.RELEASE'
     id 'java'
-    id 'war'
 }
 
 repositories {
@@ -20,7 +19,9 @@ dependencies {
     implementation 'org.hibernate:hibernate-entitymanager:5.4.10.Final'
     implementation 'com.h2database:h2:1.4.200'
     implementation 'org.postgresql:postgresql:42.2.9'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.2.2.RELEASE'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
 
     implementation 'org.apache.cxf:cxf-rt-features-logging:3.2.0'
 
@@ -39,4 +40,6 @@ tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
 
-bootWar.dependsOn 'test'
+test {
+    useJUnitPlatform()
+}

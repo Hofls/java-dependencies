@@ -2,7 +2,7 @@ package hofls.com.github.javahibernateexample.locks_demo.optimistic_lock;
 
 
 import hofls.com.github.javahibernateexample.hello_world.BaseTest;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 import org.springframework.beans.factory.annotation.Autowired;
 
