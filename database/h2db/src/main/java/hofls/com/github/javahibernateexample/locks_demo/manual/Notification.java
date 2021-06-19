@@ -1,4 +1,4 @@
-package hofls.com.github.javahibernateexample.one_at_time;
+package hofls.com.github.javahibernateexample.locks_demo.manual;
 
 
 import lombok.Data;
@@ -6,6 +6,7 @@ import lombok.Data;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+
 
 @Entity
 @Data
