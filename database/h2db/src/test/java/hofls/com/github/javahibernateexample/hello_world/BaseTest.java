@@ -1,4 +1,4 @@
-package hofls.com.github.javahibernateexample.storage.jpa_repository;
+package hofls.com.github.javahibernateexample.hello_world;
 
 import hofls.com.github.javahibernateexample.Application;
 import org.junit.runner.RunWith;

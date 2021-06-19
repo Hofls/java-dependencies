@@ -1,4 +1,4 @@
-package hofls.com.github.javahibernateexample.storage.jpa_repository;
+package hofls.com.github.javahibernateexample.hello_world;
 
 import org.springframework.stereotype.Service;
 

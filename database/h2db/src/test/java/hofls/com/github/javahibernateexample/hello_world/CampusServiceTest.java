@@ -1,6 +1,6 @@
-package hofls.com.github.javahibernateexample.storage.jpa_repository;
+package hofls.com.github.javahibernateexample.hello_world;
 
-import hofls.com.github.javahibernateexample.storage.junit.TestUtils;
+import hofls.com.github.javahibernateexample.common.TestUtils;
 import lombok.val;
 import lombok.var;
 import org.junit.Test;

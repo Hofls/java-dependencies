@@ -1,4 +1,4 @@
-package hofls.com.github.javahibernateexample.storage.junit;
+package hofls.com.github.javahibernateexample.common;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

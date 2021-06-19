@@ -1,6 +1,6 @@
 package hofls.com.github.javahibernateexample.one_at_time;
 
-import hofls.com.github.javahibernateexample.storage.jpa_repository.BaseTest;
+import hofls.com.github.javahibernateexample.hello_world.BaseTest;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.springframework.beans.factory.annotation.Autowired;

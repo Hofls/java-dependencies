@@ -1,4 +1,4 @@
-package hofls.com.github.javahibernateexample.storage.junit;
+package hofls.com.github.javahibernateexample.common;
 
 import org.h2.tools.Server;
 import org.springframework.context.annotation.Bean;
