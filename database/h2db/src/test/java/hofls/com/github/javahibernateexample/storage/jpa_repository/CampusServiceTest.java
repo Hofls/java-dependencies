@@ -12,7 +12,7 @@ import java.io.IOException;
 
 import static org.junit.Assert.assertEquals;
 
-public class CampusServiceTest extends BaseTest {
+public class CampusServiceTest extends BaseWithTransaction {
 
     @Autowired
     private CampusService service;
