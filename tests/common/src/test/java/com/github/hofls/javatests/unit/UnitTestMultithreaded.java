@@ -2,33 +2,37 @@ package com.github.hofls.javatests.unit;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 
-public class UnitTestMultithreaded {
+class UnitTestMultithreaded {
 
-    private int iterations = 100;
+    private int iterations = 10;
     private CountDownLatch validateCountdown = new CountDownLatch(iterations);
+    private List<Exception> exceptions = new ArrayList<>();
 
     @Test
-    public void should_return_max_value() throws InterruptedException {
+    void multithread_test_demo() throws InterruptedException {
         for (int i = 0 ; i < iterations; i++) {
-            new Thread(this::assertMaxValue).start();
+            new Thread(this::indexOutOfBounds).start();
         }
-        validateCountdown.await();
+
+        validateCountdown.await(); // necessary to wait for all threads
+        assertEquals(10, exceptions.size());
+        assertEquals("Index: 777, Size: 0", exceptions.get(0).getMessage());
     }
 
-    private void assertMaxValue() {
+    private void indexOutOfBounds() {
         try {
-            assertEquals(5, Math.max(2, 5));
+            exceptions.get(777);
         } catch (Exception e) {
-            e.printStackTrace();
-            fail();
+            validateCountdown.countDown();
+            exceptions.add(e);
+            throw new RuntimeException(e);
         }
-        validateCountdown.countDown();
     }
-
 
 }
