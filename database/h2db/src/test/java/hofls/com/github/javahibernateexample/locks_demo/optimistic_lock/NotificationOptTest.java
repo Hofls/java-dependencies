@@ -6,6 +6,10 @@ import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.CountDownLatch;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class NotificationOptTest extends BaseTest {
@@ -30,14 +34,32 @@ public class NotificationOptTest extends BaseTest {
         assertTrue(exception.getMessage().contains("Already locked!"));
     }
 
-    /** Look at exception in logs */
+    private List<Exception> exceptions = new ArrayList<>();
+    private CountDownLatch validateCountdown = new CountDownLatch(2);
     @Test
     public void parallel_lock_should_throw() throws InterruptedException {
         long id = service.createNotification();
-        new Thread(() -> service.optimisticLock(id)).start();
-        new Thread(() -> service.optimisticLock(id)).start();
+        new Thread(() -> multithreadedLock(id)).start();
+        new Thread(() -> multithreadedLock(id)).start();
 
-        Thread.sleep(500); // wait for threads
+        String expected = "optimistic locking failed; " +
+                "nested exception is org.hibernate.StaleObjectStateException: " +
+                "Row was updated or deleted by another transaction";
+        validateCountdown.await();
+        assertEquals(1, exceptions.size());
+        assertTrue(exceptions.get(0).getMessage().contains(expected));
     }
+
+    private void multithreadedLock(long id) {
+        try {
+            service.optimisticLock(id);
+            validateCountdown.countDown();
+        } catch (Exception e) {
+            exceptions.add(e);
+            validateCountdown.countDown();
+            throw e;
+        }
+    }
+
 
 }

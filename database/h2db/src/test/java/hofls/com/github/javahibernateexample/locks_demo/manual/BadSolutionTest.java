@@ -5,6 +5,10 @@ import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.CountDownLatch;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -30,14 +34,29 @@ public class BadSolutionTest extends BaseTest {
         assertTrue( exception.getMessage().contains("Already locked!"));
     }
 
+    private List<Exception> exceptions = new ArrayList<>();
+    private CountDownLatch validateCountdown = new CountDownLatch(2);
     /** Didn't threw, but should (look at GoodSolutionTest) */
     @Test
     public void parallel_lock_should_throw() throws InterruptedException {
         long id = service.createNotification();
-        new Thread(() -> service.badLock(id)).start();
-        new Thread(() -> service.badLock(id)).start();
+        new Thread(() -> multithreadedLock(id)).start();
+        new Thread(() -> multithreadedLock(id)).start();
 
-        Thread.sleep(500); // wait for threads
+        validateCountdown.await();
+        assertEquals(0, exceptions.size());
     }
+
+    private void multithreadedLock(long id) {
+        try {
+            service.badLock(id);
+            validateCountdown.countDown();
+        } catch (Exception e) {
+            exceptions.add(e);
+            validateCountdown.countDown();
+            throw e;
+        }
+    }
+
 
 }

@@ -28,10 +28,11 @@ class UnitTestMultithreaded {
     private void indexOutOfBounds() {
         try {
             exceptions.get(777);
-        } catch (Exception e) {
             validateCountdown.countDown();
+        } catch (Exception e) {
             exceptions.add(e);
-            throw new RuntimeException(e);
+            validateCountdown.countDown();
+            throw e;
         }
     }
 
