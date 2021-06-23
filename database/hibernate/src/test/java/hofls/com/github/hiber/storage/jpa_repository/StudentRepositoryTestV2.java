@@ -1,7 +1,7 @@
 package hofls.com.github.hiber.storage.jpa_repository;
 
 import hofls.com.github.hiber.storage.junit.BaseTest;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.jdbc.Sql;
@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class StudentRepositoryTestV2 extends BaseTest {
 

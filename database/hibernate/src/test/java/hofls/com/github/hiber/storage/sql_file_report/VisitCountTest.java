@@ -1,8 +1,7 @@
 package hofls.com.github.hiber.storage.sql_file_report;
 
 import hofls.com.github.hiber.storage.junit.BaseTest;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.jdbc.Sql;
 
@@ -11,6 +10,8 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class VisitCountTest extends BaseTest {
 
@@ -24,11 +25,11 @@ public class VisitCountTest extends BaseTest {
         Long excludeBranchId = 932L;
 
         List<VisitCount> visitCounts = visitCountRepository.read(excludeBranchId, minBirthDate);
-        Assert.assertEquals(Long.valueOf(43040L), visitCounts.get(0).getId());
-        Assert.assertEquals(Long.valueOf(99), visitCounts.get(0).getAge());
-        Assert.assertEquals(Long.valueOf(43050L), visitCounts.get(1).getId());
-        Assert.assertEquals(Long.valueOf(100), visitCounts.get(1).getAge());
-        Assert.assertEquals(2, visitCounts.size());
+        assertEquals(Long.valueOf(43040L), visitCounts.get(0).getId());
+        assertEquals(Long.valueOf(99), visitCounts.get(0).getAge());
+        assertEquals(Long.valueOf(43050L), visitCounts.get(1).getId());
+        assertEquals(Long.valueOf(100), visitCounts.get(1).getAge());
+        assertEquals(2, visitCounts.size());
     }
 
     public static int age(Date dateEnd, Date dateStart) {

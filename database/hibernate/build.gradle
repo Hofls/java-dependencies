@@ -6,7 +6,6 @@ plugins {
     id 'org.springframework.boot' version '2.2.2.RELEASE'
     id 'io.spring.dependency-management' version '1.0.8.RELEASE'
     id 'java'
-    id 'war'
 }
 
 repositories {
@@ -15,14 +14,14 @@ repositories {
 }
 
 dependencies {
-    implementation(group: 'org.springframework.boot', name: 'spring-boot-starter-web', version:'2.2.2.RELEASE') {
-        exclude(module: 'tomcat-embed-websocket') /* Because of this exclusion - app is able to run on any application server (otherwise it runs only on Tomcat) */
-    }
+    implementation(group: 'org.springframework.boot', name: 'spring-boot-starter-web', version:'2.2.2.RELEASE')
     implementation 'org.springframework.data:spring-data-jpa:2.2.2.RELEASE'
     implementation 'org.hibernate:hibernate-entitymanager:5.4.10.Final'
     implementation 'com.h2database:h2:1.4.200'
     implementation 'org.postgresql:postgresql:42.2.9'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.2.2.RELEASE'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
     compileOnly 'org.projectlombok:lombok:1.18.8'
     annotationProcessor 'org.projectlombok:lombok:1.18.8'
 
@@ -31,7 +30,6 @@ dependencies {
 
     // Audit:
     implementation 'org.javers:javers-spring-boot-starter-sql:5.13.0'
-
 
     /* To generate model on build. (Classes like Campus_, Student_) */
     annotationProcessor('org.hibernate:hibernate-jpamodelgen:5.4.10.Final')
@@ -44,4 +42,6 @@ tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
 
-bootWar.dependsOn 'test'
+test {
+    useJUnitPlatform()
+}

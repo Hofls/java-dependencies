@@ -1,12 +1,12 @@
 package hofls.com.github.hiber.storage.specification;
 
 import hofls.com.github.hiber.storage.junit.BaseTest;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import javax.annotation.Resource;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PredicateSpecificationTest extends BaseTest {
 
