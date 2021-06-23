@@ -1,5 +1,7 @@
-package hofls.com.github.domain;
+package hofls.com.github.liqui;
 
+import hofls.com.github.liqui.storage.university.Student;
+import hofls.com.github.liqui.storage.university.StudentRepository;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
@@ -12,16 +14,15 @@ import javax.transaction.Transactional;
 public class OnStartup {
 
     @Resource
-    private PersonRepository personRepository;
+    private StudentRepository studentRepository;
 
     @EventListener(ApplicationReadyEvent.class)
     public void doSomethingAfterStartup() {
-        Person newStudent = new Person();
+        Student newStudent = new Student();
         newStudent.setFirstName("Helga");
-        newStudent.setLastName("fdsfsd");
-        personRepository.save(newStudent);
+        studentRepository.save(newStudent);
 
-        for (Person student : personRepository.findAll()) {
+        for (Student student : studentRepository.findAll()) {
             System.out.println("Database integration is working! " + student);
         }
     }
