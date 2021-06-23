@@ -1,4 +1,4 @@
-package hofls.com.github.h2db.locks_demo.pessimistic_lock;
+package hofls.com.github.hiber.storage.locks_demo.pessimistic_lock;
 
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;

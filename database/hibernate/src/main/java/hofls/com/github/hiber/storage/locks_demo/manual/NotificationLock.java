@@ -1,4 +1,4 @@
-package hofls.com.github.h2db.locks_demo.manual;
+package hofls.com.github.hiber.storage.locks_demo.manual;
 
 
 import lombok.Data;

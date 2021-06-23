@@ -1,6 +1,7 @@
-package hofls.com.github.h2db.locks_demo.pessimistic_lock;
+package hofls.com.github.hiber.storage.locks_demo.manual;
 
-import hofls.com.github.h2db.hello_world.BaseTest;
+
+import hofls.com.github.hiber.storage.junit.BaseTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,26 +12,27 @@ import java.util.concurrent.CountDownLatch;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class NotificationPessServiceTest extends BaseTest {
+
+public class GoodSolutionTest extends BaseTest {
 
     @Autowired
-    private NotificationPessService service;
+    private NotificationService service;
 
     @Test
     public void single_lock_successful()  {
         long id = service.createNotification();
-        service.pessimisticLock(id);
+        service.goodLock(id);
     }
 
     @Test
     public void consecutive_lock_should_throw()  {
         long id = service.createNotification();
-        service.pessimisticLock(id);
+        service.goodLock(id);
 
         Exception exception = Assertions.assertThrows(RuntimeException.class, () -> {
-            service.pessimisticLock(id);
+            service.goodLock(id);
         });
-        assertTrue(exception.getMessage().contains("Already locked!"));
+        assertTrue(exception.getMessage().contains("could not execute statement"));
     }
 
     private List<Exception> exceptions = new ArrayList<>();
@@ -43,12 +45,13 @@ public class NotificationPessServiceTest extends BaseTest {
 
         validateCountdown.await();
         assertEquals(1, exceptions.size());
-        assertTrue(exceptions.get(0).getMessage().contains("Already locked!"));
+        assertTrue(exceptions.get(0).getMessage().contains("could not execute statement"));
     }
+
 
     private void multithreadedLock(long id) {
         try {
-            service.pessimisticLock(id);
+            service.goodLock(id);
             validateCountdown.countDown();
         } catch (Exception e) {
             exceptions.add(e);

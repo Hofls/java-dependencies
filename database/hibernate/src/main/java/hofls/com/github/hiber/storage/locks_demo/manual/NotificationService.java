@@ -1,4 +1,4 @@
-package hofls.com.github.h2db.locks_demo.manual;
+package hofls.com.github.hiber.storage.locks_demo.manual;
 
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +31,6 @@ public class NotificationService {
             val notificationLock = new NotificationLock();
             notificationLock.setNotification(notification);
             notificationLockRepository.save(notificationLock);
-        } catch (DataIntegrityViolationException e) {
-            throw new RuntimeException("Already locked!");
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

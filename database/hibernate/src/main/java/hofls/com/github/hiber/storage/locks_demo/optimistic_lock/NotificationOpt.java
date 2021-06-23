@@ -1,4 +1,4 @@
-package hofls.com.github.h2db.locks_demo.optimistic_lock;
+package hofls.com.github.hiber.storage.locks_demo.optimistic_lock;
 
 
 import lombok.Data;
