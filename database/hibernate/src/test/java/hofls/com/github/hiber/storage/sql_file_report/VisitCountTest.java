@@ -1,6 +1,7 @@
 package hofls.com.github.hiber.storage.sql_file_report;
 
 import hofls.com.github.hiber.storage.junit.BaseTest;
+import hofls.com.github.hiber.storage.junit.BaseWithTransaction;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.jdbc.Sql;
@@ -13,7 +14,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class VisitCountTest extends BaseTest {
+public class VisitCountTest extends BaseWithTransaction {
 
     @Autowired
     private VisitCountRepository visitCountRepository;

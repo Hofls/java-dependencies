@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = Application.class)
 @ActiveProfiles("junit")
-@Transactional
 public abstract class BaseTest {
     // without 'abstract' - junit will try to run BaseTest
 }

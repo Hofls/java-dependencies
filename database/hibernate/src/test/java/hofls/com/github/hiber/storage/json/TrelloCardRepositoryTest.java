@@ -1,6 +1,7 @@
 package hofls.com.github.hiber.storage.json;
 
 import hofls.com.github.hiber.storage.junit.BaseTest;
+import hofls.com.github.hiber.storage.junit.BaseWithTransaction;
 import org.junit.jupiter.api.Test;
 
 import javax.annotation.Resource;
@@ -9,7 +10,7 @@ import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TrelloCardRepositoryTest extends BaseTest {
+public class TrelloCardRepositoryTest extends BaseWithTransaction {
 
     @Resource
     private TrelloCardRepository repository;

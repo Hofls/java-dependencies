@@ -1,6 +1,7 @@
 package hofls.com.github.hiber.storage.specification;
 
 import hofls.com.github.hiber.storage.junit.BaseTest;
+import hofls.com.github.hiber.storage.junit.BaseWithTransaction;
 import org.junit.jupiter.api.Test;
 import org.springframework.data.jpa.domain.Specification;
 
@@ -10,7 +11,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
-public class ShopRepositoryTest extends BaseTest {
+public class ShopRepositoryTest extends BaseWithTransaction {
 
     @Resource
     private ShopRepository shopRepository;

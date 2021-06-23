@@ -1,6 +1,7 @@
 package hofls.com.github.hiber.storage.specification;
 
 import hofls.com.github.hiber.storage.junit.BaseTest;
+import hofls.com.github.hiber.storage.junit.BaseWithTransaction;
 import org.junit.jupiter.api.Test;
 import org.springframework.test.context.jdbc.Sql;
 
@@ -9,7 +10,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class SubqueryTest extends BaseTest {
+public class SubqueryTest extends BaseWithTransaction {
 
     @Resource
     private EmployeeRepository employeeRepository;
