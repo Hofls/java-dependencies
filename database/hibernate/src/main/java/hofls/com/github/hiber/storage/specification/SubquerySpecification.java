@@ -1,7 +1,6 @@
 package hofls.com.github.hiber.storage.specification;
 
-import hofls.com.github.javahibernateexample.storage.specification.Employee_;
-import hofls.com.github.javahibernateexample.storage.specification.Shop_;
+
 import lombok.AllArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
 

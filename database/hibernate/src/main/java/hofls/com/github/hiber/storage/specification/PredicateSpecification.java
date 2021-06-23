@@ -1,6 +1,6 @@
 package hofls.com.github.hiber.storage.specification;
 
-import hofls.com.github.javahibernateexample.storage.specification.Shop_;
+
 import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.CriteriaBuilder;
