@@ -1,4 +1,4 @@
 * Basically a manual version of test-containers
-* Requires installed docker
+* Requires docker
 * To run - `./gradlew clean test`
 

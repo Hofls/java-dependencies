@@ -1,10 +1,13 @@
 package hofls.com.github.javahibernateexample.storage.university;
 
+import hofls.com.github.javahibernateexample.Application;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
@@ -14,8 +17,8 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-@SpringBootApplication(scanBasePackages = {"hofls.com.github.javahibernateexample"})
-@RunWith(SpringJUnit4ClassRunner.class)
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = Application.class)
 @Transactional
 public class StudentRepositoryTestV2 {
 

@@ -4,10 +4,10 @@ WITH filtered_visit(
 ) AS (
     SELECT
         visit.id,
-        date_part('year',age(visit.accidentDate, visit.birthDate))
+        date_part('year',age(visit.accident_date, visit.birth_date))
     FROM visit
-    where visit.branchId <> :excludeBranchId
-        and visit.birthDate > :minBirthDate
+    where visit.branch_id <> :excludeBranchId
+        and visit.birth_date > :minBirthDate
 )
 select
     id,
