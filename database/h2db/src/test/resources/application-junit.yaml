@@ -3,35 +3,12 @@ spring:
   jpa:
     show-sql: true
     hibernate.ddl-auto: create
-    hibernate.naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
     properties:
       hibernate:
-        jdbc:
-          lob:
-            non_contextual_creation=true: true
         dialect: org.hibernate.dialect.H2Dialect
-        temp.use_jdbc_metadata_defaults: false
-        id:
-          new_generator_mappings: false
         format_sql: true
   h2:
     console:
       enabled: true
       path: /h2-console
-  # Ignored for some reason (takes default URL instead)
-  datasource:
-    driverClassName: org.h2.Driver
-    url: jdbc:h2:mem:test-db;DB_CLOSE_DELAY=-1
-  liquibase:
-    enabled: false
 
-# Replace real URLs from application.yaml with mocks:
-oauthServer:
-  token:
-    url: https://TODO-MOCK-OAUTH-API
-  checkToken:
-    url: https://TODO-MOCK-OAUTH-API
-
-app:
-  sbi:
-    path: https://TODO-MOCK-SBI-API
