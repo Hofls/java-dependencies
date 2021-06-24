@@ -20,8 +20,6 @@ spring:
     url: THIS URL IS OVERRIDEN IN TESTS
     username: test
     password: test
-  liquibase:
-    enabled: false
 
 # Replace real URLs from application.yaml with mocks:
 oauthServer:

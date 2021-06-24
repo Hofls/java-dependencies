@@ -11,5 +11,3 @@ spring:
     url: jdbc:postgresql://localhost:5432/temp_db
     username: postgres
     password: postgres
-  liquibase:
-    enabled: false
