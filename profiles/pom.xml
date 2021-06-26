@@ -33,6 +33,7 @@
         <plugins>
             <!-- Adds spring-boot plugins (e.g. spring-boot:run) -->
             <plugin>
+                <!-- If you try to run .jar file built without this plugin, error appears - "no main manifest attribute" -->
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
