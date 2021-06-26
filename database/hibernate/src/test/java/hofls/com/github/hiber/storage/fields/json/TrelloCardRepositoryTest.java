@@ -1,6 +1,7 @@
-package hofls.com.github.hiber.storage.json;
+package hofls.com.github.hiber.storage.fields.json;
 
-import hofls.com.github.hiber.storage.junit.BaseTest;
+import hofls.com.github.hiber.storage.fields.json.TrelloCard;
+import hofls.com.github.hiber.storage.fields.json.TrelloCardRepository;
 import hofls.com.github.hiber.storage.junit.BaseWithTransaction;
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,4 @@
-package hofls.com.github.hiber.storage.json;
+package hofls.com.github.hiber.storage.fields.json;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
