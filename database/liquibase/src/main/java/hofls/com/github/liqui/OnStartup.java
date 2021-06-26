@@ -16,7 +16,7 @@ public class OnStartup {
     @Resource
     private StudentRepository studentRepository;
 
-    @EventListener(ApplicationReadyEvent.class)
+    @EventListener(ApplicationReadyEvent.class) // or @PostConstruct
     public void doSomethingAfterStartup() {
         Student newStudent = new Student();
         newStudent.setFirstName("Helga");

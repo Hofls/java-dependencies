@@ -16,7 +16,7 @@ public class OnStartup {
 
     private final static String QUEUE_NAME = "hello";
 
-    @EventListener(ApplicationReadyEvent.class)
+    @EventListener(ApplicationReadyEvent.class) // or @PostConstruct
     public void doSomethingAfterStartup() throws IOException, TimeoutException {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("localhost");

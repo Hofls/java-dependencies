@@ -10,7 +10,7 @@ import redis.clients.jedis.JedisPubSub;
 public class OnStartup {
 
 
-    @EventListener(ApplicationReadyEvent.class)
+    @EventListener(ApplicationReadyEvent.class) // or @PostConstruct
     public void doSomethingAfterStartup() {
         dataStorageDemo();
         messageQueueDemo();
