@@ -1,5 +1,6 @@
 #### Info
 * `jwt` - JSON Web Token, used to encode and verify claims
+* Use case: API authentication mechanism
 * Great alternative to plain tokens (which require access do db to verify them)
     * https://stackoverflow.com/a/40375745
 * Parts, separated by `.`:
