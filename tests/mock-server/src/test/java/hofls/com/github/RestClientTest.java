@@ -1,8 +1,10 @@
 package hofls.com.github;
 
+import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -10,7 +12,8 @@ import org.junit.Test;
 import org.mockserver.client.server.MockServerClient;
 import org.mockserver.integration.ClientAndServer;
 
-import static org.mockserver.matchers.Times.exactly;
+
+import static org.junit.Assert.assertEquals;
 import static org.mockserver.model.HttpClassCallback.callback;
 import static org.mockserver.model.HttpRequest.request;
 
@@ -33,7 +36,10 @@ public class RestClientTest {
     @Test
     public void generateTest() {
         createPostEndpoint();
-        sendPostRequest();
+        String actualResponse = sendPostRequest();
+        String expectedResponse = "{username: 'foo', password: 'bar'}";
+
+        assertEquals(expectedResponse, actualResponse);
     }
 
     private void createPostEndpoint(){
@@ -41,30 +47,27 @@ public class RestClientTest {
                 .when(
                         request()
                                 .withMethod("POST")
-                                .withPath("/validate")
+                                .withPath("/hello-world")
                 ).callback(
                     callback()
                         .withCallbackClass("hofls.com.github.CallbackHandler")
         );
     }
 
-    private org.apache.http.HttpResponse sendPostRequest() {
-        String url = "http://127.0.0.1:9960/validate";
-        HttpClient client = HttpClientBuilder.create().build();
-        HttpPost post = new HttpPost(url);
-        post.setHeader("Content-type", "application/json");
-        org.apache.http.HttpResponse response=null;
-
+    private String sendPostRequest() {
         try {
-            StringEntity stringEntity = new StringEntity("{username: 'foo', password: 'bar'}");
-            post.getRequestLine();
-            post.setEntity(stringEntity);
-            response=client.execute(post);
+            String url = "http://127.0.0.1:9960/hello-world";
 
+            HttpClient httpClient = HttpClientBuilder.create().build();
+            HttpPost request = new HttpPost(url);
+            StringEntity params = new StringEntity("{username: 'foo', password: 'bar'}");
+            request.setEntity(params);
+            HttpResponse response = httpClient.execute(request);
+            return new BasicResponseHandler().handleResponse(response);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        return response;
+
     }
 
 }
