@@ -6,15 +6,10 @@ import javax.persistence.*;
 
 @Entity
 @Data
-@Table(
-        name = "fields_demo",
+@Table(name = "fields_demo",
         indexes = {
-                @Index(
-                        name = "fields_message_topic_index",
-                        columnList = "messageTopic"),
-                @Index(
-                        name = "fields_message_status_index",
-                        columnList = "messageStatus, messageTopic")
+                @Index(name = "fields_message_topic_index", columnList = "messageTopic"),
+                @Index(name = "fields_message_status_index", columnList = "messageStatus, messageTopic")
         })
 public class FieldsDemo {
 
