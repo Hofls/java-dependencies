@@ -18,4 +18,6 @@
 #### Problems in pom.xml
 * `<parent>`:
     * Adds dependencies with versions that may differ from child dependencies
-    * To fix - set version in the main pom properties (e.g. `<kafka.version/>`) 
+    * To fix - set version in the main pom properties (e.g. `<kafka.version/>`)
+* Order is important:
+    * If different `<dependency>` add same library - version of the first one will be used
