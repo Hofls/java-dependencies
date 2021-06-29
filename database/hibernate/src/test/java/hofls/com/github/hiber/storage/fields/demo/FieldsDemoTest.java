@@ -16,6 +16,7 @@ class FieldsDemoTest extends BaseWithTransaction {
     void create_read_test() {
         FieldsDemo fields = new FieldsDemo();
         fields.setMessageStatus(MessageStatus.DONE);
+        fields.setMessageTopic("ENG sub TOPIC");
 
         repository.save(fields);
 
