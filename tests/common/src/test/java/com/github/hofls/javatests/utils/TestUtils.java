@@ -4,10 +4,12 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.apache.cxf.helpers.IOUtils;
-import org.springframework.util.StringUtils;
-
-import java.io.IOException;
+import org.springframework.util.CollectionUtils;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -25,6 +27,8 @@ public class TestUtils {
     private static final ObjectWriter objectWriter =
             new ObjectMapper()
                     .configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true)
+                    .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
+                    .registerModule(new JavaTimeModule())
                     .writer()
                     .withDefaultPrettyPrinter();
 
@@ -43,35 +47,48 @@ public class TestUtils {
 
     /** Converts objects to JSON and compares them */
     public static void assertEqualJson(Object expectedObj, Object actualObj) {
-        assertEqualJson(expectedObj, actualObj, "");
+        assertEqualJson(expectedObj, actualObj, new ArrayList<>());
     }
 
     /** Converts objects to JSON and compares them */
-    public static void assertEqualJson(Object expectedObj, Object actualObj, String ignoredField) {
+    public static void assertEqualJson(Object expectedObj, Object actualObj, List<String> ignoredFields) {
         try {
             String expectedJson = toLF(objectToJson(expectedObj));
             String actualJson = toLF(objectToJson(actualObj));
-            expectedJson = removeLinesWithField(expectedJson, ignoredField);
-            actualJson = removeLinesWithField(actualJson, ignoredField);
+            expectedJson = removeLinesWithField(expectedJson, ignoredFields);
+            actualJson = removeLinesWithField(actualJson, ignoredFields);
             assertEquals(expectedJson, actualJson);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-    private static String removeLinesWithField(String text, String ignoredField) {
-        if (StringUtils.isEmpty(ignoredField)) {
+    private static String removeLinesWithField(String text, List<String> ignoredFields) {
+        if (CollectionUtils.isEmpty(ignoredFields)) {
             return text;
         }
-        String ignored = "\"" + ignoredField + "\" :";
 
         StringBuilder builder = new StringBuilder();
         for (String line : text.split(LF)) {
-            if (!line.contains(ignored)) {
+            if (!isLineIgnored(line, ignoredFields)) {
                 builder.append(line).append(LF);
             }
         }
         return builder.toString();
+    }
+
+    private static boolean isLineIgnored(String line, List<String> ignoredFields) {
+        if (CollectionUtils.isEmpty(ignoredFields)) {
+            return false;
+        }
+
+        for (String ignoredField : ignoredFields) {
+            String ignored = "\"" + ignoredField + "\" :";
+            if (line.contains(ignored)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /** Replaces CRLF with LF */
