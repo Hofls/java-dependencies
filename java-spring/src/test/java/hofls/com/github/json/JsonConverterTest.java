@@ -33,6 +33,13 @@ class JsonConverterTest {
         assertEquals("8-908-243-39-192", jsonMap.get("number").asText());
     }
 
+    @Test
+    void json_to_message() throws Exception {
+        Message actualMessage = JsonConverter.jsonToObject(getMessageJson(), Message.class);
+        assertEquals("Message(messageTime=2011-12-03T10:15:30)", actualMessage.toString());
+    }
+
+
     private Phone getPhoneObject() {
         Phone phone = new Phone();
         phone.setNumber("8-908-243-39-192");
@@ -44,6 +51,13 @@ class JsonConverterTest {
     private String getPhoneJson() throws Exception {
         return IOUtils.toString(
                 this.getClass().getResourceAsStream("phone.json"),
+                StandardCharsets.UTF_8
+        );
+    }
+
+    private String getMessageJson() throws Exception {
+        return IOUtils.toString(
+                this.getClass().getResourceAsStream("message.json"),
                 StandardCharsets.UTF_8
         );
     }
