@@ -1,7 +1,13 @@
 ### Info
 * Prerequisite: PostgreSQL running on localhost
 
-### Generate changesets (IDEA)
+### Generate changesets (Maven plugin)
+* Thanks to `liquibase-maven-plugin` (look at pom.xml)
+* `clean install`
+* `liquibase:diff`
+
+### Generate changesets (IDEA - JPA Buddy)
+* Disclaimer: this plugin costs money
 * Run IDEA as Admin
 * Install JPA Buddy plugin
 * JPA Structure -> Diff Liquibase Changelog -> Add new DB connection
