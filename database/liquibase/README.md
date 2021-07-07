@@ -22,6 +22,3 @@
         </createTable>
     </changeSet>
     ```
-
-### Generate changesets (Maven Plugin)
-* [TODO](https://www.baeldung.com/liquibase-refactor-schema-of-java-app)
