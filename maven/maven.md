@@ -5,6 +5,10 @@
 * To show the real POM (parents + current + children) `mvn help:effective-pom`
 * To find unused dependencies: `mvn dependency:analyze`
 * To run spring boot `jar` in container - look at `devops` repository
+* To generate `pom.xml` from `build.gradle`
+    * Add `id 'maven'` to `plugins` section
+    * Run `gradle bootJar`, run `gradle install`
+    * Look at `/build/poms/pom-default.xml`
 * To deploy to artifactory:
     ```
         <distributionManagement>
