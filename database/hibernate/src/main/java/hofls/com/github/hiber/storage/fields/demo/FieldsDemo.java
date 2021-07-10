@@ -18,8 +18,8 @@ public class FieldsDemo {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     private long id;
 
-    @Column(length = 30, nullable = false)
-    private String messageTopic;
+    @Column(length = 30, nullable = false, unique = true)
+    private String messageId;
 
     @Enumerated(EnumType.STRING) // Store in DB as text, instead of number
     private MessageStatus messageStatus;
