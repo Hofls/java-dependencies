@@ -6,10 +6,11 @@ import org.springframework.stereotype.Service;
 public class SalaryExternalService {
 
     public Long findDailySalary() {
-        return 0L; // request to some external service
+        throw new RuntimeException("Request timed out"); // request to some external service
     }
 
     public void updateDailySalary(long dailySalary) {
-        // request to some external service
+        throw new RuntimeException("Request timed out"); // request to some external service
     }
+
 }
