@@ -127,6 +127,16 @@ public final class DateUtils {
         return dateToConvert.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
     }
 
+    // Example format - "dd.MM.yyyy"
+    public static String format(LocalDate date, String format) {
+        if (date == null) {
+            return "";
+        }
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
+        return date.format(formatter);
+    }
+
     public static String format(Date date, String format) {
         if (date == null) {
             return "";
