@@ -1,5 +1,7 @@
 package com.github.hofls.javatests.mock;
 
+import com.github.hofls.javatests.unit.Mathematics;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
@@ -37,6 +39,16 @@ public class MocksUnitTest {
         ArgumentCaptor<Long> argument = ArgumentCaptor.forClass(Long.class);
         verify(salaryExternalService).updateDailySalary(argument.capture());
         assertEquals(2000L, argument.getValue());
+    }
+
+    @Test
+    public void void_should_throw_exception() {
+        doThrow(new RuntimeException("Wrong salary")).when(salaryExternalService).updateDailySalary(any());
+
+        Exception expectedException = Assertions.assertThrows(RuntimeException.class, () -> {
+            salaryCalculator.updateSalary(60000L);
+        });
+        assertEquals("Wrong salary", expectedException.getMessage());
     }
 
 }

@@ -9,7 +9,7 @@ public class SalaryExternalService {
         throw new RuntimeException("Request timed out"); // request to some external service
     }
 
-    public void updateDailySalary(long dailySalary) {
+    public void updateDailySalary(Long dailySalary) {
         throw new RuntimeException("Request timed out"); // request to some external service
     }
 
