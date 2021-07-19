@@ -2,6 +2,7 @@
 * Prerequisite: PostgreSQL running on localhost
 
 ### Generate changesets (Maven plugin)
+* Disclaimer: index generation is broken in version 3.4.1 
 * Thanks to `liquibase-maven-plugin` (look at pom.xml)
 * `clean install`
 * `liquibase:diff`
