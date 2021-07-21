@@ -35,7 +35,9 @@
 * http://dps.k8s.someit.com/actuator/prometheus
     * `jvm_memory_committed_bytes` `jvm_memory_used_bytes` `jvm_memory_max_bytes`
 * jmap -clstats 1 | grep Total
+    * Class loader info (metaspace)
 * jstat -gc 1
+    * Garbage collector info
 * Heap dump (has its own section)
 
 # Dump
