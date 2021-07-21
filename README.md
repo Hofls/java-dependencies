@@ -19,9 +19,15 @@
 * `-Duser.timezone=Asia/Tokyo` - timezone
 * `-Dhttp.proxyHost=23.221.54.132 -Dhttp.proxyPort=3128` - proxy
 
-# Java code in another repositories:
-* `devops`
-* `architecture`
+# RAM
+* `Heap` - java objects
+    * `Young/Eden` - new objects
+    * `Old/Tenured` - old objects
+    * Garbage collector removes not referenced objects from heap
+    * Can leak if you use a lot of heavy objects (e.g. endlessly filling up static list)
+* `Metaspace` - class definitions
+    * Uses native memory
+    * Can leak if you continuously generate new classes, [example](https://stackoverflow.com/questions/44830943/metaspace-memory-leak)
 
 # Resources usage
 * http://dps.k8s.someit.com/actuator/metrics
