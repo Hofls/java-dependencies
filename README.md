@@ -25,10 +25,13 @@
 
 # Dump
 ##### Get dump
-* Get PID:
-    * `ps -aux | grep java`
-* Get dump:
-    * `jmap -dump:format=b,file=dump.hprof INSERT_PID_HERE`
+* With actuator:
+    * http://dps.k8s.someit.com/actuator/heapdump
+* Directly:
+    * Get PID:
+        * `ps -aux | grep java`
+    * Get dump:
+        * `jmap -dump:format=b,file=dump.hprof INSERT_PID_HERE`
 
 ##### Analyze dump
 * Download Eclipse Memory Analyzer (MAT)
