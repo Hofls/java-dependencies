@@ -23,6 +23,15 @@
 * `devops`
 * `architecture`
 
+# Resources usage
+* http://dps.k8s.someit.com/actuator/metrics
+    * `jvm.gc.live.data.size` `jvm.gc.max.data.size` `jvm.memory.committed` `jvm.memory.used`
+* http://dps.k8s.someit.com/actuator/prometheus
+    * `jvm_memory_committed_bytes` `jvm_memory_used_bytes` `jvm_memory_max_bytes`
+* jmap -clstats 1 | grep Total
+* jstat -gc 1
+* Heap dump (has its own section)
+
 # Dump
 ##### Get dump
 * With actuator:
