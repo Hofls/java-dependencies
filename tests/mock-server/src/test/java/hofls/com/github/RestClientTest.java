@@ -6,9 +6,10 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.HttpClientBuilder;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockserver.client.server.MockServerClient;
 import org.mockserver.integration.ClientAndServer;
 
@@ -23,26 +24,40 @@ public class RestClientTest {
     private static Integer PORT = 9960;
     private static String ADDRESS = "localhost";
 
-    @BeforeClass
+    @BeforeAll
     public static void startServer() {
         mockServer = ClientAndServer.startClientAndServer(PORT);
     }
 
-    @AfterClass
+    @AfterAll
     public static  void stopServer() {
         mockServer.stop();
     }
 
+    @BeforeEach
+    public void resetEnpoints() {
+        mockServer.reset();
+    }
+
     @Test
-    public void generateTest() {
-        createPostEndpoint();
+    public void test_mirror() {
+        createPostEndpoint("MirrorCallback");
         String actualResponse = sendPostRequest();
         String expectedResponse = "{username: 'foo', password: 'bar'}";
 
         assertEquals(expectedResponse, actualResponse);
     }
 
-    private void createPostEndpoint(){
+    @Test
+    public void test_response() {
+        createPostEndpoint("ResponseCallback");
+        String actualResponse = sendPostRequest();
+        String expectedResponse = "{\"numbers\":[1, 2, 3]}";
+
+        assertEquals(expectedResponse, actualResponse);
+    }
+
+    private void createPostEndpoint(String callbackClass){
         new MockServerClient(ADDRESS, PORT)
                 .when(
                         request()
@@ -50,7 +65,7 @@ public class RestClientTest {
                                 .withPath("/hello-world")
                 ).callback(
                     callback()
-                        .withCallbackClass("hofls.com.github.CallbackHandler")
+                        .withCallbackClass("hofls.com.github.callbacks." + callbackClass)
         );
     }
 
