@@ -14,6 +14,8 @@ import org.mockserver.client.server.MockServerClient;
 import org.mockserver.integration.ClientAndServer;
 
 
+import java.nio.charset.StandardCharsets;
+
 import static org.junit.Assert.assertEquals;
 import static org.mockserver.model.HttpClassCallback.callback;
 import static org.mockserver.model.HttpRequest.request;
@@ -75,7 +77,8 @@ public class RestClientTest {
 
             HttpClient httpClient = HttpClientBuilder.create().build();
             HttpPost request = new HttpPost(url);
-            StringEntity params = new StringEntity("{username: 'foo', password: 'bar'}");
+            String json = "{username: 'foo', password: 'bar'}";
+            StringEntity params = new StringEntity(json, StandardCharsets.UTF_8); // yep, default is not UTF-8!
             request.setEntity(params);
             HttpResponse response = httpClient.execute(request);
             return new BasicResponseHandler().handleResponse(response);
