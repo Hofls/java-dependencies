@@ -26,6 +26,8 @@ public class LiveTestService {
         businessEndpointCounterFailure = prometheusMeterRegistry.counter("liveTest." + ShopController.BUSINESS_ENDPOINT + ".failure.total");
     }
 
+    // To run multiple scheduled methods at the same time
+    // Add to application.properties - spring.task.scheduling.pool.size=10
     @Scheduled(initialDelayString = "${live-test.initialDelay}", fixedRateString = "${live-test.fixedRate}")
     public void liveTest() {
         try {
