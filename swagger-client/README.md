@@ -1,4 +1,6 @@
 # Swagger backend + client
+### Disclaimer:
+* `backend-springfox` is kinda dead, better use `backend-springdoc`
 #### Run backend
 * Execute`gradlew bootRun`
 * Open  [link](http://localhost:8080/swagger-ui.html)
