@@ -16,7 +16,7 @@ public class FileRepository {
             File file = new File("not_existing_file.txt");
             return new FileInputStream(file);
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException(e); // or @SneakyThrows
         }
     }
 

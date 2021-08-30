@@ -24,6 +24,14 @@ class LombokDemoTest {
 	}
 
 	@Test
+	public void should_throw_sneaky() {
+		Throwable exception = Assertions.assertThrows(Throwable.class, () -> {
+			new LombokDemo().throwException();
+		});
+		assertEquals("Hola", exception.getMessage());
+	}
+
+	@Test
 	public void should_generate_to_string() {
 		LombokDemo.Entity entity = new LombokDemo.Entity();
 		entity.setNumber(3543);

@@ -31,4 +31,9 @@ public class LombokDemo {
         return array;
     }
 
+    @SneakyThrows // Don't force callers to handle exceptions!
+    public void throwException() {
+        throw new Throwable("Hola");
+    }
+
 }
