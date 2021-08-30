@@ -1,9 +1,10 @@
 # Swagger backend + client
-### Disclaimer:
+
+#### Disclaimer:
 * `backend-springfox` is kinda dead, better use `backend-springdoc`
+
 #### Run backend
-* Execute`gradlew bootRun`
-* Open  [link](http://localhost:8080/swagger-ui.html)
+* Look at `README.md` in backend folder
 
 #### Generate REST client (or use generated in `frontend` package)
 * Installation:
