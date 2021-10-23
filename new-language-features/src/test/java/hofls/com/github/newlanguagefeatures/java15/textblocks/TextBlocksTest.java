@@ -7,6 +7,7 @@ class TextBlocksTest {
 
     @Test
     void testGetText() {
+        // Look at it in debug (some spaces are truncated)
         String expected = """
               <html>
                   <body>
