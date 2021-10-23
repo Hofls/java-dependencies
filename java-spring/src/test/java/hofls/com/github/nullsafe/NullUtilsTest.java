@@ -38,4 +38,12 @@ class NullUtilsTest {
         String actual = safe(() -> list.get(0));
         assertEquals(null, actual);
     }
+
+    @Test
+    void testSafeCycle() {
+        List<String> list = null;
+        for (String elem : safe(list)) {
+            System.out.println(elem);
+        }
+    }
 }

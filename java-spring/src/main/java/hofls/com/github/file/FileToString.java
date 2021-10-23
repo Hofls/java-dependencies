@@ -9,10 +9,8 @@ import java.nio.file.Paths;
 public class FileToString {
 
     public String getRootReadme() throws IOException {
-        File file = new File("../README.md");
-        String path = file.getAbsolutePath();
-        byte[] bytes = Files.readAllBytes(Paths.get(path));
-        return new String(bytes, StandardCharsets.UTF_8);
+        String path = new File("../README.md").getAbsolutePath();
+        return Files.readString(Paths.get(path));
     }
 
 }

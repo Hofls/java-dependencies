@@ -41,6 +41,6 @@ public class VisitCountRepository {
                         "src/main/resources/reports/visit_count_report.sql");
         return new String(
                 Files.readAllBytes(Paths.get(resourcesDirectory.getAbsolutePath())),
-                StandardCharsets.UTF_8);
+                StandardCharsets.UTF_8); // todo replace with 'readString'
     }
 }
