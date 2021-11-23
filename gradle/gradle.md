@@ -15,19 +15,6 @@
     * Find unused dependencies, lint: 
         * Plugin `id "nebula.lint" version "16.9.0"`
 * https://gradle.org/features/
-
-#### Gradle overview
-* Gradle is a build automation tool, runs on JVM
-* Directed Acyclic Graphs (DAG) - describes order of tasks (e.g. compile -> assemble -> build))
-* Gradle wrapper - downloads and installs gradle (one gradle per project)
-* Gradle daemon - always runs and caches project data (helps to avoid slow startup times)
-* Build scripts written with DSL:
-    * Kotlin - new, statically typed (auto-completion, quick documentation, auto-refactoring)
-    * Groovy - old, dynamically typed
-* Fixed build phases:
-    * Initialization (set up environment)
-    * Configuration (constructs and configures task graph)
-    * Execution (runs the tasks)
     
 #### Commands
 * Run app locally: `gradlew bootRun`
@@ -51,18 +38,6 @@
     * Daemon info: `gradlew --status`
     * File system info: `gradlew assemble -Dorg.gradle.vfs.verbose=true`
     
-#### Build environment
-* Methods to configure gradle behaviour (ordered by descending priority):
-    * Project properties - e.g. `gradlew publish -PmavenUsername=hofls`
-    * Command-line flags - e.g. `gradlew build --build-cache`
-    * System properties - e.g. `systemProp.http.proxyHost=somehost.org` stored in `gradle.properties`
-        * or `gradle test -Dcassandra.ip=144.123.22.14`
-    * Gradle properties - e.g. `org.gradle.caching=true` stored in `GRADLE_USER_HOME` env variable or `gradle.properties`
-    * Environment variables - e.g. `GRADLE_OPTS` stored in environment
-* Useful properties
-    * `org.gradle.caching=true`
-    * `org.gradle.jvmargs` - for JVM that's running the build
-
 #### Performance optimization
 * Incremental build (enabled by default):
     * AKA Up-to-date check
@@ -79,5 +54,25 @@
     * Cache activates if no `.gradle` or `build` folder present
         * E.g. when building in CI env (gitlab), or executing `gradlew clean`
         * `BUILD SUCCESSFUL. 14 actionable tasks: 8 executed, 6 from cache`
-* 
-* 
+
+#### Build environment
+* Methods to configure gradle behaviour (ordered by descending priority):
+    * Project properties - e.g. `gradlew publish -PmavenUsername=hofls`
+    * Command-line flags - e.g. `gradlew build --build-cache`
+    * System properties - e.g. `systemProp.http.proxyHost=somehost.org` stored in `gradle.properties`
+        * or `gradle test -Dcassandra.ip=144.123.22.14`
+    * Gradle properties - e.g. `org.gradle.caching=true` stored in `GRADLE_USER_HOME` env variable or `gradle.properties`
+    * Environment variables - e.g. `GRADLE_OPTS` stored in environment
+
+#### Gradle etc
+* Gradle is a build automation tool, runs on JVM
+* Directed Acyclic Graphs (DAG) - describes order of tasks (e.g. compile -> assemble -> build))
+* Gradle wrapper - downloads and installs gradle (one gradle per project)
+* Gradle daemon - always runs and caches project data (helps to avoid slow startup times)
+* Build scripts written with DSL:
+    * Kotlin - new, statically typed (auto-completion, quick documentation, auto-refactoring)
+    * Groovy - old, dynamically typed
+* Fixed build phases:
+    * Initialization (set up environment)
+    * Configuration (constructs and configures task graph)
+    * Execution (runs the tasks)
