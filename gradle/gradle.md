@@ -1,7 +1,65 @@
-* To get more verbose output:
-    * `gradle bootJar --debug --stacktrace`
-* To look at all dependencies: `gradle dependencies`
-* Find unused dependencies, lint: 
-    * Plugin `id "nebula.lint" version "16.9.0"`
-* To generate everything gradle-related, execute `gradle init` 
+#### TODO
+* https://docs.gradle.org/current/userguide/init_scripts.html
+* Moving from maven
+    * https://docs.gradle.org/current/userguide/migrating_from_maven.html
+    * https://gradle.org/gradle-vs-maven-performance/
+    * https://gradle.org/maven-vs-gradle/
+* Performance optimization
+    * https://docs.gradle.org/current/userguide/performance.html
+    * https://docs.gradle.org/current/userguide/build_cache_use_cases.html
+* https://plugins.gradle.org/
+    * find most popular plugins
+    * Find unused dependencies, lint: 
+        * Plugin `id "nebula.lint" version "16.9.0"`
+* https://gradle.org/features/
+
+#### Gradle overview
+* Gradle is a build automation tool, runs on JVM
+* High performance - uses caching, only runs tasks whose inputs/outputs have changed
+* Directed Acyclic Graphs (DAG) - describes order of tasks (e.g. compile -> assemble -> build))
+* Gradle wrapper - downloads and installs gradle (one gradle per project)
+* Gradle daemon - always runs and caches project data (helps to avoid slow startup times)
+* Incremental build - re-uses unchanged files from previous build (build time optimization)
+* Fixed build phases:
+    * Initialization (set up environment)
+    * Configuration (constructs and configures task graph)
+    * Execution (runs the tasks)
+* Build scripts written with DSL:
+    * Kotlin - new, statically typed (auto-completion, quick documentation, auto-refactoring)
+    * Groovy - old, dynamically typed
+    
+#### Commands
+* Run app locally: `gradlew bootRun`
+    * Spring Boot alternative to `gradlew run`
+* Build .jar: `gradlew bootJar`
+    * Spring Boot alternative to `gradlew build`
+* Tasks:
+    * Find tasks you can run: `gradlew tasks` (or better use IDE)
+    * Task documentation: `gradlew help --task clean`
+    * Run task: `gradlew clean`
+* Generate everything gradle-related, execute `gradlew init` 
     * If `pom.xml` is present - generates `build.gradle` based on its content
+* Troubleshooting:
+    * Discover project structure: `gradlew projects`
+        * If multiple projects showed up - it's a [multi-project build](https://docs.gradle.org/current/userguide/intro_multi_project_builds.html#intro_multi_project_builds)
+    * Look at all dependencies: `gradlew dependencies`
+    * Verbose output: `gradlew bootJar --debug --stacktrace`
+    * Scan task: `gradlew bootJar --scan`
+    * Profile task: `gradlew bootJar --profile`
+    * Gradle version: `gradlew --version`
+    * Daemon info: `gradlew --status`
+    * File system info: `gradle assemble -Dorg.gradle.vfs.verbose=true`
+    
+#### Build environment
+* Methods to configure gradle behaviour (ordered by descending priority):
+    * Project properties - e.g. `gradlew publish -PmavenUsername=hofls`
+    * Command-line flags - e.g. `gradlew build --build-cache`
+    * System properties - e.g. `systemProp.http.proxyHost=somehost.org` stored in `gradle.properties`
+        * or `gradle test -Dcassandra.ip=144.123.22.14`
+    * Gradle properties - e.g. `org.gradle.caching=true` stored in `GRADLE_USER_HOME` env variable or `gradle.properties`
+    * Environment variables - e.g. `GRADLE_OPTS` stored in environment
+* Useful properties
+    * `org.gradle.caching=true`
+    * `org.gradle.jvmargs` - for JVM that's running the build
+* 
+* 

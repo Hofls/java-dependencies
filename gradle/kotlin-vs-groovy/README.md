@@ -1,0 +1,1 @@
+Line-by-line comparison of syntax
