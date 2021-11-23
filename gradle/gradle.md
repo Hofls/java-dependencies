@@ -1,13 +1,15 @@
 #### TODO
-* https://docs.gradle.org/current/userguide/intro_multi_project_builds.html
-    * example of multi project build (spring boot)
+* https://docs.gradle.org/current/userguide/build_cache.html
 * Moving from maven
     * https://docs.gradle.org/current/userguide/migrating_from_maven.html
     * https://gradle.org/gradle-vs-maven-performance/
     * https://gradle.org/maven-vs-gradle/
 * Performance optimization
+    * Add in  `#### Performance optimization` block
     * https://docs.gradle.org/current/userguide/performance.html
     * https://docs.gradle.org/current/userguide/build_cache_use_cases.html
+    * `org.gradle.parallel=true` ?
+    * gitlab - cache gradle `build` folder?
 * https://plugins.gradle.org/
     * find most popular plugins
     * Find unused dependencies, lint: 
@@ -16,18 +18,16 @@
 
 #### Gradle overview
 * Gradle is a build automation tool, runs on JVM
-* High performance - uses caching, only runs tasks whose inputs/outputs have changed
 * Directed Acyclic Graphs (DAG) - describes order of tasks (e.g. compile -> assemble -> build))
 * Gradle wrapper - downloads and installs gradle (one gradle per project)
 * Gradle daemon - always runs and caches project data (helps to avoid slow startup times)
-* Incremental build - re-uses unchanged files from previous build (build time optimization)
+* Build scripts written with DSL:
+    * Kotlin - new, statically typed (auto-completion, quick documentation, auto-refactoring)
+    * Groovy - old, dynamically typed
 * Fixed build phases:
     * Initialization (set up environment)
     * Configuration (constructs and configures task graph)
     * Execution (runs the tasks)
-* Build scripts written with DSL:
-    * Kotlin - new, statically typed (auto-completion, quick documentation, auto-refactoring)
-    * Groovy - old, dynamically typed
     
 #### Commands
 * Run app locally: `gradlew bootRun`
@@ -63,8 +63,21 @@
     * `org.gradle.caching=true`
     * `org.gradle.jvmargs` - for JVM that's running the build
 
-#### Multi-Project builds
-* 
-* 
+#### Performance optimization
+* Incremental build (enabled by default):
+    * AKA Up-to-date check
+    * Re-uses unchanged files from previous build, only runs tasks whose inputs/outputs have changed
+        * Stored in project folders: `.gradle`, `build`
+    * Example:
+        * First build: `gradlew build` -> `BUILD SUCCESSFUL. 14 actionable tasks: 14 executed`
+        * Second build: `gradlew build` -> `BUILD SUCCESSFUL. 14 actionable tasks: 14 up-to-date`
+* Global Cache (disabled by default):
+    * Ways to enable (pick 1):
+        * Add `org.gradle.caching=true` in `gradle.properties`
+        * Run `gradlew build --build-cache`
+    * Cache stored at `%userprofile%\.gradle\caches`
+    * Cache activates if no `.gradle` or `build` folder present
+        * E.g. when building in CI env (gitlab), or executing `gradlew clean`
+        * `BUILD SUCCESSFUL. 14 actionable tasks: 8 executed, 6 from cache`
 * 
 * 
