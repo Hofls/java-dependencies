@@ -1,5 +1,6 @@
 #### TODO
-* https://docs.gradle.org/current/userguide/init_scripts.html
+* https://docs.gradle.org/current/userguide/intro_multi_project_builds.html
+    * example of multi project build (spring boot)
 * Moving from maven
     * https://docs.gradle.org/current/userguide/migrating_from_maven.html
     * https://gradle.org/gradle-vs-maven-performance/
@@ -48,7 +49,7 @@
     * Profile task: `gradlew bootJar --profile`
     * Gradle version: `gradlew --version`
     * Daemon info: `gradlew --status`
-    * File system info: `gradle assemble -Dorg.gradle.vfs.verbose=true`
+    * File system info: `gradlew assemble -Dorg.gradle.vfs.verbose=true`
     
 #### Build environment
 * Methods to configure gradle behaviour (ordered by descending priority):
@@ -61,5 +62,9 @@
 * Useful properties
     * `org.gradle.caching=true`
     * `org.gradle.jvmargs` - for JVM that's running the build
+
+#### Multi-Project builds
+* 
+* 
 * 
 * 
