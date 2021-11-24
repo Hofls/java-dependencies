@@ -32,7 +32,7 @@ tasks.test {
     useJUnitPlatform()
 }
 
-// gradle performRelease -PisCI=true --quiet
+// gradle performRelease -PisCI=true
 tasks.register("performRelease") {
     doLast {
         if (project.hasProperty("isCI")) {

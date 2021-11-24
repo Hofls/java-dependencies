@@ -31,6 +31,7 @@
         * If multiple projects showed up - it's a [multi-project build](https://docs.gradle.org/current/userguide/intro_multi_project_builds.html#intro_multi_project_builds)
     * Look at all dependencies: `gradlew dependencies`
     * Verbose output: `gradlew bootJar --debug --stacktrace`
+    * Show which tasks executed: `gradlew depends-demo --console=plain`
     * Scan build: `gradlew bootJar --scan`
     * Profile build: `gradlew bootJar --profile`
     * Gradle version: `gradlew --version`
@@ -92,6 +93,9 @@
 * Directed Acyclic Graphs (DAG) - describes order of tasks (e.g. compile -> assemble -> build))
 * Gradle wrapper - downloads and installs gradle (one gradle per project)
 * Build scan - record of what happened during build
+* Task - atomic piece of work which a build performs (e.g. `gradlew clean`)
+    * Most tasks come from plugins, some from `tasks.register()` in `build.gradle`
+    * Tasks implemented as code (Kotlin/Groovy)
 * Build scripts written with DSL:
     * Kotlin - new, statically typed (auto-completion, quick documentation, auto-refactoring)
     * Groovy - old, dynamically typed
