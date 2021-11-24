@@ -1,5 +1,5 @@
 #### TODO
-* https://docs.gradle.org/current/userguide/tutorial_using_tasks.html
+* https://docs.gradle.org/current/userguide/writing_build_scripts.html
 * Moving from maven
     * https://docs.gradle.org/current/userguide/migrating_from_maven.html
     * https://gradle.org/gradle-vs-maven-performance/

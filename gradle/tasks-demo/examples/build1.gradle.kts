@@ -66,3 +66,15 @@ tasks.register("depends-demo") {
         println("Done!")
     }
 }
+
+// Adds behaviour to existing task
+// gradlew clean
+tasks.named("clean") {
+    doFirst {
+        println("Cleaning start..")
+    }
+    doLast {
+        println("Cleaning done!")
+    }
+}
+
