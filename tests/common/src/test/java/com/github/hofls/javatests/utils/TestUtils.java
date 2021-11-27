@@ -1,6 +1,8 @@
 package com.github.hofls.javatests.utils;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.util.DefaultIndenter;
+import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
@@ -24,13 +26,17 @@ public class TestUtils {
 
     private static final String CRLF = "\r\n";
     private static final String LF = "\n";
-    private static final ObjectWriter objectWriter =
-            new ObjectMapper()
-                    .configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true)
-                    .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
-                    .registerModule(new JavaTimeModule())
-                    .writer()
-                    .withDefaultPrettyPrinter();
+    private static final ObjectWriter objectWriter = getObjectWriter();
+
+    private static ObjectWriter getObjectWriter() {
+        DefaultPrettyPrinter prettyPrinter = new DefaultPrettyPrinter();
+        prettyPrinter.indentArraysWith(DefaultIndenter.SYSTEM_LINEFEED_INSTANCE); // each list element in new line
+        return new ObjectMapper()
+                .configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true)
+                .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
+                .registerModule(new JavaTimeModule())
+                .writer().with(prettyPrinter);
+    }
 
     /**
      * To generate file in 'resources' folder (IntelliJ IDEA)
