@@ -9,6 +9,7 @@ buildscript {
     }
 }
 
+// gradlew encode
 tasks.register("encode") {
     doLast {
         val encodedString = Base64().encode("hello world\n".toByteArray())

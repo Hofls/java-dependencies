@@ -1,0 +1,1 @@
+Copy text from `examples` folder to `build.gradle.kts`

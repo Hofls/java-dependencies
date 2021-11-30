@@ -1,5 +1,5 @@
 #### TODO
-* https://docs.gradle.org/current/userguide/writing_build_scripts.html
+* https://docs.gradle.org/current/userguide/logging.html
 * Moving from maven
     * https://docs.gradle.org/current/userguide/migrating_from_maven.html
     * https://gradle.org/gradle-vs-maven-performance/
@@ -11,24 +11,25 @@
     * gitlab - cache gradle `build` folder?
 * https://plugins.gradle.org/
     * find most popular plugins
+    * Core plugins - https://docs.gradle.org/current/userguide/plugin_reference.html
     * Find unused dependencies, lint: 
         * Plugin `id "nebula.lint" version "16.9.0"`
 * https://gradle.org/features/
     
 #### Commands
 * Run app locally: `gradlew bootRun`
-    * Spring Boot alternative to `gradlew run`
+    * It's a Spring Boot alternative to `gradlew run`
 * Build .jar: `gradlew bootJar`
-    * Spring Boot alternative to `gradlew build`
+    * It's a Spring Boot alternative to `gradlew build`
 * Tasks:
     * Find tasks you can run: `gradlew tasks` (or better use IDE)
     * Task documentation: `gradlew help --task clean`
     * Run task: `gradlew clean`
-* Generate everything gradle-related, execute `gradlew init` 
+* Generate everything gradle-related: `gradlew init` 
     * If `pom.xml` is present - generates `build.gradle` based on its content
 * Troubleshooting:
     * Discover project structure: `gradlew projects`
-        * If multiple projects showed up - it's a [multi-project build](https://docs.gradle.org/current/userguide/intro_multi_project_builds.html#intro_multi_project_builds)
+        * If multiple projects showed up - it's a [multi-project build](multi-project-build/settings.gradle.kts)
     * Look at all dependencies: `gradlew dependencies`
     * Verbose output: `gradlew bootJar --debug --stacktrace`
     * Show which tasks executed: `gradlew depends-demo --console=plain`
@@ -51,7 +52,7 @@
     * Description:
         * Re-uses unchanged files from previous build, only runs tasks whose inputs/outputs have changed
         * Deleted if haven't been used for 7 days
-        * Saves output of Execution phase
+        * Saves output of `Execution` phase
     * Ways to enable (pick 1):
         * Add `org.gradle.caching=true` in `gradle.properties`
         * Run `gradlew build --build-cache`
@@ -100,7 +101,7 @@
     * Kotlin - new, statically typed (auto-completion, quick documentation, auto-refactoring)
     * Groovy - old, dynamically typed
     * [Convert Groovy to Kotlin](https://github.com/bernaferrari/GradleKotlinConverter)
-* Fixed build phases:
+* Fixed build phases [example](build-phases):
     * Initialization (set up environment)
     * Configuration (constructs and configures task graph)
     * Execution (runs the tasks)
