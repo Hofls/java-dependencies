@@ -1,5 +1,5 @@
 #### TODO
-* https://docs.gradle.org/current/userguide/logging.html
+* https://docs.gradle.org/current/userguide/declaring_dependencies_between_subprojects.html
 * Moving from maven
     * https://docs.gradle.org/current/userguide/migrating_from_maven.html
     * https://gradle.org/gradle-vs-maven-performance/
