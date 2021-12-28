@@ -15,3 +15,17 @@
     ```
 * Solution:
     * Restore `gradle` folder (with gradle-wrapper.jar)
+
+##### Gradle uses wrong encoding
+* Problem:
+    ```
+    tasks.register("error-example") {
+        doLast {
+            println("Hello мир!")
+        }
+    }
+    ```
+* Solution:
+    * Set console encoding to utf-8 - `chcp 65001`
+    * Set gradle encoding to utf-8:
+        * Environment variable - `GRADLE_OPTS`, value - `-Dfile.encoding=UTF-8`
