@@ -31,6 +31,7 @@
     * Discover project structure: `gradlew projects`
         * If multiple projects showed up - it's a [multi-project build](multi-project-build/settings.gradle.kts)
     * Look at all dependencies: `gradlew dependencies`
+        * If don't want duplicates: `gradlew --configuration runtimeClasspath`
     * Verbose output: `gradlew bootJar --debug --stacktrace`
     * Show which tasks executed: `gradlew depends-demo --console=plain`
     * Scan build: `gradlew bootJar --scan`

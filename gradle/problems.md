@@ -29,3 +29,16 @@
     * Set console encoding to utf-8 - `chcp 65001`
     * Set gradle encoding to utf-8:
         * Environment variable - `GRADLE_OPTS`, value - `-Dfile.encoding=UTF-8`
+##### Dependency hell
+* Problem:
+    * "Dependency A" uses "stax2-api:3.1.4". "Dependency B" uses "stax2-api:4.1.0"
+    * Gradle picks the latest version (4.1.0), but "Dependency A" unable to use it (NoSuchMethodError)
+* Solution:
+    * Ask gradle to use an old version:
+        ```
+        implementation('org.codehaus.woodstox:stax2-api') {
+            version {
+                strictly '3.1.4'
+            }
+        }
+        ```
