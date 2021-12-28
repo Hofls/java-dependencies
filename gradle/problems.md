@@ -34,11 +34,19 @@
     * Insert:
         * `-Dconsole.encoding=UTF-8`
         * `-Dfile.encoding=UTF-8`
+
 ##### Dependency hell
 * Problem:
     * "Dependency A" uses "stax2-api:3.1.4". "Dependency B" uses "stax2-api:4.1.0"
     * Gradle picks the latest version (4.1.0), but "Dependency A" unable to use it (NoSuchMethodError)
-* Solution:
+* Solutions (pick one):
+    * Exclude "Dependency A":
+        ```
+        dependencies {
+            configurations {
+                runtime.exclude group: "org.codehaus.woodstox", module: "woodstox-core-asl"
+            }
+        ```
     * Ask gradle to use an old version:
         ```
         implementation('org.codehaus.woodstox:stax2-api') {
