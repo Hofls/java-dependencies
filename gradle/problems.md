@@ -6,3 +6,12 @@
     ```
 * Solution:
     * IntelliJ → File → Settings → Build, Execution → Build Tools → Gradle → Gradle JVM → 16
+    
+##### Not found main class
+* Problem: 
+    ```
+    Error: Could not find or load main class org.gradle.wrapper.GradleWrapperMain
+    Caused by: java.lang.ClassNotFoundException: org.gradle.wrapper.GradleWrapperMain
+    ```
+* Solution:
+    * Restore `gradle` folder (with gradle-wrapper.jar)
