@@ -16,7 +16,7 @@
 * Solution:
     * Restore `gradle` folder (with gradle-wrapper.jar)
 
-##### Gradle uses wrong encoding
+##### Console output with wrong encoding
 * Problem:
     ```
     tasks.register("error-example") {
@@ -25,10 +25,15 @@
         }
     }
     ```
-* Solution:
+* Solution (for cmd.exe):
     * Set console encoding to utf-8 - `chcp 65001`
     * Set gradle encoding to utf-8:
         * Environment variable - `GRADLE_OPTS`, value - `-Dfile.encoding=UTF-8`
+* Solution (for IDEA run configs):
+    * Help -> Find Action... -> Edit Custom VM Options...
+    * Insert:
+        * `-Dconsole.encoding=UTF-8`
+        * `-Dfile.encoding=UTF-8`
 ##### Dependency hell
 * Problem:
     * "Dependency A" uses "stax2-api:3.1.4". "Dependency B" uses "stax2-api:4.1.0"
