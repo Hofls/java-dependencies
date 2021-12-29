@@ -1,20 +1,5 @@
 #### TODO
 * https://docs.gradle.org/current/userguide/declaring_dependencies_between_subprojects.html
-* Moving from maven
-    * https://docs.gradle.org/current/userguide/migrating_from_maven.html
-    * https://gradle.org/gradle-vs-maven-performance/
-    * https://gradle.org/maven-vs-gradle/
-* Performance optimization
-    * Add in  `#### Performance optimization` block
-    * https://docs.gradle.org/current/userguide/performance.html
-    * https://docs.gradle.org/current/userguide/build_cache_use_cases.html
-    * gitlab - cache gradle `build` folder?
-* https://plugins.gradle.org/
-    * find most popular plugins
-    * Core plugins - https://docs.gradle.org/current/userguide/plugin_reference.html
-    * Find unused dependencies, lint: 
-        * Plugin `id "nebula.lint" version "16.9.0"`
-* https://gradle.org/features/
     
 #### Commands
 * Run app locally: `gradlew bootRun`
@@ -27,6 +12,8 @@
     * Run task: `gradlew clean`
 * Generate everything gradle-related: `gradlew init` 
     * If `pom.xml` is present - generates `build.gradle` based on its content
+* Find unused dependencies, lint: 
+    * Plugin `plugins { id "nebula.lint" version "16.9.0" }`
 * Troubleshooting:
     * Discover project structure: `gradlew projects`
         * If multiple projects showed up - it's a [multi-project build](multi-project-build/settings.gradle.kts)
