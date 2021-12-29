@@ -1,0 +1,93 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.5.1'
+    id "com.gorylenko.gradle-git-properties" version "2.3.2"
+}
+
+ext {
+    mavenUser = "SMleker"
+    mavenPassword = "x83838K"
+
+    bootVersion = "2.5.1"
+    swaggerVersion = "2.9.2"
+    lombokVersion = "1.18.20"
+    mapstructVersion = "1.4.2.Final"
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+
+    maven {
+        credentials {
+            username = mavenUser
+            password = mavenPassword
+        }
+        url = uri('https://artifactory.somas.spt.com/artifactory/fb-evn-release')
+    }
+
+    maven {
+        credentials {
+            username = mavenUser
+            password = mavenPassword
+        }
+        url = uri('https://artifactory.somas.spt.com/artifactory/fb-evn-snapshot')
+    }
+
+    maven {
+        credentials {
+            username = mavenUser
+            password = mavenPassword
+        }
+        url = uri('https://artifactory.somas.spt.com/artifactory/libs-evn-local')
+    }
+
+}
+
+
+dependencies {
+    configurations {
+        runtime.exclude group: "org.codehaus.woodstox", module: "woodstox-core-asl"
+    }
+
+    implementation "org.springframework.boot:spring-boot-starter-actuator:$bootVersion"
+    implementation "org.springframework.boot:spring-boot-starter-web:$bootVersion"
+    implementation "org.springframework.boot:spring-boot-starter-aop:$bootVersion"
+    implementation "org.springframework.boot:spring-boot-starter-cache:$bootVersion"
+    testImplementation "org.springframework.boot:spring-boot-starter-test:$bootVersion"
+    compileOnly "org.springframework.boot:spring-boot-starter-tomcat:$bootVersion"
+
+    implementation 'org.reflections:reflections:0.9.12'
+    implementation 'org.ehcache:ehcache:3.9.4'
+    implementation 'ch.qos.logback:logback-classic:1.2.3'
+    implementation 'io.micrometer:micrometer-registry-prometheus:1.7.0'
+
+    implementation "io.springfox:springfox-swagger2:$swaggerVersion"
+    implementation "io.springfox:springfox-swagger-ui:$swaggerVersion"
+
+    compileOnly "org.projectlombok:lombok:$lombokVersion"
+    annotationProcessor "org.projectlombok:lombok:$lombokVersion"
+
+    implementation "org.mapstruct:mapstruct:$mapstructVersion"
+    annotationProcessor "org.mapstruct:mapstruct-processor:$mapstructVersion"
+}
+
+group = 'com.svias.mobile.driver'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '15'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+bootRun {
+    systemProperties = System.properties
+}
+
+bootJar {
+    archiveFileName = "driver-server.jar"
+}
