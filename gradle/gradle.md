@@ -20,7 +20,7 @@
 * Run app locally: `gradlew bootRun`
     * It's a Spring Boot alternative to `gradlew run`
 * Build .jar: `gradlew bootJar`
-    * It's a Spring Boot alternative to `gradlew build`
+    * It's a Spring Boot alternative to `gradlew build`, but without `check` task (no tests, no code formatter)
 * Tasks:
     * Find tasks you can run: `gradlew tasks` (or better use IDE)
     * Task documentation: `gradlew help --task clean`
@@ -79,7 +79,13 @@
     * Stored in project folder: `.gradle/configuration-cache`
 * Daemon (enabled by default)
     * Always runs, helps to avoid slow startup times
-    * To increase available RAM: add `org.gradle.jvmargs=-Xmx2048M` in `gradle.properties` 
+    * To increase available RAM: add `org.gradle.jvmargs=-Xmx2048M` in `gradle.properties`
+* Parallel tests (disabled by default)
+    ```
+    test {
+        maxParallelForks = Runtime.runtime.availableProcessors().intdiv(2) ?: 1      
+    }
+    ```
 
 #### Build environment
 * Methods to configure gradle behaviour (ordered by descending priority):
