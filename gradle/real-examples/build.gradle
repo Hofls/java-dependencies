@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '2.5.1'
     id "com.gorylenko.gradle-git-properties" version "2.3.2"
+    id "com.diffplug.spotless" version "6.1.0"
 }
 
 ext {
@@ -79,6 +80,13 @@ sourceCompatibility = '15'
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
+
+spotless {
+    java {
+        googleJavaFormat().aosp()
+    }
+}
+compileJava.dependsOn 'spotlessApply'
 
 test {
     useJUnitPlatform()
