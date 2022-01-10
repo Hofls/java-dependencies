@@ -38,7 +38,7 @@ public class ParamController {
         return "Hey";
     }
 
-    @ApiOperation(value = "Get method example")
+    @ApiOperation(value = "Simple object in path")
     @GetMapping(value="{id}")
     public Long get(
             @ApiParam(required = true, example = "19962193")
@@ -46,7 +46,7 @@ public class ParamController {
         return id;
     }
 
-    @ApiOperation(value = "Request header example", notes = "")
+    @ApiOperation(value = "Simple object in header", notes = "")
     @GetMapping
     public String headerExample(
             @SuppressWarnings("unused")
