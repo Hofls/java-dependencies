@@ -7,9 +7,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.time.LocalDate;
 import java.util.List;
 
-// path aka query
 @Data
-public class ParametersInPath {
+public class ParametersInQuery {
 
     @ApiModelProperty(value = "In path only with @DateTimeFormat", example = "1988-02-21")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)

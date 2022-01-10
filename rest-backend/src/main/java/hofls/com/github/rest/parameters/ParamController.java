@@ -1,14 +1,16 @@
 package hofls.com.github.rest.parameters;
 
 import hofls.com.github.rest.parameters.types.ParametersInBody;
-import hofls.com.github.rest.parameters.types.ParametersInPath;
+import hofls.com.github.rest.parameters.types.ParametersInQuery;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
 
+// url - http://www.example.com:8080/main/index.jsp?user=test&login=check
+// path - /main/index.jsp
+// query - user=test&login=check
 @Api(tags = {"parameters-controller"})
 @RequestMapping("/parameters")
 @RestController
@@ -16,10 +18,10 @@ public class ParamController {
 
     private @Autowired HttpServletRequest httpRequest;
 
-    @ApiOperation(value = "Complex objects in body + path(query)")
+    @ApiOperation(value = "Complex objects in body + query")
     @PostMapping("post-method-complex")
     public String postMethodComplex(@RequestBody ParametersInBody objectInBody,
-                             ParametersInPath objectInPath) {
+                             ParametersInQuery objectInQuery) {
         return "Hey";
     }
 
@@ -29,10 +31,10 @@ public class ParamController {
             @ApiImplicitParam(name = "objectInPath", value = "Description B", required = true,
                     dataType = "Integer", paramType = "query", example = "777")
     })
-    @ApiOperation(value = "Simple objects in body + path(query)")
+    @ApiOperation(value = "Simple objects in body + query")
     @PostMapping("post-method-simple")
     public String postMethodSimple(@RequestBody String objectInBody,
-                             Integer objectInPath) {
+                             Integer objectInQuery) {
         return "Hey";
     }
 
