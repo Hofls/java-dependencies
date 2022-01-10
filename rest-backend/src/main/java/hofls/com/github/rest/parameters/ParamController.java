@@ -2,9 +2,7 @@ package hofls.com.github.rest.parameters;
 
 import hofls.com.github.rest.parameters.types.ParametersInBody;
 import hofls.com.github.rest.parameters.types.ParametersInPath;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,10 +16,23 @@ public class ParamController {
 
     private @Autowired HttpServletRequest httpRequest;
 
-    @ApiOperation(value = "Post method example")
-    @PostMapping("post-method")
-    public String postMethod(@RequestBody ParametersInBody objectInBody,
+    @ApiOperation(value = "Complex objects in body + path(query)")
+    @PostMapping("post-method-complex")
+    public String postMethodComplex(@RequestBody ParametersInBody objectInBody,
                              ParametersInPath objectInPath) {
+        return "Hey";
+    }
+
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "objectInBody", value = "Description A", required = true,
+                    dataType = "String", paramType = "body", example = "let's go!"),
+            @ApiImplicitParam(name = "objectInPath", value = "Description B", required = true,
+                    dataType = "Integer", paramType = "query", example = "777")
+    })
+    @ApiOperation(value = "Simple objects in body + path(query)")
+    @PostMapping("post-method-simple")
+    public String postMethodSimple(@RequestBody String objectInBody,
+                             Integer objectInPath) {
         return "Hey";
     }
 
