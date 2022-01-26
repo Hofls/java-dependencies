@@ -5,12 +5,14 @@ import hofls.com.github.rest.responses.types.ResponseB;
 import hofls.com.github.rest.responses.types.ResponseC;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @Api(tags = {"responses-controller"})
 @RequestMapping("/parameters")
+@Tag(name = "responses-controller", description = "Responses example")
 @RestController
 public class ResponseController {
 

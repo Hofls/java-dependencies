@@ -3,6 +3,7 @@ package hofls.com.github.rest.parameters;
 import hofls.com.github.rest.parameters.types.ParametersInBody;
 import hofls.com.github.rest.parameters.types.ParametersInQuery;
 import io.swagger.annotations.*;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 // query - user=test&login=check
 @Api(tags = {"parameters-controller"})
 @RequestMapping("/parameters")
+@Tag(name = "parameters-controller", description = "Parameters example (body/path)")
 @RestController
 public class ParamController {
 

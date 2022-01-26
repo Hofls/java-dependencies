@@ -8,13 +8,14 @@ import hofls.com.github.rest.validation.types.ObjectInPath;
 import hofls.com.github.rest.validation.types.RegexObject;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
 /** Validation + Errors */
-@Api(tags = {"errors-service"})
 @RequestMapping("/errors")
+@Tag(name = "error-controller", description = "Different http errors")
 @RestController
 public class ErrorController {
 

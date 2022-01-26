@@ -2,8 +2,8 @@ package hofls.com.github.rest.api.example;
 
 import hofls.com.github.rest.api.example.types.Human;
 import hofls.com.github.rest.api.example.types.HumanFilter;
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /** CRUD API example */
-@Api(tags = {"people-service"})
+@Tag(name = "human-controller", description = "List of people (rest architecture example)")
 @RequestMapping("/people")
 @RestController
 public class HumanController {
