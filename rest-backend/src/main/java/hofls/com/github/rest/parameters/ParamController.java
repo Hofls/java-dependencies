@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
-// url - http://www.example.com:8080/main/index.jsp?user=test&login=check
-// path - /main/index.jsp
+// url - http://www.example.com:8080/books/57433/index.jsp?user=test&login=check
+// path - /books/57433/index.jsp
 // query - user=test&login=check
 @Api(tags = {"parameters-controller"})
 @RequestMapping("/parameters")
-@Tag(name = "parameters-controller", description = "Parameters example (body/path)")
+@Tag(name = "parameters-controller", description = "Parameters example (body/path/query)")
 @RestController
 public class ParamController {
 
@@ -30,7 +30,7 @@ public class ParamController {
     @ApiImplicitParams({
             @ApiImplicitParam(name = "objectInBody", value = "Description A", required = true,
                     dataType = "String", paramType = "body", example = "let's go!"),
-            @ApiImplicitParam(name = "objectInPath", value = "Description B", required = true,
+            @ApiImplicitParam(name = "objectInQuery", value = "Description B", required = true,
                     dataType = "Integer", paramType = "query", example = "777")
     })
     @ApiOperation(value = "Simple objects in body + query")
