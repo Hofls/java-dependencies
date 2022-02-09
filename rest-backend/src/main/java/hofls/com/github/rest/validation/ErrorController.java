@@ -13,7 +13,10 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-/** Validation + Errors */
+/**
+ * Validation + Errors
+ * Spring Boot 2.3.0 excluded dependency "spring-boot-starter-validation", so you have to add it manually
+ */
 @RequestMapping("/errors")
 @Tag(name = "error-controller", description = "Different http errors")
 @RestController
