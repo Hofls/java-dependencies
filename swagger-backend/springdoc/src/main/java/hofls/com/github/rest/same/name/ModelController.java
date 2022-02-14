@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@Tag(name = "responses-controller", description = "Model bug example")
+@Tag(name = "model-controller", description = "Model bug example")
 @RequestMapping("/models")
 @RestController
 public class ModelController {

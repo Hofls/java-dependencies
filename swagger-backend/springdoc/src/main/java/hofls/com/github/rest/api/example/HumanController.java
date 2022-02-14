@@ -1,7 +1,7 @@
-package hofls.com.github.rest.example;
+package hofls.com.github.rest.api.example;
 
-import hofls.com.github.rest.example.types.Human;
-import hofls.com.github.rest.example.types.HumanFilter;
+import hofls.com.github.rest.api.example.types.Human;
+import hofls.com.github.rest.api.example.types.HumanFilter;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;

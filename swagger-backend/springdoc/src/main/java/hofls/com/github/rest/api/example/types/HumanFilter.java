@@ -1,4 +1,4 @@
-package hofls.com.github.rest.example.types;
+package hofls.com.github.rest.api.example.types;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
