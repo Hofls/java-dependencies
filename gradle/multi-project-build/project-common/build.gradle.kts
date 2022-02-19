@@ -20,19 +20,6 @@ repositories {
     jcenter()
 }
 
-dependencies {
-    implementation(project(":project-common"))
-
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.6.2")
+dependencies {    testImplementation("org.junit.jupiter:junit-jupiter-api:5.6.2")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.6.2")
-}
-
-application {
-    // Define the main class for the application.
-    mainClassName = "project.bye.App"
-}
-
-val test by tasks.getting(Test::class) {
-    // Use junit platform for unit tests
-    useJUnitPlatform()
 }

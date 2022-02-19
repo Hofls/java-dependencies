@@ -8,5 +8,6 @@
  */
 
 rootProject.name = "multi-project-build"
+include("project-common")
 include("project-bye")
 include("project-hello")
