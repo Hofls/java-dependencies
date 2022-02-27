@@ -84,6 +84,7 @@
     * Environment variables - e.g. `GRADLE_OPTS` stored in environment
 
 #### Etc
+* Local repository location: `/root/.gradle/caches/modules-2/files-2.1`
 * Gradle is a build automation tool, runs on JVM
 * Directed Acyclic Graphs (DAG) - describes order of tasks (e.g. compile -> assemble -> build))
 * Gradle wrapper - downloads and installs gradle (one gradle per project)
