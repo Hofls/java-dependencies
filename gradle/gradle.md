@@ -100,3 +100,11 @@
     * Initialization (set up environment)
     * Configuration (constructs and configures task graph)
     * Execution (runs the tasks)
+* If maven central not always available, use company repository first:
+    ```
+    mavenLocal()
+    maven {
+    	url = uri('https://nexus.someit.com/repository/central')
+    }
+    mavenCentral()
+    ```

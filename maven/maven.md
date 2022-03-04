@@ -19,6 +19,17 @@
             </snapshotRepository>
         </distributionManagement>
     ```
+* If maven central not always available, use company repository first:
+    * Add to `%HOMEPATH%/.m2/settings.xml`
+    ```
+    <mirrors>
+        <mirror>
+            <id>someit-repository</id>
+            <url>https://nexus.someit.com/repository/central/</url>
+            <mirrorOf>central</mirrorOf>
+        </mirror>
+    </mirrors>
+    ```
   
 #### Problems in pom.xml
 * `<parent>`:
