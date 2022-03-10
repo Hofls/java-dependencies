@@ -10,6 +10,8 @@
 * `Shenandoah` - low pause times, good for large heap sizes 
 
 # Parameters
+* `-XX:-OmitStackTraceInFastThrow`
+    * Without this parameter, some exceptions would have no stacktrace. Which makes them very hard to debug.
 * Memory:
     * Absolute:
         * `–Xms256m` - initial heap size
