@@ -1,7 +1,6 @@
 package com.github.hofls.designpatterns.creational.factory_method;
 
 /**
- * Builder lets you construct complex objects step by step
  * Pattern is similar to Abstract Factory, but without emphasis on families of objects
  * Factory Method is just a method, while Abstract Factory is an object with multiple factory methods
  */

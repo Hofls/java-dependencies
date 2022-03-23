@@ -7,7 +7,7 @@ public class Main {
 
     public void onStartup() {
         Initialization.Eager eager = new Initialization.Eager();
-        Initialization.Eager lazy = new Initialization.Eager();
+        Initialization.Lazy lazy = new Initialization.Lazy();
     }
 
 }
