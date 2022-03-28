@@ -21,6 +21,10 @@
 * `-Duser.timezone=Asia/Tokyo` - timezone
 * `-Dhttp.proxyHost=23.221.54.132 -Dhttp.proxyPort=3128` - proxy
 
+# Dependency alternatives
+* `Spring` - micronaut, quarkus
+    * Lose ecosystem, but gain fast startup time and low resources consumption
+
 # RAM
 * `Heap` - java objects
     * `Young/Eden` - new objects
