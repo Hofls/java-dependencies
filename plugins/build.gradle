@@ -8,6 +8,7 @@ plugins {
     id "com.github.spotbugs" version "3.0.0"
     id "com.diffplug.gradle.spotless" version "3.27.0"
     id 'info.solidsoft.pitest' version '1.4.6'
+    id "org.owasp.dependencycheck" version "7.0.4.1"
 }
 
 repositories {
