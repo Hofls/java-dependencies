@@ -108,3 +108,8 @@
     }
     mavenCentral()
     ```
+* How gradle works with multiple repositories?
+    * Let's say first repository is nexus-someit (unavailable), next 5 are available
+    * Gradle looks for dependency in each repository (in descending order)
+    * If dependency not found in 5 available repositories - gradle throws exception about nexus-someit
+    * If dependency found in 1 of the 5 repositories - everything is ok, no exceptions about nexus-someit
