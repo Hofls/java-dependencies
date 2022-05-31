@@ -20,7 +20,7 @@ public class GenericUtilsExample {
                 .collect(Collectors.toList());
     }
 
-    public static <T extends Number> String toString(T value) {
+    public static <N extends Number> String toString(N value) {
         return value != null ? value.toString() : StringUtils.EMPTY;
     }
 
