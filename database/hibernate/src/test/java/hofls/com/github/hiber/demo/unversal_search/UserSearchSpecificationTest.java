@@ -1,13 +1,10 @@
-package hofls.com.github.hiber.storage.unversal_search.simple;
+package hofls.com.github.hiber.demo.unversal_search;
 
 import hofls.com.github.hiber.storage.junit.BaseWithTransaction;
-import hofls.com.github.hiber.storage.specification.PredicateSpecification;
-import hofls.com.github.hiber.storage.specification.Shop;
-import hofls.com.github.hiber.storage.specification.ShopRepository;
-import hofls.com.github.hiber.storage.universal_search.simple.User;
-import hofls.com.github.hiber.storage.universal_search.simple.UserRepository;
-import hofls.com.github.hiber.storage.universal_search.simple.UserSearchDto;
-import hofls.com.github.hiber.storage.universal_search.simple.UserSearchSpecification;
+import hofls.com.github.hiber.demo.universal_search.User;
+import hofls.com.github.hiber.demo.universal_search.UserRepository;
+import hofls.com.github.hiber.demo.universal_search.UserSearchDto;
+import hofls.com.github.hiber.demo.universal_search.UserSearchSpecification;
 import org.junit.jupiter.api.Test;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -16,7 +13,6 @@ import org.springframework.data.domain.Pageable;
 import javax.annotation.Resource;
 import java.time.LocalDate;
 import java.util.Arrays;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
