@@ -1,14 +1,12 @@
 package hofls.com.github.hiber.demo.unversal_search;
 
+import hofls.com.github.hiber.demo.universal_search.*;
 import hofls.com.github.hiber.storage.junit.BaseWithTransaction;
-import hofls.com.github.hiber.demo.universal_search.User;
-import hofls.com.github.hiber.demo.universal_search.UserRepository;
-import hofls.com.github.hiber.demo.universal_search.UserSearchDto;
-import hofls.com.github.hiber.demo.universal_search.UserSearchSpecification;
 import org.junit.jupiter.api.Test;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 
 import javax.annotation.Resource;
 import java.time.LocalDate;
@@ -33,7 +31,8 @@ public class UserSearchSpecificationTest extends BaseWithTransaction {
         searchDto.setRegisteredAfter(LocalDate.of(2021, 11, 28));
         searchDto.setHasPoints(true);
 
-        Pageable pageable = PageRequest.of(0, 10);
+        Sort sort = Sort.by(User_.ID).descending();
+        Pageable pageable = PageRequest.of(0, 10, sort);
         UserSearchSpecification specification = new UserSearchSpecification(searchDto);
         Page<User> usersPage = userRepository.findAll(specification, pageable);
 
