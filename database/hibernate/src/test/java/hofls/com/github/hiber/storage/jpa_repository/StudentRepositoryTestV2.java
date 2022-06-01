@@ -5,6 +5,7 @@ import hofls.com.github.hiber.storage.junit.BaseWithTransaction;
 import org.junit.jupiter.api.Test;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Slice;
 import org.springframework.test.context.jdbc.Sql;
 
 import javax.annotation.Resource;
@@ -50,6 +51,18 @@ public class StudentRepositoryTestV2 extends BaseWithTransaction {
         Page<Student> studentsB = studentRepository.findAll(PageRequest.of(1, 1));
         assertEquals(1, studentsB.getSize());
         assertEquals(2, studentsB.getTotalPages());
+        assertEquals(546, studentsB.getContent().get(0).getId());
+    }
+
+    @Test
+    @Sql("student/findAll_test.sql")
+    public void sliceAll_test() {
+        Slice<Student> studentsA = studentRepository.findBy(PageRequest.of(0, 1));
+        assertEquals(1, studentsA.getSize());
+        assertEquals(234, studentsA.getContent().get(0).getId());
+
+        Slice<Student> studentsB = studentRepository.findBy(PageRequest.of(1, 1));
+        assertEquals(1, studentsB.getSize());
         assertEquals(546, studentsB.getContent().get(0).getId());
     }
 
