@@ -1,4 +1,4 @@
-package hofls.com.github.hiber.storage.sql_file_report;
+package hofls.com.github.hiber.demo.sql_file_report;
 
 import org.springframework.jdbc.core.RowMapper;
 
