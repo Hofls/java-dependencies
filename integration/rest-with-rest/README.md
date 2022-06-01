@@ -1,0 +1,1 @@
+Use case - BFF (Backend For Frontend)
