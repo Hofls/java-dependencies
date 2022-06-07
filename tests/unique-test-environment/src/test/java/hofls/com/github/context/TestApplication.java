@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
 
 @SpringBootApplication //(exclude = {LiquibaseAutoConfiguration.class, CouchbaseAutoConfiguration})
-// ^ Used to exclude auto-configuration classes https://docs.spring.io/spring-boot/docs/current/reference/html/auto-configuration-classes.html
+// ^ Exclude auto-configuration classes https://docs.spring.io/spring-boot/docs/current/reference/html/auto-configuration-classes.html
 
 // Without this line, error appears:
 // Error creating bean with name 'brokenController': Unsatisfied dependency expressed through field 'service'
