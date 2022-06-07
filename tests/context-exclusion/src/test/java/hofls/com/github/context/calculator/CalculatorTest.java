@@ -1,16 +1,16 @@
 package hofls.com.github.context.calculator;
 
-import hofls.com.github.context.calculator.Calculator;
 import hofls.com.github.context.common.BaseTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 class CalculatorTest extends BaseTest {
-    Calculator calculator = new Calculator();
+    @Autowired Calculator calculator;
 
     @Test
-    void should_add_two_numbers() {
-        Assertions.assertEquals(5, calculator.add(2, 3));
+    void applicationYmlShouldBeOverridden() {
+        Assertions.assertEquals("", calculator.commonProperty);
     }
 }
 

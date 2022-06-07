@@ -1,9 +1,12 @@
 package hofls.com.github.context.calculator;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+@Component
 public class Calculator {
 
-    public int add(int a, int b) {
-        return a + b;
-    }
+    @Value("${common-property:}")
+    String commonProperty;
 
 }
