@@ -1,0 +1,2 @@
+FROM build-example
+CMD gradle test -info
