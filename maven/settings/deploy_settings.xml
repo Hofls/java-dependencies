@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+  <servers>
+		<server>
+			<id>somas.release</id>
+            <username>Hofls</username>
+            <password>qwerty</password>
+        </server>
+        <server>
+            <id>somas.snapshot</id>
+            <username>Hofls</username>
+            <password>qwerty</password>
+        </server>
+        <server>
+            <id>somas.libs</id>
+            <username>Hofls</username>
+            <password>qwerty</password>
+        </server>
+		<server>
+		  <id>nexus-public</id>
+		  <username>Hofls</username>
+		  <password>qwerty</password>
+		</server>
+  </servers>
+  
+  <profiles>
+        <profile>
+            <id>somas.libs</id>
+			<properties>
+              <altReleaseDeploymentRepository>somas.release::default::https://artifactory.somas.com/artifactory/fb-mvn-release</altReleaseDeploymentRepository>
+			  <altSnapshotDeploymentRepository>somas.snapshot::default::https://artifactory.somas.com/artifactory/fb-mvn-snapshot</altSnapshotDeploymentRepository>
+            </properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+            <repositories>
+			  <repository>
+	            <id>nexus-public</id>
+	            <url>https://donos-artifacts.someit.com/nexus/repository/maven-public/</url>
+	          </repository>
+			  <repository>
+	            <id>somas.release</id>
+	            <url>https://artifactory.somas.com/artifactory/fb-mvn-release</url>
+	          </repository>
+			  <repository>
+	            <id>somas.snapshot</id>
+	            <url>https://artifactory.somas.com/artifactory/fb-mvn-snapshot</url>
+	          </repository>
+	        </repositories>
+        </profile>
+  </profiles>
+		  
+  <mirrors>
+    <mirror>
+      <id>central-proxy</id>
+      <name>Local proxy of central repo</name>
+      <url>https://nexus.someit.com/repository/central/</url>
+      <mirrorOf>central</mirrorOf>
+    </mirror>
+  </mirrors>
+		  
+</settings>

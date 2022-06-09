@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+    <pluginGroups>
+    </pluginGroups>
+
+    <proxies>
+    </proxies>
+
+    <servers>
+        <server>
+            <id>somas.release</id>
+            <username>Hofls</username>
+            <password>qwerty</password>
+        </server>
+        <server>
+            <id>somas.snapshot</id>
+            <username>Hofls</username>
+            <password>qwerty</password>
+        </server>
+        <server>
+            <id>somas.libs</id>
+            <username>Hofls</username>
+            <password>qwerty</password>
+        </server>
+        <server>
+            <id>nexus-releases</id>
+            <username>Hofls</username>
+            <password>qwerty</password>
+        </server>
+
+        <server>
+            <id>nexus-snapshots</id>
+            <username>Hofls</username>
+            <password>qwerty</password>
+        </server>
+
+        <server>
+            <id>nexus-public</id>
+            <username>Hofls</username>
+            <password>qwerty</password>
+        </server>
+    </servers>
+
+    <mirrors>
+        <mirror>
+            <id>nexus-repository</id>
+            <url>https://nexus.someit.com/repository/central/</url>
+            <mirrorOf>central</mirrorOf>
+        </mirror>
+    </mirrors>
+
+    <profiles>
+        <profile>
+            <id>nexus-public</id>
+            <repositories>
+                <repository>
+                    <id>nexus-public</id>
+                    <url>https://donos-artifacts.someit.com/nexus/repository/maven-public/</url>
+                </repository>
+                <repository>
+                    <id>somas.release</id>
+                    <url>https://artifactory.somas.com/artifactory/fb-mvn-release</url>
+                </repository>
+                <repository>
+                    <id>somas.snapshot</id>
+                    <url>https://artifactory.somas.com/artifactory/fb-mvn-snapshot</url>
+                </repository>
+                <repository>
+                    <id>somas.libs</id>
+                    <url>https://artifactory.somas.com/artifactory/libs-mvn-local</url>
+                </repository>
+            </repositories>
+        </profile>
+    </profiles>
+
+    <activeProfiles>
+        <activeProfile>nexus-public</activeProfile>
+    </activeProfiles>
+
+
+</settings>
