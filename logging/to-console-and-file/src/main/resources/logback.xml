@@ -5,7 +5,7 @@
 
     <springProfile name="to-file">
         <appender name="FILE_APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
-            <file>/var/log/example.log</file>
+            <file>/var/log/discount-system/example.log</file>
             <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
                 <fileNamePattern>$/example-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
                 <maxFileSize>25MB</maxFileSize>
@@ -34,7 +34,7 @@
 
     <springProfile name="to-console-and-file">
         <appender name="FILE_APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
-            <file>/var/log/example.log</file>
+            <file>/var/log/discount-system/example.log</file>
             <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
                 <fileNamePattern>$/example-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
                 <maxFileSize>25MB</maxFileSize>
