@@ -8,9 +8,9 @@
             <file>/var/log/example.log</file>
             <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
                 <fileNamePattern>$/example-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
-                <maxFileSize>60MB</maxFileSize>
-                <maxHistory>7</maxHistory>
-                <totalSizeCap>600MB</totalSizeCap>
+                <maxFileSize>25MB</maxFileSize>
+                <maxHistory>4</maxHistory>
+                <totalSizeCap>100MB</totalSizeCap>
             </rollingPolicy>
             <encoder>
                 <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
