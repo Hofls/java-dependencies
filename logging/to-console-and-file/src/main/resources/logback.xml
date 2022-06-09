@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/base.xml" />
+
+
+    <springProfile name="to-file">
+        <appender name="FILE_APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>/var/log/example.log</file>
+            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                <fileNamePattern>$/example-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+                <maxFileSize>60MB</maxFileSize>
+                <maxHistory>7</maxHistory>
+                <totalSizeCap>600MB</totalSizeCap>
+            </rollingPolicy>
+            <encoder>
+                <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+            </encoder>
+        </appender>
+
+        <logger level="DEBUG" additivity="false" name="org.springframework" />
+        <logger level="DEBUG" additivity="false" name="com.zaxxer.hikari" />
+
+        <root level="${logging.level.root}">
+            <appender-ref ref="FILE_APPENDER"/>
+        </root>
+    </springProfile>
+
+
+    <springProfile name="to-console">
+        <logger level="DEBUG" name="org.springframework" />
+        <logger level="DEBUG" name="com.zaxxer.hikari" />
+    </springProfile>
+
+
+    <springProfile name="to-console-and-file">
+        <appender name="FILE_APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>/var/log/example.log</file>
+            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                <fileNamePattern>$/example-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+                <maxFileSize>25MB</maxFileSize>
+                <maxHistory>4</maxHistory>
+                <totalSizeCap>100MB</totalSizeCap>
+            </rollingPolicy>
+            <encoder>
+                <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+            </encoder>
+        </appender>
+
+        <appender name="CONSOLE_APPENDER" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder>
+                <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+            </encoder>
+        </appender>
+
+        <logger level="DEBUG" additivity="false" name="org.springframework" />
+        <logger level="DEBUG" additivity="false" name="com.zaxxer.hikari" />
+
+        <root level="${logging.level.root}">
+            <appender-ref ref="FILE_APPENDER"/>
+            <appender-ref ref="CONSOLE_APPENDER"/>
+        </root>
+    </springProfile>
+
+
+</configuration>
