@@ -37,3 +37,8 @@
     * To fix - set version in the main pom properties (e.g. `<kafka.version/>`)
 * Order is important:
     * If different `<dependency>` add same library - version of the first one will be used
+
+#### Other problems
+* If error appears `Failure to find dependency, was cached in the local repository, resolution will not be reattempted until the update interval of MyRepo has elapsed or updates are forced`
+    * Means that problem has occurred during previous dependency download. Maven won't try to download it again for 24 hours (Insane default behaviour)
+    * Fix - ask maven to try download broken dependency without 24h wait `mvn -U clean install`
