@@ -9,6 +9,6 @@
 * Run locally:
     * `mvn spring-boot:run -Dspring-boot.run.profiles=dev-profile`
 * Build & run:
-    * `mvn install`
+    * `mvn -U install`
     * `cd target`
     * `java -Dspring.profiles.active=dev-profile -jar profiles.jar`

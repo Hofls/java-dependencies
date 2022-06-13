@@ -21,7 +21,7 @@ Building the API client library requires:
 To install the API client library to your local Maven repository, simply execute:
 
 ```shell
-mvn clean install
+mvn -U clean install
 ```
 
 To deploy it to a remote Maven repository instead, configure the settings of the repository and execute:

@@ -20,7 +20,7 @@ Technology stack:
         * [http://localhost:8199/#/applications](http://localhost:8199/#/applications)
 
 * To run on application server (Wildfly/Tomcat):
-    * Build project by executing `mvn clean install -P test` (from `root` folder)  
+    * Build project by executing `mvn -U clean install -P test` (from `root` folder)  
     * Copy war files from `admin/target/admin.war` and `application/target/application.war` to application server folder.   
     * Then launch server and open links:
         * [http://localhost:8080/application/actuator](http://localhost:8080/application/actuator)

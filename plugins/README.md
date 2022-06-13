@@ -27,7 +27,7 @@ Contains plugins that are useful in any java project
     * to run manually - `gradlew dependencyCheckAnalyze`
 
 # Maven
-* To build `mvn clean install`
+* To build `mvn -U clean install`
     * runs all plugins
 * To run locally - `mvn spring-boot:run`
     * skips all plugins

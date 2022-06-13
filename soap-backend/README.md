@@ -12,7 +12,7 @@ Technology stack:
 * `Apache CXF` to generate Java code from schema description
 
 # How to run
-Build project by executing `mvn clean install`.  
+Build project by executing `mvn -U clean install`.  
 * To run locally (debug mode) - launch `Application.java` directly from IDE.  
 Then open link in browser [http://localhost:8080/soap/message](http://localhost:8080/soap/message)
 
