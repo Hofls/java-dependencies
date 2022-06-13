@@ -31,7 +31,8 @@ dependencies {
     // Audit:
     implementation 'org.javers:javers-spring-boot-starter-sql:5.13.0'
 
-    /* To generate model on build. (Classes like Campus_, Student_) */
+    // To generate model on build. (Classes like Campus_, Student_)
+    // Also consider using @FieldNameConstants (lombok)
     annotationProcessor('org.hibernate:hibernate-jpamodelgen:5.4.10.Final')
 }
 
