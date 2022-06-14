@@ -1,6 +1,6 @@
-package hofls.com.github.context.dependency.not.found.controller;
+package hofls.com.github.context.exclude.from.tests.controller;
 
-import hofls.com.github.context.dependency.not.found.service.BrokenService;
+import hofls.com.github.context.exclude.from.tests.service.BrokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
