@@ -14,7 +14,6 @@ spring:
         id:
           new_generator_mappings: false
         format_sql: true
-  # Ignored for some reason (takes default URL instead)
   datasource:
     driverClassName: org.postgresql.Driver
     url: THIS URL IS OVERRIDEN IN TESTS

@@ -13,14 +13,10 @@ import org.springframework.context.annotation.FilterType;
 // Error creating bean with name 'brokenController': Unsatisfied dependency expressed through field 'service'
 @ComponentScan(
         excludeFilters = {
-                @ComponentScan.Filter(type = FilterType.REGEX, pattern={
-                        "hofls.com.github.context.dependency.*",
-                        "etc"}) })
+                @ComponentScan.Filter(type = FilterType.REGEX, pattern={"hofls.com.github.context.dependency.*", "etc"}) })
 
 // Alternative to FilterType.REGEX:
-// @ComponentScan.Filter(
-//         type = FilterType.ASSIGNABLE_TYPE,
-//         value = {RandomComponent.class, RandomRepository.class})
+// @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, value = {RandomComponent.class, RandomRepository.class})
 
 
 
