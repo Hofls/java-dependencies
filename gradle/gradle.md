@@ -89,6 +89,7 @@
 * Directed Acyclic Graphs (DAG) - describes order of tasks (e.g. compile -> assemble -> build))
 * Gradle wrapper - downloads and installs gradle (one gradle per project)
 * Build scan - record of what happened during build
+* Skip tests - `gradle build -x test`
 * Task - atomic piece of work which a build performs (e.g. `gradlew clean`)
     * Most tasks come from plugins, some from `tasks.register()` in `build.gradle`
     * Tasks implemented as code (Kotlin/Groovy)

@@ -5,6 +5,7 @@
 * To show the real POM (parents + current + children) `mvn help:effective-pom`
 * To find unused dependencies: `mvn dependency:analyze`
 * To run spring boot `jar` in container - look at `devops` repository
+* Skip tests: `mvn package -Dmaven.test.skip`
 * Local repository location: `/root/.m2/repository`
 * To generate `pom.xml` from `build.gradle`
     * Add `id 'maven'` to `plugins` section
