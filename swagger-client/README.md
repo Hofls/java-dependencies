@@ -1,6 +1,6 @@
 # Swagger backend + client
 
-#### Disclaimer:
+#### Notice:
 * `backend-springfox` is kinda dead, better use `backend-springdoc`
 
 #### Run backend
