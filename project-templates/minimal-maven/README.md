@@ -1,0 +1,1 @@
+* Warning: better use gradle, but if you must use maven - here it goes
