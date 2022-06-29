@@ -73,6 +73,12 @@
                     <url>https://artifactory.somas.com/artifactory/libs-mvn-local</url>
                 </repository>
             </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>somas.release</id>
+                    <url>https://artifactory.somas.com/artifactory/fb-mvn-release</url>
+                </pluginRepository>
+            </pluginRepositories>
         </profile>
     </profiles>
 

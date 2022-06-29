@@ -4,5 +4,6 @@
 * Explanation:
     * `<server>` - login and password; repository url located at <repository> (linked by id) 
     * `<mirror>` - alternative repository
+    * `<pluginRepositories>` - plugins won't be downloaded from `<repositories>`, you have to specify repos in this tag
     * `<altReleaseDeploymentRepository`, `<altSnapshotDeploymentRepository>`:
         * Repo to deploy, makes `<distributionManagement>` in `pom.xml` unnecessary
