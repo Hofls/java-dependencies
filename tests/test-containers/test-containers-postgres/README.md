@@ -2,7 +2,7 @@
 * Preparations:
     * Prerequisites - installed Docker
     * Copy this directory to server, open it
-    * There is no docker in Dockerfile, that's ok, --volume is enough for test-containers
+    * There is no docker in `Dockerfile-test`, that's ok, --volume is enough for test-containers
 * Build:
     * `cp docker/Dockerfile-build Dockerfile`
     * `DOCKER_BUILDKIT=1 docker build --tag build-example .`

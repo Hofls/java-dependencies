@@ -8,6 +8,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
@@ -21,6 +22,10 @@ import static java.util.GregorianCalendar.from;
 import static java.util.GregorianCalendar.getInstance;
 
 public final class DateUtils {
+
+    public static OffsetDateTime toDayStart(OffsetDateTime date) {
+        return date.withHour(0).withMinute(0).withSecond(0).withNano(0);
+    }
 
     public static Date toDayStart(Date date) {
         Calendar calendar = getInstance();
