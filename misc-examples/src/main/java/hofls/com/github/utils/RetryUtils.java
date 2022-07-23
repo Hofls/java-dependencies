@@ -12,12 +12,12 @@ public class RetryUtils {
 
     /** Tries again if error appears */
     static void retry(Action action, int maxRetriesCount) throws Exception {
-        for (int retry = 0; retry < maxRetriesCount; retry++) {
+        for (int retry = 0; retry <= maxRetriesCount; retry++) {
             try {
                 action.execute();
                 return; // SUCCESS
             } catch (Exception e) {
-                if (retry == maxRetriesCount - 1) {
+                if (retry == maxRetriesCount) {
                     throw e; // FAIL
                 }
                 TimeUnit.SECONDS.sleep(1); // Wait for some time, maybe error goes away
