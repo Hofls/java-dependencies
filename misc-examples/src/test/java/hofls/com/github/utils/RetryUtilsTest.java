@@ -9,10 +9,7 @@ class RetryUtilsTest {
 
     @Test
     void retry_success() throws Exception {
-        RetryUtils.retry(
-                () -> {
-                    int i = 23;
-                });
+        RetryUtils.retry(() -> 23);
     }
 
     @Test

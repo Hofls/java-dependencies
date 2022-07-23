@@ -6,26 +6,27 @@ import java.util.concurrent.TimeUnit;
 
 public class RetryUtils {
 
-    public static void retry(Action action) throws Exception {
-        retry(action, 5);
+    public static <R> R retry(Action<R> action) throws Exception {
+        return retry(action, 5);
     }
 
     /** Tries again if error appears */
-    static void retry(Action action, int maxRetriesCount) throws Exception {
+    static <R> R retry(Action<R> action, int maxRetriesCount) throws Exception {
         for (int retry = 0; retry <= maxRetriesCount; retry++) {
             try {
-                action.execute();
-                return; // SUCCESS
+                return action.execute(); // SUCCESS
             } catch (Exception e) {
                 if (retry == maxRetriesCount) {
                     throw e; // FAIL
                 }
-                TimeUnit.SECONDS.sleep(1); // Wait for some time, maybe error goes away
+                TimeUnit.SECONDS.sleep(1); // Ждем какое-то время, может ошибка уйдёт
             }
         }
+        return null; // shouldn't be reached
     }
 
-    public interface Action {
-        void execute() throws Exception;
+    public interface Action<R> {
+        /** Выполняет действие */
+        R execute() throws Exception;
     }
 }
