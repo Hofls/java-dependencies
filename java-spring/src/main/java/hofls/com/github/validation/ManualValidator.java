@@ -6,6 +6,7 @@ import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 import java.util.Set;
 
+// TODO - fix (only validates top level, no composite classes)
 public class ManualValidator {
 
     public static void validate(ObjectToValidate obj) {
