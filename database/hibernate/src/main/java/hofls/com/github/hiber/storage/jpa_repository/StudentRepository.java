@@ -14,6 +14,7 @@ import java.util.List;
 public interface StudentRepository extends JpaRepository<Student, Long> {
 
     // https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods.query-creation
+    // https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories.limit-query-result
     void deleteByName(String name);
     List<Student> findByName(String name);
     List<Student> findByCampus(Campus campus);
