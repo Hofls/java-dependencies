@@ -71,6 +71,7 @@ public class StudentRepositoryTestV2 extends BaseWithTransaction {
     public void findBadBoys_test() throws IOException {
         Student expectedStudent = studentRepository.findById(546L).get();
         assertEquals(Arrays.asList(expectedStudent), studentRepository.findBadBoys());
+        assertEquals(Arrays.asList(expectedStudent), studentRepository.findBadBoys(Arrays.asList(546L)));
     }
 
     @Test

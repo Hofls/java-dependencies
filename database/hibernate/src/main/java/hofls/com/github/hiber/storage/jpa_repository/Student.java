@@ -1,12 +1,21 @@
 package hofls.com.github.hiber.storage.jpa_repository;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 
 @Entity
 @Data
+@Table(name = "student")
+@NoArgsConstructor
+@AllArgsConstructor
+@Accessors(chain = true)
+@EqualsAndHashCode(of = "id")
 public class Student {
 
     @Id
