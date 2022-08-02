@@ -1,4 +1,9 @@
 {
-  "birthDate" : "2021-06-23",
-  "name" : "John"
+  "birthDate": "2021-06-23",
+  "list": [
+    "SOME TEXT A",
+    "SOME TEXT B",
+    "SOME TEXT C"
+  ],
+  "name": "John"
 }

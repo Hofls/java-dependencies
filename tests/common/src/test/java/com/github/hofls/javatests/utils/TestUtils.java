@@ -1,6 +1,6 @@
 package com.github.hofls.javatests.utils;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.util.DefaultIndenter;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.MapperFeature;
@@ -10,6 +10,8 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.apache.cxf.helpers.IOUtils;
 import org.springframework.util.CollectionUtils;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +31,9 @@ public class TestUtils {
     private static final ObjectWriter objectWriter = getObjectWriter();
 
     private static ObjectWriter getObjectWriter() {
-        DefaultPrettyPrinter prettyPrinter = new DefaultPrettyPrinter();
+        CustomPrinter prettyPrinter = new CustomPrinter();
+        // var prettyPrinter = new DefaultPrettyPrinter();
+        // prettyPrinter.indentArraysWith(DefaultIndenter.SYSTEM_LINEFEED_INSTANCE);
         prettyPrinter.indentArraysWith(DefaultIndenter.SYSTEM_LINEFEED_INSTANCE); // each list element in new line
         return new ObjectMapper()
                 .configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true)
@@ -89,7 +93,7 @@ public class TestUtils {
         }
 
         for (String ignoredField : ignoredFields) {
-            String ignored = "\"" + ignoredField + "\" :";
+            String ignored = "\"" + ignoredField + "\":";
             if (line.contains(ignored)) {
                 return true;
             }
@@ -113,4 +117,21 @@ public class TestUtils {
             throw new RuntimeException(e);
         }
     }
+
+    public static class CustomPrinter extends DefaultPrettyPrinter {
+        public CustomPrinter() {
+            this.indentArraysWith(DefaultIndenter.SYSTEM_LINEFEED_INSTANCE);
+        }
+
+        @Override
+        public DefaultPrettyPrinter createInstance() {
+            return new CustomPrinter();
+        }
+
+        @Override
+        public void writeObjectFieldValueSeparator(JsonGenerator jg) throws IOException {
+            jg.writeRaw(": ");
+        }
+    }
+
 }
