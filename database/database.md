@@ -12,3 +12,6 @@
     * [Configuration docs](https://docs.jboss.org/hibernate/orm/3.3/reference/en/html/session-configuration.html)
     * Examples:
         * spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQL95Dialect
+#### Etc
+* To write readable inserts - use csv aligner
+    * e.g. http://www.listdiff.com/align-csv-text-columns-online-tool
