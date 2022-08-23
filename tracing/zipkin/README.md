@@ -1,6 +1,6 @@
 * Info
     * Sleuth - adds http headers (traceID, spanID)
-    * Zipkin client - gathers timing data for requests, sends data to zipkin server
+    * Zipkin client - gathers timing data for requests
 * Getting ready. Zipkin server:
     * Run zipkin on a server (look at `devops` repo)
     * Replace `localhost` in `application.yml` with server url
@@ -25,3 +25,5 @@
     * Open zipkin web ui, search by traceId, should show three requests:
         * Shop-backend -> Inventory-backend -> Request-bin
         * ![](zipkin-web-ui.png)
+    * Open in a browser - http://localhost:8081/skip-endpoint
+        * Nothing should appear in zipkin, because of `additionalSkipPattern`

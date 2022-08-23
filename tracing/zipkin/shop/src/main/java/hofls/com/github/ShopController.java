@@ -22,6 +22,12 @@ public class ShopController {
         return restTemplate.getForObject("http://localhost:8082/inventory-endpoint", String.class);
     }
 
+    @RequestMapping("/skip-endpoint")
+    public String skipEndpoint() {
+        log.info("Skip demo");
+        return restTemplate.getForObject("https://example.com", String.class);
+    }
+
     /** RestTemplate must be in application context (to inject traceId and spanId) */
     @Bean
     RestTemplate restTemplate() {
