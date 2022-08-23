@@ -1,0 +1,10 @@
+server.port: 8081
+
+spring:
+  application:
+    name: shop-backend
+  zipkin:
+    baseUrl: http://75.343.45.66:9411
+  sleuth:
+    sampler:
+      probability: 1.0
