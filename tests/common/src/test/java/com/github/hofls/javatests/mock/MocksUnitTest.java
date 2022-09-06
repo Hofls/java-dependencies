@@ -45,10 +45,11 @@ public class MocksUnitTest {
     public void void_should_throw_exception() {
         doThrow(new RuntimeException("Wrong salary")).when(salaryExternalService).updateDailySalary(any());
 
-        Exception expectedException = Assertions.assertThrows(RuntimeException.class, () -> {
+        Exception actualException = Assertions.assertThrows(RuntimeException.class, () -> {
             salaryCalculator.updateSalary(60000L);
         });
-        assertEquals("Wrong salary", expectedException.getMessage());
+        String expectedException = "Wrong salary";
+        assertEquals(expectedException, actualException.getMessage());
     }
 
 }
