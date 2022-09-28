@@ -19,7 +19,7 @@
     * Relative:
         * `-XX:MaxRAMPercentage=80.0` - use up to 80% of RAM as heap
 * `-Duser.timezone=Asia/Tokyo` - timezone
-* `-Dhttp.proxyHost=23.221.54.132 -Dhttp.proxyPort=3128` - proxy
+* `-Dhttp.proxyHost=23.221.54.132 -Dhttp.proxyPort=3128 -Dhttp.nonProxyHosts="localhost|*.example.com"` - proxy
 
 # Dependency alternatives
 * `Spring` - micronaut, quarkus
