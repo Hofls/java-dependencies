@@ -90,8 +90,6 @@
 * Gradle wrapper - downloads and installs gradle (one gradle per project)
 * Build scan - record of what happened during build
 * Skip tests - `gradle build -x test`
-* Build with proxy:
-    * `sh gradlew -Dhttp.proxyHost=10.213.51.166 -Dhttp.proxyPort=3121 -Dhttps.proxyHost=10.213.51.166 -Dhttps.proxyPort=3121 build`
 * Task - atomic piece of work which a build performs (e.g. `gradlew clean`)
     * Most tasks come from plugins, some from `tasks.register()` in `build.gradle`
     * Tasks implemented as code (Kotlin/Groovy)
@@ -111,6 +109,8 @@
     }
     mavenCentral()
     ```
+* Build with proxy:
+    * `sh gradlew -Dhttp.proxyHost=10.213.51.166 -Dhttp.proxyPort=3121 -Dhttps.proxyHost=10.213.51.166 -Dhttps.proxyPort=3121 build`
 * How gradle works with multiple repositories?
     * Let's say first repository is nexus-someit (unavailable), next 5 are available
     * Gradle looks for dependency in each repository (in descending order)
