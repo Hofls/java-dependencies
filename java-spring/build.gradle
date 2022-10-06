@@ -30,6 +30,8 @@ dependencies {
 
     implementation 'org.reflections:reflections:0.9.12'
 
+    implementation 'org.apache.cxf:cxf-rt-features-logging:3.2.0' /* For FileUtils */
+
     // JAXB
     compile('javax.xml.bind:jaxb-api:2.3.0')
     compile('javax.activation:activation:1.1')
