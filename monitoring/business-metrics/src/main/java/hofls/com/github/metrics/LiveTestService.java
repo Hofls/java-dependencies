@@ -29,6 +29,8 @@ public class LiveTestService {
     // To run multiple scheduled methods at the same time
     // Add to application.properties - spring.task.scheduling.pool.size=10
     @Scheduled(initialDelayString = "${live-test.initialDelay}", fixedRateString = "${live-test.fixedRate}")
+    // fixedRate = old one still running? dont care, run new one
+    // fixedDelay = wait for old one to finish, delay, run new one
     public void liveTest() {
         try {
             shopController.findProduct();
