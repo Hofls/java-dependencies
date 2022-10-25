@@ -12,6 +12,7 @@ import javax.persistence.*;
 @Entity
 @Data
 @Table(name = "student")
+// @Where(clause = "deleted = false") - automatically adds condition to queries
 @NoArgsConstructor
 @AllArgsConstructor
 @Accessors(chain = true)
