@@ -24,6 +24,8 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     // Page is Slice with total count (makes extra count(*) query)
     Page<Student> findAll(Pageable pageable);
     Slice<Student> findBy(Pageable page);
+    @Query("select s from Student s where s.name <> 'John'")
+    List<Student> findNotJohn(Pageable page);
 
 
     // https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods.at-query

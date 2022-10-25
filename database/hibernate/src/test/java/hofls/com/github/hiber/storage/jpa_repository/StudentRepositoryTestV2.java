@@ -88,4 +88,11 @@ public class StudentRepositoryTestV2 extends BaseWithTransaction {
         assertEquals("John", actual.get(0).getName());
     }
 
+    @Test
+    @Sql("student/findAll_test.sql")
+    public void findNotJohn_test() {
+        List<Student> actual = studentRepository.findNotJohn(PageRequest.of(1, 1));
+        assertEquals(1, actual.size());
+    }
+
 }
