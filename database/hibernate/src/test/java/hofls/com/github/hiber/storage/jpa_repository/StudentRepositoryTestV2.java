@@ -41,6 +41,14 @@ public class StudentRepositoryTestV2 extends BaseWithTransaction {
     }
 
     @Test
+    @Sql("student/findByCampus_test.sql")
+    public void findByCampusIds_test() throws IOException {
+        Student expectedStudentA = studentRepository.findById(234L).get();
+        List<Student> actualStudents = studentRepository.findByCampusIdIn(Arrays.asList(569L, 333L));
+        assertEquals(Arrays.asList(expectedStudentA), actualStudents);
+    }
+
+    @Test
     @Sql("student/findAll_test.sql")
     public void findAll_test() {
         Page<Student> studentsA = studentRepository.findAll(PageRequest.of(0, 1));
