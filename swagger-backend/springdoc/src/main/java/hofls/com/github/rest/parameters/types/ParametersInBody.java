@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @Data
@@ -14,5 +15,8 @@ public class ParametersInBody {
 
     @Schema(description = "If you use single quotes, client wont be generated", example = "[\"Football\",\"Music\"]")
     private List<String> hobbies;
+
+    @Schema(example = "[\"12:30\", \"21:00\"]")
+    private List<LocalTime> times;
 
 }

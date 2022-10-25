@@ -10,6 +10,7 @@ import javax.validation.Valid;
 public class AutoValidator {
 
 
+    // @Valid works only if method is called from another class, because of proxy "wrapper" (same as any other annotation)
     public String getGreeting(@Valid ObjectToValidate obj) {
         return "Hey";
     }
