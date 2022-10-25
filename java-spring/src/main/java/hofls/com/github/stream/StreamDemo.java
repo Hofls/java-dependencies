@@ -46,7 +46,7 @@ public class StreamDemo {
                 .collect(Collectors.groupingBy(address -> address.city, Collectors.counting()));
     }
 
-    Map<Long, Address> toMap(List<Address> list) {
+    public static Map<Long, Address> toMap(List<Address> list) {
         return list.stream()
                 .collect(Collectors.toMap(Address::getId, Function.identity()));
     }
