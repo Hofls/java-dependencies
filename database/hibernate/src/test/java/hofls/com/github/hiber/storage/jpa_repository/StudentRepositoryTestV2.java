@@ -82,4 +82,10 @@ public class StudentRepositoryTestV2 extends BaseWithTransaction {
         assertEquals(Arrays.asList(expectedStudent), actual);
     }
 
+    @Test
+    public void findCustomBoys_test() {
+        List<Student> actual = studentRepository.findCustomBoys();
+        assertEquals("John", actual.get(0).getName());
+    }
+
 }

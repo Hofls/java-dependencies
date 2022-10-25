@@ -32,9 +32,13 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     List<Student> findBadBoys();
     @Query("select s from Student s where s.name = :personName and s.campus.name = :campusName")
     List<Student> findBadBoys(String personName, String campusName);
-    // Unlimited SQL (with joins, subqueries, SQL functions, etc)
+    // Unlimited SQL (with all the joins, subqueries, SQL functions, etc)
     @Query(nativeQuery = true, value = "SELECT * FROM student WHERE id IN :studentIds")
     List<Student> findBadBoys(@Param("studentIds") List<Long> studentIds);
+
+    /** Select custom fields */
+    @Query(nativeQuery = true, value = "SELECT 133 as id, 'John' as name, null as campus_id FROM DUAL")
+    List<Student> findCustomBoys();
 
     /** Rare case when you need to update only specific field, to prevent overriding other fields (parallel editing) */
     @Modifying
