@@ -14,3 +14,16 @@
     * `cd build/libs`
     * `java -jar rest-backend.jar`
 * Open link [http://localhost:8080/swagger-ui/](http://localhost:8080/swagger-ui/)
+
+#### Weird stuff:
+* LocalTime:
+    * Must add to Docket:
+    ```
+    .directModelSubstitute(LocalTime.class, String.class)
+    ```
+    * So LocalTime will work:
+    ```
+    @Schema(example = "[\"12:30\", \"21:00\"]")
+    private List<LocalTime> times;
+    ```
+* 
