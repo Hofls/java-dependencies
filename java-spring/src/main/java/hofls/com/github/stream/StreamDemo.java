@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class StreamDemo {
@@ -45,10 +46,20 @@ public class StreamDemo {
                 .collect(Collectors.groupingBy(address -> address.city, Collectors.counting()));
     }
 
+    Map<Long, Address> toMap(List<Address> list) {
+        return list.stream()
+                .collect(Collectors.toMap(Address::getId, Function.identity()));
+    }
+
     static class Address {
+        public Long id;
         public String city;
         public String street;
         public String house;
+
+        public Long getId() {
+            return id;
+        }
     }
 
 }
