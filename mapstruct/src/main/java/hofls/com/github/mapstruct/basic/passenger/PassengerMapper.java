@@ -1,4 +1,4 @@
-package hofls.com.github.mapstruct.passenger;
+package hofls.com.github.mapstruct.basic.passenger;
 
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;

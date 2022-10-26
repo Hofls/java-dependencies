@@ -1,6 +1,6 @@
-package hofls.com.github.mapstruct.car;
+package hofls.com.github.mapstruct.basic.car;
 
-import hofls.com.github.mapstruct.passenger.PassengerMapper;
+import hofls.com.github.mapstruct.basic.passenger.PassengerMapper;
 import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
 

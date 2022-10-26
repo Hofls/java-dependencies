@@ -1,4 +1,4 @@
-package hofls.com.github.mapstruct.passenger;
+package hofls.com.github.mapstruct.basic.passenger;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;

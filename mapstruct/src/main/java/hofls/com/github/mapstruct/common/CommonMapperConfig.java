@@ -4,7 +4,6 @@ import org.mapstruct.MapperConfig;
 import org.mapstruct.NullValueMappingStrategy;
 import org.mapstruct.ReportingPolicy;
 
-// Usage - @Mapper(config = CommonMapperConfig.class)
 @MapperConfig(
         nullValueMappingStrategy = NullValueMappingStrategy.RETURN_DEFAULT,
         unmappedTargetPolicy = ReportingPolicy.ERROR)

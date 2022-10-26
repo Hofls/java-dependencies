@@ -1,6 +1,6 @@
-package hofls.com.github.mapstruct.car;
+package hofls.com.github.mapstruct.basic.car;
 
-import hofls.com.github.mapstruct.passenger.PassengerDto;
+import hofls.com.github.mapstruct.basic.passenger.PassengerDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

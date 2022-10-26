@@ -1,4 +1,4 @@
-package hofls.com.github.mapstruct.report;
+package hofls.com.github.mapstruct.basic.report;
 
 import lombok.Data;
 
