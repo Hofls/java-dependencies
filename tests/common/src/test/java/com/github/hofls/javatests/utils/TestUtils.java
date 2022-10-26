@@ -3,15 +3,15 @@ package com.github.hofls.javatests.utils;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.util.DefaultIndenter;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
-import com.fasterxml.jackson.databind.MapperFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
-import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.apache.cxf.helpers.IOUtils;
 import org.springframework.util.CollectionUtils;
 
 import java.io.IOException;
+import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,6 +39,7 @@ public class TestUtils {
                 .configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true)
                 .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
                 .registerModule(new JavaTimeModule())
+                .registerModule(getOffsetDateTimeModule())
                 .writer().with(prettyPrinter);
     }
 
@@ -116,6 +117,18 @@ public class TestUtils {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    /** Without this module - Windows and Linux will have different date formats */
+    private static SimpleModule getOffsetDateTimeModule() {
+        SimpleModule module = new SimpleModule();
+        module.addSerializer(OffsetDateTime.class, new JsonSerializer<OffsetDateTime>() {
+            @Override
+            public void serialize(OffsetDateTime offsetDateTime, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
+                jsonGenerator.writeString(DateTimeFormatter.ISO_LOCAL_DATE_TIME.format(offsetDateTime));
+            }
+        });
+        return module;
     }
 
     public static class CustomPrinter extends DefaultPrettyPrinter {
