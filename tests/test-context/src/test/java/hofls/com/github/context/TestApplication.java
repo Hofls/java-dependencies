@@ -19,8 +19,13 @@ import org.springframework.context.annotation.FilterType;
         excludeFilters = {
                 @ComponentScan.Filter(type = FilterType.REGEX, pattern={"hofls.com.github.context.exclude.from.tests.*", "some.other.package"}) })
 
+// FilterType.REGEX hides hundreds of classes, but there is a couple of classes that you need? No problem, just import them:
+// @Import({UserRepository.class, JacksonConfig.class})
+
 // Alternative to FilterType.REGEX:
 // @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, value = {RandomComponent.class, RandomRepository.class})
+
+// There is too much to remove from context? Use "useDefaultFilters = false", and only include necessary classes
 
 @MockBeans({@MockBean(BrokenKafka.class), @MockBean(BrokenRedis.class)})
 public class TestApplication extends SpringBootServletInitializer {
