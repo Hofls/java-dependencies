@@ -10,7 +10,7 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
 
-@SpringBootApplication //(exclude = {LiquibaseAutoConfiguration.class, CouchbaseAutoConfiguration})
+@SpringBootApplication //(exclude = {LiquibaseAutoConfiguration.class, CouchbaseAutoConfiguration.class})
 // ^ Exclude auto-configuration classes https://docs.spring.io/spring-boot/docs/current/reference/html/auto-configuration-classes.html
 
 // Without this line, error appears:
