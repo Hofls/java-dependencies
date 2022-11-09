@@ -1,0 +1,18 @@
+### Info
+* `SchemaSpy` - generates HTML documentation for database (tables, schemas, relations etc)
+
+### Getting started
+* Install dependencies:
+    * [JDK 8](https://www.oracle.com/java/technologies/javase/javase8u211-later-archive-downloads.html)
+    * [SchemaSpy](https://github.com/schemaspy/schemaspy/releases/download/v6.1.0/schemaspy-6.1.0.jar)
+    * [JDBC driver](https://jdbc.postgresql.org/download/postgresql-42.5.0.jar)
+    * Create results folder
+* Generate schema:
+    ```
+    D:/Programs/jdk1.8.0/bin/java.exe -jar D:/Programs/schemaspy-6.1.0.jar -vizjs ^
+    -t pgsql -host 103.143.23.45:5440 ^
+    -db dev_db -s equipment ^
+    -u postgres -p postgres ^
+    -o D:/Programs/Result/ -dp D:/Programs/postgresql-42.5.0.jar
+    ```
+* Open `index.html` from results folder
