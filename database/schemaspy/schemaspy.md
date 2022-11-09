@@ -16,3 +16,9 @@
     -o D:/Programs/Result/ -dp D:/Programs/postgresql-42.5.0.jar
     ```
 * Open `index.html` from results folder
+
+### Useful CLI options
+* Ignore tables:
+    * `-I "(flyway_schema_history|databasechangelog|databasechangeloglock)"`
+* Ignore views:
+    * `-noviews`
