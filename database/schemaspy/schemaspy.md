@@ -18,6 +18,8 @@
 * Open `index.html` from results folder
 
 ### Useful CLI options
+* Hide rows count:
+    * `-norows`
 * Ignore tables:
     * `-I "(flyway_schema_history|databasechangelog|databasechangeloglock)"`
 * Ignore views:
