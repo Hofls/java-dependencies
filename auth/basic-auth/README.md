@@ -1,5 +1,7 @@
-# basic auth
-In basic HTTP authentication, a request contains a header field in the form of Authorization: Basic <credentials>, where credentials is the base64 encoding of id and password joined by a single colon :
+# Basic auth
+* Essence
+    * Each request should contain header with login and password (encoded with base64)
+    * E.g. `Authorization: Basic ZGVtbzpwQDU1dzByZA==`
 * Pros: 
     * Simplest auth method
 * Cons:

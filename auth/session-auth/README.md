@@ -1,9 +1,10 @@
 # Session based auth
 Essence:
-* User is registering on a site, login and password are stored on the backend.
+* User registered on a site, login and password are stored on the backend.
 * User sends login and password to the `/auth/login` endpoint. 
-If credentials are correct - backend send sends cookie with session id.
+    * If credentials are correct - backend send sends cookie with session id.
 * Session ID is stored in the cookies on the frontend and sent with each request to the backend.
+    * Each time backend checks that session id is present in DB (e.g. redis)
 
 # How to run
 * To run locally - `gradlew bootRun` 
