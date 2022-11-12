@@ -28,10 +28,11 @@ public class JwtDemo {
     /** Create and encode JWT with private key */
     public String createJWT() {
         Algorithm algorithm = Algorithm.RSA256(rsaPrivateKey);
+        Date expiresAt = new Date(System.currentTimeMillis() + 1000 * 60);
         return JWT.create()
                 .withIssuer("auth0")
                 .withSubject("1234567890")
-                .withExpiresAt(new Date())
+                .withExpiresAt(expiresAt)
                 .withClaim("name", "John Doe")
                 .sign(algorithm);
     }
