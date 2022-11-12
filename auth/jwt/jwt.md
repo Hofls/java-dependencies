@@ -10,10 +10,12 @@
     * `Signature` (secret)
 * Example:
     * eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
-* Auth schema:
-    * User enters login and password on frontend
-    * Frontend sends data to auth service
-        * If credentials are correct - auth service generates JWT and signs it with private key
-    * Frontend sends JWT with each request to any service
-        * Services get public key from auth service and cache it
-        * Then they use public key to check that JWT is legit (by decrypting it)
+* JWT usually located in `Authorization:` header of http request
+
+#### Auth schema
+* User enters login and password on frontend
+* Frontend sends data to auth service
+    * If credentials are correct - auth service generates JWT and signs it with private key
+* Frontend sends JWT with each request to any service
+    * Services get public key from auth service and cache it
+    * Then they use public key to check that JWT is legit (by decrypting it)
