@@ -9,6 +9,8 @@ import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
+import java.time.LocalDate;
+import java.util.Date;
 
 public class JwtDemo {
 
@@ -28,6 +30,9 @@ public class JwtDemo {
         Algorithm algorithm = Algorithm.RSA256(rsaPrivateKey);
         return JWT.create()
                 .withIssuer("auth0")
+                .withSubject("1234567890")
+                .withExpiresAt(new Date())
+                .withClaim("name", "John Doe")
                 .sign(algorithm);
     }
 
