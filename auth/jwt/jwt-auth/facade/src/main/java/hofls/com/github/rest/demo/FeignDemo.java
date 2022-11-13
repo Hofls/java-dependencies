@@ -1,4 +1,4 @@
-package hofls.com.github.rest.feign;
+package hofls.com.github.rest.demo;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;

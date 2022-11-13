@@ -14,9 +14,10 @@ repositories {
 }
 
 dependencies {
-    implementation(group: 'org.springframework.boot', name: 'spring-boot-starter-web', version:'2.2.2.RELEASE')
+    implementation(group: 'org.springframework.boot', name: 'spring-boot-starter-web')
     implementation 'org.springdoc:springdoc-openapi-ui:1.5.10'
     implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:2.2.3.RELEASE'
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
 }
 
 group = 'hofls.com.github'

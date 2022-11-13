@@ -7,3 +7,11 @@ springdoc:
     doc-expansion: 'none'
     operations-sorter: 'alpha'
     tags-sorter: 'alpha'
+
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/auth-server/
+          jwk-set-uri: http://localhost:8080/auth-server/openid-connect/certs

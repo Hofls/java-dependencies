@@ -1,4 +1,4 @@
-package hofls.com.github.rest.feign;
+package hofls.com.github.rest.config;
 
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
