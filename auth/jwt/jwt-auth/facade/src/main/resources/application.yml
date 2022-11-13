@@ -1,0 +1,9 @@
+springdoc:
+  swagger-ui:
+    default-models-expand-depth: 0
+    default-model-expand-depth: 0
+    disable-swagger-default-url: true
+    display-request-duration: true
+    doc-expansion: 'none'
+    operations-sorter: 'alpha'
+    tags-sorter: 'alpha'
