@@ -1,0 +1,35 @@
+// Warning! Only works for small tables (e.g. dictionaries).
+// For big tables - create search text column and add index
+
+@UtilityClass
+public class SearchUtils {
+
+    /** Search in multiple columns (ignoring order and case of words) */
+    public void addTokenPredicates(String search, List<Predicate> predicates, CriteriaBuilder criteriaBuilder,
+                                   List<Expression<String>> columns) {
+        if (!StringUtils.isEmpty(search)) {
+            for (var token : search.split(" ")) {
+                String tokenLower = "%" + token.toLowerCase() + "%";
+                var likePredicates = toLikePredicates(tokenLower, criteriaBuilder, columns);
+                predicates.add(criteriaBuilder.or(likePredicates.toArray(new Predicate[0])));
+            }
+        }
+    }
+
+    private List<Predicate> toLikePredicates(String tokenLower, CriteriaBuilder criteriaBuilder, List<Expression<String>> columns) {
+        var predicates = new ArrayList<Predicate>();
+        for (var column : columns) {
+            predicates.add(criteriaBuilder.like(criteriaBuilder.lower(column), tokenLower));
+        }
+        return predicates;
+    }
+}
+
+// Call example:
+@Override
+public Predicate toPredicate(Root<User> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
+    final List<Predicate> predicates = new ArrayList<>();
+    SearchUtils.addTokenPredicates(searchText, predicates, criteriaBuilder,
+                List.of(root.get(Equipment_.NAME), root.get(Equipment_.CODE), root.get(Equipment_.CATEGORY)));
+    return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
+}
