@@ -4,13 +4,13 @@
 @UtilityClass
 public class SearchUtils {
 
-    /** Search in multiple columns (ignoring order and case of words) */
+    /** Search in multiple columns (ignoring order and case of words; using only letters and digits) */
     public void addTokenPredicates(String search, List<Predicate> predicates, CriteriaBuilder criteriaBuilder,
                                    List<Expression<String>> columns) {
         if (!StringUtils.isEmpty(search)) {
-            for (var token : search.split(" ")) {
-                String tokenLower = "%" + token.toLowerCase() + "%";
-                var likePredicates = toLikePredicates(tokenLower, criteriaBuilder, columns);
+            var separatedSearch = search.replaceAll("(?U)[^\\w\\s]+", " ").toLowerCase();
+            for (var token : separatedSearch.split(" ")) {
+                var likePredicates = toLikePredicates("%" + token + "%", criteriaBuilder, columns);
                 predicates.add(criteriaBuilder.or(likePredicates.toArray(new Predicate[0])));
             }
         }
