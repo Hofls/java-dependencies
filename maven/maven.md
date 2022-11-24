@@ -41,6 +41,9 @@
     * If different `<dependency>` add same library - version of the first one will be used
 
 #### Other problems
+* Maven uses wrong encoding on Windows to run tests (e.g. at `mvn clean install`)
+    * Fix - explicitly set encoding - `mvn -DargLine=-Dfile.encoding=UTF-8 clean install`
+        * Or add `-DargLine=-Dfile.encoding=UTF-8` to `maven.config`
 * If error appears `Failure to find dependency, was cached in the local repository, resolution will not be reattempted until the update interval of MyRepo has elapsed or updates are forced`
     * Means that problem has occurred during previous dependency download. Maven won't try to download it again for 24 hours (Insane default behaviour)
     * Fix - ask maven to try download broken dependency without 24h wait `mvn -U clean install`
