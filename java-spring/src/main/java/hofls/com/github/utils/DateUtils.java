@@ -140,6 +140,22 @@ public final class DateUtils {
         return dateToConvert.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
     }
 
+    public LocalDateTime toLocalDateTime(OffsetDateTime offsetDateTime) {
+        ZonedDateTime zoned = offsetDateTime.atZoneSameInstant(ZoneId.systemDefault());
+        return zoned.toLocalDateTime();
+    }
+
+    public OffsetDateTime toOffsetDateTime(LocalDateTime localDateTime) {
+        ZoneId zoneId = ZoneId.systemDefault();
+        return localDateTime.atZone(zoneId).toOffsetDateTime();
+    }
+
+
+    public OffsetDateTime toOffsetDateTime(LocalDate localDate) {
+        ZoneId zoneId = ZoneId.systemDefault();
+        return localDate.atStartOfDay(zoneId).toOffsetDateTime();
+    }
+
     // Example format - "dd.MM.yyyy"
     public static String format(LocalDate date, String format) {
         if (date == null) {
