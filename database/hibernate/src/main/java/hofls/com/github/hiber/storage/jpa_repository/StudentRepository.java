@@ -21,6 +21,7 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     List<Student> findByCampus(Campus campus);
     List<Student> findByCampusId(Long campusId);
     List<Student> findByCampusIdIn(List<Long> campuses);
+    // List<StudentMovementEvent> findFirstByStudentIdOrderByEventTimeDesc(UUID studentId);
 
     // Page is Slice with total count (makes extra count(*) query)
     Page<Student> findAll(Pageable pageable);
