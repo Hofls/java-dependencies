@@ -1,10 +1,12 @@
 package com.github.hofls.javatests.utils;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.apache.tomcat.jni.Local;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -32,6 +34,9 @@ class TestUtilsTest {
     class Person {
         public int id;
         public String name;
+        @JsonFormat(
+                pattern = "yyyy-MM-dd"
+        )
         public LocalDate birthDate;
         public List<String> list;
 
