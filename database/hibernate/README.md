@@ -31,3 +31,5 @@
         return root.get(Invoice_.NUMBER).in(subquery);
     }
     ```
+* Composite id - `@IdClass`
+* Map multiple classes on one table - `@Embedded` and `@Embeddable`
