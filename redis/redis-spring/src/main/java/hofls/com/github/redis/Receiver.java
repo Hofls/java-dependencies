@@ -1,18 +1,21 @@
 package hofls.com.github.redis;
 
-import org.springframework.data.redis.connection.Message;
-import org.springframework.data.redis.connection.MessageListener;
+import java.util.concurrent.atomic.AtomicInteger;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-public class Receiver implements MessageListener {
+public class Receiver {
+    private static final Logger LOGGER = LoggerFactory.getLogger(Receiver.class);
 
-    public static List<String> messageList = new ArrayList<>();
+    private AtomicInteger counter = new AtomicInteger();
 
-    public void onMessage(Message message, byte[] pattern) {
-        messageList.add(message.toString());
-        System.out.println("Message received: " + message.toString());
+    public void receiveMessage(String message) {
+        LOGGER.info("Received <" + message + ">");
+        counter.incrementAndGet();
     }
 
+    public int getCount() {
+        return counter.get();
+    }
 }
