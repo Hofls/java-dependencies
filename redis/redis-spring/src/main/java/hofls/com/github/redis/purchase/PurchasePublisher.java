@@ -2,6 +2,7 @@
 package hofls.com.github.redis.purchase;
 
 
+import hofls.com.github.utils.JsonConverter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +17,10 @@ public class PurchasePublisher {
     @Autowired
     private StringRedisTemplate redisTemplate;
 
-    public void publishMessage() {
+    public void publishMessage(Purchase purchase) {
         LOGGER.info("Publishing purchase message");
-        redisTemplate.convertAndSend("purchase", "{id: 874, price:20}");
+        String json = JsonConverter.objectToJson(purchase);
+        redisTemplate.convertAndSend("purchase", json);
     }
 
 }

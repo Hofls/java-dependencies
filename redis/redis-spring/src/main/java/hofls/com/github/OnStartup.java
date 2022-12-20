@@ -1,6 +1,7 @@
 package hofls.com.github;
 
 import hofls.com.github.redis.logout.LogoutPublisher;
+import hofls.com.github.redis.purchase.Purchase;
 import hofls.com.github.redis.purchase.PurchasePublisher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -18,7 +19,7 @@ public class OnStartup {
     @EventListener(ApplicationReadyEvent.class)
     public void onStartup() throws Exception {
         logoutPublisher.publishMessage();
-        purchasePublisher.publishMessage();
+        purchasePublisher.publishMessage(new Purchase(874, 20));
         Thread.sleep(1500L);
         System.exit(0);
     }
