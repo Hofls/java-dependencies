@@ -1,0 +1,2 @@
+jgroup:
+  config: "/jgroup-k8s.xml"

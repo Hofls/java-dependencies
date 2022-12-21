@@ -1,0 +1,5 @@
+jgroup:
+  config: "/jgroup-local.xml"
+  cluster:
+    logout: logout-events
+    purchase: purchase-events

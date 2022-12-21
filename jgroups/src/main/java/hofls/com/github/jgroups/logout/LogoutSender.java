@@ -15,7 +15,7 @@ public class LogoutSender {
     private JChannel channel;
 
     public void sendMessage() throws Exception {
-        System.out.println("Send login");
+        System.out.println("Send logout event");
         channel.send(new Message(null, "{userId: 7261}"));
     }
 

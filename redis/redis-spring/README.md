@@ -1,0 +1,1 @@
+* For alternative to redis pub/sub look at `jgroups`

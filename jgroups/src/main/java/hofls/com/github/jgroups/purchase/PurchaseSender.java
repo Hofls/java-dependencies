@@ -16,7 +16,7 @@ public class PurchaseSender {
     private JChannel channel;
 
     public void sendMessage(Purchase purchase) throws Exception {
-        System.out.println("Send purchase - " + purchase);
+        System.out.println("Send purchase event - " + purchase);
         channel.send(new Message(null, purchase));
     }
 
