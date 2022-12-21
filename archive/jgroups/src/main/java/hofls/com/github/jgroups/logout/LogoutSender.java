@@ -14,9 +14,13 @@ public class LogoutSender {
     @Qualifier("LogoutJChannel")
     private JChannel channel;
 
-    public void sendMessage() throws Exception {
-        System.out.println("Send logout event");
-        channel.send(new Message(null, "{userId: 7261}"));
+    public void sendMessage() {
+        try {
+            System.out.println("Send logout event");
+            channel.send(new Message(null, "{userId: 7261}"));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }
