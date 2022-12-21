@@ -9,6 +9,7 @@ public class PurchaseReceiver extends ReceiverAdapter {
 
     @Override
     public void receive(Message msg) {
-        System.out.println("received message from: " + msg.getSrc() + " with content: " + msg.getObject());
+        Purchase purchase = msg.getObject();
+        System.out.println("Received purchase from: " + msg.getSrc() + " with content: " + purchase);
     }
 }
