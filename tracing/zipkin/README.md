@@ -1,3 +1,4 @@
+### Zipkin/Sleuth Getting started
 * Info
     * Sleuth - adds http headers (traceID, spanID)
     * Zipkin client - gathers timing data for requests
@@ -27,3 +28,10 @@
         * ![](zipkin-web-ui.png)
     * Open in a browser - http://localhost:8081/skip-endpoint
         * Nothing should appear in zipkin, because of `additionalSkipPattern`
+
+### Zipkin UI
+* Useful feature:
+    * Filter to find slow queries `minDuration=1s`
+    * Filter to find errors `tagQuery=error`
+    * Search by trace ID
+    * Dependencies (overview of services and http traffic between them)
