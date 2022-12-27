@@ -1,5 +1,5 @@
 // Warning! Only works for small tables (e.g. dictionaries).
-// For big tables - create search text column and add index
+// For big tables - create search text column (combine values from other columns) and add index
 
 @UtilityClass
 public class SearchUtils {
