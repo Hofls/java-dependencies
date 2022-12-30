@@ -16,5 +16,6 @@ public class Employee {
     private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "shop_id", nullable = false) // creates column shop_id in employee table
     private Shop shop;
 }

@@ -3,9 +3,8 @@ package hofls.com.github.hiber.storage.specification;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -16,5 +15,8 @@ public class Shop {
     private long id;
 
     private String name;
+
+    @OneToMany(cascade = CascadeType.MERGE, mappedBy = "shop")
+    private List<Employee> employees;
 
 }
