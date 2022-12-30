@@ -28,6 +28,8 @@ import org.springframework.context.annotation.FilterType;
 // There is too much to remove from context? Use "useDefaultFilters = false", and only include necessary classes
 
 @MockBeans({@MockBean(BrokenKafka.class), @MockBean(BrokenRedis.class)})
+// You can use @Autowired to get mocked bean, then specify behavior - when(kafka.count(any()).thenReturn(734);
+
 public class TestApplication extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
