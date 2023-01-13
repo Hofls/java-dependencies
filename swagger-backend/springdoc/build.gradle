@@ -18,6 +18,8 @@ dependencies {
     implementation 'org.springdoc:springdoc-openapi-ui:1.5.10'
     compileOnly 'org.projectlombok:lombok:1.18.8'
     annotationProcessor 'org.projectlombok:lombok:1.18.8'
+    implementation 'commons-io:commons-io:2.6' /* For IOUtils */
+
 }
 
 group = 'hofls.com.github'
