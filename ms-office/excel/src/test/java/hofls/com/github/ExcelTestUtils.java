@@ -6,6 +6,9 @@ import java.util.Objects;
 
 public class ExcelTestUtils {
 
+    /**
+     * Warning! To make it work in JUnit - replace parameter "String actualPath" with "Workbook actualBook"
+     */
     public static void throwIfDifferent(String expectedPath, String actualPath) throws Exception {
         Workbook expectedBook = new XSSFWorkbook(Excel.class.getResourceAsStream(expectedPath));
         Workbook actualBook = new XSSFWorkbook(Excel.class.getResourceAsStream(actualPath));
