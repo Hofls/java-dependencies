@@ -37,7 +37,7 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     @Query("select s from Student s where s.name = :personName and s.campus.name = :campusName")
     List<Student> findBadBoys(String personName, String campusName);
     // Unlimited SQL (with all the joins, subqueries, SQL functions, etc)
-    @Query(nativeQuery = true, value = "SELECT * FROM student WHERE id IN :studentIds")
+    @Query(nativeQuery = true, value = "SELECT * FROM student WHERE :studentIds is null OR id IN (:studentIds) ")
     List<Student> findBadBoys(@Param("studentIds") List<Long> studentIds);
 
     /** Select custom fields */

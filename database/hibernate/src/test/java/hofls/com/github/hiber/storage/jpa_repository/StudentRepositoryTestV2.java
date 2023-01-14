@@ -10,6 +10,7 @@ import org.springframework.test.context.jdbc.Sql;
 
 import javax.annotation.Resource;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -78,7 +79,8 @@ public class StudentRepositoryTestV2 extends BaseWithTransaction {
     @Sql("student/findBadBoys_test.sql")
     public void findBadBoys_test() throws IOException {
         Student expectedStudent = studentRepository.findById(546L).get();
-        assertEquals(Arrays.asList(expectedStudent), studentRepository.findBadBoys());
+        assertEquals(Arrays.asList(expectedStudent), studentRepository.findBadBoys(null));
+        assertEquals(Arrays.asList(expectedStudent), studentRepository.findBadBoys(new ArrayList<>()));
         assertEquals(Arrays.asList(expectedStudent), studentRepository.findBadBoys(Arrays.asList(546L)));
     }
 
