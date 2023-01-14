@@ -1,4 +1,4 @@
-package hofls.com.github.rest;
+package hofls.com.github.rest.files;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
