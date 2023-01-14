@@ -80,7 +80,7 @@ public class StudentRepositoryTestV2 extends BaseWithTransaction {
         Student expectedStudent = studentRepository.findById(546L).get();
         assertEquals(Arrays.asList(expectedStudent), studentRepository.findBadBoys(null));
         assertEquals(Arrays.asList(expectedStudent), studentRepository.findBadBoys(new ArrayList<>()));
-        assertEquals(Arrays.asList(expectedStudent), studentRepository.findBadBoys(Arrays.asList(546L)));
+        assertEquals(Arrays.asList(expectedStudent), studentRepository.findBadBoys(Arrays.asList(546L, 782L)));
     }
 
     @Test
