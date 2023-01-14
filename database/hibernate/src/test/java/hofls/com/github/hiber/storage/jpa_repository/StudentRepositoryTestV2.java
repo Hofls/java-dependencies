@@ -100,6 +100,14 @@ public class StudentRepositoryTestV2 extends BaseWithTransaction {
 
     @Test
     @Sql("student/findAll_test.sql")
+    public void findMapCustom_test() {
+        List<ICustomStudent> actual = studentRepository.findMapCustom();
+        assertEquals(2, actual.size());
+        assertEquals("Helga", actual.get(0).getName());
+    }
+
+    @Test
+    @Sql("student/findAll_test.sql")
     public void findNotJohn_test() {
         List<Student> actual = studentRepository.findNotJohn(PageRequest.of(1, 1));
         assertEquals(1, actual.size());
