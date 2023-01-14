@@ -43,8 +43,11 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     /** Select custom fields */
     @Query(nativeQuery = true, value = "SELECT 133 as id, 'John' as name, null as campus_id FROM DUAL")
     List<Student> findCustomBoys();
-    /** Map results to any interface */
+    /** Map results to any interface (native) */
     @Query(nativeQuery = true, value = "SELECT s.name FROM student s")
+    List<ICustomStudent> findMapCustomNative();
+    /** Map results to any interface (non-native) */
+    @Query(value = "SELECT s.name as name FROM Student s")
     List<ICustomStudent> findMapCustom();
 
     /** Rare case when you need to update only specific field, to prevent overriding other fields (parallel editing) */

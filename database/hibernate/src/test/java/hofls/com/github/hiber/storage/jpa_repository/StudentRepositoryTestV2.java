@@ -1,6 +1,5 @@
 package hofls.com.github.hiber.storage.jpa_repository;
 
-import hofls.com.github.hiber.storage.junit.BaseTest;
 import hofls.com.github.hiber.storage.junit.BaseWithTransaction;
 import org.junit.jupiter.api.Test;
 import org.springframework.data.domain.Page;
@@ -96,6 +95,14 @@ public class StudentRepositoryTestV2 extends BaseWithTransaction {
     public void findCustomBoys_test() {
         List<Student> actual = studentRepository.findCustomBoys();
         assertEquals("John", actual.get(0).getName());
+    }
+
+    @Test
+    @Sql("student/findAll_test.sql")
+    public void findMapCustomNative_test() {
+        List<ICustomStudent> actual = studentRepository.findMapCustomNative();
+        assertEquals(2, actual.size());
+        assertEquals("Helga", actual.get(0).getName());
     }
 
     @Test
