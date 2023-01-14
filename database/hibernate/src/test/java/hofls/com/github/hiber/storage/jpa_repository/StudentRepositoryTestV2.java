@@ -122,8 +122,8 @@ public class StudentRepositoryTestV2 extends BaseWithTransaction {
 
     @Test
     @Sql("student/findAll_test.sql")
-    public void nativeJoinExample_test() {
-        List<Student> actual = studentRepository.nativeJoinExample();
+    public void nonNativeJoinExample() {
+        List<Student> actual = studentRepository.nonNativeJoinExample();
         assertEquals(2, actual.size());
         assertEquals("Helga", actual.get(0).getName());
     }

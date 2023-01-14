@@ -39,7 +39,7 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     @Query( "select s from Student s " +
             " inner join Campus c on c.id = s.campus.id" +
             " where c.name is not null")
-    List<Student> nativeJoinExample();
+    List<Student> nonNativeJoinExample();
     // Unlimited SQL (with subqueries, SQL functions, etc)
     @Query(nativeQuery = true, value = "SELECT * FROM student WHERE (:studentIds) is null OR id IN (:studentIds) ")
     List<Student> findBadBoys(@Param("studentIds") List<Long> studentIds);
