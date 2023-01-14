@@ -31,12 +31,16 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
 
 
     // https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods.at-query
-    // Very limited, for full power of SQL use "nativeQuery = true"
+    // Pretty limited, for full power of SQL use "nativeQuery = true"
     @Query("select s from Student s where s.name = 'Satan' and s.campus.name = 'Hell'")
     List<Student> findBadBoys();
     @Query("select s from Student s where s.name = :personName and s.campus.name = :campusName")
     List<Student> findBadBoys(String personName, String campusName);
-    // Unlimited SQL (with all the joins, subqueries, SQL functions, etc)
+    @Query( "select s from Student s " +
+            " inner join Campus c on c.id = s.campus.id" +
+            " where c.name is not null")
+    List<Student> nativeJoinExample();
+    // Unlimited SQL (with subqueries, SQL functions, etc)
     @Query(nativeQuery = true, value = "SELECT * FROM student WHERE :studentIds is null OR id IN (:studentIds) ")
     List<Student> findBadBoys(@Param("studentIds") List<Long> studentIds);
 
