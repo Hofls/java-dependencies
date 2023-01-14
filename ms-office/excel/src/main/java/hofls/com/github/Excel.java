@@ -10,7 +10,7 @@ import java.io.FileOutputStream;
 public class Excel {
 
     public static void fillSheet() throws Exception {
-        Workbook workbook = new XSSFWorkbook(Excel.class.getResourceAsStream("/template.xlsx"));
+        Workbook workbook = new XSSFWorkbook(Excel.class.getResourceAsStream("/templateA.xlsx"));
         Sheet sheet = workbook.getSheetAt(0);
         Row row = sheet.createRow(1);
         row.createCell(0).setCellValue("Hello world");
