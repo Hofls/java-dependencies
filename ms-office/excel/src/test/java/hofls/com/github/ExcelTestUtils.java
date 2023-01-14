@@ -2,6 +2,8 @@ package hofls.com.github;
 
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import java.io.FileOutputStream;
 import java.util.Objects;
 
 public class ExcelTestUtils {
@@ -48,6 +50,12 @@ public class ExcelTestUtils {
                 }
             }
         }
+    }
+
+    public static void saveWorkbook(Workbook workbook, String name) throws Exception {
+        FileOutputStream outputStream = new FileOutputStream("src/test/resources/excel/" + name);
+        workbook.write(outputStream);
+        workbook.close();
     }
 
     private static String getCellContent(Cell cell) {
