@@ -1,6 +1,5 @@
 package hofls.com.github.hiber.storage.jpa_repository;
 
-import hofls.com.github.hiber.storage.junit.BaseTest;
 import hofls.com.github.hiber.storage.junit.BaseWithTransaction;
 import org.junit.jupiter.api.Test;
 
@@ -81,7 +80,7 @@ public class StudentRepositoryTest extends BaseWithTransaction {
         studentA.setCampus(campus);
         studentRepository.save(studentA);
 
-        assertEquals(studentA, studentRepository.findBadBoys().get(0));
+        assertEquals(studentA, studentRepository.findNativeIn().get(0));
     }
 
 }

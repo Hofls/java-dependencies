@@ -76,18 +76,28 @@ public class StudentRepositoryTestV2 extends BaseWithTransaction {
 
     @Test
     @Sql("student/findBadBoys_test.sql")
-    public void findBadBoys_test() throws IOException {
+    public void findNativeIn() throws IOException {
         Student expectedStudent = studentRepository.findById(546L).get();
-        assertEquals(Arrays.asList(expectedStudent), studentRepository.findBadBoys(null));
-        assertEquals(Arrays.asList(expectedStudent), studentRepository.findBadBoys(new ArrayList<>()));
-        assertEquals(Arrays.asList(expectedStudent), studentRepository.findBadBoys(Arrays.asList(546L, 782L)));
+        assertEquals(Arrays.asList(expectedStudent), studentRepository.findNativeIn(null));
+        assertEquals(Arrays.asList(expectedStudent), studentRepository.findNativeIn(new ArrayList<>()));
+        assertEquals(Arrays.asList(expectedStudent), studentRepository.findNativeIn(Arrays.asList(546L, 782L)));
+    }
+
+    @Test
+    @Sql("student/findBadBoys_test.sql")
+    public void findIn() throws IOException {
+        Student expectedStudent = studentRepository.findById(546L).get();
+        assertEquals(Arrays.asList(expectedStudent), studentRepository.findIn(null));
+        // works for PostgreSQL, because of COALESCE:
+        // assertEquals(Arrays.asList(expectedStudent), studentRepository.findIn(new ArrayList<>()));
+        assertEquals(Arrays.asList(expectedStudent), studentRepository.findIn(Arrays.asList(546L, 782L)));
     }
 
     @Test
     @Sql("student/findBadBoys_test.sql")
     public void findBadBoys2_test() {
         Student expectedStudent = studentRepository.findById(546L).get();
-        List<Student> actual = studentRepository.findBadBoys("Satan", "Hell");
+        List<Student> actual = studentRepository.findNativeIn("Satan", "Hell");
         assertEquals(Arrays.asList(expectedStudent), actual);
     }
 

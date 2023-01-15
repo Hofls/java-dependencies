@@ -33,16 +33,18 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     // https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods.at-query
     // Pretty limited, for full power of SQL use "nativeQuery = true"
     @Query("select s from Student s where s.name = 'Satan' and s.campus.name = 'Hell'")
-    List<Student> findBadBoys();
+    List<Student> findNativeIn();
     @Query("select s from Student s where s.name = :personName and s.campus.name = :campusName")
-    List<Student> findBadBoys(String personName, String campusName);
+    List<Student> findNativeIn(String personName, String campusName);
     @Query( "select s from Student s " +
             " inner join Campus c on c.id = s.campus.id" +
             " where c.name is not null")
     List<Student> nonNativeJoinExample();
+    @Query(value = "SELECT s FROM Student s WHERE COALESCE(:studentIds) is null OR s.id IN (:studentIds) ")
+    List<Student> findIn(@Param("studentIds") List<Long> studentIds);
     // Unlimited SQL (with subqueries, SQL functions, etc)
     @Query(nativeQuery = true, value = "SELECT * FROM student WHERE (:studentIds) is null OR id IN (:studentIds) ")
-    List<Student> findBadBoys(@Param("studentIds") List<Long> studentIds);
+    List<Student> findNativeIn(@Param("studentIds") List<Long> studentIds);
 
     /** Select custom fields */
     @Query(nativeQuery = true, value = "SELECT 133 as id, 'John' as name, null as campus_id FROM DUAL")
