@@ -60,5 +60,12 @@ public class KanbanCardRepositoryTest extends BaseTest {
         assertEquals("ParametersB(description=Hello!, room=23)", actualParams.toString());
     }
 
+    @Test
+    @Sql("student/protocols.sql")
+    public void protocols_test() throws IOException {
+        KanbanCard actualCard = repository.findAll().get(0);
+        assertEquals("[SMTP, FTP]", actualCard.getProtocols().toString());
+    }
+
 
 }

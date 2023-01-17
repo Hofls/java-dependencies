@@ -2,6 +2,7 @@ package hofls.com.github.postgres.json;
 
 
 import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
+import hofls.com.github.postgres.json.protocols.Protocol;
 import lombok.Data;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
@@ -32,6 +33,10 @@ public class KanbanCard {
     @Column
     @Enumerated(EnumType.STRING)
     private CardType cardType;
+
+    @Type(type = "jsonb")
+    @Column(columnDefinition = "jsonb")
+    private List<Protocol> protocols;
 
     @Data
     public static class Info {
