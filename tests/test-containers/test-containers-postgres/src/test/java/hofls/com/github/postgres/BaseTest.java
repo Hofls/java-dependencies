@@ -21,7 +21,7 @@ import java.util.logging.LogManager;
 @SpringBootTest(classes = Application.class)
 @ActiveProfiles("junit")
 @Transactional
-abstract class BaseTest {
+public abstract class BaseTest {
 
     @Autowired private DataSource dataSource;
 

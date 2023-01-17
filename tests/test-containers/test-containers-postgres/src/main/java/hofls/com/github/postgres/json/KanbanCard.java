@@ -1,36 +1,37 @@
-package hofls.com.github.hiber.storage.fields.json;
+package hofls.com.github.postgres.json;
 
 
 import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
-import com.vladmihalcea.hibernate.type.json.JsonStringType;
 import lombok.Data;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 import org.hibernate.annotations.TypeDefs;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Data
 @TypeDefs({
-        @TypeDef(name = "json", typeClass = JsonStringType.class),
         @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
 })
-public class TrelloCard {
-
-    // For info about jsonb look at test-containers (class KanbanCard)
+public class KanbanCard {
 
     @Id
     @GeneratedValue
     private long id;
 
-    @Type(type = "json") // better use jsonb
-    @Column(columnDefinition = "json")
+    @Type(type = "jsonb")
+    @Column(columnDefinition = "jsonb")
     private Info info;
+
+    @Type(type = "jsonb")
+    @Column(columnDefinition = "jsonb")
+    private Object parameters;
+
+    @Column
+    @Enumerated(EnumType.STRING)
+    private CardType cardType;
 
     @Data
     public static class Info {
@@ -38,6 +39,11 @@ public class TrelloCard {
         String status;
         Long priority;
         List<String> comments;
+    }
+
+    public enum CardType {
+        TYPE_A,
+        TYPE_B
     }
 
 }
