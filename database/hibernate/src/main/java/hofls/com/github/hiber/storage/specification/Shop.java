@@ -16,7 +16,7 @@ public class Shop {
 
     private String name;
 
-    @OneToMany(cascade = CascadeType.MERGE, mappedBy = "shop")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "shop")
     private List<Employee> employees;
 
 }
