@@ -20,6 +20,12 @@ public interface DocumentMapper {
     /** Execute any java code! */
     @Mapping(target = "time", expression = "java( java.time.LocalDateTime.now() )")
     Notification xmlToDto(Notification xml);
+
+    /** Map multiple objects to one */
+    @AfterMapping
+    default void multipleToOne(@MappingTarget Notification notification, MinDto dto, SourceType type) {
+        notification.setMix(dto.getId(), type);
+    }
     
     /** List to single entity */
     default SignatureV4 toV4(
