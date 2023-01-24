@@ -25,6 +25,7 @@ public class ParamController {
     @Operation(summary = "Complex objects in body + query")
     @PostMapping("post-method-complex")
     public String postMethodComplex(@RequestBody ParametersInBody objectInBody,
+                             // Sometimes "@RequestParam(value = "objectInQuery", required = false)" is necessary, e.g. for @FeignClient
                              ParametersInQuery objectInQuery) {
         return "Hey";
     }
