@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
 /**
+ * For more methods to work with json, look at ParametersUtils in "test-containers-postgres"
  * @see hofls.com.github.junit.TestUtils
  */
 public class JsonConverter {
