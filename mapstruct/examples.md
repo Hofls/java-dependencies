@@ -26,6 +26,20 @@ public interface DocumentMapper {
     default void multipleToOne(@MappingTarget Notification notification, MinDto dto, SourceType type) {
         notification.setMix(dto.getId(), type);
     }
+
+    /** Reduce duplication */
+    @Retention(RetentionPolicy.CLASS)
+    @Mapping(target = "status", ignore = true)
+    @Mapping(target = "location", ignore = true)
+    @Mapping(target = "name", source = "basicName")
+    @Mapping(target = "type", source = "newType")
+    @interface CopyProperties { }
+
+    @CopyProperties
+    void copyProperties(@MappingTarget User user, WorkerDto dto)
+
+    @CopyProperties
+    void copyProperties(@MappingTarget User user, AdminDto dto)
     
     /** List to single entity */
     default SignatureV4 toV4(
