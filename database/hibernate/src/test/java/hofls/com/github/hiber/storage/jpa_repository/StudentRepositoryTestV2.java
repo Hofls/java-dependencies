@@ -97,7 +97,16 @@ public class StudentRepositoryTestV2 extends BaseWithTransaction {
     @Sql("student/findBadBoys_test.sql")
     public void findBadBoys2_test() {
         Student expectedStudent = studentRepository.findById(546L).get();
-        List<Student> actual = studentRepository.findNativeIn("Satan", "Hell");
+        List<Student> actual = studentRepository.findNonNativeIn("Satan", "Hell");
+        assertEquals(Arrays.asList(expectedStudent), actual);
+    }
+
+    @Test
+    @Sql("student/findBadBoys_test.sql")
+    public void findBadBoys3_test() {
+        Student object = new Student(3L, "Satan", null);
+        Student expectedStudent = studentRepository.findById(546L).get();
+        List<Student> actual = studentRepository.objectAsParameter(object);
         assertEquals(Arrays.asList(expectedStudent), actual);
     }
 

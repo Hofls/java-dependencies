@@ -80,7 +80,7 @@ public class StudentRepositoryTest extends BaseWithTransaction {
         studentA.setCampus(campus);
         studentRepository.save(studentA);
 
-        assertEquals(studentA, studentRepository.findNativeIn().get(0));
+        assertEquals(studentA, studentRepository.findNonNativeIn().get(0));
     }
 
 }
