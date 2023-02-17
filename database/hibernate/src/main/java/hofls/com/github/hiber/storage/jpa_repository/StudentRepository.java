@@ -24,6 +24,7 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     // List<StudentMovementEvent> findFirstByStudentIdOrderByEventTimeDesc(UUID studentId);
 
     // Page is Slice with total count (makes extra count(*) query)
+    // Also includes sort/order
     Page<Student> findAll(Pageable pageable);
     Slice<Student> findBy(Pageable page);
     @Query("select s from Student s where s.name <> 'John'")
