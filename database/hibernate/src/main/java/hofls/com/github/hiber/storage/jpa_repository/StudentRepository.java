@@ -47,7 +47,7 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     List<Student> findIn(@Param("studentIds") List<Long> studentIds);
     @Query("select s from Student s where :status is null OR s.status = :status")
     List<Student> findByEnum(@Param("status") Status status);
-    @Query("select s from Student s where :statuses is null OR s.status IN (:statuses)")
+    @Query("select s from Student s where (:statuses) is null OR s.status IN (:statuses)")
     List<Student> findByEnums(@Param("statuses") List<Status> statuses);
 
     // Unlimited SQL (with subqueries, SQL functions, etc)
@@ -55,8 +55,8 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     List<Student> findNativeIn(@Param("studentIds") List<Long> studentIds);
     @Query(nativeQuery = true, value = "select * from student where :status is null OR status = CAST(:status AS text)")
     List<Student> findNativeByEnum(@Param("status") Status status);
-    @Query(nativeQuery = true, value = "select * from student where :statuses is null OR status IN (CAST(:statuses AS text))")
-    List<Student> findNativeByEnums(@Param("statuses") List<Status> statuses);
+    @Query(nativeQuery = true, value = "select * from student where (:statuses) is null OR status IN (:statuses)")
+    List<Student> findNativeByEnums(@Param("statuses") List<String> statuses); // yep, no normal enum lists
 
     // Mixed:
     /** Select custom fields */

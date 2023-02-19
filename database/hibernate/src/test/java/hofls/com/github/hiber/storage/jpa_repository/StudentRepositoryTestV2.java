@@ -114,11 +114,8 @@ public class StudentRepositoryTestV2 extends BaseWithTransaction {
         studentRepository.findNativeByEnum(Status.OFFLINE);
         studentRepository.findNativeByEnum(null);
 
-        List<Status> statuses = new ArrayList<>();
-        statuses.add(Status.OFFLINE);
-        statuses.add(Status.ONLINE);
-        // studentRepository.findNativeByEnums(statuses);
-        studentRepository.findNativeByEnums(null);
+        studentRepository.findNativeByEnums(Arrays.asList("ONLINE", "OFFLINE"));
+        studentRepository.findNativeByEnums(new ArrayList<>()); // always replace nulls with empty list
     }
 
     @Test
