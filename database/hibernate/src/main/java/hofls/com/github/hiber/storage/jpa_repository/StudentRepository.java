@@ -45,12 +45,22 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     List<Student> nonNativeJoinExample();
     @Query(value = "SELECT s FROM Student s WHERE COALESCE(:studentIds) is null OR s.id IN (:studentIds) ")
     List<Student> findIn(@Param("studentIds") List<Long> studentIds);
+    @Query("select s from Student s where :status is null OR s.status = :status")
+    List<Student> findByEnum(Status status);
+    @Query("select s from Student s where :statuses is null OR s.status IN (:statuses)")
+    List<Student> findByEnums(List<Status> statuses);
+
     // Unlimited SQL (with subqueries, SQL functions, etc)
     @Query(nativeQuery = true, value = "SELECT * FROM student WHERE (:studentIds) is null OR id IN (:studentIds) ")
     List<Student> findNativeIn(@Param("studentIds") List<Long> studentIds);
+    @Query(nativeQuery = true, value = "select * from student where :status is null OR status = CAST(:status AS text)")
+    List<Student> findNativeByEnum(Status status);
+    @Query(nativeQuery = true, value = "select * from student where :statuses is null OR status IN (:statuses)")
+    List<Student> findNativeByEnums(List<Status> statuses);
 
+    // Mixed:
     /** Select custom fields */
-    @Query(nativeQuery = true, value = "SELECT 133 as id, 'John' as name, null as campus_id FROM DUAL")
+    @Query(nativeQuery = true, value = "SELECT 133 as id, 'John' as name, null as campus_id, null as status FROM DUAL")
     List<Student> findCustomBoys();
     /** Map results to any interface (native) */
     @Query(nativeQuery = true, value = "SELECT s.name FROM student s")
@@ -58,7 +68,6 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     /** Map results to any interface (non-native) */
     @Query(value = "SELECT s.name as name FROM Student s")
     List<ICustomStudent> findMapCustom();
-
     /** Rare case when you need to update only specific field, to prevent overriding other fields (parallel editing) */
     @Modifying
     @Query("UPDATE Student s SET s.name = ?1 WHERE s.id = ?2")

@@ -25,6 +25,10 @@ public class Student {
 
     private String name;
 
+    @Enumerated(EnumType.STRING)
+    private Status status;
+
     @ManyToOne
     private Campus campus;
+
 }

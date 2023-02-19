@@ -14,6 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class StudentRepositoryTestV2 extends BaseWithTransaction {
 
@@ -95,6 +96,32 @@ public class StudentRepositoryTestV2 extends BaseWithTransaction {
 
     @Test
     @Sql("student/findBadBoys_test.sql")
+    public void findByEnum() throws IOException {
+        studentRepository.findByEnum(Status.OFFLINE);
+        studentRepository.findByEnum(null);
+
+        List<Status> statuses = new ArrayList<>();
+        statuses.add(Status.OFFLINE);
+        statuses.add(Status.ONLINE);
+        studentRepository.findByEnums(statuses);
+        studentRepository.findByEnums(null);
+    }
+
+    @Test
+    @Sql("student/findBadBoys_test.sql")
+    public void findNativeByEnum() throws IOException {
+        studentRepository.findNativeByEnum(Status.OFFLINE);
+        studentRepository.findNativeByEnum(null);
+
+        List<Status> statuses = new ArrayList<>();
+        statuses.add(Status.OFFLINE);
+        statuses.add(Status.ONLINE);
+        studentRepository.findByEnums(statuses);
+        studentRepository.findByEnums(null);
+    }
+
+    @Test
+    @Sql("student/findBadBoys_test.sql")
     public void findBadBoys2_test() {
         Student expectedStudent = studentRepository.findById(546L).get();
         List<Student> actual = studentRepository.findNonNativeIn("Satan", "Hell");
@@ -104,7 +131,7 @@ public class StudentRepositoryTestV2 extends BaseWithTransaction {
     @Test
     @Sql("student/findBadBoys_test.sql")
     public void findBadBoys3_test() {
-        Student object = new Student(3L, "Satan", null);
+        Student object = new Student(3L, "Satan", null, null);
         Student expectedStudent = studentRepository.findById(546L).get();
         List<Student> actual = studentRepository.objectAsParameter(object);
         assertEquals(Arrays.asList(expectedStudent), actual);
