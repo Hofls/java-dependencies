@@ -51,12 +51,13 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     List<Student> findByEnums(@Param("statuses") List<Status> statuses);
 
     // Unlimited SQL (with subqueries, SQL functions, etc)
+    // Warning! To check for null in a lot of types (e.g. boolean), you have to use list and send empty list instead of null
     @Query(nativeQuery = true, value = "SELECT * FROM student WHERE :studentIds is null OR id IN (:studentIds) ")
     List<Student> findNativeIn(@Param("studentIds") List<Long> studentIds);
     @Query(nativeQuery = true, value = "select * from student where :status is null OR status = CAST(:status AS text)")
     List<Student> findNativeByEnum(@Param("status") Status status);
     @Query(nativeQuery = true, value = "select * from student where (:statuses) is null OR status IN (:statuses)")
-    List<Student> findNativeByEnums(@Param("statuses") List<String> statuses); // yep, no normal enum lists
+    List<Student> findNativeByEnums(@Param("statuses") List<String> statuses); // yep, no normal enum lists;
 
     // Mixed:
     /** Select custom fields */

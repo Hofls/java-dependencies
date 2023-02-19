@@ -90,7 +90,7 @@ public class StudentRepositoryTestV2 extends BaseWithTransaction {
         // Works for PostgreSQL, because of COALESCE
         Student expectedStudent = studentRepository.findById(546L).get();
         assertEquals(Arrays.asList(expectedStudent), studentRepository.findIn(null));
-        // assertEquals(Arrays.asList(expectedStudent), studentRepository.findIn(new ArrayList<>()));
+        //assertEquals(Arrays.asList(expectedStudent), studentRepository.findIn(new ArrayList<>()));
         assertEquals(Arrays.asList(expectedStudent), studentRepository.findIn(Arrays.asList(546L, 782L)));
     }
 
