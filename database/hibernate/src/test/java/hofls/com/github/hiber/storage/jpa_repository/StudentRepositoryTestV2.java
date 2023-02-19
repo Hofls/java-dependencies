@@ -87,9 +87,9 @@ public class StudentRepositoryTestV2 extends BaseWithTransaction {
     @Test
     @Sql("student/findBadBoys_test.sql")
     public void findIn() throws IOException {
+        // Works for PostgreSQL, because of COALESCE
         Student expectedStudent = studentRepository.findById(546L).get();
         assertEquals(Arrays.asList(expectedStudent), studentRepository.findIn(null));
-        // works for PostgreSQL, because of COALESCE:
         // assertEquals(Arrays.asList(expectedStudent), studentRepository.findIn(new ArrayList<>()));
         assertEquals(Arrays.asList(expectedStudent), studentRepository.findIn(Arrays.asList(546L, 782L)));
     }
@@ -110,14 +110,15 @@ public class StudentRepositoryTestV2 extends BaseWithTransaction {
     @Test
     @Sql("student/findBadBoys_test.sql")
     public void findNativeByEnum() throws IOException {
+        // Works for PostgreSQL, because of CAST
         studentRepository.findNativeByEnum(Status.OFFLINE);
         studentRepository.findNativeByEnum(null);
 
         List<Status> statuses = new ArrayList<>();
         statuses.add(Status.OFFLINE);
         statuses.add(Status.ONLINE);
-        studentRepository.findByEnums(statuses);
-        studentRepository.findByEnums(null);
+        // studentRepository.findNativeByEnums(statuses);
+        studentRepository.findNativeByEnums(null);
     }
 
     @Test

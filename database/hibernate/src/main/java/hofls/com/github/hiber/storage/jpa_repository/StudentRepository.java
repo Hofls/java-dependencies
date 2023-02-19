@@ -46,17 +46,17 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     @Query(value = "SELECT s FROM Student s WHERE COALESCE(:studentIds) is null OR s.id IN (:studentIds) ")
     List<Student> findIn(@Param("studentIds") List<Long> studentIds);
     @Query("select s from Student s where :status is null OR s.status = :status")
-    List<Student> findByEnum(Status status);
+    List<Student> findByEnum(@Param("status") Status status);
     @Query("select s from Student s where :statuses is null OR s.status IN (:statuses)")
-    List<Student> findByEnums(List<Status> statuses);
+    List<Student> findByEnums(@Param("statuses") List<Status> statuses);
 
     // Unlimited SQL (with subqueries, SQL functions, etc)
-    @Query(nativeQuery = true, value = "SELECT * FROM student WHERE (:studentIds) is null OR id IN (:studentIds) ")
+    @Query(nativeQuery = true, value = "SELECT * FROM student WHERE :studentIds is null OR id IN (:studentIds) ")
     List<Student> findNativeIn(@Param("studentIds") List<Long> studentIds);
     @Query(nativeQuery = true, value = "select * from student where :status is null OR status = CAST(:status AS text)")
-    List<Student> findNativeByEnum(Status status);
-    @Query(nativeQuery = true, value = "select * from student where :statuses is null OR status IN (:statuses)")
-    List<Student> findNativeByEnums(List<Status> statuses);
+    List<Student> findNativeByEnum(@Param("status") Status status);
+    @Query(nativeQuery = true, value = "select * from student where :statuses is null OR status IN (CAST(:statuses AS text))")
+    List<Student> findNativeByEnums(@Param("statuses") List<Status> statuses);
 
     // Mixed:
     /** Select custom fields */
