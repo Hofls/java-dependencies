@@ -50,9 +50,11 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     @Query("select s from Student s where (:statuses) is null OR s.status IN (:statuses)")
     List<Student> findByEnums(@Param("statuses") List<Status> statuses);
 
-    // Unlimited SQL (with subqueries, SQL functions, etc). For complex cases use entityManager.createNativeQuery
-    // Warning 1! To check for null in a lot of types (e.g. boolean), you have to use list and send empty list instead of null
-    // Warning 2! Working with different dates is pretty much impossible
+    // Unlimited SQL (with subqueries, SQL functions, etc).
+    // Warning! You have to manually cast some types :
+        // Via Java: var shared = new TypedParameterValue(new BooleanType(), request.getShared());
+        // Or via SQL: ((:shared) is null or t.shared = CAST(CAST(:shared AS TEXT) AS BOOLEAN))
+
     @Query(nativeQuery = true, value = "SELECT * FROM student WHERE :studentIds is null OR id IN (:studentIds) ")
     List<Student> findNativeIn(@Param("studentIds") List<Long> studentIds);
     @Query(nativeQuery = true, value = "select * from student where :status is null OR status = CAST(:status AS text)")
