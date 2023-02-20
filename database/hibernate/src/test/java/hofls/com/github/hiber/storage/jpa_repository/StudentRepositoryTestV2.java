@@ -1,6 +1,9 @@
 package hofls.com.github.hiber.storage.jpa_repository;
 
 import hofls.com.github.hiber.storage.junit.BaseWithTransaction;
+import org.hibernate.jpa.TypedParameterValue;
+import org.hibernate.type.BooleanType;
+import org.hibernate.type.LongType;
 import org.junit.jupiter.api.Test;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -82,6 +85,9 @@ public class StudentRepositoryTestV2 extends BaseWithTransaction {
         assertEquals(Arrays.asList(expectedStudent), studentRepository.findNativeIn(null));
         assertEquals(Arrays.asList(expectedStudent), studentRepository.findNativeIn(new ArrayList<>()));
         assertEquals(Arrays.asList(expectedStudent), studentRepository.findNativeIn(Arrays.asList(546L, 782L)));
+
+        studentRepository.findNativeByParam(new TypedParameterValue(new LongType(), 52L));
+        studentRepository.findNativeByParam(new TypedParameterValue(new LongType(), null));
     }
 
     @Test

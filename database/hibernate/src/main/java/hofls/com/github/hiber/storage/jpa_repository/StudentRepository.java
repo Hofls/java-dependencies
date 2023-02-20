@@ -1,5 +1,6 @@
 package hofls.com.github.hiber.storage.jpa_repository;
 
+import org.hibernate.jpa.TypedParameterValue;
 import org.javers.spring.annotation.JaversSpringDataAuditable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -51,12 +52,14 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     List<Student> findByEnums(@Param("statuses") List<Status> statuses);
 
     // Unlimited SQL (with subqueries, SQL functions, etc).
-    // Warning! You have to manually cast some types :
+    // Warning! You have to manually cast some types (only individual values, no problem with lists):
         // Via Java: var shared = new TypedParameterValue(new BooleanType(), request.getShared());
         // Or via SQL: ((:shared) is null or t.shared = CAST(CAST(:shared AS TEXT) AS BOOLEAN))
 
     @Query(nativeQuery = true, value = "SELECT * FROM student WHERE :studentIds is null OR id IN (:studentIds) ")
     List<Student> findNativeIn(@Param("studentIds") List<Long> studentIds);
+    @Query(nativeQuery = true, value = "select * from student where :studentId is null OR id = :studentId")
+    List<Student> findNativeByParam(@Param("studentId") TypedParameterValue studentId);
     @Query(nativeQuery = true, value = "select * from student where :status is null OR status = CAST(:status AS text)")
     List<Student> findNativeByEnum(@Param("status") Status status);
     @Query(nativeQuery = true, value = "select * from student where (:statuses) is null OR status IN (:statuses)")
