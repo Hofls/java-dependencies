@@ -21,4 +21,4 @@
 * Activate property
     * In file - `C:/Users/Hofls/.testcontainers.properties`
     * Add line - `testcontainers.reuse.enable=true`
-* If not working - look at logs[https://www.testcontainers.org/supported_docker_environment/logging_config/]()
+* If not working - look at [logs](https://www.testcontainers.org/supported_docker_environment/logging_config/)
