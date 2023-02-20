@@ -14,3 +14,11 @@
 #### Run locally:
 * Install docker
 * Run - `./gradlew clean test -info`
+
+#### Containers reuse
+* Use case - you don't want to waste time by launching new containers each time.
+* Set reuse property in code - `postgresContainer.withReuse(true);`
+* Activate property
+    * In file - `C:/Users/Hofls/.testcontainers.properties`
+    * Add line - `testcontainers.reuse.enable=true`
+* If not working - look at logs[https://www.testcontainers.org/supported_docker_environment/logging_config/]()
