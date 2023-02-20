@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/mirror")
 public interface IMirror {
 
-    // @SpringQueryMap - allows to use POJO as GET parameter
+    // @SpringQueryMap - allows to use POJO as GET parameter (for @FeignClient)
     @Operation(summary = "Reflects value back")
     @GetMapping(value="/{value}")
     String reflect(@PathVariable String value);
