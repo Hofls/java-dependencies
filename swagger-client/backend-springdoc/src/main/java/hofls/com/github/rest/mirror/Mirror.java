@@ -10,4 +10,9 @@ public class Mirror implements IMirror {
         return value + " (reflected)";
     }
 
+    @Override
+    public void throwError() {
+        throw new IllegalArgumentException("Wrong order id");
+    }
+
 }

@@ -15,4 +15,8 @@ public interface IMirror {
     @GetMapping(value="/{value}")
     String reflect(@PathVariable String value);
 
+    @Operation(summary = "Throws error")
+    @GetMapping(value="/throw")
+    void throwError();
+
 }
