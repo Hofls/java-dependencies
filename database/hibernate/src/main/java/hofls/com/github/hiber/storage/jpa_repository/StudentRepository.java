@@ -55,6 +55,7 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     // Warning! You have to manually cast some types (only individual values, no problem with lists):
         // Via Java: var shared = new TypedParameterValue(new BooleanType(), request.getShared());
         // Or via SQL: ((:shared) is null or t.shared = CAST(CAST(:shared AS TEXT) AS BOOLEAN))
+    // Also if query is too complex - pageable won't work automatically, you will have to also write countQuery
 
     @Query(nativeQuery = true, value = "SELECT * FROM student WHERE :studentIds is null OR id IN (:studentIds) ")
     List<Student> findNativeIn(@Param("studentIds") List<Long> studentIds);
