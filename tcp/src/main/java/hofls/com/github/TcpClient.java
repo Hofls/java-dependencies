@@ -6,8 +6,6 @@ import java.net.Socket;
 
 public class TcpClient {
 
-    private String EOL = System.lineSeparator();
-
     public void sendRequests() throws Exception {
         Socket socket = new Socket("localhost", 63370);
         System.out.println("Client. Connected to server.");
@@ -23,7 +21,7 @@ public class TcpClient {
     }
 
     private void sendRequest(String text, OutputStream out) throws IOException {
-        String message = text + System.lineSeparator();
+        String message = text + System.lineSeparator(); // possible alternative - "\r"
         out.write(message.getBytes());
     }
 
