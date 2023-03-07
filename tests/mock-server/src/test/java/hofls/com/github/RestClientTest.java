@@ -61,13 +61,9 @@ public class RestClientTest {
 
     private void createPostEndpoint(String callbackClass){
         new MockServerClient(ADDRESS, PORT)
-                .when(
-                        request()
-                                .withMethod("POST")
-                                .withPath("/hello-world")
-                ).callback(
-                    callback()
-                        .withCallbackClass("hofls.com.github.callbacks." + callbackClass)
+                .when(request().withMethod("POST").withPath("/hello-world"))
+                .callback(callback().withCallbackClass("hofls.com.github.callbacks." + callbackClass
+                // Better use - .callback(new ExpectationCallback() {})
         );
     }
 
