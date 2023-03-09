@@ -6,7 +6,10 @@ import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
@@ -51,5 +54,13 @@ public class MocksUnitTest {
         String expectedException = "Wrong salary";
         assertEquals(expectedException, actualException.getMessage());
     }
+
+    /*
+    public static void mockUser() {
+        var sessionUser = new SessionUser(43434, "John");
+        var mock = Mockito.mockStatic(UserUtils.class);
+        mock.when(UserUtils::getSessionUser).thenReturn(sessionUser);
+    }
+    */
 
 }
