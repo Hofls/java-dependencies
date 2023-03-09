@@ -55,7 +55,7 @@ public class MocksUnitTest {
         assertEquals(expectedException, actualException.getMessage());
     }
 
-    /*
+    /* For this method to work - replace "mockito-core" in build.gradle/pom.xml with "mockito-inline"
     public static void mockUser() {
         var sessionUser = new SessionUser(43434, "John");
         var mock = Mockito.mockStatic(UserUtils.class);
