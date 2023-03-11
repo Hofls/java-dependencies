@@ -11,6 +11,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 @JaversSpringDataAuditable
 public interface StudentRepository extends JpaRepository<Student, Long> {
@@ -18,6 +19,7 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     // https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods.query-creation
     // https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories.limit-query-result
     void deleteByName(String name);
+    // Stream<Student> streamAllBy(); - for processing big number of elements (alternative to cursor/scroll)
     List<Student> findByName(String name);
     List<Student> findByCampus(Campus campus);
     List<Student> findByCampusId(Long campusId);
