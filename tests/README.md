@@ -1,5 +1,9 @@
-# java-tests
-## All kinds of tests:
+### Field value always changes (e.g. current time). Solutions:
+* Do not assert field value (ignore)
+* Set value trough parameters 
+* Mock class that generates value (e.g. mockStatic)
+
+### All kinds of tests:
 * `common`:
     * `arch unit` - automatically enforce project architecture on developers
     * `mock test` - mock external dependencies (without mocks - integration test. with mocks - unit test) 
