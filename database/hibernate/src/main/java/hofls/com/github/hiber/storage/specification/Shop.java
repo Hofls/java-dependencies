@@ -16,7 +16,9 @@ public class Shop {
 
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "shop")
+    // CascadeType.PERSIST - on shop creation, will also create employees
+    // orphanRemoval = true (must have with CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "shop")
     private List<Employee> employees;
 
 }
