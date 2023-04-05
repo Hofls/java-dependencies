@@ -1,0 +1,11 @@
+{
+  "address": "St.Bernard 53",
+  "studentsCount": "342",
+  "skeUnits": [
+    {
+      "id": "5555555",
+      "active": "false",
+      "operation": "ADD"
+    }
+  ]
+}

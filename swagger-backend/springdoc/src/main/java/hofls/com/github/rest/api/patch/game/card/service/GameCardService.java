@@ -21,7 +21,7 @@ public class GameCardService {
             gameCard.setName(patch.getName());
         }
         if (patch.getPoints() != null) {
-            gameCard.setPoints(Long.valueOf(patch.getPoints()));
+            gameCard.setPoints(patch.getPoints().equals("") ? null : Long.valueOf(patch.getPoints()));
         }
         if (patch.getDate() != null) {
             gameCard.setDate(LocalDate.parse(patch.getDate()));
