@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class SchoolService implements IPatchableEntity {
 
     @Autowired
-    private PatchListService patchService;
+    private PatchListService<School.SKEUnit, SchoolPatch.SKEUnit> patchService;
 
     public void applyPatch(School school, SchoolPatch patch) {
         SchoolMapper.INSTANCE.toEntity(school, patch);

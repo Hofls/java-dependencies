@@ -7,9 +7,9 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-public class PatchListService <T extends Identifiable> {
+public class PatchListService <T extends Identifiable, K extends IPatch> {
 
-    public void applyPatch(List<T> units, List<IPatch> patchUnits, IPatchableEntity patchableEntity) {
+    public void applyPatch(List<T> units, List<K> patchUnits, IPatchableEntity patchableEntity) {
         if (CollectionUtils.isEmpty(patchUnits)) {
             return;
         }
