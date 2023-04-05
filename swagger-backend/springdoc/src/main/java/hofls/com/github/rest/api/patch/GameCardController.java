@@ -1,6 +1,7 @@
 package hofls.com.github.rest.api.patch;
 
 import hofls.com.github.rest.api.patch.dto.GameCard;
+import hofls.com.github.rest.api.patch.dto.GameCardPatch;
 import hofls.com.github.rest.api.patch.service.GameCardService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -36,7 +37,7 @@ public class GameCardController {
 
     @Operation(summary = "Patch card")
     @PatchMapping
-    public void patch(@RequestBody GameCard patch) {
+    public void patch(@RequestBody GameCardPatch patch) {
         service.applyPatch(gameCard, patch);
     }
 
