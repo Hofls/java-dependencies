@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.*;
 
 
 /**
-Basic patch rules:
+Rules for basic fields:
 "John" - means user changed field value
 "" - means user erased field value
 null - means nothing changed
 
-Complex list rules:
+Rules for complex lists:
 operation ADD - user added new mark
 operation REPLACE - user changed old mark
 operation REMOVE - user deleted old mark

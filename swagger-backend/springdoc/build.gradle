@@ -16,10 +16,14 @@ repositories {
 dependencies {
     implementation(group: 'org.springframework.boot', name: 'spring-boot-starter-web', version:'2.2.2.RELEASE')
     implementation 'org.springdoc:springdoc-openapi-ui:1.5.10'
+
     compileOnly 'org.projectlombok:lombok:1.18.8'
     annotationProcessor 'org.projectlombok:lombok:1.18.8'
+
     implementation 'commons-io:commons-io:2.6' /* For IOUtils */
 
+    implementation 'org.mapstruct:mapstruct:1.3.1.Final'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.3.1.Final'
 }
 
 group = 'hofls.com.github'
