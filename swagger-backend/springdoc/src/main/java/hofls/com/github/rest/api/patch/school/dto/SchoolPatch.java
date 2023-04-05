@@ -1,5 +1,6 @@
 package hofls.com.github.rest.api.patch.school.dto;
 
+import hofls.com.github.rest.api.patch.common.IPatch;
 import hofls.com.github.rest.api.patch.common.PatchOperation;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
@@ -20,7 +21,7 @@ public class SchoolPatch {
     private List<SKEUnit> skeUnits;
 
     @Data
-    public static class SKEUnit {
+    public static class SKEUnit implements IPatch {
         @Schema(description = "Id", example = "736168")
         private String id;
 

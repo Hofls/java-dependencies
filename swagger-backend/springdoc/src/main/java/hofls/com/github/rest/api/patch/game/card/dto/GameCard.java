@@ -1,5 +1,6 @@
 package hofls.com.github.rest.api.patch.game.card.dto;
 
+import hofls.com.github.rest.api.patch.common.Identifiable;
 import lombok.Data;
 
 import java.time.LocalDate;
