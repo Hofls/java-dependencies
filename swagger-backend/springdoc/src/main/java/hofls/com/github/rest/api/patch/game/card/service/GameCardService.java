@@ -6,6 +6,7 @@ import hofls.com.github.rest.api.patch.common.PatchOperation;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import java.lang.reflect.Parameter;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -34,7 +35,11 @@ public class GameCardService {
             for (GameCardPatch.Mark patchMark : patch.getMarks()) {
                 if (patchMark.getOperation() == PatchOperation.ADD) {
                     GameCard.Mark mark = new GameCard.Mark();
-                    mark.setId(UUID.randomUUID());
+                    if (patchMark.getId() == null) {
+                        mark.setId(UUID.randomUUID());
+                    } else {
+                        mark.setId(UUID.fromString(patchMark.getId()));
+                    }
                     mark.setTime(LocalTime.parse(patchMark.getTime(), DateTimeFormatter.ofPattern("HH:mm")));
                     mark.setValue(Double.parseDouble(patchMark.getValue()));
                     gameCard.getMarks().add(mark);

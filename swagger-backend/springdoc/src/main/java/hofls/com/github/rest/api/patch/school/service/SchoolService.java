@@ -35,7 +35,11 @@ public class SchoolService {
             for (SchoolPatch.SKEUnit patchUnit : patch.getSkeUnits()) {
                 if (patchUnit.getOperation() == PatchOperation.ADD) {
                     School.SKEUnit unit = new School.SKEUnit();
-                    unit.setId(ThreadLocalRandom.current().nextLong(1000));
+                    if (patchUnit.getId() == null) {
+                        unit.setId(ThreadLocalRandom.current().nextLong(1000));
+                    } else {
+                        unit.setId(Long.valueOf(patchUnit.getId()));
+                    }
                     unit.setActive(Boolean.valueOf(patchUnit.getActive()));
                     school.getSkeUnits().add(unit);
                 } else if (patchUnit.getOperation() == PatchOperation.REPLACE) {
