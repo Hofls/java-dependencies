@@ -6,22 +6,19 @@ import hofls.com.github.rest.api.patch.game.card.dto.GameCardPatch;
 import hofls.com.github.rest.api.patch.school.dto.School;
 import hofls.com.github.rest.api.patch.school.dto.SchoolPatch;
 import org.apache.commons.lang3.time.DateUtils;
-import org.mapstruct.Mapper;
-import org.mapstruct.NullValueCheckStrategy;
-import org.mapstruct.ReportingPolicy;
+import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
 
 import java.util.UUID;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.ERROR,
-        nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS,
+        nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE,
         uses = { MapperUtils.class })
 public interface GameCardMapper {
 
     GameCardMapper INSTANCE = Mappers.getMapper( GameCardMapper.class );
 
-    GameCard toEntity(GameCardPatch patch);
-
-
+    @Mapping(target = "marks", ignore = true)
+    void toEntity(@MappingTarget GameCard entity, GameCardPatch patch);
 
 }

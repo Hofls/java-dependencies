@@ -3,6 +3,7 @@ package hofls.com.github.rest.api.patch.school.dto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.util.List;
 
 // In real project this class will be a DB entity (@Table)
@@ -18,6 +19,8 @@ public class School {
     @Data
     public static class SKEUnit {
         private Long id;
+
+        private LocalDate date;
 
         private Boolean active;
     }

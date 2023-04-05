@@ -5,6 +5,7 @@ import hofls.com.github.rest.api.patch.game.card.dto.GameCard;
 import hofls.com.github.rest.api.patch.game.card.dto.GameCardPatch;
 import hofls.com.github.rest.api.patch.school.dto.School;
 import hofls.com.github.rest.api.patch.school.dto.SchoolPatch;
+import hofls.com.github.rest.api.patch.school.mapper.SchoolMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
@@ -20,12 +21,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class SchoolService {
 
     public void applyPatch(School school, SchoolPatch patch) {
-        if (patch.getAddress() != null) {
-            school.setAddress(patch.getAddress());
-        }
-        if (patch.getStudentsCount() != null) {
-            school.setStudentsCount(patch.getStudentsCount().equals("") ? null : Long.valueOf(patch.getStudentsCount()));
-        }
+        SchoolMapper.INSTANCE.toEntity(school, patch);
 
         if (!CollectionUtils.isEmpty(patch.getSkeUnits())) {
             if (school.getSkeUnits() == null) {
@@ -40,6 +36,7 @@ public class SchoolService {
                     } else {
                         unit.setId(Long.valueOf(patchUnit.getId()));
                     }
+                    unit.setDate(patchUnit.getDate().equals("") ? null : LocalDate.parse(patchUnit.getDate()));
                     unit.setActive(Boolean.valueOf(patchUnit.getActive()));
                     school.getSkeUnits().add(unit);
                 } else if (patchUnit.getOperation() == PatchOperation.REPLACE) {
@@ -50,6 +47,7 @@ public class SchoolService {
                     if (unit == null) {
                         throw new RuntimeException("Unit not found. Id - " + patchUnit.getId());
                     }
+                    unit.setDate(patchUnit.getDate() == null ? null : LocalDate.parse(patchUnit.getDate()));
                     unit.setActive(Boolean.valueOf(patchUnit.getActive()));
                 } else if (patchUnit.getOperation() == PatchOperation.REMOVE) {
                     Long patchUnitId = Long.valueOf(patchUnit.getId());

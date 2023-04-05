@@ -22,7 +22,7 @@ public class GameCardPatch {
 
     @Data
     public static class Mark {
-        @Schema(description = "id", example = "5c8c258d-35fb-4500-bc46-57b592209c2c")
+        @Schema(description = "Id", example = "5c8c258d-35fb-4500-bc46-57b592209c2c")
         private String id;
 
         @Schema(description = "Time", example = "09:45")

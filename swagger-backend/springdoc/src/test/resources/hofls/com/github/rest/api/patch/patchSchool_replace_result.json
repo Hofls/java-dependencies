@@ -3,10 +3,12 @@
   "skeUnits": [
     {
       "active": true,
+      "date": "2023-04-23",
       "id": 5555555
     },
     {
       "active": false,
+      "date": "2023-07-28",
       "id": 7777777
     }
   ],

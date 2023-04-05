@@ -5,11 +5,13 @@
     {
       "id": "5555555",
       "active": "true",
+      "date": "2023-04-23",
       "operation": "REPLACE"
     },
     {
       "id": "7777777",
       "active": "false",
+      "date": "2023-07-28",
       "operation": "REPLACE"
     }
   ]

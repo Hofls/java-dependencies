@@ -3,6 +3,7 @@ package hofls.com.github.rest.api.patch.game.card.service;
 import hofls.com.github.rest.api.patch.game.card.dto.GameCard;
 import hofls.com.github.rest.api.patch.game.card.dto.GameCardPatch;
 import hofls.com.github.rest.api.patch.common.PatchOperation;
+import hofls.com.github.rest.api.patch.game.card.mapper.GameCardMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
@@ -17,15 +18,7 @@ import java.util.UUID;
 public class GameCardService {
 
     public void applyPatch(GameCard gameCard, GameCardPatch patch) {
-        if (patch.getName() != null) {
-            gameCard.setName(patch.getName());
-        }
-        if (patch.getPoints() != null) {
-            gameCard.setPoints(patch.getPoints().equals("") ? null : Long.valueOf(patch.getPoints()));
-        }
-        if (patch.getDate() != null) {
-            gameCard.setDate(patch.getDate().equals("") ? null : LocalDate.parse(patch.getDate()));
-        }
+        GameCardMapper.INSTANCE.toEntity(gameCard, patch);
 
         if (!CollectionUtils.isEmpty(patch.getMarks())) {
             if (gameCard.getMarks() == null) {

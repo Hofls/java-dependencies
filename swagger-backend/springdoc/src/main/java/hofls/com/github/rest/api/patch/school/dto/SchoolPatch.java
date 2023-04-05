@@ -4,6 +4,7 @@ import hofls.com.github.rest.api.patch.common.PatchOperation;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Data
@@ -20,11 +21,14 @@ public class SchoolPatch {
 
     @Data
     public static class SKEUnit {
-        @Schema(description = "id", example = "736168")
+        @Schema(description = "Id", example = "736168")
         private String id;
 
         @Schema(description = "Active", example = "true")
         private String active;
+
+        @Schema(description = "Date", example = "2023-04-18")
+        private String date;
 
         @Schema(description = "PATCH operation", example = "REPLACE")
         private PatchOperation operation;
