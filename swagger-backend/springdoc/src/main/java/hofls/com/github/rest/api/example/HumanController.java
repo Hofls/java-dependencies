@@ -63,6 +63,8 @@ public class HumanController {
         people.put(id, human);
     }
 
+    // @PatchMapping - in different package
+
     @Operation(summary = "Removes human from the list")
     @DeleteMapping(value="{id}")
     public void removeHuman(@PathVariable Long id) {
