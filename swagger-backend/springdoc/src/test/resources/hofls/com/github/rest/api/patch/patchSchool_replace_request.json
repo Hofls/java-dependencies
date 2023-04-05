@@ -1,9 +1,15 @@
 {
-  "studentsCount": "723",
+  "address": "Big Wallace",
+  "studentsCount": "753",
   "skeUnits": [
     {
       "id": "5555555",
       "active": "true",
+      "operation": "REPLACE"
+    },
+    {
+      "id": "7777777",
+      "active": "false",
       "operation": "REPLACE"
     }
   ]

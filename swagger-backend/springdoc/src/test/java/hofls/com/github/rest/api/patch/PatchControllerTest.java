@@ -12,8 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-
-
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = Application.class)
 class PatchControllerTest {
@@ -21,7 +19,7 @@ class PatchControllerTest {
     @Autowired
     private PatchController patchController;
 
-    @Test
+    @Test // Full
     void patchCard() throws Exception {
         // Add
         GameCardPatch patchAdd = TestUtils.readObjectFromFile(
@@ -31,7 +29,11 @@ class PatchControllerTest {
         TestUtils.assertEqualJson(expectedAdded, actualAdded);
 
         // Nothing changes
-
+        GameCardPatch patchNothing = TestUtils.readObjectFromFile(
+                this.getClass(), "patchCard_nothing_request.json", GameCardPatch.class);
+        GameCard actualNothing = patchController.patchCard(patchNothing);
+        String expectedNothing = TestUtils.readFile(this.getClass(), "patchCard_nothing_result.json");
+        TestUtils.assertEqualJson(expectedNothing, actualNothing);
 
         // Replace everything
         GameCardPatch patchReplace = TestUtils.readObjectFromFile(
@@ -48,7 +50,7 @@ class PatchControllerTest {
         TestUtils.assertEqualJson(expectedRemove, actualRemove);
     }
 
-    @Test
+    @Test // Short
     void patchSchool() throws Exception {
         // Add
         SchoolPatch patchAdd = TestUtils.readObjectFromFile(

@@ -38,7 +38,7 @@ public class PatchController {
     private SchoolService schoolService;
     public static School school = new School();
 
-    @Operation(summary = "Patch card")
+    @Operation(summary = "Patch card (full)")
     @PatchMapping("/card")
     public GameCard patchCard(@RequestBody GameCardPatch patch) {
         gameService.applyPatch(gameCard, patch);
@@ -51,7 +51,7 @@ public class PatchController {
         return gameCard;
     }
 
-    @Operation(summary = "Patch school")
+    @Operation(summary = "Patch school (short)")
     @PatchMapping("/school")
     public School patchSchool(@RequestBody SchoolPatch patch) {
         schoolService.applyPatch(school, patch);

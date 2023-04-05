@@ -24,7 +24,7 @@ public class SchoolService {
             school.setAddress(patch.getAddress());
         }
         if (patch.getStudentsCount() != null) {
-            school.setStudentsCount(Long.valueOf(patch.getStudentsCount()));
+            school.setStudentsCount(patch.getStudentsCount().equals("") ? null : Long.valueOf(patch.getStudentsCount()));
         }
 
         if (!CollectionUtils.isEmpty(patch.getSkeUnits())) {

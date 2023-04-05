@@ -1,8 +1,13 @@
 {
   "address": "",
+  "studentsCount": "",
   "skeUnits": [
     {
       "id": "5555555",
+      "operation": "REMOVE"
+    },
+    {
+      "id": "7777777",
       "operation": "REMOVE"
     }
   ]

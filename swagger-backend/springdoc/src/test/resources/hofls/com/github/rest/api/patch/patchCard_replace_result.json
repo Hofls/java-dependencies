@@ -1,12 +1,17 @@
 {
-  "date": "2023-04-18",
+  "date": "2023-05-28",
   "marks": [
     {
       "id": "c256a8a8-e1fc-43ad-b77f-f36d928ecf1a",
-      "time": "09:45:00",
-      "value": 44.55
+      "time": "14:55:00",
+      "value": 277.77
+    },
+    {
+      "id": "f5369eac-afd2-424a-9e66-06535fd106c0",
+      "time": "17:56:00",
+      "value": 99.55
     }
   ],
   "name": "Helga",
-  "points": 14
+  "points": 44
 }

@@ -8,6 +8,12 @@
       "time": "09:45",
       "value": "177.42",
       "operation": "ADD"
+    },
+    {
+      "id": "f5369eac-afd2-424a-9e66-06535fd106c0",
+      "time": "12:30",
+      "value": "88.66",
+      "operation": "ADD"
     }
   ]
 }

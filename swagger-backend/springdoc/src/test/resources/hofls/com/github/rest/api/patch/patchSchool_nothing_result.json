@@ -4,6 +4,10 @@
     {
       "active": false,
       "id": 5555555
+    },
+    {
+      "active": true,
+      "id": 7777777
     }
   ],
   "studentsCount": 342

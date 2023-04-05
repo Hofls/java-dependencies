@@ -6,6 +6,11 @@
       "id": "5555555",
       "active": "false",
       "operation": "ADD"
+    },
+    {
+      "id": "7777777",
+      "active": "true",
+      "operation": "ADD"
     }
   ]
 }

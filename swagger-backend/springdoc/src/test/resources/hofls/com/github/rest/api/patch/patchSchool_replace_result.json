@@ -1,10 +1,14 @@
 {
-  "address": "St.Bernard 53",
+  "address": "Big Wallace",
   "skeUnits": [
     {
       "active": true,
       "id": 5555555
+    },
+    {
+      "active": false,
+      "id": 7777777
     }
   ],
-  "studentsCount": 723
+  "studentsCount": 753
 }
