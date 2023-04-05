@@ -1,8 +1,8 @@
-package hofls.com.github.rest.api.patch.service;
+package hofls.com.github.rest.api.patch.game.card.service;
 
-import hofls.com.github.rest.api.patch.dto.GameCard;
-import hofls.com.github.rest.api.patch.dto.GameCardPatch;
-import hofls.com.github.rest.api.patch.dto.PatchOperation;
+import hofls.com.github.rest.api.patch.game.card.dto.GameCard;
+import hofls.com.github.rest.api.patch.game.card.dto.GameCardPatch;
+import hofls.com.github.rest.api.patch.common.PatchOperation;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
@@ -39,8 +39,9 @@ public class GameCardService {
                     mark.setValue(Double.parseDouble(patchMark.getValue()));
                     gameCard.getMarks().add(mark);
                 } else if (patchMark.getOperation() == PatchOperation.REPLACE) {
+                    UUID patchMarkId = UUID.fromString(patchMark.getId());
                     GameCard.Mark mark = gameCard.getMarks().stream()
-                            .filter(m -> m.getId().equals(patchMark.getId()))
+                            .filter(m -> m.getId().equals(patchMarkId))
                             .findFirst().orElse(null); // replace with orElseThrow
                     if (mark == null) {
                         throw new RuntimeException("Mark not found. Id - " + patchMark.getId());

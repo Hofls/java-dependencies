@@ -1,11 +1,10 @@
-package hofls.com.github.rest.api.patch.dto;
+package hofls.com.github.rest.api.patch.game.card.dto;
 
+import hofls.com.github.rest.api.patch.common.PatchOperation;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
-import java.time.LocalTime;
 import java.util.List;
-import java.util.UUID;
 
 @Data
 public class GameCardPatch {
