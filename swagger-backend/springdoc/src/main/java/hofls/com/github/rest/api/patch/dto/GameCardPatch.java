@@ -18,14 +18,8 @@ public class GameCardPatch {
     @Schema(description = "Date", example = "2023-04-18")
     private String date;
 
-    @Schema(description = "Add marks")
-    private List<Mark> addMarks;
-
-    @Schema(description = "Edit marks")
-    private List<Mark> editMarks;
-
-    @Schema(description = "Delete marks")
-    private List<Mark> deleteMarks;
+    @Schema(description = "Marks")
+    private List<Mark> marks;
 
     @Data
     public static class Mark {
@@ -37,6 +31,9 @@ public class GameCardPatch {
 
         @Schema(description = "Value", example = "177.42")
         private String value;
+
+        @Schema(description = "PATCH operation", example = "REPLACE")
+        private PatchOperation operation;
     }
 
 }

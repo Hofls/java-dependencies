@@ -2,6 +2,7 @@ package hofls.com.github.rest.api.patch.service;
 
 import hofls.com.github.rest.api.patch.dto.GameCard;
 import hofls.com.github.rest.api.patch.dto.GameCardPatch;
+import hofls.com.github.rest.api.patch.dto.PatchOperation;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
@@ -25,18 +26,34 @@ public class GameCardService {
             gameCard.setDate(LocalDate.parse(patch.getDate()));
         }
 
-        if (!CollectionUtils.isEmpty(patch.getAddMarks())) {
+        if (!CollectionUtils.isEmpty(patch.getMarks())) {
             if (gameCard.getMarks() == null) {
                 gameCard.setMarks(new ArrayList<>());
             }
-            for (GameCardPatch.Mark patchMark : patch.getAddMarks()) {
-                GameCard.Mark mark = new GameCard.Mark();
-                mark.setId(UUID.randomUUID());
-                mark.setTime(LocalTime.parse(patchMark.getTime(), DateTimeFormatter.ofPattern("HH:mm")));
-                mark.setValue(Double.parseDouble(patchMark.getValue()));
-                gameCard.getMarks().add(mark);
+
+            for (GameCardPatch.Mark patchMark : patch.getMarks()) {
+                if (patchMark.getOperation() == PatchOperation.ADD) {
+                    GameCard.Mark mark = new GameCard.Mark();
+                    mark.setId(UUID.randomUUID());
+                    mark.setTime(LocalTime.parse(patchMark.getTime(), DateTimeFormatter.ofPattern("HH:mm")));
+                    mark.setValue(Double.parseDouble(patchMark.getValue()));
+                    gameCard.getMarks().add(mark);
+                } else if (patchMark.getOperation() == PatchOperation.REPLACE) {
+                    GameCard.Mark mark = gameCard.getMarks().stream()
+                            .filter(m -> m.getId().equals(patchMark.getId()))
+                            .findFirst().orElse(null); // replace with orElseThrow
+                    if (mark == null) {
+                        throw new RuntimeException("Mark not found. Id - " + patchMark.getId());
+                    }
+                    mark.setTime(LocalTime.parse(patchMark.getTime(), DateTimeFormatter.ofPattern("HH:mm")));
+                    mark.setValue(Double.parseDouble(patchMark.getValue()));
+                } else if (patchMark.getOperation() == PatchOperation.REMOVE) {
+                    UUID patchMarkId = UUID.fromString(patchMark.getId());
+                    gameCard.getMarks().removeIf(m -> m.getId().equals(patchMarkId));
+                }
             }
         }
+
     }
 
 }
