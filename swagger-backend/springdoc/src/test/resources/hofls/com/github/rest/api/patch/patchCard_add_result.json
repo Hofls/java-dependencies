@@ -1,0 +1,28 @@
+{
+  "name" : "Jake",
+  "points" : 14,
+  "date" : {
+    "year" : 2023,
+    "month" : "APRIL",
+    "dayOfMonth" : 18,
+    "monthValue" : 4,
+    "chronology" : {
+      "id" : "ISO",
+      "calendarType" : "iso8601"
+    },
+    "era" : "CE",
+    "dayOfWeek" : "TUESDAY",
+    "dayOfYear" : 108,
+    "leapYear" : false
+  },
+  "marks" : [ {
+    "id" : "dbc45c47-a49b-4523-97ea-a65c54d35e28",
+    "time" : {
+      "hour" : 9,
+      "minute" : 45,
+      "second" : 0,
+      "nano" : 0
+    },
+    "value" : 177.42
+  } ]
+}
