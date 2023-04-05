@@ -15,8 +15,11 @@ import org.springframework.web.bind.annotation.*;
  * "" - means user erased field value
  * null - means nothing changed
  *
- * Basic list rules:
- *
+ * Complex list rules:
+ * addMarks - means user added new mark
+ * editMarks - means user changed old mark
+ * deleteMarks - means user deleted old mark
+ * all marks are empty/null - means nothing changed
  */
 
 @Tag(name = "game-card-controller", description = "HTTP PATCH example")
