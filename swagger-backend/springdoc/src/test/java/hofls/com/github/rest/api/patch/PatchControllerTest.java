@@ -42,7 +42,12 @@ class PatchControllerTest {
         String expectedReplace = TestUtils.readFile(this.getClass(), "patchCard_replace_result.json");
         TestUtils.assertEqualJson(expectedReplace, actualReplace);
 
-        // TODO Clear most of mark values
+        // Clear half of mark values (another half stays the same)
+        GameCardPatch patchMarks = TestUtils.readObjectFromFile(
+                this.getClass(), "patchCard_marks_request.json", GameCardPatch.class);
+        GameCard actualMarks = patchController.patchCard(patchMarks);
+        String expectedMarks = TestUtils.readFile(this.getClass(), "patchCard_marks_result.json");
+        TestUtils.assertEqualJson(expectedMarks, actualMarks);
 
         // Remove everything
         GameCardPatch patchRemove = TestUtils.readObjectFromFile(
@@ -74,8 +79,6 @@ class PatchControllerTest {
         School actualReplace = patchController.patchSchool(patchReplace);
         String expectedReplace = TestUtils.readFile(this.getClass(), "patchSchool_replace_result.json");
         TestUtils.assertEqualJson(expectedReplace, actualReplace);
-
-        // TODO - Clear most of mark values
 
         // Remove everything
         SchoolPatch patchRemove = TestUtils.readObjectFromFile(

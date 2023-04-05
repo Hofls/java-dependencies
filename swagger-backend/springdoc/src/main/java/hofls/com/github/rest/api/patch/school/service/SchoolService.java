@@ -31,13 +31,10 @@ public class SchoolService {
             for (SchoolPatch.SKEUnit patchUnit : patch.getSkeUnits()) {
                 if (patchUnit.getOperation() == PatchOperation.ADD) {
                     School.SKEUnit unit = new School.SKEUnit();
+                    SchoolMapper.INSTANCE.toEntity(unit, patchUnit);
                     if (patchUnit.getId() == null) {
                         unit.setId(ThreadLocalRandom.current().nextLong(1000));
-                    } else {
-                        unit.setId(Long.valueOf(patchUnit.getId()));
                     }
-                    unit.setDate(patchUnit.getDate().equals("") ? null : LocalDate.parse(patchUnit.getDate()));
-                    unit.setActive(Boolean.valueOf(patchUnit.getActive()));
                     school.getSkeUnits().add(unit);
                 } else if (patchUnit.getOperation() == PatchOperation.REPLACE) {
                     Long patchUnitId = Long.valueOf(patchUnit.getId());
@@ -47,8 +44,7 @@ public class SchoolService {
                     if (unit == null) {
                         throw new RuntimeException("Unit not found. Id - " + patchUnit.getId());
                     }
-                    unit.setDate(patchUnit.getDate() == null ? null : LocalDate.parse(patchUnit.getDate()));
-                    unit.setActive(Boolean.valueOf(patchUnit.getActive()));
+                    SchoolMapper.INSTANCE.toEntity(unit, patchUnit);
                 } else if (patchUnit.getOperation() == PatchOperation.REMOVE) {
                     Long patchUnitId = Long.valueOf(patchUnit.getId());
                     school.getSkeUnits().removeIf(u -> u.getId().equals(patchUnitId));

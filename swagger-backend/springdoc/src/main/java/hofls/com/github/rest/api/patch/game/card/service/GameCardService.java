@@ -7,8 +7,6 @@ import hofls.com.github.rest.api.patch.game.card.mapper.GameCardMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
-import java.lang.reflect.Parameter;
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -28,13 +26,10 @@ public class GameCardService {
             for (GameCardPatch.Mark patchMark : patch.getMarks()) {
                 if (patchMark.getOperation() == PatchOperation.ADD) {
                     GameCard.Mark mark = new GameCard.Mark();
-                    if (patchMark.getId() == null) {
+                    GameCardMapper.INSTANCE.toEntity(mark, patchMark);
+                    if (mark.getId() == null) {
                         mark.setId(UUID.randomUUID());
-                    } else {
-                        mark.setId(UUID.fromString(patchMark.getId()));
                     }
-                    mark.setTime(LocalTime.parse(patchMark.getTime(), DateTimeFormatter.ofPattern("HH:mm")));
-                    mark.setValue(Double.parseDouble(patchMark.getValue()));
                     gameCard.getMarks().add(mark);
                 } else if (patchMark.getOperation() == PatchOperation.REPLACE) {
                     UUID patchMarkId = UUID.fromString(patchMark.getId());
@@ -44,8 +39,7 @@ public class GameCardService {
                     if (mark == null) {
                         throw new RuntimeException("Mark not found. Id - " + patchMark.getId());
                     }
-                    mark.setTime(LocalTime.parse(patchMark.getTime(), DateTimeFormatter.ofPattern("HH:mm")));
-                    mark.setValue(Double.parseDouble(patchMark.getValue()));
+                    GameCardMapper.INSTANCE.toEntity(mark, patchMark);
                 } else if (patchMark.getOperation() == PatchOperation.REMOVE) {
                     UUID patchMarkId = UUID.fromString(patchMark.getId());
                     gameCard.getMarks().removeIf(m -> m.getId().equals(patchMarkId));
