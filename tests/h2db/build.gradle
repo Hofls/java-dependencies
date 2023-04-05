@@ -22,6 +22,8 @@ dependencies {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
 
+    implementation 'hofls.com.github:test-utils:0.1.0'
+
     implementation 'org.apache.cxf:cxf-rt-features-logging:3.2.0'
 
     // Lombok:

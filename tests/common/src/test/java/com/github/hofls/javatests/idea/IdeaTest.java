@@ -1,6 +1,6 @@
 package com.github.hofls.javatests.idea;
 
-import com.github.hofls.javatests.utils.TestUtils;
+import com.github.hofls.test.utils.TestUtils;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

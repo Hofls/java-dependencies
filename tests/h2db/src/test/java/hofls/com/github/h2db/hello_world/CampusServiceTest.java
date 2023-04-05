@@ -1,6 +1,6 @@
 package hofls.com.github.h2db.hello_world;
 
-import hofls.com.github.h2db.common.TestUtils;
+import com.github.hofls.test.utils.TestUtils;
 import lombok.val;
 import lombok.var;
 import org.junit.jupiter.api.Test;

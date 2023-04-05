@@ -1,0 +1,43 @@
+plugins {
+	id 'org.springframework.boot' version '2.2.6.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+	id 'java'
+
+	id 'java-library'
+	id 'maven-publish'
+}
+
+group = 'hofls.com.github'
+version = '0.1.0'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenLocal()
+	mavenCentral()
+}
+
+test {
+	useJUnitPlatform() // Needed for JUnit 5
+}
+
+jar {
+	enabled = true
+}
+
+dependencies {
+	implementation(group: 'org.springframework.boot', name: 'spring-boot-starter-web')
+
+	implementation 'org.apache.cxf:cxf-rt-features-logging:3.2.0' /* For FileUtils */
+
+	implementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+}
+
+publishing {
+	publications {
+		maven(MavenPublication) {
+			from components.java
+		}
+	}
+}

@@ -1,6 +1,7 @@
-package com.github.hofls.javatests.utils;
+package com.github.hofls.test.utils;
 
 import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.util.DefaultIndenter;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.*;
@@ -28,19 +29,23 @@ public class TestUtils {
 
     private static final String CRLF = "\r\n";
     private static final String LF = "\n";
+    private static final ObjectMapper objectMapper = getObjectMapper();
     private static final ObjectWriter objectWriter = getObjectWriter();
+
+    private static ObjectMapper getObjectMapper() {
+        return new ObjectMapper()
+                .configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true)
+                .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
+                .registerModule(new JavaTimeModule())
+                .registerModule(getOffsetDateTimeModule());
+    }
 
     private static ObjectWriter getObjectWriter() {
         CustomPrinter prettyPrinter = new CustomPrinter();
         // var prettyPrinter = new DefaultPrettyPrinter();
         // prettyPrinter.indentArraysWith(DefaultIndenter.SYSTEM_LINEFEED_INSTANCE);
         prettyPrinter.indentArraysWith(DefaultIndenter.SYSTEM_LINEFEED_INSTANCE); // each list element in new line
-        return new ObjectMapper()
-                .configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true)
-                .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
-                .registerModule(new JavaTimeModule())
-                .registerModule(getOffsetDateTimeModule())
-                .writer().with(prettyPrinter);
+        return getObjectMapper().writer().with(prettyPrinter);
     }
 
     /**
@@ -74,6 +79,36 @@ public class TestUtils {
         }
     }
 
+    public static <T> T readObjectFromFile(Class resourceFromClass, String filename, Class<T> clazz) throws IOException {
+        return objectMapper.readValue(IOUtils.toString(resourceFromClass.getResourceAsStream(filename)), clazz);
+    }
+
+    public static <T> T jsonToObject(String json, Class<T> clazz)  throws JsonProcessingException {
+        return objectMapper.readValue(json, clazz);
+    }
+
+    public static JsonNode jsonToMap(String json) {
+        try {
+            return new ObjectMapper().readTree(json);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static String objectToJson(Object object) {
+        try {
+            if (object instanceof String) {
+                return (String) object;
+            } else {
+                return objectWriter.writeValueAsString(object);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    // -----------------------------------------------------------------------------
+
     private static String removeLinesWithField(String text, List<String> ignoredFields) {
         if (CollectionUtils.isEmpty(ignoredFields)) {
             return text;
@@ -105,18 +140,6 @@ public class TestUtils {
     /** Replaces CRLF with LF */
     private static String toLF(String text) {
         return text.replaceAll(CRLF, LF);
-    }
-
-    public static String objectToJson(Object object) {
-        try {
-            if (object instanceof String) {
-                return (String) object;
-            } else {
-                return objectWriter.writeValueAsString(object);
-            }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
     }
 
     /** Without this module - Windows and Linux will have different date formats */

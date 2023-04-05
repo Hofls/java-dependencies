@@ -116,3 +116,4 @@
     * Gradle looks for dependency in each repository (in descending order)
     * If dependency not found in 5 available repositories - gradle throws exception about nexus-someit
     * If dependency found in 1 of the 5 repositories - everything is ok, no exceptions about nexus-someit
+* To publish/deploy java library - look at `hofls-test-utils`
