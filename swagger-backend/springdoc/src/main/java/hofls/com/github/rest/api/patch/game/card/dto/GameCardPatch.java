@@ -1,5 +1,6 @@
 package hofls.com.github.rest.api.patch.game.card.dto;
 
+import hofls.com.github.rest.api.patch.common.IPatch;
 import hofls.com.github.rest.api.patch.common.PatchOperation;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
@@ -21,7 +22,7 @@ public class GameCardPatch {
     private List<Mark> marks;
 
     @Data
-    public static class Mark {
+    public static class Mark implements IPatch {
         @Schema(description = "Id", example = "5c8c258d-35fb-4500-bc46-57b592209c2c")
         private String id;
 

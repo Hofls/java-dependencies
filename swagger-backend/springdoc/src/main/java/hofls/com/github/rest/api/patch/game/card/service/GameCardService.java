@@ -1,52 +1,37 @@
 package hofls.com.github.rest.api.patch.game.card.service;
 
+import hofls.com.github.rest.api.patch.common.IPatchableEntity;
+import hofls.com.github.rest.api.patch.common.Identifiable;
+import hofls.com.github.rest.api.patch.common.PatchListService;
 import hofls.com.github.rest.api.patch.game.card.dto.GameCard;
 import hofls.com.github.rest.api.patch.game.card.dto.GameCardPatch;
-import hofls.com.github.rest.api.patch.common.PatchOperation;
 import hofls.com.github.rest.api.patch.game.card.mapper.GameCardMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
 
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.UUID;
 
 @Service
-public class GameCardService {
+public class GameCardService implements IPatchableEntity {
 
-    public void applyPatch(GameCard gameCard, GameCardPatch patch) {
-        GameCardMapper.INSTANCE.toEntity(gameCard, patch);
+    @Autowired
+    private PatchListService<GameCard.Mark, GameCardPatch.Mark> patchService;
 
-        if (!CollectionUtils.isEmpty(patch.getMarks())) {
-            if (gameCard.getMarks() == null) {
-                gameCard.setMarks(new ArrayList<>());
-            }
+    public void applyPatch(GameCard entity, GameCardPatch patch) {
+        GameCardMapper.INSTANCE.toEntity(entity, patch);
 
-            for (GameCardPatch.Mark patchMark : patch.getMarks()) {
-                if (patchMark.getOperation() == PatchOperation.ADD) {
-                    GameCard.Mark mark = new GameCard.Mark();
-                    GameCardMapper.INSTANCE.toEntity(mark, patchMark);
-                    if (mark.getId() == null) {
-                        mark.setId(UUID.randomUUID());
-                    }
-                    gameCard.getMarks().add(mark);
-                } else if (patchMark.getOperation() == PatchOperation.REPLACE) {
-                    UUID patchMarkId = UUID.fromString(patchMark.getId());
-                    GameCard.Mark mark = gameCard.getMarks().stream()
-                            .filter(m -> m.getId().equals(patchMarkId))
-                            .findFirst().orElse(null); // replace with orElseThrow
-                    if (mark == null) {
-                        throw new RuntimeException("Mark not found. Id - " + patchMark.getId());
-                    }
-                    GameCardMapper.INSTANCE.toEntity(mark, patchMark);
-                } else if (patchMark.getOperation() == PatchOperation.REMOVE) {
-                    UUID patchMarkId = UUID.fromString(patchMark.getId());
-                    gameCard.getMarks().removeIf(m -> m.getId().equals(patchMarkId));
-                }
-            }
-        }
+        if (entity.getMarks() == null) entity.setMarks(new ArrayList<>());
+        patchService.applyPatch(entity.getMarks(), patch.getMarks(), this);
+    }
 
+    @Override
+    public void toEntity(Object entity, Object patch) {
+        GameCardMapper.INSTANCE.toEntity((GameCard.Mark) entity, (GameCardPatch.Mark) patch);
+    }
+
+    @Override
+    public Identifiable newEntity() {
+        return new GameCard.Mark();
     }
 
 }

@@ -19,7 +19,7 @@ public class GameCard {
     private List<Mark> marks;
 
     @Data
-    public static class Mark {
+    public static class Mark implements Identifiable {
         private UUID id;
 
         private LocalTime time;
