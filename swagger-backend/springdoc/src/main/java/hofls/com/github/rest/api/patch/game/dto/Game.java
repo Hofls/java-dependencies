@@ -1,6 +1,7 @@
 package hofls.com.github.rest.api.patch.game.dto;
 
 import hofls.com.github.rest.api.patch.common.Identifiable;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -18,6 +19,8 @@ public class Game {
     private LocalDate date;
 
     private List<Mark> marks;
+
+    private List<Integer> positions;
 
     @Data
     public static class Mark implements Identifiable {

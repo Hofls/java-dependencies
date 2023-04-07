@@ -13,5 +13,10 @@
     }
   ],
   "name": "Jake",
-  "points": 14
+  "points": 14,
+  "positions": [
+    14,
+    23,
+    45
+  ]
 }

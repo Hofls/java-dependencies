@@ -23,37 +23,37 @@ class PatchControllerTest {
     void patchCard() throws Exception {
         // Add
         GamePatch patchAdd = TestUtils.readObjectFromFile(
-                this.getClass(), "patchCard_add_request.json", GamePatch.class);
+                this.getClass(), "game_add_request.json", GamePatch.class);
         Game actualAdded = patchController.patchCard(patchAdd);
-        String expectedAdded = TestUtils.readFile(this.getClass(), "patchCard_add_result.json");
+        String expectedAdded = TestUtils.readFile(this.getClass(), "game_add_result.json");
         TestUtils.assertEqualJson(expectedAdded, actualAdded);
 
         // Nothing changes
         GamePatch patchNothing = TestUtils.readObjectFromFile(
-                this.getClass(), "patchCard_nothing_request.json", GamePatch.class);
+                this.getClass(), "game_nothing_request.json", GamePatch.class);
         Game actualNothing = patchController.patchCard(patchNothing);
-        String expectedNothing = TestUtils.readFile(this.getClass(), "patchCard_nothing_result.json");
+        String expectedNothing = TestUtils.readFile(this.getClass(), "game_nothing_result.json");
         TestUtils.assertEqualJson(expectedNothing, actualNothing);
 
         // Replace everything
         GamePatch patchReplace = TestUtils.readObjectFromFile(
-                this.getClass(), "patchCard_replace_request.json", GamePatch.class);
+                this.getClass(), "game_replace_request.json", GamePatch.class);
         Game actualReplace = patchController.patchCard(patchReplace);
-        String expectedReplace = TestUtils.readFile(this.getClass(), "patchCard_replace_result.json");
+        String expectedReplace = TestUtils.readFile(this.getClass(), "game_replace_result.json");
         TestUtils.assertEqualJson(expectedReplace, actualReplace);
 
         // Clear half of mark values (another half stays the same)
         GamePatch patchMarks = TestUtils.readObjectFromFile(
-                this.getClass(), "patchCard_marks_request.json", GamePatch.class);
+                this.getClass(), "game_marks_request.json", GamePatch.class);
         Game actualMarks = patchController.patchCard(patchMarks);
-        String expectedMarks = TestUtils.readFile(this.getClass(), "patchCard_marks_result.json");
+        String expectedMarks = TestUtils.readFile(this.getClass(), "game_marks_result.json");
         TestUtils.assertEqualJson(expectedMarks, actualMarks);
 
         // Remove everything
         GamePatch patchRemove = TestUtils.readObjectFromFile(
-                this.getClass(), "patchCard_remove_request.json", GamePatch.class);
+                this.getClass(), "game_remove_request.json", GamePatch.class);
         Game actualRemove = patchController.patchCard(patchRemove);
-        String expectedRemove = TestUtils.readFile(this.getClass(), "patchCard_remove_result.json");
+        String expectedRemove = TestUtils.readFile(this.getClass(), "game_remove_result.json");
         TestUtils.assertEqualJson(expectedRemove, actualRemove);
     }
 

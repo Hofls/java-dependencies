@@ -18,6 +18,9 @@ public class GamePatch {
     @Schema(description = "Date", example = "2023-04-18")
     private String date;
 
+    @Schema(description = "Positions", example = "[14, 23, 45]")
+    private List<String> positions;
+
     @Schema(description = "Marks")
     private List<Mark> marks;
 

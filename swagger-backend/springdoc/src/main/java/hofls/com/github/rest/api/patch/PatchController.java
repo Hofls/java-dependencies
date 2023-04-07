@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 /**
 Rules for basic fields:
 "John" - means user changed field value
-"" - means user erased field value
+"" or [] - means user erased field value
 null - means nothing changed
 
 Rules for complex lists:

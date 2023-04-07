@@ -2,6 +2,7 @@
   "name": "Jake",
   "points": "14",
   "date": "2023-04-18",
+  "positions": [14, 23, 45],
   "marks": [
     {
       "id": "c256a8a8-e1fc-43ad-b77f-f36d928ecf1a",

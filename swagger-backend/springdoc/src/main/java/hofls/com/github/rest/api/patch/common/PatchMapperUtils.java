@@ -12,6 +12,14 @@ public class PatchMapperUtils {
         return value.equals("") ? null : UUID.fromString(value);
     }
 
+    public static Boolean toBoolean(String value) {
+        return value.equals("") ? null : Boolean.valueOf(value);
+    }
+
+    public static Integer toInteger(String value) {
+        return value.equals("") ? null : Integer.valueOf(value);
+    }
+
     public static Long toLong(String value) {
         return value.equals("") ? null : Long.valueOf(value);
     }
