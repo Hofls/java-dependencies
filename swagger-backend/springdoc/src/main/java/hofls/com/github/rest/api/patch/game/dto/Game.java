@@ -1,4 +1,4 @@
-package hofls.com.github.rest.api.patch.game.card.dto;
+package hofls.com.github.rest.api.patch.game.dto;
 
 import hofls.com.github.rest.api.patch.common.Identifiable;
 import lombok.Data;
@@ -8,14 +8,15 @@ import java.time.LocalTime;
 import java.util.List;
 import java.util.UUID;
 
-// In real project this class will be a DB entity (@Table)
+// In real project this class will be stored in a database (e.g. as jsonb)
 @Data
-public class GameCard {
+public class Game {
     private String name;
 
     private Long points;
 
     private LocalDate date;
+
     private List<Mark> marks;
 
     @Data

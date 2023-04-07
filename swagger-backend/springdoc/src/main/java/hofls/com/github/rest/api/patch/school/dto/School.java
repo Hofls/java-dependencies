@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
-// In real project this class will be a DB entity (@Table)
+// In real project this class will be stored in a database (e.g. as jsonb)
 @Data
 public class School {
 

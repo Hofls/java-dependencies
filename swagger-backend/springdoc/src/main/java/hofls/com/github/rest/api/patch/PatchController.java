@@ -1,8 +1,8 @@
 package hofls.com.github.rest.api.patch;
 
-import hofls.com.github.rest.api.patch.game.card.dto.GameCard;
-import hofls.com.github.rest.api.patch.game.card.dto.GameCardPatch;
-import hofls.com.github.rest.api.patch.game.card.service.GameCardService;
+import hofls.com.github.rest.api.patch.game.dto.Game;
+import hofls.com.github.rest.api.patch.game.dto.GamePatch;
+import hofls.com.github.rest.api.patch.game.service.GameService;
 import hofls.com.github.rest.api.patch.school.dto.School;
 import hofls.com.github.rest.api.patch.school.dto.SchoolPatch;
 import hofls.com.github.rest.api.patch.school.service.SchoolService;
@@ -31,8 +31,8 @@ all marks are empty/null - user changed nothing
 public class PatchController {
 
     @Autowired
-    private GameCardService gameService;
-    public static GameCard gameCard = new GameCard();
+    private GameService gameService;
+    public static Game gameCard = new Game();
 
     @Autowired
     private SchoolService schoolService;
@@ -40,14 +40,14 @@ public class PatchController {
 
     @Operation(summary = "Patch card (full)")
     @PatchMapping("/card")
-    public GameCard patchCard(@RequestBody GameCardPatch patch) {
+    public Game patchCard(@RequestBody GamePatch patch) {
         gameService.applyPatch(gameCard, patch);
         return gameCard;
     }
 
     @Operation(summary = "Get card")
     @GetMapping("/card")
-    public GameCard getCard() {
+    public Game getCard() {
         return gameCard;
     }
 

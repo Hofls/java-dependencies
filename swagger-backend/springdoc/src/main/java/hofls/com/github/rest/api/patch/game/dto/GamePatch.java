@@ -1,4 +1,4 @@
-package hofls.com.github.rest.api.patch.game.card.dto;
+package hofls.com.github.rest.api.patch.game.dto;
 
 import hofls.com.github.rest.api.patch.common.IPatch;
 import hofls.com.github.rest.api.patch.common.PatchOperation;
@@ -8,7 +8,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class GameCardPatch {
+public class GamePatch {
     @Schema(description = "Name", example = "Jake")
     private String name;
 
