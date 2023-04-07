@@ -1,6 +1,6 @@
 package hofls.com.github.rest.patch.common;
 
-public interface IPatchableEntity {
+public interface IPatchService {
 
     void toEntity(Object entity, Object patch);
 

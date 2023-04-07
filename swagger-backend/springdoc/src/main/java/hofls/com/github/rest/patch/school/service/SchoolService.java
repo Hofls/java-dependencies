@@ -1,6 +1,6 @@
 package hofls.com.github.rest.patch.school.service;
 
-import hofls.com.github.rest.patch.common.IPatchableEntity;
+import hofls.com.github.rest.patch.common.IPatchService;
 import hofls.com.github.rest.patch.common.Identifiable;
 import hofls.com.github.rest.patch.common.PatchListService;
 import hofls.com.github.rest.patch.school.dto.School;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 
 @Service
-public class SchoolService implements IPatchableEntity {
+public class SchoolService implements IPatchService {
 
     @Autowired
     private PatchListService<School.SKEUnit, SchoolPatch.SKEUnit> patchService;
