@@ -1,11 +1,11 @@
-package hofls.com.github.rest.api.patch;
+package hofls.com.github.rest.patch;
 
 import com.github.hofls.test.utils.TestUtils;
 import hofls.com.github.Application;
-import hofls.com.github.rest.api.patch.game.dto.Game;
-import hofls.com.github.rest.api.patch.game.dto.GamePatch;
-import hofls.com.github.rest.api.patch.school.dto.School;
-import hofls.com.github.rest.api.patch.school.dto.SchoolPatch;
+import hofls.com.github.rest.patch.game.dto.Game;
+import hofls.com.github.rest.patch.game.dto.GamePatch;
+import hofls.com.github.rest.patch.school.dto.School;
+import hofls.com.github.rest.patch.school.dto.SchoolPatch;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;

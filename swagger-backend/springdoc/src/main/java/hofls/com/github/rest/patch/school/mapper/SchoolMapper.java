@@ -1,8 +1,8 @@
-package hofls.com.github.rest.api.patch.school.mapper;
+package hofls.com.github.rest.patch.school.mapper;
 
-import hofls.com.github.rest.api.patch.common.PatchMapperUtils;
-import hofls.com.github.rest.api.patch.school.dto.School;
-import hofls.com.github.rest.api.patch.school.dto.SchoolPatch;
+import hofls.com.github.rest.patch.common.PatchMapperUtils;
+import hofls.com.github.rest.patch.school.dto.School;
+import hofls.com.github.rest.patch.school.dto.SchoolPatch;
 import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
 

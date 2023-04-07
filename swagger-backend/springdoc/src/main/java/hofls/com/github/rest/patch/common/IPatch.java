@@ -1,4 +1,4 @@
-package hofls.com.github.rest.api.patch.common;
+package hofls.com.github.rest.patch.common;
 
 public interface IPatch {
 

@@ -1,11 +1,11 @@
-package hofls.com.github.rest.api.patch;
+package hofls.com.github.rest.patch;
 
-import hofls.com.github.rest.api.patch.game.dto.Game;
-import hofls.com.github.rest.api.patch.game.dto.GamePatch;
-import hofls.com.github.rest.api.patch.game.service.GameService;
-import hofls.com.github.rest.api.patch.school.dto.School;
-import hofls.com.github.rest.api.patch.school.dto.SchoolPatch;
-import hofls.com.github.rest.api.patch.school.service.SchoolService;
+import hofls.com.github.rest.patch.game.dto.Game;
+import hofls.com.github.rest.patch.game.dto.GamePatch;
+import hofls.com.github.rest.patch.game.service.GameService;
+import hofls.com.github.rest.patch.school.dto.School;
+import hofls.com.github.rest.patch.school.dto.SchoolPatch;
+import hofls.com.github.rest.patch.school.service.SchoolService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,11 +1,11 @@
-package hofls.com.github.rest.api.patch.school.service;
+package hofls.com.github.rest.patch.school.service;
 
-import hofls.com.github.rest.api.patch.common.IPatchableEntity;
-import hofls.com.github.rest.api.patch.common.Identifiable;
-import hofls.com.github.rest.api.patch.common.PatchListService;
-import hofls.com.github.rest.api.patch.school.dto.School;
-import hofls.com.github.rest.api.patch.school.dto.SchoolPatch;
-import hofls.com.github.rest.api.patch.school.mapper.SchoolMapper;
+import hofls.com.github.rest.patch.common.IPatchableEntity;
+import hofls.com.github.rest.patch.common.Identifiable;
+import hofls.com.github.rest.patch.common.PatchListService;
+import hofls.com.github.rest.patch.school.dto.School;
+import hofls.com.github.rest.patch.school.dto.SchoolPatch;
+import hofls.com.github.rest.patch.school.mapper.SchoolMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,11 +1,10 @@
-package hofls.com.github.rest.api.patch.school.dto;
+package hofls.com.github.rest.patch.school.dto;
 
-import hofls.com.github.rest.api.patch.common.IPatch;
-import hofls.com.github.rest.api.patch.common.PatchOperation;
+import hofls.com.github.rest.patch.common.IPatch;
+import hofls.com.github.rest.patch.common.PatchOperation;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Data

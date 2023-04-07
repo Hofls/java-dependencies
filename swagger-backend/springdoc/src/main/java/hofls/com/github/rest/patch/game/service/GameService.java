@@ -1,11 +1,11 @@
-package hofls.com.github.rest.api.patch.game.service;
+package hofls.com.github.rest.patch.game.service;
 
-import hofls.com.github.rest.api.patch.common.IPatchableEntity;
-import hofls.com.github.rest.api.patch.common.Identifiable;
-import hofls.com.github.rest.api.patch.common.PatchListService;
-import hofls.com.github.rest.api.patch.game.dto.Game;
-import hofls.com.github.rest.api.patch.game.dto.GamePatch;
-import hofls.com.github.rest.api.patch.game.mapper.GameMapper;
+import hofls.com.github.rest.patch.common.IPatchableEntity;
+import hofls.com.github.rest.patch.common.Identifiable;
+import hofls.com.github.rest.patch.common.PatchListService;
+import hofls.com.github.rest.patch.game.dto.Game;
+import hofls.com.github.rest.patch.game.dto.GamePatch;
+import hofls.com.github.rest.patch.game.mapper.GameMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

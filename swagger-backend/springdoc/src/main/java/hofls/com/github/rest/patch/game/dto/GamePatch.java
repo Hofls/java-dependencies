@@ -1,7 +1,7 @@
-package hofls.com.github.rest.api.patch.game.dto;
+package hofls.com.github.rest.patch.game.dto;
 
-import hofls.com.github.rest.api.patch.common.IPatch;
-import hofls.com.github.rest.api.patch.common.PatchOperation;
+import hofls.com.github.rest.patch.common.IPatch;
+import hofls.com.github.rest.patch.common.PatchOperation;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 

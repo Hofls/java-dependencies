@@ -1,8 +1,8 @@
-package hofls.com.github.rest.api.patch.game.mapper;
+package hofls.com.github.rest.patch.game.mapper;
 
-import hofls.com.github.rest.api.patch.common.PatchMapperUtils;
-import hofls.com.github.rest.api.patch.game.dto.Game;
-import hofls.com.github.rest.api.patch.game.dto.GamePatch;
+import hofls.com.github.rest.patch.common.PatchMapperUtils;
+import hofls.com.github.rest.patch.game.dto.Game;
+import hofls.com.github.rest.patch.game.dto.GamePatch;
 import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
 

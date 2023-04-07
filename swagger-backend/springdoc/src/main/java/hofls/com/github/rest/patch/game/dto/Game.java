@@ -1,7 +1,6 @@
-package hofls.com.github.rest.api.patch.game.dto;
+package hofls.com.github.rest.patch.game.dto;
 
-import hofls.com.github.rest.api.patch.common.Identifiable;
-import io.swagger.v3.oas.annotations.media.Schema;
+import hofls.com.github.rest.patch.common.Identifiable;
 import lombok.Data;
 
 import java.time.LocalDate;
