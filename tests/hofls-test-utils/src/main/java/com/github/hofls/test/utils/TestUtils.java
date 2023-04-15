@@ -6,6 +6,7 @@ import com.fasterxml.jackson.core.util.DefaultIndenter;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.databind.module.SimpleModule;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.apache.cxf.helpers.IOUtils;
 import org.springframework.util.CollectionUtils;
@@ -69,10 +70,8 @@ public class TestUtils {
     /** Converts objects to JSON and compares them */
     public static void assertEqualJson(Object expectedObj, Object actualObj, List<String> ignoredFields) {
         try {
-            String expectedJson = toLF(objectToJson(expectedObj));
-            String actualJson = toLF(objectToJson(actualObj));
-            expectedJson = removeLinesWithField(expectedJson, ignoredFields);
-            actualJson = removeLinesWithField(actualJson, ignoredFields);
+            String expectedJson = toLF(objectToJson(expectedObj, ignoredFields));
+            String actualJson = toLF(objectToJson(actualObj, ignoredFields));
             assertEquals(expectedJson, actualJson);
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -95,16 +94,35 @@ public class TestUtils {
         }
     }
 
-    public static String objectToJson(Object object) {
+    public static String objectToJson(Object object, List<String> ignoredFields) {
         try {
             if (object instanceof String) {
                 return (String) object;
             } else {
-                return objectWriter.writeValueAsString(object);
+                String json = objectWriter.writeValueAsString(object);
+                JsonNode jsonNode = new ObjectMapper().readTree(json);
+                removeFields(jsonNode, ignoredFields);
+
+                return objectWriter.writeValueAsString(jsonNode);
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private static JsonNode removeFields(JsonNode node, List<String> ignoredFields) {
+        if (node.isArray()) {
+            for (JsonNode child : node) {
+                removeFields(child, ignoredFields);
+            }
+        } else if (node.isObject()) {
+            ObjectNode objectNode = (ObjectNode) node;
+            objectNode.remove(ignoredFields);
+            for (JsonNode child : node) {
+                removeFields(child, ignoredFields);
+            }
+        }
+        return node;
     }
 
     // -----------------------------------------------------------------------------

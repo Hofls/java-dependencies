@@ -26,7 +26,7 @@ class TestUtilsTest {
         List<String> list = Arrays.asList("SOME TEXT A", "SOME TEXT B", "SOME TEXT C");
         LocalDate date = LocalDate.of(2021, 6, 23);
         Person expected = new Person(777, "John", date, list);
-        String actual = TestUtils.readFile(this.getClass(), "person.json");
+        String actual = TestUtils.readFile(this.getClass(), "assertEqualJson.json");
         TestUtils.assertEqualJson(expected, actual, Arrays.asList("id"));
     }
 
