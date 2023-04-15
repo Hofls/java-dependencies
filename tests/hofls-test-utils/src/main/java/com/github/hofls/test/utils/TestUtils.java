@@ -102,7 +102,6 @@ public class TestUtils {
                 String json = objectWriter.writeValueAsString(object);
                 JsonNode jsonNode = new ObjectMapper().readTree(json);
                 removeFields(jsonNode, ignoredFields);
-
                 return objectWriter.writeValueAsString(jsonNode);
             }
         } catch (Exception e) {
