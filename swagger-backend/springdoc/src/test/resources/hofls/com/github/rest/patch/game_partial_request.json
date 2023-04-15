@@ -1,0 +1,11 @@
+{
+  "name": "Helga",
+  "positions": [17, 53],
+  "marks": [
+    {
+      "id": "c256a8a8-e1fc-43ad-b77f-f36d928ecf1a",
+      "value": "277.77",
+      "operation": "REPLACE"
+    }
+  ]
+}

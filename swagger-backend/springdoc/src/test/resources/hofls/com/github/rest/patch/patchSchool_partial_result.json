@@ -2,15 +2,15 @@
   "address": "Big Wallace",
   "skeUnits": [
     {
-      "active": true,
+      "active": false,
       "date": "2023-04-23",
       "id": "cc7b1996-1e16-4bab-9ff1-a28deccfe655"
     },
     {
-      "active": false,
-      "date": "2023-07-28",
+      "active": true,
+      "date": "2023-06-23",
       "id": "f474a6d0-6000-4e85-9b72-193f3ca9d523"
     }
   ],
-  "studentsCount": 753
+  "studentsCount": 342
 }

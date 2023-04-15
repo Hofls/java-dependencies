@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 
 @Service
-public class SchoolService implements IPatchService {
+public class SchoolService implements IPatchService<School.SKEUnit, SchoolPatch.SKEUnit> {
 
     @Autowired
     private PatchListService<School.SKEUnit, SchoolPatch.SKEUnit> patchService;
@@ -30,7 +30,7 @@ public class SchoolService implements IPatchService {
     }
 
     @Override
-    public Identifiable newEntity() {
+    public School.SKEUnit newEntity() {
         return new School.SKEUnit();
     }
 

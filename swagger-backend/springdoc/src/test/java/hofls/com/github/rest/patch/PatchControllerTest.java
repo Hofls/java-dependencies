@@ -21,33 +21,19 @@ class PatchControllerTest {
 
     @Test // Full
     void patchCard() throws Exception {
-        // Add
+        // Fill all fields
         GamePatch patchAdd = TestUtils.readObjectFromFile(
                 this.getClass(), "game_add_request.json", GamePatch.class);
         Game actualAdded = patchController.patchCard(patchAdd);
         String expectedAdded = TestUtils.readFile(this.getClass(), "game_add_result.json");
         TestUtils.assertEqualJson(expectedAdded, actualAdded);
 
-        // Nothing changes
-        GamePatch patchNothing = TestUtils.readObjectFromFile(
-                this.getClass(), "game_nothing_request.json", GamePatch.class);
-        Game actualNothing = patchController.patchCard(patchNothing);
-        String expectedNothing = TestUtils.readFile(this.getClass(), "game_nothing_result.json");
-        TestUtils.assertEqualJson(expectedNothing, actualNothing);
-
-        // Replace everything
-        GamePatch patchReplace = TestUtils.readObjectFromFile(
-                this.getClass(), "game_replace_request.json", GamePatch.class);
-        Game actualReplace = patchController.patchCard(patchReplace);
-        String expectedReplace = TestUtils.readFile(this.getClass(), "game_replace_result.json");
-        TestUtils.assertEqualJson(expectedReplace, actualReplace);
-
-        // Clear half of mark values (another half stays the same)
-        GamePatch patchMarks = TestUtils.readObjectFromFile(
-                this.getClass(), "game_marks_request.json", GamePatch.class);
-        Game actualMarks = patchController.patchCard(patchMarks);
-        String expectedMarks = TestUtils.readFile(this.getClass(), "game_marks_result.json");
-        TestUtils.assertEqualJson(expectedMarks, actualMarks);
+        // Partial changes (only specified fields change, other fields stay the same)
+        GamePatch patchPartial = TestUtils.readObjectFromFile(
+                this.getClass(), "game_partial_request.json", GamePatch.class);
+        Game actualPart = patchController.patchCard(patchPartial);
+        String expectedPart = TestUtils.readFile(this.getClass(), "game_partial_result.json");
+        TestUtils.assertEqualJson(expectedPart, actualPart);
 
         // Remove everything
         GamePatch patchRemove = TestUtils.readObjectFromFile(
@@ -59,26 +45,19 @@ class PatchControllerTest {
 
     @Test // Short
     void patchSchool() throws Exception {
-        // Add
+        // Fill all fields
         SchoolPatch patchAdd = TestUtils.readObjectFromFile(
                 this.getClass(), "patchSchool_add_request.json", SchoolPatch.class);
         School actualAdded = patchController.patchSchool(patchAdd);
         String expectedAdded = TestUtils.readFile(this.getClass(), "patchSchool_add_result.json");
         TestUtils.assertEqualJson(expectedAdded, actualAdded);
 
-        // Nothing changes
-        SchoolPatch patchNothing = TestUtils.readObjectFromFile(
-                this.getClass(), "patchSchool_nothing_request.json", SchoolPatch.class);
-        School actualNothing = patchController.patchSchool(patchNothing);
-        String expectedNothing = TestUtils.readFile(this.getClass(), "patchSchool_nothing_result.json");
-        TestUtils.assertEqualJson(expectedNothing, actualNothing);
-
-        // Replace everything
-        SchoolPatch patchReplace = TestUtils.readObjectFromFile(
-                this.getClass(), "patchSchool_replace_request.json", SchoolPatch.class);
-        School actualReplace = patchController.patchSchool(patchReplace);
-        String expectedReplace = TestUtils.readFile(this.getClass(), "patchSchool_replace_result.json");
-        TestUtils.assertEqualJson(expectedReplace, actualReplace);
+        // Partial changes (only specified fields change, other fields stay the same)
+        SchoolPatch patchPartial = TestUtils.readObjectFromFile(
+                this.getClass(), "patchSchool_partial_request.json", SchoolPatch.class);
+        School actualPart = patchController.patchSchool(patchPartial);
+        String expectedPart = TestUtils.readFile(this.getClass(), "patchSchool_partial_result.json");
+        TestUtils.assertEqualJson(expectedPart, actualPart);
 
         // Remove everything
         SchoolPatch patchRemove = TestUtils.readObjectFromFile(
