@@ -97,12 +97,12 @@ public class TestUtils {
     public static String objectToJson(Object object, List<String> ignoredFields) {
         try {
             if (object instanceof String) {
-                return (String) object;
+                return ((String) object).trim();
             } else {
                 String json = objectWriter.writeValueAsString(object);
                 JsonNode jsonNode = new ObjectMapper().readTree(json);
                 removeFields(jsonNode, ignoredFields);
-                return objectWriter.writeValueAsString(jsonNode);
+                return objectWriter.writeValueAsString(jsonNode).trim();
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
