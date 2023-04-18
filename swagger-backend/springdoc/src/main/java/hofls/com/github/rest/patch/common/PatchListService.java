@@ -21,6 +21,7 @@ public class PatchListService <I extends Identifiable, P extends IPatch> {
                 if (patchUnit.getId() == null) {
                     unit.setId(UUID.randomUUID());
                 }
+                throwIfDuplicate(units, unit);
                 units.add((I) unit);
             } else if (patchUnit.getOperation() == PatchOperation.REPLACE) {
                 UUID patchUnitId = UUID.fromString(patchUnit.getId());
@@ -37,6 +38,16 @@ public class PatchListService <I extends Identifiable, P extends IPatch> {
             }
         }
 
+    }
+
+    private void throwIfDuplicate(List<I> units, I unit) {
+        UUID duplicateId = units.stream()
+                .map(Identifiable::getId)
+                .filter(id -> id.equals(unit.getId()))
+                .findFirst().orElse(null);
+        if (duplicateId != null) {
+            throw new RuntimeException("Duplicate ID - " + duplicateId);
+        }
     }
 
 }
