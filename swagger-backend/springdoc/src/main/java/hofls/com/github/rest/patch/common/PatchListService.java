@@ -19,6 +19,8 @@ public class PatchListService <I extends Identifiable, P extends IPatch> {
                 I unit = patchService.newEntity();
                 patchService.toEntity(unit, patchUnit);
                 if (patchUnit.getId() == null) {
+                    UUID generatedId = UUID.randomUUID();
+                    patchUnit.setId(generatedId.toString());
                     unit.setId(UUID.randomUUID());
                 }
                 throwIfDuplicate(units, unit);

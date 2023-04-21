@@ -24,8 +24,8 @@ public class GameService implements IPatchService<Game.Mark, GamePatch.Mark> {
     }
 
     @Override
-    public void toEntity(Object entity, Object patch) {
-        GameMapper.INSTANCE.toEntity((Game.Mark) entity, (GamePatch.Mark) patch);
+    public void toEntity(Game.Mark entity, GamePatch.Mark patch) {
+        GameMapper.INSTANCE.toEntity(entity, patch);
     }
 
     @Override

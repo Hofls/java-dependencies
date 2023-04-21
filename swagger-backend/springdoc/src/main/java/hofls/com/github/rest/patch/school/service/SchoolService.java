@@ -25,8 +25,8 @@ public class SchoolService implements IPatchService<School.SKEUnit, SchoolPatch.
     }
 
     @Override
-    public void toEntity(Object entity, Object patch) {
-        SchoolMapper.INSTANCE.toEntity((School.SKEUnit) entity, (SchoolPatch.SKEUnit) patch);
+    public void toEntity(School.SKEUnit entity, SchoolPatch.SKEUnit patch) {
+        SchoolMapper.INSTANCE.toEntity(entity, patch);
     }
 
     @Override
