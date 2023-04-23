@@ -31,5 +31,16 @@
         return root.get(Invoice_.NUMBER).in(subquery);
     }
     ```
+* If appears error `Infinite recursion (StackOverflowError)` during serialization/deserialization:
+    * Add `@JsonManagedReference` on main reference (near `@ManyToOne`) 
+    * Add `@JsonBackReference` on back reference (near `@OneToMany`)
+* Sort by different fields:
+    ```
+    List<Sort.Order> orders = new ArrayList<>();
+    orders.add(new Sort.Order(Sort.Direction.DESC, "date"));
+    orders.add(new Sort.Order(Sort.Direction.ASC, "department.name"));
+    orders.add(new Sort.Order(Sort.Direction.ASC, "user.name"));
+    return PageRequest.of(0, 10, Sort.by(orders));
+    ```
 * Composite id - `@IdClass`
 * Map multiple classes on one table - `@Embedded` and `@Embeddable`
