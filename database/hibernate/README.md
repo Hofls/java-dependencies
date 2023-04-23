@@ -31,6 +31,9 @@
         return root.get(Invoice_.NUMBER).in(subquery);
     }
     ```
+* Join and condition within specification:
+    * `predicates.add(criteriaBuilder.equal(root.get(AstCard_.USER).get(User_.ORGANIZATION_ID), request.getOrganizationId()));`
+    * Joins from ast_card table to patient table, create condition for user.organization_id
 * If appears error `Infinite recursion (StackOverflowError)` during serialization/deserialization:
     * Add `@JsonManagedReference` on main reference (near `@ManyToOne`) 
     * Add `@JsonBackReference` on back reference (near `@OneToMany`)
