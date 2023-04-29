@@ -20,7 +20,7 @@ public class HttpServletResponseUtils {
 
         return ResponseEntity.ok()
                 .header("Content-Disposition", contentDisposition.toString())
-                // Works only for english - .header("Content-Disposition", "attachment; filename=\"" + fileName + "\"" + ".wut")
+                // Works only for english - .header("Content-Disposition", "attachment; filename=\"" + fileName + ".wut\"")
                 // Also may be necessary to set type - .contentType(MediaType.APPLICATION_PDF)
                 .body(baos.toByteArray());
     }
