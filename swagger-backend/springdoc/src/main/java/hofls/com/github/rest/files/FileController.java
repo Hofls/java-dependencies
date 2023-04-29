@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.apache.commons.io.IOUtils;
 import org.springframework.http.ContentDisposition;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,7 +20,16 @@ public class FileController {
     // TODO - method "uploadFile"
 
     @Operation(summary = "Get file")
-    @GetMapping("")
+    @GetMapping("/main")
+    ResponseEntity<byte[]> getFile() throws Exception {
+        ByteArrayOutputStream arrayStream = new ByteArrayOutputStream();
+        arrayStream.write("Greetings!".getBytes());
+
+        return HttpServletResponseUtils.toResponse(arrayStream, "привет.wut");
+    }
+
+    @Operation(summary = "Get file (alternative)")
+    @GetMapping("/alternative")
     void getFile(HttpServletResponse response) throws Exception {
         ByteArrayOutputStream arrayStream = new ByteArrayOutputStream();
         arrayStream.write("Greetings!".getBytes());
