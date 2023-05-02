@@ -70,6 +70,7 @@ public class OtherTest extends BaseWithTransaction {
 
     @Test
     public void first_level_hibernate_cache_demo() {
+        // First level cache problems
         // Fix to typical problem with @OneToMany and @ManyToOne
         Shop shop = new Shop();
         shopRepository.saveAndFlush(shop);
