@@ -47,7 +47,7 @@
     ```
 * Composite id - `@IdClass`
 * Map multiple classes on one table - `@Embedded` and `@Embeddable`
-* Lazy field:
+* Lazy field (often doesn't work, better use LAZY with @OneToOne / @ManyToOne):
     ```
     @Basic(fetch = FetchType.LAZY)
     private String content;
