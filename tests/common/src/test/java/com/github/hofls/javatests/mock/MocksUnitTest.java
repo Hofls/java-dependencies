@@ -55,14 +55,22 @@ public class MocksUnitTest {
         assertEquals(expectedException, actualException.getMessage());
     }
 
-    /* For this method to work:
+    /* For these methods to work:
     1. Create folder "mockito-extensions" in test resources
     2. Create file "org.mockito.plugins.MockMaker" with content "mock-maker-inline"
+
     public static void mockUser() {
         var sessionUser = new SessionUser(43434, "John");
         var mock = Mockito.mockStatic(UserUtils.class);
         mock.when(UserUtils::getSessionUser).thenReturn(sessionUser);
     }
+
+    // Example argument - "2022-08-17T15:00"
+    public static void mockLocalDateTime(String dateTime) {
+        MockedStatic<LocalDateTime> mock = Mockito.mockStatic(LocalDateTime.class, Mockito.CALLS_REAL_METHODS);
+        mock.when(LocalDateTime::now).thenReturn(LocalDateTime.parse(dateTime));
+    }
+
     */
 
 }
