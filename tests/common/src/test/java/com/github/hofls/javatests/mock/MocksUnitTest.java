@@ -66,9 +66,12 @@ public class MocksUnitTest {
     }
 
     // Example argument - "2022-08-17T15:00"
-    public static void mockLocalDateTime(String dateTime) {
+    // At then end of the test - call mock.close();
+    public static MockedStatic<LocalDateTime> mockLocalDateTime(String dateTime) {
         MockedStatic<LocalDateTime> mock = Mockito.mockStatic(LocalDateTime.class, Mockito.CALLS_REAL_METHODS);
-        mock.when(LocalDateTime::now).thenReturn(LocalDateTime.parse(dateTime));
+        LocalDateTime testDateTime = LocalDateTime.parse(dateTime);
+        mock.when(LocalDateTime::now).thenReturn(testDateTime);
+        return mock;
     }
 
     */
