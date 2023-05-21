@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -35,6 +36,14 @@ class TestUtilsTest {
         String expected = TestUtils.readFile(this.getClass(), "person.json");
         Person actual = TestUtils.readObjectFromFile(this.getClass(), "person.json", Person.class);
         TestUtils.assertEqualJson(expected, actual);
+    }
+
+    @Test
+    void readListFromFile() throws Exception {
+        String expected = TestUtils.readFile(this.getClass(), "people.json");
+        Person[] peopleArray = TestUtils.readObjectFromFile(this.getClass(), "people.json", Person[].class);
+        List<Person> peopleList = Arrays.stream(peopleArray).collect(Collectors.toList());
+        TestUtils.assertEqualJson(expected, peopleList);
     }
 
     @Test
