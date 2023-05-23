@@ -1,0 +1,33 @@
+// Send message to redis, after successful transaction/commit that changed status
+// Use @Transaction and call repository.save(entity)
+
+@Entity
+@Table(name = "sick_card")
+public class SickCard extends AbstractAggregateRoot<SickCard>  {
+
+    public void changeStatus(SickStatus newStatus) {
+        if (this.status != newStatus) {
+            this.status = newStatus;
+            registerEvent(new SickChangeStatusEvent(id, newStatus));
+        }
+    }
+
+}
+
+@Component
+public class SickEventListener {
+
+    private final RedisPublisher redisPublisher;
+
+    @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT) // Always call repository.save(entity), otherwise it won't work
+    public void changeStatusSick(SickChangeStatusEvent event) {
+        redisPublisher.publishMessage(
+                new RefresherMessage(RefresherType.SICK, event.getId(), event.getStatus().name()));
+    }
+}
+
+public class SickChangeStatusEvent {
+    private UUID id;
+    private SickStatus status;
+}
+

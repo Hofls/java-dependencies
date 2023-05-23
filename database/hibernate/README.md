@@ -1,4 +1,4 @@
-# java-hibernate-example
+# Hibernate (JPA implementation)
 
 #### Run locally
 * Maven - execute `mvn clean spring-boot:run`
