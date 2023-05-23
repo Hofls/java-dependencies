@@ -1,0 +1,33 @@
+@UtilityClass
+public class StatusUtils {
+
+    private Map<SongStatus, List<SongStatus>> statusModel = getStatusModel();
+
+    private Map<SongStatus, List<SongStatus>> getStatusModel() {
+        var model = new HashMap<SongStatus, List<SongStatus>>();
+        model.put(SongStatus.EMPTY, List.of(SongStatus.SAVED));
+        model.put(SongStatus.SAVED, List.of(SongStatus.AWAITS_SIGNING));
+        model.put(SongStatus.AWAITS_SIGNING, List.of(SongStatus.SIGNED, SongStatus.SIGNING_FAILED));
+        model.put(SongStatus.SIGNED, List.of(SongStatus.AWAITS_UNSIGNING));
+        model.put(SongStatus.SIGNING_FAILED, List.of(SongStatus.SAVED, SongStatus.AWAITS_SIGNING));
+        model.put(SongStatus.AWAITS_UNSIGNING, List.of(SongStatus.UNSIGNED, SongStatus.UNSIGNING_FAILED));
+        model.put(SongStatus.UNSIGNED, List.of(SongStatus.SAVED, SongStatus.AWAITS_SIGNING));
+        model.put(SongStatus.UNSIGNING_FAILED, List.of(SongStatus.AWAITS_UNSIGNING));
+
+        return model;
+    }
+
+    public void throwIfWrongTransition(SongStatus oldStatus, SongStatus newStatus) {
+        if (oldStatus == null || newStatus == null) {
+            throw new IllegalArgumentException("Status should not be empty");
+        }
+        if (oldStatus.equals(newStatus)) {
+            return;
+        }
+        if (!statusModel.get(oldStatus).contains(newStatus)) {
+            var errorText = "Impossible to change status from '" + oldStatus.getTitle() + "' to '" + newStatus.getTitle() + "'";
+            throw new IllegalArgumentException(errorText);
+        }
+    }
+
+}
