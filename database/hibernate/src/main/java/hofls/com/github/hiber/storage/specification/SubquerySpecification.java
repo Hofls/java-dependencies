@@ -33,6 +33,7 @@ public class SubquerySpecification implements Specification<Employee> {
 
         // Finds employees by IDS
         return root.get("id").in(subquery);
+        // alternative - predicates.add(root.get(Employee_.ID).in(subquery));
     }
 
 }
