@@ -1,4 +1,4 @@
-### Converts document V5 to document V4
+### Snippets
 ```
 @Mapper(unmappedTargetPolicy = ReportingPolicy.ERROR, uses = { DateUtils.class })
 public interface DocumentMapper {

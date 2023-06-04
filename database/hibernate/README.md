@@ -52,4 +52,8 @@
     @Basic(fetch = FetchType.LAZY)
     private String content;
     ```
-* 
+* Update only changed fields:
+    ```
+    @DynamicUpdate
+    @Table
+    ```
