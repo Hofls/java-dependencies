@@ -34,7 +34,7 @@ public class OnStartup {
             try {
                 feignMirror.throwCustomError();
             } catch (CustomException e) {
-                System.out.println(e.getCustomExceptionData().getErrorCode());
+                System.out.println(e.getData().errorCode);
             }
 
             try {

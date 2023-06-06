@@ -11,7 +11,9 @@ public class CustomExceptionConfig {
         return (methodKey, response) -> {
             try {
                 String responseBody = response.body().toString();
-                return new ObjectMapper().readValue(responseBody, CustomException.class);
+                CustomException.CustomExceptionData data = new ObjectMapper()
+                        .readValue(responseBody, CustomException.CustomExceptionData.class);
+                return new CustomException(data);
             } catch (Exception ignored) {
             }
             return new ErrorDecoder.Default().decode(methodKey, response);
