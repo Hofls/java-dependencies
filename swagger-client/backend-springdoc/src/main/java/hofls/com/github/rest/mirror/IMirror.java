@@ -1,5 +1,6 @@
 package hofls.com.github.rest.mirror;
 
+import hofls.com.github.rest.common.config.CustomException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,5 +19,9 @@ public interface IMirror {
     @Operation(summary = "Throws error")
     @GetMapping(value="/throw")
     void throwError();
+
+    @Operation(summary = "Throws custom error")
+    @GetMapping(value="/throw/custom")
+    void throwCustomError() throws CustomException;
 
 }
