@@ -22,25 +22,25 @@ public class OnStartup {
     @EventListener(ApplicationReadyEvent.class)
     public void onStartup() throws Exception {
         boolean runMirror = false;
-        boolean runCustomException = true;
+        boolean runErrors = true;
         boolean runFile = false;
 
         if (runMirror) {
             String reflected = feignMirror.reflect("hello!");
             System.out.println(reflected);
-
-            try {
-                feignMirror.throwError();
-            } catch (FeignException e) {
-                System.out.println(e.contentUTF8()); // next convert to object, e.g. via jsonToObject()
-            }
         }
 
-        if (runCustomException) {
+        if (runErrors) {
             try {
                 feignMirror.throwCustomError();
             } catch (CustomException e) {
                 System.out.println(e.getCustomExceptionData().getErrorCode());
+            }
+
+            try {
+                feignMirror.throwError();
+            } catch (FeignException e) {
+                System.out.println(e.getMessage());
             }
         }
 
