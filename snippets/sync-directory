@@ -1,0 +1,10 @@
+* Directory as in "phone numbers directory" or "car parts directory"
+* Synchronize small amount of data:
+    * Delete old data, upload new data in a single transaction
+* Synchronize big amount of data:
+    * Generate ID of current synchronization
+    * Repeat until all data is processed:
+        * Open transaction
+        * Get small part of data (via pagination), save it in DB (insert/update), set sync ID
+        * Close transaction
+    * Delete old data (that has different ID of synchronization)
