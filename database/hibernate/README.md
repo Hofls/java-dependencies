@@ -53,6 +53,7 @@
     private String content;
     ```
 * Update only changed fields:
+    * Useful when different transactions trying to update different entity fields at the same time
     ```
     @DynamicUpdate
     @Table
