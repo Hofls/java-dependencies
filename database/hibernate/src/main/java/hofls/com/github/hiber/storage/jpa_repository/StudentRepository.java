@@ -57,6 +57,7 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     // Warning! You have to manually cast some types (only individual values, no problem with lists):
         // Via Java: var shared = new TypedParameterValue(new BooleanType(), request.getShared());
         // Or via SQL: ((:shared) is null or t.shared = CAST(CAST(:shared AS TEXT) AS BOOLEAN))
+        // Or via list with 1 element: ((:userIds) is null or t.user_id IN (:userIds))
     // If ":userId IS NULL" doesnt work, use  "COALESCE(:userId) IS NULL
     // Also if query is too complex - pageable won't work automatically, you will have to also write countQuery
 
