@@ -58,3 +58,13 @@
     @DynamicUpdate
     @Table
     ```
+* Custom countQuery:
+    ```
+    String sqlHead = """SELECT user_id, user_name """;
+    String sqlBody = """FROM user """;
+    @Query( nativeQuery = true,
+            countQuery = "SELECT COUNT(*) " + sqlBody,
+            value = sqlHead + sqlBody + "ORDER BY registration_date DESC"
+    )
+    Page<IUser> findUsers()
+    ```
