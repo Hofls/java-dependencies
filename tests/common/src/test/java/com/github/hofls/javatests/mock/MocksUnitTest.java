@@ -26,6 +26,7 @@ public class MocksUnitTest {
     @Test
     public void should_get_monthly_salary() {
         when(salaryExternalService.findDailySalary()).thenReturn(1000L);
+        // Also helpful - Mockito.when(client.sendRequest(Mockito.any())).thenThrow(new RuntimeException("Mock error"));
         assertEquals(30000, salaryCalculator.getMonthlySalary());
     }
 
