@@ -80,7 +80,10 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     /** Map results to any interface (non-native) */
     @Query(value = "SELECT s.name as name FROM Student s")
     List<ICustomStudent> findMapCustom();
-    /** Rare case when you need to update only specific field, to prevent overriding other fields (parallel editing) */
+    /**
+     * Rare case when you need to update only specific field, to prevent overriding other fields (parallel editing)
+     * Alternative - @DynamicUpdate
+     */
     @Modifying
     @Query("UPDATE Student s SET s.name = ?1 WHERE s.id = ?2")
     void updateName(String name, Long id);
