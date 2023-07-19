@@ -10,8 +10,8 @@ import java.util.Scanner;
 @UtilityClass
 public class FileUtils {
 
-    // FileUtils.fileToList("/documents.txt");
-    public List<String> fileToList(String path) throws Exception {
+    // FileUtils.fileToStrings("/documents.txt");
+    public List<String> fileToStrings(String path) throws Exception {
         var scanner = new Scanner(fileToString(path));
         var list = new ArrayList<String>();
         while (scanner.hasNextLine()) {
