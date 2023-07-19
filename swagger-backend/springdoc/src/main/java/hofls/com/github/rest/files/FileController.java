@@ -2,8 +2,6 @@ package hofls.com.github.rest.files;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.apache.commons.io.IOUtils;
-import org.springframework.http.ContentDisposition;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +15,8 @@ import java.io.ByteArrayOutputStream;
 @RestController
 public class FileController {
 
-    // TODO - method "uploadFile"
+    // Easiest method - just put file in resources/static folder
+    // Accessible via http://localhost:8080/hello.json
 
     @Operation(summary = "Get file")
     @GetMapping("/main")
@@ -36,5 +35,7 @@ public class FileController {
 
         HttpServletResponseUtils.streamToResponse(response, arrayStream, "привет.wut");
     }
+
+    // TODO - method "uploadFile"
 
 }
