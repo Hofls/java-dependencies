@@ -11,12 +11,12 @@ public class OnStartup {
 
     @PostConstruct
     public void init() {
-        List<String> linesA = new CsvReader().readCsv(
+        List<String> linesA = CsvReader.csvToList(
                 "/example.csv",
                 cells -> cells[0] + ";" + cells[1]);
         System.out.println(linesA);
 
-        List<String> linesB = new CsvReader().readCsv(
+        List<String> linesB = CsvReader.csvToList(
                 "/math.csv",
                 cells -> cells[0] + "+" + cells[1] + "=" + cells[2]);
         System.out.println(linesB);
