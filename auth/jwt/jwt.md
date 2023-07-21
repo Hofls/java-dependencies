@@ -19,3 +19,4 @@
 * Frontend sends JWT with each request to any service
     * Services get public key from auth service and cache it
     * Then they use public key to check that JWT is legit (by decrypting it)
+* Then check if JWT has necessary roles/privileges to execute method
