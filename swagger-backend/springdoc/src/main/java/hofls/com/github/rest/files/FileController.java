@@ -2,10 +2,10 @@ package hofls.com.github.rest.files;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayOutputStream;
@@ -15,7 +15,7 @@ import java.io.ByteArrayOutputStream;
 @RestController
 public class FileController {
 
-    // Easiest method - just put file in resources/static folder
+    // Easiest method to download a file - just put file in resources/static folder
     // Accessible via http://localhost:8080/hello.json
 
     @Operation(summary = "Get file")
@@ -36,6 +36,10 @@ public class FileController {
         HttpServletResponseUtils.streamToResponse(response, arrayStream, "привет.wut");
     }
 
-    // TODO - method "uploadFile"
+    @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE )
+    public ResponseEntity<String> uploadFile(
+            @RequestBody MultipartFile file) {
+        return ResponseEntity.ok("Received file: " + file.getOriginalFilename());
+    }
 
 }
