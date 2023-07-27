@@ -40,7 +40,7 @@ public class DemoController {
     private void checkPrivilege(String privilege) {
         String jwtText = httpRequest.getHeader("Authorization").substring(7); // Substring to exclude "Bearer"
         DecodedJWT decodedJWT = JWT.decode(jwtText);
-        List<String> privileges = decodedJWT.getClaims().get("authorization").asList(String.class);
+        List<String> privileges = decodedJWT.getClaims().get("permissions").asList(String.class);
         if (!privileges.contains(privilege)) {
             throw new RuntimeException("Permission " + privilege + " not found in JWT " + privileges);
         }

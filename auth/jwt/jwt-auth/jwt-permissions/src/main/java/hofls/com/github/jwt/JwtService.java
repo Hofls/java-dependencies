@@ -68,7 +68,7 @@ public class JwtService {
                 .withSubject("1234567890")
                 .withExpiresAt(expiresAt)
                 .withClaim("name", "John Doe")
-                .withClaim("authorization", Arrays.asList("CHECK_ALERTS", "DELETE_USERS"))
+                .withClaim("permissions", Arrays.asList("CHECK_ALERTS", "DELETE_USERS"))
                 .sign(algorithm);
     }
 
