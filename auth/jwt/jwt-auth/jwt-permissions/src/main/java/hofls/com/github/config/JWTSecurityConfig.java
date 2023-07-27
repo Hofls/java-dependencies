@@ -13,7 +13,8 @@ public class JWTSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/swagger-ui/**").permitAll()
                 .antMatchers("/v3/api-docs/**").permitAll()
-                .antMatchers("/auth-server/**").permitAll();
+                .antMatchers("/auth-server/**").permitAll()
+                .antMatchers("/jwt-controller/**").permitAll();
 
         /** Check JWT for each received request: */
         http.authorizeRequests(authz -> authz.anyRequest().authenticated())
