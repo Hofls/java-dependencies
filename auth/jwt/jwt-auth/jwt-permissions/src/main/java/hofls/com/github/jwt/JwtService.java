@@ -19,7 +19,10 @@ import org.bouncycastle.crypto.util.SubjectPublicKeyInfoFactory;
 import org.bouncycastle.openssl.jcajce.JcaPEMWriter;
 import org.bouncycastle.util.io.pem.PemObject;
 import org.bouncycastle.util.io.pem.PemWriter;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.StringWriter;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
@@ -62,11 +65,10 @@ public class JwtService {
     /** Create and encode JWT with private key */
     public static String createJWT() {
         Algorithm algorithm = Algorithm.RSA256(rsaPrivateKey);
-        Date expiresAt = new Date(System.currentTimeMillis() + 1000 * 60);
         return JWT.create()
                 .withIssuer("http://localhost:8080/auth-server/")
                 .withSubject("1234567890")
-                .withExpiresAt(expiresAt)
+                //.withExpiresAt(expiresAt)
                 .withClaim("name", "John Doe")
                 .withClaim("permissions", Arrays.asList("CHECK_ALERTS", "DELETE_USERS"))
                 .sign(algorithm);
@@ -79,6 +81,16 @@ public class JwtService {
                 .withIssuer("auth0")
                 .build();
         return verifier.verify(jwt);
+    }
+
+    public static void checkPermission(String privilege) {
+        HttpServletRequest httpRequest = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
+        String jwtText = httpRequest.getHeader("Authorization").substring(7); // Substring to exclude "Bearer"
+        DecodedJWT decodedJWT = JWT.decode(jwtText);
+        List<String> privileges = decodedJWT.getClaims().get("permissions").asList(String.class);
+        if (!privileges.contains(privilege)) {
+            throw new RuntimeException("Permission " + privilege + " not found in JWT " + privileges);
+        }
     }
 
 }
