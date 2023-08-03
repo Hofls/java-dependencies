@@ -68,3 +68,11 @@
     )
     Page<IUser> findUsers()
     ```
+* Alternative to DB triggers:
+    ```
+    @PreUpdate
+    @PrePersist
+    public void calculateFields() {
+        this.fullName = this.firstName + this.middleName + this.lastName;
+    }
+    ```
