@@ -16,7 +16,7 @@
                 <maxHistory>7</maxHistory>
             </rollingPolicy>
             <encoder>
-                <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+                <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %replace(%-5level){'ERROR', 'ERROR_LOG'} %logger{36} - %msg%n</pattern>
             </encoder>
         </appender>
         <root level="INFO">
@@ -32,7 +32,7 @@
                 <maxHistory>7</maxHistory>
             </rollingPolicy>
             <encoder>
-                <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+                <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %replace(%-5level){'ERROR', 'ERROR_LOG'} %logger{36} - %msg%n</pattern>
             </encoder>
         </appender>
         <logger level="INFO" additivity="false" name="hofls.com.github.rest" >
