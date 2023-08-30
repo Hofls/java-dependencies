@@ -12,8 +12,8 @@ public class FileUtils {
 
     // FileUtils.fileToStrings("/documents.txt");
     public List<String> fileToStrings(String path) throws Exception {
-        var scanner = new Scanner(fileToString(path));
-        var list = new ArrayList<String>();
+        Scanner scanner = new Scanner(fileToString(path));
+        List<String> list = new ArrayList<>();
         while (scanner.hasNextLine()) {
             list.add(scanner.nextLine());
         }

@@ -10,7 +10,8 @@ public class FileToString {
 
     public String getRootReadme() throws IOException {
         String path = new File("../README.md").getAbsolutePath();
-        return Files.readString(Paths.get(path));
+        return new String(Files.readAllBytes(Paths.get(path)), StandardCharsets.UTF_8);
+        // for new java version - return Files.readString(Paths.get(path));
     }
 
 }

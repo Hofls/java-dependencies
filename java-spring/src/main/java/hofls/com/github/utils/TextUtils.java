@@ -14,7 +14,7 @@ public class TextUtils {
             return text;
         }
 
-        for (var removeElem : removeList) {
+        for (String removeElem : removeList) {
             text = text.replace(removeElem, "");
         }
         return text;
@@ -26,12 +26,12 @@ public class TextUtils {
             return text;
         }
 
-        var newValueFixed = newValue == null ? "" : newValue;
+        String newValueFixed = newValue == null ? "" : newValue;
         return text.replace(oldValue, newValueFixed);
     }
 
     public static boolean allEmpty(String... values) {
-        for (var value : values) {
+        for (String value : values) {
             if (!org.springframework.util.StringUtils.isEmpty(value)) {
                 return false;
             }
@@ -41,7 +41,7 @@ public class TextUtils {
     }
 
     public static boolean anyEmpty(String... values) {
-        for (var value : values) {
+        for (String value : values) {
             if (org.springframework.util.StringUtils.isEmpty(value)) {
                 return true;
             }
@@ -55,7 +55,7 @@ public class TextUtils {
             return true;
         }
 
-        var withoutZeroWidth = value.replaceAll("\\u200B", "");
+        String withoutZeroWidth = value.replaceAll("\\u200B", "");
         return org.springframework.util.StringUtils.isEmpty(
                 org.springframework.util.StringUtils.trimWhitespace(withoutZeroWidth));
     }
