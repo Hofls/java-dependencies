@@ -26,7 +26,7 @@ public class HumanControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @MockBean
+    @MockBean // Warning! Spring reloads context for each test with @Mockbean. Use all those annotations in one class (e.g. in Application.java)
     private HumanController humanController;
 
     @Test

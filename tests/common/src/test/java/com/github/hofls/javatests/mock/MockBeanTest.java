@@ -14,7 +14,7 @@ public class MockBeanTest {
      * @MockBean replaces real bean with mock that does nothing
      * Try to change annotation to @Autowired, see what happens
      */
-    @MockBean
+    @MockBean // Warning! Spring reloads context for each test with @Mockbean. Use all those annotations in one class (e.g. in Application.java)
     private SalaryExternalService salaryExternalService;
 
     @Autowired

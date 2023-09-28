@@ -28,6 +28,7 @@ import org.springframework.context.annotation.FilterType;
 // There is too much to remove from context? Use "useDefaultFilters = false", and only include necessary classes
 
 @MockBeans({@MockBean(BrokenKafka.class), @MockBean(BrokenRedis.class)})
+// Warning! Spring reloads context for each test with @Mockbean. Use all those annotations in one class (e.g. in Application.java)
 // You can use @Autowired to get mocked bean, then specify behavior - when(kafka.count(any()).thenReturn(734);
 
 public class TestApplication extends SpringBootServletInitializer {
