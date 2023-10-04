@@ -1,7 +1,7 @@
 # Spring Boot Admin template 
 Simple template of Spring Boot Admin application.
 
-# How it works
+### How it works
 `application` gathers metrics and exposes them at numerous endpoints, notifies `admin` about new client.  
 `admin` creates web interface, continuously receives metrics from exposed endpoints.
 
@@ -11,7 +11,7 @@ Technology stack:
 * `Spring Boot Actuator` to gather and expose metrics
 * `Spring Boot Admin` to receive metrics and create web-interface for admin
 
-# How to run
+### How to run
 * To run locally (debug mode):
     * from `admin` folder - `mvn spring-boot:run`
     * from `application` folder - `mvn spring-boot:run -P dev`  
@@ -25,3 +25,8 @@ Technology stack:
     * Then launch server and open links:
         * [http://localhost:8080/application/actuator](http://localhost:8080/application/actuator)
         * [http://localhost:8080/admin/#/applications](http://localhost:8080/admin/#/applications)
+
+### Etc
+* [Simple script that gathers stats for all endpoints](endpoints-stats.js)
+    * Alternative to `Spring Boot Admin`
+* 
