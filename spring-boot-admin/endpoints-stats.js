@@ -8,12 +8,15 @@ function getCurrentUrl() {
 }
 
 async function getAverageTime(endpointUrl) {
-    const response = await fetch(endpointUrl);
-    const data = await response.json();
-    const totalTime = data.measurements.find((metric) => metric.statistic === 'TOTAL_TIME').value;
-    const count = data.measurements.find((metric) => metric.statistic === 'COUNT').value;
-    const averageTime = totalTime / count;
-    endpointData.push({ endpointUrl, averageTime });
+    try {
+        const response = await fetch(endpointUrl);
+        const data = await response.json();
+        const totalTime = data.measurements.find((metric) => metric.statistic === 'TOTAL_TIME').value;
+        const count = data.measurements.find((metric) => metric.statistic === 'COUNT').value;
+        const averageTime = totalTime / count;
+        endpointData.push({endpointUrl, averageTime});
+    } catch (e) {
+    }
 }
 
 async function getEndpointPaths() {
