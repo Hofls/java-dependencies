@@ -1,0 +1,10 @@
+spring:
+  redis:
+    sentinel:
+      master: mymaster
+      nodes: localhost:26379
+
+redis:
+  topic:
+    logout: logout-topic
+    purchase: purchase-topic
