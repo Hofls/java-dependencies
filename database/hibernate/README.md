@@ -76,3 +76,13 @@
         this.fullName = this.firstName + this.middleName + this.lastName;
     }
     ```
+* If sometimes you only need ID, but other times you need entire entity (best of both worlds):
+```
+    @Column(name = "customer_id")
+    private UUID customerId;
+
+    @JsonBackReference
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "customer_id", referencedColumnName = "customer_id")
+    private Customer customer;
+```
