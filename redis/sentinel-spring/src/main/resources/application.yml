@@ -1,8 +1,10 @@
 spring:
   redis:
+    #password: qwertyA
     sentinel:
       master: mymaster
       nodes: localhost:26379
+      password: qwertyB
 
 redis:
   topic:
