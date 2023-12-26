@@ -15,3 +15,15 @@ Useful endpoints:
 * [REST/SOAP endpoints](http://localhost:8099/actuator/mappings)
 * [For Prometheus](http://localhost:8099/actuator/prometheus)
 
+Endpoint activation example (in application.yaml):
+```
+management:
+  endpoint:
+    heapdump:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health,info,heapdump
+
+```
