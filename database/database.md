@@ -1,3 +1,5 @@
+For more info, look at `devops/database` repository
+
 #### Configuration
 * HikariCP
     * [Configuration docs](https://github.com/brettwooldridge/HikariCP#gear-configuration-knobs-baby)
