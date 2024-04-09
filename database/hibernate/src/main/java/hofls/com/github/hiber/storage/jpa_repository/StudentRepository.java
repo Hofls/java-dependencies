@@ -66,7 +66,7 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     @Query(nativeQuery = true, value = "select * from student where :studentId is null OR id = :studentId")
     List<Student> findNativeByParam(@Param("studentId") TypedParameterValue studentId);
     @Query(nativeQuery = true, value = "select * from student where :status is null OR status = CAST(:status AS text)")
-    List<Student> findNativeByEnum(@Param("status") Status status);
+    List<Student> findNativeByEnum(@Param("status") Status status); // Or use "String status"
     @Query(nativeQuery = true, value = "select * from student where (:statuses) is null OR status IN (:statuses)")
     List<Student> findNativeByEnums(@Param("statuses") List<String> statuses); // yep, no normal enum lists;
 
