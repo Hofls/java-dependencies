@@ -1,0 +1,47 @@
+/** Useful for tests/debug only, don't put this code into production */
+public class SqlService {
+
+    private final EntityManager entityManager;
+
+    @Transactional
+    public List<String> executeSqlQuery(String sqlQuery) {
+        if (sqlQuery.toUpperCase().startsWith("SELECT")) {
+            return select(sqlQuery);
+        } else {
+            return modify(sqlQuery);
+        }
+
+    }
+
+    private List<String> modify(String sqlQuery) {
+        var query = entityManager.createNativeQuery(sqlQuery);
+        query.executeUpdate();
+        return new ArrayList<>();
+    }
+
+    private List<String> select(String sqlQuery) {
+        var query = entityManager.createNativeQuery(sqlQuery);
+        List result = query.getResultList();
+        if (result.get(0) instanceof String) {
+            return result;
+        } else if (result.get(0) instanceof Object[]) {
+            return toStrings(result);
+        } else {
+            throw new IllegalArgumentException("Unsupported result type: " + result.get(0).getClass().getName());
+        }
+    }
+
+    private List<String> toStrings(List<Object[]> objects) {
+        var strings = new ArrayList<String>();
+        for (Object[] row : objects) {
+            var rowString = "";
+            for (Object column : row) {
+                rowString += column.toString() + "; ";
+            }
+            strings.add(rowString);
+        }
+        return strings;
+    }
+
+
+}
