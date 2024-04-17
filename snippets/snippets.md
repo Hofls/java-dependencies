@@ -1,4 +1,6 @@
-* For more snippets look in the packages:
+* Some snippets are located in other packages:
     * `hibernate`
     * `lombok`
     * `mapstruct`
+    * `message-queue`
+    * etc

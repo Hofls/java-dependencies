@@ -1,0 +1,39 @@
+By default, all queue problems are being ignored (e.g. Failed to declare queue)
+You have to manually restart service, to try to declare queues again
+Following code changes that behavior (kills service if queue stopped)
+
+@Slf4j
+@Component
+public class StopEventListener implements ApplicationListener<AsyncConsumerStoppedEvent> {
+
+    private boolean isShuttingDown = false;
+
+    @EventListener({ ContextClosedEvent.class })
+    public void onApplicationEvent(ContextClosedEvent event) {
+        isShuttingDown = true;
+    }
+
+    @Override
+    public void onApplicationEvent(AsyncConsumerStoppedEvent event) {
+        if (isShuttingDown) {
+            return;
+        }
+        log.error("AsyncConsumerStoppedEvent appeared, stopping the service");
+        System.exit(1);
+    }
+
+}
+
+public class RabbitStopService {
+    private final RabbitListenerEndpointRegistry rabbitRegistry;
+    private final ApplicationEventPublisher publisher;
+
+    @EventListener(ApplicationReadyEvent.class)
+    public void onStartup() {
+        rabbitRegistry.getListenerContainers().forEach(container -> {
+            if (container instanceof SimpleMessageListenerContainer) {
+                ((SimpleMessageListenerContainer) container).setApplicationEventPublisher(publisher);
+            }
+        });
+    }
+}
