@@ -1,0 +1,7 @@
+There is a weird lib, with no docs, but you still need to interact with it somehow?
+
+Check out all the beans lib puts in app context, maybe some of them are useful:
+@Autowired
+private ApplicationContext context;
+
+For example, AMQP has useful RabbitListenerEndpointRegistry bean
