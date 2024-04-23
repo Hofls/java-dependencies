@@ -21,8 +21,8 @@ public class OnStartup {
 
     @EventListener(ApplicationReadyEvent.class)
     public void onStartup() throws Exception {
-        boolean runMirror = false;
-        boolean runErrors = true;
+        boolean runMirror = true;
+        boolean runErrors = false;
         boolean runFile = false;
 
         if (runMirror) {
