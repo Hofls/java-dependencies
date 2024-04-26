@@ -3,6 +3,7 @@ package hofls.com.github.beans;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+// There is an (outdated) alternative - project "xml-config-beans"
 @Configuration
 public class BeanDemo {
 
