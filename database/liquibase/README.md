@@ -23,3 +23,14 @@
         </createTable>
     </changeSet>
     ```
+
+### If prod doesn't have an internet access:
+* You will get an error:
+```
+Failed to read schema document 'http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd', because 
+1) could not find the document; 
+2) the document could not be read; 
+3) the root element of the document is not <xsd:schema>
+```
+* To fix it - download xsd file manually, put it on a classpath - `main/resources/xsd/dbchangelog-4.6.xsd`
+* In each liquibase .xml file replace `http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd` with `xsd/dbchangelog-3.8.xsd`
