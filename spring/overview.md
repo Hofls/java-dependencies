@@ -28,3 +28,15 @@
     * Dependency - `spring-security-*` or `spring-boot-starter-security`; Package - `org.springframework.security.*`
 * `Spring for GraphQL`
     * Dependency - `pring-boot-starter-graphql`; Package - `org.springframework.graphql.*`
+
+### Spring Framework. Core
+* `IoC Container` manages beans - ApplicationContext, @Autowired, @Bean, @Service, @Repository, etc
+* `Bean scope`:
+    * `Singleton` - default, 1 instance per IoC container
+        * Example - `@Bean`, `@Repository`
+    * `Request` - 1 instance per HTTP request
+        * Example - `@Autowired HttpServletRequest request`
+    * `Prototype` - rare, new instance for each injection
+        * Example - `@Bean @Scope("prototype")`
+* `Resource` - provides access to resources (files, http, classpath)
+    * Location - org.springframework.core.io.Resource
