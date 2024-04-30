@@ -31,6 +31,8 @@
 
 ### Spring Framework. Core
 * `IoC Container` manages beans - ApplicationContext, @Autowired, @Bean, @Service, @Repository, etc
+    * Each bean is wrapped in a proxy. This allows execution of custom code, before real method call (e.g. Aspects, @Transactional)
+    That's why stacktraces are so [big and weird](resources/stacktrace.png)
 * `Bean scope`:
     * `Singleton` - default, 1 instance per IoC container
         * Example - `@Bean`, `@Repository`

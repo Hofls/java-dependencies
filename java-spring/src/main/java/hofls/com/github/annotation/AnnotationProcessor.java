@@ -2,6 +2,7 @@ package hofls.com.github.annotation;
 
 import java.lang.reflect.Field;
 
+// Can be combined with aspects (@Before), to automatically scan parameters
 public final class AnnotationProcessor {
 
     private AnnotationProcessor() {}
