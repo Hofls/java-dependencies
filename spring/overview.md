@@ -41,4 +41,15 @@
     * `Prototype` - rare, new instance for each injection
         * Example - `@Bean @Scope("prototype")`
 * `Resource` - provides access to resources (files, http, classpath)
-    * Location - org.springframework.core.io.Resource
+    * Location - `org.springframework.core.io.Resource`
+* `Validation` - throws exception if constraints are violated
+    * Example - `@NotNull`, `@Max(55)`
+* `Type conversion` - convert object to different class (e.g. text to number)
+    * Location - `org.springframework.core.convert.converter.Converter`
+* `Data binding` - bind user input to a target object 
+    * E.g. bind data from http request to java object in @PostMapping
+* `SpEL` (Spring Expression Language) - evaluates expressions, for example:
+    * `@Value("#{message.length() > 10 ? 'Message is long' : 'Message is short'}")`
+    * `@PreAuthorize("hasRole('ROLE_A') or hasRole('ROLE_B')")`
+* `AOP` (Aspect-oriented programming) - execute code before/after method invocation, for example:
+    * `@AfterThrowing(pointcut  = "execution(* hofls.com.github.aspect..*(..))", throwing = "exception")`
