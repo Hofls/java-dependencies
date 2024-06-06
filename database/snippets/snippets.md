@@ -65,7 +65,7 @@
     @JoinColumn(name = "customer_id", referencedColumnName = "customer_id")
     private Customer customer;
 ```
-* Join table (shop_type.shop_id, shop_type.shop_type_id)without extra entity class :
+* Join table (shop_type.shop_id, shop_type.shop_type_id) without extra entity class :
 ```
     class Shop {
         @ManyToMany
