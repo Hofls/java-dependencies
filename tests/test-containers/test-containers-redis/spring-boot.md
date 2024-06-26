@@ -1,4 +1,24 @@
 
+* Alternative A:
+```
+@ExtendWith(SpringExtension.class)
+@SpringBootTest(classes = Application.class)
+public abstract class RedisTest {
+
+    @DynamicPropertySource
+    static void dynamicRedis(DynamicPropertyRegistry registry) {
+        var redisContainer = new GenericContainer<>(DockerImageName.parse("redis:6-alpine"))
+                .withExposedPorts(6379);
+        redisContainer.start();
+
+        registry.add("spring.redis.host", redisContainer::getHost);
+        registry.add("spring.redis.port", redisContainer::getFirstMappedPort);
+    }
+
+}
+```
+
+* Alternative B:
 ```
 
 <dependency>
