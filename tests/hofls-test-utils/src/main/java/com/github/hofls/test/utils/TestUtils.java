@@ -109,6 +109,17 @@ public class TestUtils {
         }
     }
 
+    public static String formatJson(String jsonString) {
+        try {
+            var mapper = new ObjectMapper();
+            var json = mapper.readValue(jsonString, Object.class);
+            var writer = mapper.writer().with(new TestUtils.CustomPrinter());
+            return writer.writeValueAsString(json);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private static JsonNode removeFields(JsonNode node, List<String> ignoredFields) {
         if (node.isArray()) {
             for (JsonNode child : node) {

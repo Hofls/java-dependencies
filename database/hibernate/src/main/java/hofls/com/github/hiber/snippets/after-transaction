@@ -31,3 +31,9 @@ public class SickChangeStatusEvent {
     private SickStatus status;
 }
 
+
+//
+// TESTS:
+Create facade for class SickEventListener, replace AFTER_COMMIT with AFTER_ROLLBACK
+In the test, force end transaction using TestTransaction.end();
+Now event will trigger, code will be executed
