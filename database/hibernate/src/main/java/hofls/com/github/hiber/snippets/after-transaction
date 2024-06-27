@@ -1,5 +1,9 @@
 // Send message to redis, after successful transaction/commit that changed status
-// Use @Transaction and call repository.save(entity)
+// Use @Transaction and call repository.save(entity), .save() is necessary because of AbstractAggregateRoot quirks
+// Alternative to AbstractAggregateRoot (no need to call .save() each time):
+  // ApplicationEventPublisher eventPublisher;
+  // eventPublisher.publishEvent(customEvent);
+
 
 @Entity
 @Table(name = "sick_card")
@@ -19,7 +23,7 @@ public class SickEventListener {
 
     private final RedisPublisher redisPublisher;
 
-    @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT) // Always call repository.save(entity), otherwise it won't work
+    @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT) // If you use AbstractAggregateRoot, you must call repository.save(entity)
     public void changeStatusSick(SickChangeStatusEvent event) {
         redisPublisher.publishMessage(
                 new RefresherMessage(RefresherType.SICK, event.getId(), event.getStatus().name()));
