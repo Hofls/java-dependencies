@@ -23,7 +23,7 @@
 
 # Dependency alternatives
 * `Spring` - micronaut, quarkus
-    * Lose ecosystem, but gain fast startup time and low resources consumption
+    * Lose spring ecosystem, but gain fast startup time and low resources consumption (very niche)
 
 # RAM
 * `Heap` - java objects
@@ -46,6 +46,13 @@
     * Garbage collector info
 * Heap dump (has its own section)
 
+# Outdated/Unpopular tech
+* Java EE/Jakarta EE - alternative to Spring
+* Ant - alternative to Maven/Gradle
+* GWT - alternative to frontend
+* Powermock - alternative to mockito
+* Jetty/WebLogic/WildFly/JBoss - alternative to an embedded tomcat
+
 # Dump
 ##### Get dump
 * With actuator:
@@ -55,7 +62,6 @@
         * `ps -aux | grep java`
     * Get dump:
         * `jmap -dump:format=b,file=dump.hprof INSERT_PID_HERE`
-
 ##### Analyze dump
 * Download Eclipse Memory Analyzer (MAT)
     * https://www.eclipse.org/mat/
@@ -66,7 +72,6 @@
         * To see who references an object - `List incoming refereces`
         * To get full string - Attributes -> Right click -> Copy -> Value
     * Detect classes loaded multiple times - `Duplicate Classes` (metaspace leak)
-
 ##### Alternatives
 * VisualVM
     * [Fix for typical launch problem](https://stackoverflow.com/questions/24044069/visualvm-running-jre/24044137)
