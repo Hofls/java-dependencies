@@ -13,11 +13,14 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 import java.util.stream.Stream;
 
+/**
+ * Docs:
+ * https://docs.spring.io/spring-data/jpa/reference/repositories/query-keywords-reference.html
+ * https://docs.spring.io/spring-data/jpa/reference/jpa/query-methods.html
+ */
 @JaversSpringDataAuditable
 public interface StudentRepository extends JpaRepository<Student, Long> {
 
-    // https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods.query-creation
-    // https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories.limit-query-result
     void deleteByName(String name);
     // Stream<Student> streamAllBy(); - for processing big number of elements (alternative to cursor/scroll)
     List<Student> findByName(String name);
@@ -33,8 +36,6 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     @Query("select s from Student s where s.name <> 'John'")
     List<Student> findNotJohn(Pageable page);
 
-
-    // https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods.at-query
     // Pretty limited, for full power of SQL use "nativeQuery = true"
     @Query("select s from Student s where s.name = 'Satan' and s.campus.name = 'Hell'")
     List<Student> findNonNativeIn();
