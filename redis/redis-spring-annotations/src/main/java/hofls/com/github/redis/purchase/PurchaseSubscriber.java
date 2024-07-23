@@ -15,9 +15,6 @@ import java.nio.charset.StandardCharsets;
 @RedisListener(topic = "purchase-topic")
 public class PurchaseSubscriber implements MessageListener {
 
-    @Value("${redis.topic.purchase}")
-    private String topic;
-
     private static final Logger LOGGER = LoggerFactory.getLogger(PurchaseSubscriber.class);
 
     @Override
@@ -27,10 +24,6 @@ public class PurchaseSubscriber implements MessageListener {
 
         LOGGER.info("Received purchase - " + message);
         LOGGER.info("Received purchase converted to object - " + purchase);
-    }
-
-    public PatternTopic getTopic() {
-        return new PatternTopic(topic);
     }
 
 }

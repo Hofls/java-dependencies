@@ -12,18 +12,11 @@ import org.springframework.stereotype.Component;
 @RedisListener(topic = "logout-topic")
 public class LogoutSubscriber implements MessageListener {
 
-    @Value("${redis.topic.logout}")
-    private String topic;
-
     private static final Logger LOGGER = LoggerFactory.getLogger(LogoutSubscriber.class);
 
     @Override
     public void onMessage(Message message, byte[] pattern) {
         LOGGER.info("Received logout - " + message);
-    }
-
-    public PatternTopic getTopic() {
-        return new PatternTopic(topic);
     }
 
 }
