@@ -1,4 +1,5 @@
 # Hibernate (JPA implementation)
+* Main class - StudentRepository
 
 #### Run locally
 * Maven - execute `mvn clean spring-boot:run`
