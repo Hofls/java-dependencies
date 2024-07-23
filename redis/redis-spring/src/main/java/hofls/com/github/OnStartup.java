@@ -1,5 +1,6 @@
 package hofls.com.github;
 
+import hofls.com.github.redis.keyvalue.KeyValueService;
 import hofls.com.github.redis.logout.LogoutPublisher;
 import hofls.com.github.redis.purchase.Purchase;
 import hofls.com.github.redis.purchase.PurchasePublisher;
@@ -15,9 +16,13 @@ public class OnStartup {
     private LogoutPublisher logoutPublisher;
     @Autowired
     private PurchasePublisher purchasePublisher;
+    @Autowired
+    private KeyValueService keyValueService;
 
     @EventListener(ApplicationReadyEvent.class)
     public void onStartup() throws Exception {
+        keyValueService.set("msg", "Hello!");
+        keyValueService.get("msg");
         logoutPublisher.publishMessage();
         purchasePublisher.publishMessage(new Purchase(874, 20));
         Thread.sleep(1500L);
