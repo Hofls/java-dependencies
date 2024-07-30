@@ -10,6 +10,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = Application.class)
 @ActiveProfiles("junit")
+// @Transactional
 public abstract class BaseTest {
     // without 'abstract' - junit will try to run BaseTest
 }
