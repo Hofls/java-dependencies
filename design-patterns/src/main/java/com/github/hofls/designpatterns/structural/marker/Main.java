@@ -5,7 +5,7 @@ package com.github.hofls.designpatterns.structural.marker;
  */
 public class Main {
 
-    public void onStartup() {
+    public void example() {
         Classes.Dto dto = new Classes.Dto();
     }
 

@@ -5,7 +5,7 @@ package com.github.hofls.designpatterns.structural.facade;
  */
 public class Main {
 
-    public void onStartup() {
+    public void example() {
         Object video = new Object();
         Classes.VideoConverter converter = new Classes.VideoConverter();
         converter.convert(video);

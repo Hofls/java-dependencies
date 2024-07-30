@@ -5,7 +5,7 @@ package com.github.hofls.designpatterns.structural.delegation;
  */
 public class Main {
 
-    public void onStartup() {
+    public void example() {
         boolean isEmpty = Classes.TextUtils.IsEmpty("some text");
     }
 

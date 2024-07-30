@@ -5,7 +5,7 @@ package com.github.hofls.designpatterns.behavioral.memento;
  */
 public class Main {
 
-    public void onStartup() {
+    public void example() {
         Classes.History history = new Classes.History();
         Classes.State state = new Classes.State();
         history.addState(state);

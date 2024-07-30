@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class Main {
 
-    public void onStartup() {
+    public void example() {
         List<Classes.Node> nodes = Arrays.asList(
                 new Classes.HighNode(),
                 new Classes.LowNode()

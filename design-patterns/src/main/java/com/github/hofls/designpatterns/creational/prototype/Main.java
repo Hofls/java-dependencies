@@ -7,7 +7,7 @@ import org.apache.commons.lang3.SerializationUtils;
  */
 public class Main {
 
-    public void onStartup() {
+    public void example() {
         SerializationUtils.clone(new Long("23"));
     }
 

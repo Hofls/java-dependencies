@@ -5,7 +5,7 @@ package com.github.hofls.designpatterns.behavioral.observer;
  */
 public class Main {
 
-    public void onStartup() {
+    public void example() {
         Classes.EventManager eventManager = new Classes.EventManager();
         eventManager.addListener(new Classes.EventListener());
         eventManager.addListener(new Classes.EventListener());

@@ -5,7 +5,7 @@ package com.github.hofls.designpatterns.creational.lazy_initialization;
  */
 public class Main {
 
-    public void onStartup() {
+    public void example() {
         Initialization.Eager eager = new Initialization.Eager();
         Initialization.Lazy lazy = new Initialization.Lazy();
     }

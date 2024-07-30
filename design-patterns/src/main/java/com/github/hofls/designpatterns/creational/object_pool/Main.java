@@ -5,7 +5,7 @@ package com.github.hofls.designpatterns.creational.object_pool;
  */
 public class Main {
 
-    public void onStartup() {
+    public void example() {
         ConnectionsPool.Connection connection = ConnectionsPool.acquireConnection();
         ConnectionsPool.releaseConnection(connection);
     }

@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class Main {
 
-    public void onStartup() {
+    public void example() {
         List<Classes.Sorting> algorithms = Arrays.asList(
                 new Classes.QuickSorting(),
                 new Classes.SlowSorting()

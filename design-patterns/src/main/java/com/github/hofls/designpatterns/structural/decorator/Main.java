@@ -5,7 +5,7 @@ package com.github.hofls.designpatterns.structural.decorator;
  */
 public class Main {
 
-    public void onStartup() {
+    public void example() {
         Classes.TextProcessorDecorator decorator = new Classes.TextProcessorDecorator();
         decorator.addProcessor(new Classes.CompressionProcessor());
         decorator.addProcessor(new Classes.EncryptionProcessor());

@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class Main {
 
-    public void onStartup() {
+    public void example() {
         List<Classes.ConsoleWriter> writers = Arrays.asList(
                 new Classes.ClassicWriter(),
                 new Classes.NullWriter()

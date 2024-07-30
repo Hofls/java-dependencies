@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class Main {
 
-    public void onStartup() {
+    public void example() {
         List<DependencyInjection.MailClient> mailClients = Arrays.asList(
                 new DependencyInjection.RotatingVpnClient(),
                 new DependencyInjection.ExtraFastClient()

@@ -6,7 +6,7 @@ package com.github.hofls.designpatterns.structural.adapter;
  */
 public class Main {
 
-    public void onStartup() {
+    public void example() {
         Classes.RestClient client = new Classes.RestClient();
         client.sendTo(new Classes.RestServer());
         client.sendTo(new Classes.RestToSoapAdapter());

@@ -6,7 +6,7 @@ package com.github.hofls.designpatterns.structural.proxy;
  */
 public class Main {
 
-    public void onStartup() {
+    public void example() {
         Classes.Converter converter = new Classes.ProxyConverter();
         converter.convert();
     }

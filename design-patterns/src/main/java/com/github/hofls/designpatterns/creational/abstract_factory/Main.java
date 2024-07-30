@@ -7,7 +7,7 @@ package com.github.hofls.designpatterns.creational.abstract_factory;
  */
 public class Main {
 
-    public void onStartup() {
+    public void example() {
         String osName = System.getProperty("os.name").toLowerCase();
         if (osName.contains("mac")) {
             buildUserInterface(new Factories.WindowsFactory());

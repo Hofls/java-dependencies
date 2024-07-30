@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class Main {
 
-    public void onStartup() {
+    public void example() {
         List<Classes.AbstractProcessor> processors = Arrays.asList(
                 new Classes.CsvProcessor(),
                 new Classes.PdfProcessor()

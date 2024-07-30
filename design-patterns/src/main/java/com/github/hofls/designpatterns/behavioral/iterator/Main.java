@@ -8,7 +8,7 @@ import java.util.Iterator;
  */
 public class Main {
 
-    public void onStartup() {
+    public void example() {
         Iterator<String> iterator = Arrays.asList("ab", "cd").iterator();
         while (iterator.hasNext()) {
             String element = iterator.next();

@@ -5,7 +5,7 @@ package com.github.hofls.designpatterns.behavioral.mediator;
  */
 public class Main {
 
-    public void onStartup() {
+    public void example() {
         Classes.Mediator mediator = new Classes.Mediator();
         new Classes.Producer().produce(mediator);
         new Classes.Consumer().consume(mediator);

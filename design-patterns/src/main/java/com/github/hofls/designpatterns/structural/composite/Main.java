@@ -6,7 +6,7 @@ package com.github.hofls.designpatterns.structural.composite;
  */
 public class Main {
 
-    public void onStartup() {
+    public void example() {
         Classes.Directory directoryB = new Classes.Directory();
         directoryB.addElement(new Classes.File());
 

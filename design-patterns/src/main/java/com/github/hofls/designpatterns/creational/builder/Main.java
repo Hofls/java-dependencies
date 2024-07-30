@@ -6,7 +6,7 @@ package com.github.hofls.designpatterns.creational.builder;
  */
 public class Main {
 
-    public void onStartup() {
+    public void example() {
         DocumentParts.Document document =
                 new DocumentBuilder()
                 .addHeader(new DocumentParts.Element())

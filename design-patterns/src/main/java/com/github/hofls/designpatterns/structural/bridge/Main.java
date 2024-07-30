@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class Main {
 
-    public void onStartup() {
+    public void example() {
         List<Classes.Document> documents =
                 Arrays.asList(new Classes.CasualDocument(), new Classes.SpecialDocument());
         List<Classes.DocumentProcessor> processors =

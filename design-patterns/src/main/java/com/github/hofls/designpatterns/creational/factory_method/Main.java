@@ -6,7 +6,7 @@ package com.github.hofls.designpatterns.creational.factory_method;
  */
 public class Main {
 
-    public void onStartup() {
+    public void example() {
         String imageFormat = ".png";
         String encodedImage = "S8LJS82JRJ8D";
         decodeImage(imageFormat, encodedImage);

@@ -5,7 +5,7 @@ package com.github.hofls.designpatterns.behavioral.state;
  */
 public class Main {
 
-    public void onStartup() {
+    public void example() {
         Classes.Oven oven = new Classes.Oven();
         oven.pull();
     }

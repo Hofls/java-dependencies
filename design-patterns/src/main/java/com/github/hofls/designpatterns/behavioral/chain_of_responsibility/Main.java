@@ -6,7 +6,7 @@ package com.github.hofls.designpatterns.behavioral.chain_of_responsibility;
  */
 public class Main {
 
-    public void onStartup() {
+    public void example() {
         Classes.HeaderWriterFilter headerWriterFilter = new Classes.HeaderWriterFilter();
         headerWriterFilter
                 .setNext(new Classes.LogoutFilter())

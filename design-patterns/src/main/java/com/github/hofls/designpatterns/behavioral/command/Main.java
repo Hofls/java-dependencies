@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class Main {
 
-    public void onStartup() {
+    public void example() {
         File file = new File("");
         List<Classes.FileCommand> commands = Arrays.asList(
                 new Classes.RenameCommand(file),
