@@ -111,9 +111,9 @@ public class TestUtils {
 
     public static String formatJson(String jsonString) {
         try {
-            var mapper = new ObjectMapper();
-            var json = mapper.readValue(jsonString, Object.class);
-            var writer = mapper.writer().with(new TestUtils.CustomPrinter());
+            ObjectMapper mapper = new ObjectMapper();
+            Object json = mapper.readValue(jsonString, Object.class);
+            ObjectWriter writer = mapper.writer().with(new TestUtils.CustomPrinter());
             return writer.writeValueAsString(json);
         } catch (Exception e) {
             throw new RuntimeException(e);

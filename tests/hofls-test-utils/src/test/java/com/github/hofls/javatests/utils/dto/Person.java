@@ -8,9 +8,7 @@ import java.util.List;
 public class Person {
     public int id;
     public String name;
-    @JsonFormat(
-            pattern = "yyyy-MM-dd"
-    )
+    @JsonFormat(pattern = "yyyy-MM-dd") // this annotation is unnecessary (everything works without it)
     public LocalDate birthDate;
     public List<String> list;
 
