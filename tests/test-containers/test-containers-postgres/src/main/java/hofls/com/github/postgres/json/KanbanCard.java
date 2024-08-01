@@ -11,6 +11,7 @@ import org.hibernate.annotations.TypeDefs;
 import javax.persistence.*;
 import java.util.List;
 
+// If you want to use dates with jsonb - to set format use @JsonFormat, or set default format for all (ctrl+f "Alternative №1 to @JsonFormat")
 @Entity
 @Data
 @TypeDefs({

@@ -1,7 +1,29 @@
 
-* Alternative to @JsonFormat annotation (configure default format for all dates):
+* Alternative №1 to @JsonFormat annotation (configure default format for all dates) \
+Works with spring-web (swagger) and with hibernate (jsonb) \
+Create hibernate.properties in resources folder with text "hibernate.types.jackson.object.mapper=hofls.com.github.config.JacksonConfig" \
+For new hibernate versions consider using JSON_FORMAT_MAPPER - https://stackoverflow.com/questions/66656772/use-jackson-objectmapper-configured-by-spring-boot-in-hibernate
+```
+@Configuration
+public class JacksonConfig implements ObjectMapperSupplier {
+
+    @Override
+    @Bean
+    public ObjectMapper get() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true);
+        objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+        objectMapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
+        objectMapper.registerModule(new JavaTimeModule());
+        return objectMapper;
+    }
+
+}
 ```
 
+* Alternative №2 to @JsonFormat annotation (configure default format for all dates): \
+Works with spring-web (swagger)
+```
 @Configuration
 public class DateTimeConfig {
     @Autowired
