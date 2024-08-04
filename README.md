@@ -77,3 +77,4 @@
     * [Fix for typical launch problem](https://stackoverflow.com/questions/24044069/visualvm-running-jre/24044137)
     * Great for currently running apps, bad for dump analysis
     * Very slow leak analysis, weird list of classes (e.g. shows string, instead of class which contains it)
+
