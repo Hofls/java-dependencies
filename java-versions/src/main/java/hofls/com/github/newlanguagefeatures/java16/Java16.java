@@ -1,4 +1,4 @@
-package hofls.com.github.newlanguagefeatures.java16.stream;
+package hofls.com.github.newlanguagefeatures.java16;
 
 import java.util.Arrays;
 
