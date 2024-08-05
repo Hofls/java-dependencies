@@ -1,10 +1,7 @@
 package hofls.com.github.newlanguagefeatures.java21;
 
 import java.time.Duration;
-import java.util.List;
-import java.util.SequencedCollection;
-import java.util.SequencedMap;
-import java.util.SequencedSet;
+import java.util.*;
 import java.util.concurrent.Executors;
 
 public class Java21 {
