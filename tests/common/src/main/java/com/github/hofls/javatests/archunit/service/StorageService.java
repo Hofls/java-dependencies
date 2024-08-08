@@ -1,7 +1,7 @@
 package com.github.hofls.javatests.archunit.service;
 
 
-// Uncomment a line to break archunit test
+// Remove a comment to break archunit test
 public class StorageService {
 
     public static void tryToBreakArchitecture() {
@@ -11,5 +11,21 @@ public class StorageService {
 
         // StorageWeb.recalculateValues();
     }
+
+/*
+    public void hugeMethod() {
+        System.out.println("Hello world");
+        System.out.println("Hello world");
+        System.out.println("Hello world");
+        System.out.println("Hello world");
+        System.out.println("Hello world");
+        System.out.println("Hello world");
+        System.out.println("Hello world");
+        System.out.println("Hello world");
+        System.out.println("Hello world");
+        System.out.println("Hello world");
+    }
+*/
+
 
 }
