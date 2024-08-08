@@ -22,7 +22,7 @@ class UnitTestMultithreaded {
 
         validateCountdown.await(); // necessary to wait for all threads
         assertEquals(10, exceptions.size());
-        assertEquals("Index: 777, Size: 0", exceptions.get(0).getMessage());
+        assertEquals("Index 777 out of bounds for length 0", exceptions.get(0).getMessage());
     }
 
     private void indexOutOfBounds() {

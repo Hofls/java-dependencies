@@ -1,10 +1,15 @@
 package com.github.hofls.javatests.archunit.service;
 
+
+// Uncomment a line to break archunit test
 public class StorageService {
 
     public static void tryToBreakArchitecture() {
-        //StorageWeb.recalculateValues();
-        // uncomment this ^ line to break architecture
+        // OffsetDateTime.now();
+
+        // throw new IllegalArgumentException("ss");
+
+        // StorageWeb.recalculateValues();
     }
 
 }
