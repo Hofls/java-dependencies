@@ -2,11 +2,13 @@ package com.github.hofls.javatests.archunit;
 
 import com.tngtech.archunit.core.domain.JavaClass;
 import com.tngtech.archunit.core.domain.JavaClasses;
+import com.tngtech.archunit.core.domain.JavaMethod;
 import com.tngtech.archunit.core.importer.ClassFileImporter;
 import com.tngtech.archunit.core.importer.ImportOption;
 import com.tngtech.archunit.lang.ArchCondition;
 import com.tngtech.archunit.lang.ConditionEvents;
 import com.tngtech.archunit.lang.SimpleConditionEvent;
+import com.tngtech.archunit.lang.syntax.ArchRuleDefinition;
 import org.junit.jupiter.api.Test;
 import com.tngtech.archunit.core.domain.JavaAccess;
 
@@ -32,7 +34,11 @@ class ArchTest {
             .check(classes);
 
         classes().should(haveLessLinesThan(20))
-            .because("We have decided to limit size of classes")
+            .because("Huge class = huge complexity, better break it into two smaller classes")
+            .check(classes);
+
+        ArchRuleDefinition.methods().should(haveLessParametersThan(10))
+            .because("Huge parameters count = huge complexity, better break it into two smaller methods")
             .check(classes);
 
         noClasses()
@@ -57,7 +63,20 @@ class ArchTest {
                         .mapToInt(n -> n)
                         .max().orElse(0);
                 boolean satisfied = lastLineNumber < number;
-                events.add(new SimpleConditionEvent(javaClass, satisfied, javaClass.getName() + " has more than " + lastLineNumber + " lines"));
+                events.add(new SimpleConditionEvent(javaClass, satisfied, javaClass.getName() + " has " + lastLineNumber + "+ lines"));
+            }
+        };
+    }
+
+    private ArchCondition<JavaMethod> haveLessParametersThan(int number) {
+        return new ArchCondition<>("have less than " + number + " parameters") {
+            @Override
+            public void check(JavaMethod method, ConditionEvents events) {
+                int numberOfParameters = method.getRawParameterTypes().size();
+                if (numberOfParameters >= number) {
+                    events.add(SimpleConditionEvent.violated(method,
+                            String.format("Method " + method.getFullName() + " has " + number + "+ parameters")));
+                }
             }
         };
     }
