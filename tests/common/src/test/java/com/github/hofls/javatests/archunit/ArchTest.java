@@ -33,11 +33,11 @@ class ArchTest {
             .because("We have decided to use RuntimeException instead")
             .check(classes);
 
-        classes().should(haveLessLinesThan(20))
+        classes().should(haveMoreLinesThan(20))
             .because("Huge class = huge complexity, better break it into two smaller classes")
             .check(classes);
 
-        ArchRuleDefinition.methods().should(haveLessParametersThan(10))
+        ArchRuleDefinition.methods().should(haveMoreParametersThan(10))
             .because("Huge parameters count = huge complexity, better break it into two smaller methods")
             .check(classes);
 
@@ -58,7 +58,7 @@ class ArchTest {
 
     }
 
-    private ArchCondition<JavaClass> haveLessLinesThan(int number) {
+    private ArchCondition<JavaClass> haveMoreLinesThan(int number) {
         return new ArchCondition<>("have less than " + number + " lines") {
             @Override
             public void check(JavaClass javaClass, ConditionEvents events) {
@@ -73,7 +73,7 @@ class ArchTest {
         };
     }
 
-    private ArchCondition<JavaMethod> haveLessParametersThan(int number) {
+    private ArchCondition<JavaMethod> haveMoreParametersThan(int number) {
         return new ArchCondition<>("have less than " + number + " parameters") {
             @Override
             public void check(JavaMethod method, ConditionEvents events) {
