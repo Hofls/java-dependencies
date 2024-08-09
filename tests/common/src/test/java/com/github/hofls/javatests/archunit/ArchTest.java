@@ -33,7 +33,9 @@ class ArchTest {
             .because("We have decided to use RuntimeException instead")
             .check(classes);
 
-        classes().should(haveLessLinesThan(20))
+        classes()
+            .that().haveSimpleNameNotEndingWith("MapperImpl") // Exclude automatically generated mappers
+            .should(haveLessLinesThan(20))
             .because("Huge class = huge complexity, better break it into two smaller classes")
             .check(classes);
 
