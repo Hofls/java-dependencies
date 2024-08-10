@@ -8,6 +8,7 @@ import com.tngtech.archunit.lang.ConditionEvents;
 import com.tngtech.archunit.lang.SimpleConditionEvent;
 import org.junit.jupiter.api.Test;
 
+import java.lang.annotation.Annotation;
 import java.time.OffsetDateTime;
 
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.*;
@@ -85,7 +86,7 @@ class ArchTest {
         };
     }
 
-    private void banAnnotation(JavaClasses classes, Class annotation, String explanation) {
+    private void banAnnotation(JavaClasses classes, Class<? extends Annotation> annotation, String explanation) {
         noClasses()
                 .should().beAnnotatedWith(annotation)
                 .because(explanation)
@@ -103,7 +104,7 @@ class ArchTest {
                 .check(classes);
     }
 
-    private ArchCondition<JavaMethod> notHaveParametersWithAnnotation(Class annotation) {
+    private ArchCondition<JavaMethod> notHaveParametersWithAnnotation(Class<? extends Annotation> annotation) {
         return new ArchCondition<>("be not annotated with " + annotation.getName()) {
             @Override
             public void check(JavaMethod method, ConditionEvents events) {
