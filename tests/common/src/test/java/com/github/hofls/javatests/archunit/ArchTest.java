@@ -1,8 +1,6 @@
 package com.github.hofls.javatests.archunit;
 
-import com.tngtech.archunit.core.domain.JavaClass;
-import com.tngtech.archunit.core.domain.JavaClasses;
-import com.tngtech.archunit.core.domain.JavaMethod;
+import com.tngtech.archunit.core.domain.*;
 import com.tngtech.archunit.core.importer.ClassFileImporter;
 import com.tngtech.archunit.core.importer.ImportOption;
 import com.tngtech.archunit.lang.ArchCondition;
@@ -10,12 +8,10 @@ import com.tngtech.archunit.lang.ConditionEvents;
 import com.tngtech.archunit.lang.SimpleConditionEvent;
 import com.tngtech.archunit.lang.syntax.ArchRuleDefinition;
 import org.junit.jupiter.api.Test;
-import com.tngtech.archunit.core.domain.JavaAccess;
 
 import java.time.OffsetDateTime;
 
-import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
-import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.noClasses;
+import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.*;
 
 class ArchTest {
 
@@ -42,6 +38,8 @@ class ArchTest {
         ArchRuleDefinition.methods().should(haveLessParametersThan(10))
             .because("Huge parameters count = huge complexity, better break it into two smaller methods")
             .check(classes);
+
+        banAnnotation(classes, Deprecated.class, "We have decided to use @Outdated annotation instead");
 
         noClasses()
             .that()
@@ -86,6 +84,21 @@ class ArchTest {
                 }
             }
         };
+    }
+
+    private void banAnnotation(JavaClasses classes, Class annotation, String explanation) {
+        noClasses()
+                .should().beAnnotatedWith(annotation)
+                .because(explanation)
+                .check(classes);
+        noMethods()
+                .should().beAnnotatedWith(annotation)
+                .because(explanation)
+                .check(classes);
+        noFields()
+                .should().beAnnotatedWith(annotation)
+                .because(explanation)
+                .check(classes);
     }
 
 
