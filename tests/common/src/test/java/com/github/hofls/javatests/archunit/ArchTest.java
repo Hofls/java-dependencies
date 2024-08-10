@@ -6,7 +6,6 @@ import com.tngtech.archunit.core.importer.ImportOption;
 import com.tngtech.archunit.lang.ArchCondition;
 import com.tngtech.archunit.lang.ConditionEvents;
 import com.tngtech.archunit.lang.SimpleConditionEvent;
-import com.tngtech.archunit.lang.syntax.ArchRuleDefinition;
 import org.junit.jupiter.api.Test;
 
 import java.time.OffsetDateTime;
@@ -35,7 +34,7 @@ class ArchTest {
             .because("Huge class = huge complexity, better break it into two smaller classes")
             .check(classes);
 
-        ArchRuleDefinition.methods().should(haveLessParametersThan(10))
+        methods().should(haveLessParametersThan(10))
             .because("Huge parameters count = huge complexity, better break it into two smaller methods")
             .check(classes);
 
@@ -99,7 +98,7 @@ class ArchTest {
                 .should().beAnnotatedWith(annotation)
                 .because(explanation)
                 .check(classes);
-        ArchRuleDefinition.methods().should(notHaveParametersWithAnnotation(annotation))
+        methods().should(notHaveParametersWithAnnotation(annotation))
                 .because(explanation)
                 .check(classes);
     }
