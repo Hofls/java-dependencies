@@ -1,6 +1,5 @@
 package hofls.com.github.generics;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
@@ -21,7 +20,7 @@ public class GenericUtilsExample {
     }
 
     public static <N extends Number> String toString(N value) {
-        return value != null ? value.toString() : StringUtils.EMPTY;
+        return value != null ? value.toString() : "";
     }
 
 }

@@ -43,7 +43,6 @@ class AutoValidatorTest {
             autoValidator.getGreeting(objectToValidate);
         });
         assertEquals("getGreeting.obj.fieldB: must be greater than or equal to 55", exception.getMessage());
-
     }
 
     @Test
@@ -56,7 +55,14 @@ class AutoValidatorTest {
         autoValidator.getGreeting(objectToValidate);
         });
         assertEquals("getGreeting.obj.nested.fieldA: must not be empty", exception.getMessage());
+    }
 
+    @Test
+    void testValidateNotNull() {
+        Exception exception = Assertions.assertThrows(RuntimeException.class, () -> {
+            autoValidator.greetByName(null);
+        });
+        assertEquals("greetByName.name: must not be null", exception.getMessage());
     }
 }
 

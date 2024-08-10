@@ -1,6 +1,6 @@
 package hofls.com.github.xml;
 
-import javax.xml.bind.JAXB;
+import jakarta.xml.bind.JAXB;
 import java.io.StringReader;
 import java.io.StringWriter;
 

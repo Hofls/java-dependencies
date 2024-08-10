@@ -1,6 +1,7 @@
 package hofls.com.github.string;
 
-import org.apache.commons.lang3.StringUtils;
+
+import org.springframework.util.StringUtils;
 
 public class ConcatenationDemo {
 
