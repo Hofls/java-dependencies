@@ -91,14 +91,31 @@ class ArchTest {
                 .should().beAnnotatedWith(annotation)
                 .because(explanation)
                 .check(classes);
-        noMethods()
-                .should().beAnnotatedWith(annotation)
-                .because(explanation)
-                .check(classes);
         noFields()
                 .should().beAnnotatedWith(annotation)
                 .because(explanation)
                 .check(classes);
+        noMethods()
+                .should().beAnnotatedWith(annotation)
+                .because(explanation)
+                .check(classes);
+        ArchRuleDefinition.methods().should(notHaveParametersWithAnnotation(annotation))
+                .because(explanation)
+                .check(classes);
+    }
+
+    private ArchCondition<JavaMethod> notHaveParametersWithAnnotation(Class annotation) {
+        return new ArchCondition<>("be not annotated with " + annotation.getName()) {
+            @Override
+            public void check(JavaMethod method, ConditionEvents events) {
+                for (var parameter : method.getParameters()) {
+                    if (parameter.isAnnotatedWith(annotation)) {
+                        events.add(SimpleConditionEvent.violated(method,
+                                String.format("Method " + method.getFullName() + " has parameter with banned annotation - " + annotation.getName())));
+                    }
+                }
+            }
+        };
     }
 
 

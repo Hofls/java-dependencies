@@ -16,7 +16,7 @@ public class StorageService {
         // StorageWeb.recalculateValues();
     }
 
-   // public void temp(@Deprecated Integer number) {}
+    // private void temp(@Deprecated Integer number) {}
 
 /*
     public void methodWithManyParameters(int a, int b, int c, int d, int e,
