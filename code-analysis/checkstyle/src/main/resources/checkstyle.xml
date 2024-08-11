@@ -15,6 +15,15 @@
         <module name="ParameterNumber">
             <property name="max" value="9"/>
         </module>
+        <module name="RegexpSinglelineJava">
+            <property name="format" value="OffsetDateTime.now"/>
+        </module>
+        <module name="RegexpSinglelineJava">
+            <property name="format" value="new IllegalArgumentException"/>
+        </module>
+        <module name="RegexpSinglelineJava">
+            <property name="format" value="@Deprecated"/>
+        </module>
     </module>
 
     <module name="LineLength">

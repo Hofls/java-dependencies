@@ -11,11 +11,10 @@ public class StorageService {
     public static void doStuff() {
         int i = (44 + 55 + 22 - 9 + 93 + 66) - (44 + 55 + 22 - 9 + 93 + 66) + (44 + 55 + 22 - 9 + 93 + 66) - (44 + 55 + 22 - 9 + 93 + 66)  + (44 + 55 + 22 - 9 + 93 + 66) ;
         OffsetDateTime.now();
-        // StorageWeb.recalculateValues();
-        // throw new IllegalArgumentException("ss");
+        throw new IllegalArgumentException("ss");
     }
 
-    // private void temp(@Deprecated Integer number) {}
+    private void temp(@Deprecated Integer number) {}
 
 
     public void methodWithManyParameters(int a, int b, int c, int d, int e,
