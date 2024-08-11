@@ -28,6 +28,7 @@ checkstyle {
 tasks.named('test') {
     useJUnitPlatform()
 }
+test.dependsOn 'checkstyleMain'
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
