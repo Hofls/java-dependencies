@@ -24,6 +24,15 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
+
+tasks.withType(JavaCompile) {
+    options.errorprone {
+        disableAllChecks = true
+        check('ReturnValueIgnored')
+        check('XorPower')
+    }
+}
+
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
