@@ -1,7 +1,9 @@
-package com.github.hofls.javatests.archunit.service;
+package hofls.com.github.archunit.service;
 
 
-import org.springframework.validation.annotation.Validated;
+import hofls.com.github.archunit.web.StorageWeb;
+
+import java.time.OffsetDateTime;
 
 // Remove a comment to break archunit test
 public class StorageService {

@@ -1,4 +1,4 @@
-package com.github.hofls.javatests.archunit.web;
+package hofls.com.github.archunit.web;
 
 public class StorageWeb {
 

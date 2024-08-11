@@ -1,4 +1,4 @@
-package com.github.hofls.javatests.archunit;
+package hofls.com.github.archunit;
 
 import com.tngtech.archunit.core.domain.*;
 import com.tngtech.archunit.core.importer.ClassFileImporter;
@@ -8,8 +8,12 @@ import com.tngtech.archunit.lang.ConditionEvents;
 import com.tngtech.archunit.lang.SimpleConditionEvent;
 import org.junit.jupiter.api.Test;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.lang.annotation.Annotation;
 import java.time.OffsetDateTime;
+import java.util.Optional;
 
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.*;
 
@@ -19,7 +23,7 @@ class ArchTest {
     void archUnit_MainClasses() {
         JavaClasses classes = new ClassFileImporter()
             .withImportOption(ImportOption.Predefined.DO_NOT_INCLUDE_TESTS)
-            .importPackages("com.github.hofls.javatests.archunit");
+            .importPackages("hofls.com.github.archunit");
 
         noClasses().should().callMethod(OffsetDateTime.class, "now")
             .because("We have decided to use LocalDateTime.now() instead")
@@ -43,15 +47,16 @@ class ArchTest {
 
         noClasses()
             .that()
-                .resideInAnyPackage("com.github.hofls.javatests.archunit.service..")
+                .resideInAnyPackage("hofls.com.github.archunit.service..")
             .or()
-                .resideInAnyPackage("com.github.hofls.javatests.archunit.repository..")
+                .resideInAnyPackage("hofls.com.github.archunit.repository..")
             .should().dependOnClassesThat()
-                .resideInAnyPackage("..com.github.hofls.javatests.archunit.web..")
+                .resideInAnyPackage("hofls.com.github.archunit.web..")
         .because("Services and repositories should not depend on web layer")
         .check(classes);
 
         // Not possible with archunit:
+        // ? Max line length = 140 symbols
         // Max method length - 100 lines
         // Ban interfaces with only 1 implementation
         // No packages with 25+ classes
@@ -117,6 +122,5 @@ class ArchTest {
             }
         };
     }
-
 
 }
