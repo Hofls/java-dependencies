@@ -4,28 +4,39 @@
 
 <module name="Checker">
 
+    <!-- Huge class = huge complexity, better break it into two smaller classes -->
     <module name="FileLength">
         <property name="max" value="10"/>
     </module>
 
     <module name="TreeWalker">
+        <!-- Huge method count = huge complexity, better break it into two smaller methods -->
         <module name="MethodLength">
             <property name="max" value="8"/>
         </module>
+
+        <!-- Huge parameters count = huge complexity, better break it into two smaller methods, or use single class as a parameter -->
         <module name="ParameterNumber">
             <property name="max" value="9"/>
         </module>
+
+        <!-- We have decided to use LocalDateTime.now() instead -->
         <module name="RegexpSinglelineJava">
             <property name="format" value="OffsetDateTime.now"/>
         </module>
+
+        <!-- We have decided to use RuntimeException instead -->
         <module name="RegexpSinglelineJava">
             <property name="format" value="new IllegalArgumentException"/>
         </module>
+
+        <!-- We have decided to use @Outdated annotation instead -->
         <module name="RegexpSinglelineJava">
             <property name="format" value="@Deprecated"/>
         </module>
     </module>
 
+    <!-- Too much is happening in a single line, break it apart -->
     <module name="LineLength">
         <property name="max" value="140"/>
     </module>
