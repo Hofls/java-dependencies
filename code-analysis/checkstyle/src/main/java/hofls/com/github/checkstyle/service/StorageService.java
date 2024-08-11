@@ -16,10 +16,12 @@ public class StorageService {
 
     private void temp(@Deprecated Integer number) {}
 
+    // CHECKSTYLE:OFF
+    private void temp2(@Deprecated Integer number) {}
+    // CHECKSTYLE:ON
 
     public void methodWithManyParameters(int a, int b, int c, int d, int e,
                                          int f, int g, int h, int i, int j) {
-
     }
 
 
