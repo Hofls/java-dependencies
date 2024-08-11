@@ -1,33 +1,29 @@
-package hofls.com.github.archunit.service;
+package hofls.com.github.checkstyle.service;
 
-
-import hofls.com.github.archunit.web.StorageWeb;
 
 import java.time.OffsetDateTime;
 
-// Remove a comment to break archunit test
 public class StorageService {
 
     private String message;
 
+
     public static void doStuff() {
-        // OffsetDateTime.now();
-
-        // throw new IllegalArgumentException("ss");
-
+        int i = (44 + 55 + 22 - 9 + 93 + 66) - (44 + 55 + 22 - 9 + 93 + 66) + (44 + 55 + 22 - 9 + 93 + 66) - (44 + 55 + 22 - 9 + 93 + 66)  + (44 + 55 + 22 - 9 + 93 + 66) ;
+        OffsetDateTime.now();
         // StorageWeb.recalculateValues();
+        // throw new IllegalArgumentException("ss");
     }
 
     // private void temp(@Deprecated Integer number) {}
 
-/*
+
     public void methodWithManyParameters(int a, int b, int c, int d, int e,
                                          int f, int g, int h, int i, int j) {
 
     }
- */
 
-/*
+
     public void hugeMethod() {
         System.out.println("Hello world");
         System.out.println("Hello world");
@@ -40,7 +36,7 @@ public class StorageService {
         System.out.println("Hello world");
         System.out.println("Hello world");
     }
-*/
+
 
 
 }

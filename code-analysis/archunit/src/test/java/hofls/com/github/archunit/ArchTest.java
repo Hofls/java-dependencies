@@ -54,13 +54,6 @@ class ArchTest {
                 .resideInAnyPackage("hofls.com.github.archunit.web..")
         .because("Services and repositories should not depend on web layer")
         .check(classes);
-
-        // Not possible with archunit:
-        // ? Max line length = 140 symbols
-        // Max method length - 100 lines
-        // Ban interfaces with only 1 implementation
-        // No packages with 25+ classes
-
     }
 
     private ArchCondition<JavaClass> haveLessLinesThan(int number) {
