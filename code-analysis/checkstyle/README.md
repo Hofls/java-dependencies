@@ -21,3 +21,4 @@
     </executions>
 </plugin>
 ```
+* To externalize config (checkstyle.xml) in maven, [add it as a plugin dependency](https://stackoverflow.com/questions/19682455/how-to-externalise-the-checkstyle-config-for-maven-checkstyle-plugin)
