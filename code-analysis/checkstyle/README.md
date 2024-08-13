@@ -10,6 +10,9 @@
     <version>3.4.0</version>
     <configuration>
         <configLocation>src/main/resources/checkstyle.xml</configLocation>
+        <sourceDirectories> <!-- To exclude generated sources -->
+            <sourceDirectory>${project.build.sourceDirectory}</sourceDirectory>
+        </sourceDirectories>
     </configuration>
     <executions>
         <execution>
