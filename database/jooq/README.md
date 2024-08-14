@@ -15,6 +15,10 @@
       CONSTRAINT FK_AUTHOR FOREIGN KEY (AUTHOR_ID) REFERENCES AUTHOR(ID)
     );
     ```
-* Generate classes based on DB tables - `mvn clean generate-sources`
+* Generate classes based on DB tables:
+  * Maven - `mvnw clean generate-sources`
+  * Gradle - `gradlew clean generateJooq`
 * Mark `target/generated-sources` folder in IDEA
-* Run app - `mvn compile exec:java -Dexec.mainClass=hofls.com.github.App`
+* Run app:
+  * Maven - `mvn compile exec:java -Dexec.mainClass=hofls.com.github.App`
+  * Gradle - `gradlew run`

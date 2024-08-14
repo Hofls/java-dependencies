@@ -1,0 +1,73 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'nu.studer.jooq' version '8.2'
+}
+
+group = 'hofls.com.github'
+version = '0.0.1-SNAPSHOT'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.jooq:jooq:3.18.5'
+    implementation 'org.jooq:jooq-meta:3.18.5'
+    implementation 'org.jooq:jooq-codegen:3.18.5'
+    implementation 'org.postgresql:postgresql:42.2.24'
+
+    jooqGenerator 'org.postgresql:postgresql:42.2.24'
+    jooqGenerator 'org.jooq:jooq-meta:3.18.5'
+    jooqGenerator 'org.jooq:jooq-codegen:3.18.5'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+jooq {
+    version = '3.18.5'  // jOOQ version
+    edition = nu.studer.gradle.jooq.JooqEdition.OSS
+
+    configurations {
+        main { // This is the name of the jOOQ configuration, can be customized
+            generateSchemaSourceOnCompilation = true
+            generationTool {
+                logging = org.jooq.meta.jaxb.Logging.WARN
+                jdbc {
+                    driver = 'org.postgresql.Driver'
+                    url = 'jdbc:postgresql://localhost:5432/postgres'
+                    user = 'postgres'
+                    password = 'postgres'
+                }
+                generator {
+                    name = 'org.jooq.codegen.DefaultGenerator'
+                    database {
+                        name = 'org.jooq.meta.postgres.PostgresDatabase'
+                        inputSchema = 'public'
+                    }
+                    target {
+                        packageName = 'com.example.jooq.generated'
+                        directory = 'build/generated-src/java'
+                    }
+                }
+            }
+        }
+    }
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs 'src/main/java', 'src/generated/java'
+        }
+    }
+}
+
+application {
+    mainClassName = 'hofls.com.github.App'
+}
