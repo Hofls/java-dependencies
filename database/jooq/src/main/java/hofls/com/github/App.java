@@ -22,6 +22,9 @@ public class App {
             create.insertInto(AUTHOR, AUTHOR.FIRST_NAME, AUTHOR.LAST_NAME)
                     .values("John", "Doe")
                     .execute();
+            create.insertInto(AUTHOR, AUTHOR.FIRST_NAME, AUTHOR.LAST_NAME)
+                    .values("John", "Wane")
+                    .execute();
 
             // READ
             Result<AuthorRecord> records = create
@@ -35,6 +38,17 @@ public class App {
                         ", Last Name: " + record.getLastName();
                 System.out.println(message);
             }
+
+            // UPDATE
+            create.update(AUTHOR)
+                    .set(AUTHOR.LAST_NAME, "Monroe")
+                    .where(AUTHOR.LAST_NAME.eq("Doe"))
+                    .execute();
+
+            // DELETE
+            create.deleteFrom(AUTHOR)
+                    .where(AUTHOR.LAST_NAME.eq("Wane"))
+                    .execute();
 
 
         } catch (Exception e) {
