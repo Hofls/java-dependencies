@@ -1,9 +1,11 @@
 package hofls.com.github.liqui.storage.university;
 
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import lombok.Data;
 
-import javax.persistence.*;
 
 @Entity
 @Data

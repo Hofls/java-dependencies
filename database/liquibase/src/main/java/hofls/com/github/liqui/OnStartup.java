@@ -2,18 +2,18 @@ package hofls.com.github.liqui;
 
 import hofls.com.github.liqui.storage.university.Student;
 import hofls.com.github.liqui.storage.university.StudentRepository;
+import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
-import javax.transaction.Transactional;
 
 @Component
 @Transactional
 public class OnStartup {
 
-    @Resource
+    @Autowired
     private StudentRepository studentRepository;
 
     @EventListener(ApplicationReadyEvent.class) // or @PostConstruct
