@@ -56,3 +56,6 @@
 * GWT - alternative to frontend
 * Powermock - alternative to mockito
 * Jetty/WebLogic/WildFly/JBoss - alternative to an embedded tomcat
+
+# Etc
+* REPL (Read-eval-print loop) - `jshell`
