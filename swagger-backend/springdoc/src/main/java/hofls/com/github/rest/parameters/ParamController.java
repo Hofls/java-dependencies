@@ -1,5 +1,6 @@
 package hofls.com.github.rest.parameters;
 
+import hofls.com.github.rest.parameters.types.OutputObject;
 import hofls.com.github.rest.parameters.types.ParametersInBody;
 import hofls.com.github.rest.parameters.types.ParametersInQuery;
 import io.swagger.v3.oas.annotations.Operation;
@@ -53,5 +54,12 @@ public class ParamController {
             @RequestHeader String bookName) {
         return httpRequest.getHeader("bookName");
     }
+
+    @Operation(summary = "Simple object in return")
+    @GetMapping("return")
+    public OutputObject getObject() {
+        return new OutputObject(7);
+    }
+
 
 }
