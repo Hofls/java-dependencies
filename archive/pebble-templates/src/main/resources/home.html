@@ -1,6 +1,18 @@
+{# BASIC VARIABLES =============================================== #}
 {% set param = "search=iq7124" %}
-
 {
     "id": 12345,
     "url": "https://someit.com/api/?{{ param }}"
 }
+
+{# LISTS ======================================================== #}
+{% set wordsA = ["Hello", "beautiful"] %}
+{% set wordsB = ["world"] %}
+{% set wordsCombined = wordsA + wordsB %}
+{% for word in wordsCombined %}
+    {{ word }}
+{% endfor %}
+{% if wordsCombined contains "beautiful" %}
+    Contain works!
+    Direct access to array elements also works - {{ wordsCombined[0] }}
+{% endif %}
