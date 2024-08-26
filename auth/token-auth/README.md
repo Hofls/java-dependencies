@@ -1,6 +1,4 @@
-# Token based auth
-Essence:
-* API user generates token, then sends token in header with each request.
+
 
 # How to run
 * To run locally - `gradlew bootRun` 

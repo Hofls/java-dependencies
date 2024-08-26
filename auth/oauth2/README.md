@@ -1,8 +1,5 @@
-##### Info
-* `OAUTH2` - standard for access delegation. Example - login to 3rd party site/app using google/facebook/github
-* All that user have to do - is click one button. UX is very good.
-
 ##### Getting started
+* `OAUTH2` - standard for access delegation. Example - login to 3rd party site using github account
 * [Add OAUTH app](https://github.com/settings/developers)
     * Homepage URL - http://localhost:8080/
     * Authorization callback URL - http://localhost:8080/login/oauth2/code/github
