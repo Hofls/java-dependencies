@@ -16,3 +16,8 @@
     Contain works!
     Direct access to array elements also works - {{ wordsCombined[0] }}
 {% endif %}
+
+{# TEXT ======================================================== #}
+{{ "john: " | upper}}
+{{ "141-545 14 22" | replace({"-" : "", " " : ""}) }}
+
