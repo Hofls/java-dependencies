@@ -1,4 +1,4 @@
-package hofls.com.github.redis.logout;
+package hofls.com.github.redis.pubsub.logout;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

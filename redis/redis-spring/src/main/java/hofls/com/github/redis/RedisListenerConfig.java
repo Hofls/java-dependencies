@@ -1,7 +1,7 @@
 package hofls.com.github.redis;
 
-import hofls.com.github.redis.logout.LogoutSubscriber;
-import hofls.com.github.redis.purchase.PurchaseSubscriber;
+import hofls.com.github.redis.pubsub.logout.LogoutSubscriber;
+import hofls.com.github.redis.pubsub.purchase.PurchaseSubscriber;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.connection.RedisConnectionFactory;

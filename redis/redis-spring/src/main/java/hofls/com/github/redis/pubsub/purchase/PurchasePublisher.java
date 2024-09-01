@@ -1,5 +1,5 @@
 
-package hofls.com.github.redis.purchase;
+package hofls.com.github.redis.pubsub.purchase;
 
 
 import hofls.com.github.utils.JsonConverter;

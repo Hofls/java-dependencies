@@ -1,4 +1,4 @@
-package hofls.com.github.redis.purchase;
+package hofls.com.github.redis.pubsub.purchase;
 
 public class Purchase {
     public int id;
