@@ -46,6 +46,10 @@ public class ParamController {
         return id;
     }
 
+    /**
+     * Won't work for headers "Accept", "Content-Type", "Authorization"
+     * https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.2.md#user-content-parametername
+     */
     @Operation(summary = "Simple object in header")
     @GetMapping
     public String headerExample(
