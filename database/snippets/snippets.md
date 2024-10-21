@@ -75,3 +75,25 @@
         private List<ShopType> shopTypes;
     }
 ```
+* Completely replace list in DB (add new entities, update old one, delete those no longer in the list):
+```
+    private void replaceMarks(List<SaveSvgMark> requestMarks, SvgBucket bucket) {
+        var marksToSave = new ArrayList<SvgMark>();
+        for (var requestMark : safe(requestMarks)) {
+            if (requestMark.getId() == null) {
+                var newMark = new SvgMark(requestMark);
+                marksToSave.add(newMark);
+            } else {
+                var oldMark = bucket.getMarkById(requestMark.getId());
+                oldMark.setValues(requestMark);
+                marksToSave.add(oldMark);
+            }
+        }
+        var idsForRemoval = bucket.getMarks().stream()
+                .map(SvgMark::getId)
+                .filter(uuid -> marksToSave.stream().noneMatch(value -> value.getId() != null && value.getId().equals(uuid)))
+                .toList();
+        bucket.setMarks(marksToSave);
+        svgMarkRepository.deleteAllById(idsForRemoval);
+    }
+```
