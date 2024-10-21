@@ -1,4 +1,21 @@
 ### Snippets
+* Why `expression = "java(..)"` is bad:
+  * There is no autocomplete, no syntax highlight, this "code" is not a part of automatic refactoring
+  * Requires full package name, e.g. `com.someit.app.features.registration.utils.RegistrationUtils.finish(date);`
+  * Regular java code is a good alternative:
+  ```
+    public SvgAccountSheetDto toSvgDto(SvgAccount svgAccount) {
+        var svgDto = toDto(svgAccount);
+        svgDto.setExtraDate(svgShiftService.getCurrentSvgDate(svgAccount.getObservationDate()));
+        svgDto.setSvgDateEditable(SvgMasterUtils.isCurrentUndervision(svgAccount.getPreviousDate()));
+        return svgDto;
+    }
+    
+    @Mapping(target = "extraDate", ignore = true)
+    @Mapping(target = "svgDateEditable", ignore = true)
+    abstract SvgAccountSheetDto toDto(SvgAccount svgAccount);
+  ```
+* Random mapping examples:
 ```
 @Mapper(unmappedTargetPolicy = ReportingPolicy.ERROR, uses = { DateUtils.class })
 public interface DocumentMapper {
@@ -42,12 +59,11 @@ public interface DocumentMapper {
     void copyProperties(@MappingTarget User user, AdminDto dto)
     
     /** List to single entity */
-    default SignatureV4 toV4(
-            java.util.List<SignatureV5> value) {
-        if (CollectionUtils.isEmpty(value)) {
+    default SignatureV4 toV4(java.util.List<SignatureV5> values) {
+        if (CollectionUtils.isEmpty(values)) {
             return null;
         }
-        return toV4(value.get(0));
+        return toV4(values.get(0));
     }
 
     Signature toV4(SignatureV5 value);
