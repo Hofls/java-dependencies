@@ -97,3 +97,22 @@
         svgMarkRepository.deleteAllById(idsForRemoval);
     }
 ```
+* One to one relationship example (user has one address)
+```
+  class User {
+    @JsonManagedReference
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
+    private Address address;
+  }
+  
+  // Optional. Needed only for convenient access to user from address:
+  class Address {
+    @JsonBackReference
+    @OneToOne(mappedBy = "address")
+    private User user;
+  }
+  
+  // Optional. Specification demo (find users from "Drooski st.")
+  predicates.add(criteriaBuilder.equal(root.join("address").get("street"), "Drooski st."));
+```
