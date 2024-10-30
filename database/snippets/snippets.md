@@ -136,3 +136,8 @@
     private HumanAbility humanAbility;
   }
 ```
+* Error "Value too long for type character varying(255)" (usually happens in tests, when all tables are automatically created)
+```
+    @Column(nullable = false, columnDefinition = "TEXT") // TEXT type is bigger than 255 characters
+    private String name;
+```
