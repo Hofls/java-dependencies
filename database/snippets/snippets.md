@@ -14,8 +14,11 @@
     * `predicates.add(criteriaBuilder.equal(root.get(AstCard_.USER).get(User_.ORGANIZATION_ID), request.getOrganizationId()));`
     * Joins from ast_card table to patient table, create condition for user.organization_id
 * If appears error `Infinite recursion (StackOverflowError)` during serialization/deserialization:
-    * Add `@JsonManagedReference` on main reference (near `@ManyToOne`) 
-    * Add `@JsonBackReference` on back reference (near `@OneToMany`)
+    * Alternative №1:
+      * Add `@JsonManagedReference` on main reference (near `@OneToMany`) 
+      * Add `@JsonBackReference` on back reference (near `@ManyToOne`)
+    * Alternative №2:
+      * `@ToString(exclude = {"field_that_causes_troubles"})`
 * Sort by different fields:
     ```
     List<Sort.Order> orders = new ArrayList<>();
@@ -115,4 +118,21 @@
   
   // Optional. Specification demo (find users from "Drooski st.")
   predicates.add(criteriaBuilder.equal(root.join("address").get("street"), "Drooski st."));
+```
+* Generic table "Warehouse", where column "ability_id" can have ids from a bunch of different tables:
+```
+  public class Warehouse {
+    @Column
+    private UUID abilityId;
+    
+    @NotFound(action = NotFoundAction.IGNORE)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "abilityId", nullable = false, insertable = false, updatable = false)
+    private UndeadAbility undeadAbility;
+
+    @NotFound(action = NotFoundAction.IGNORE)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "abilityId", nullable = false, insertable = false, updatable = false)
+    private HumanAbility humanAbility;
+  }
 ```
