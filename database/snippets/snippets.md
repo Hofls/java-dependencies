@@ -134,6 +134,17 @@
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "abilityId", nullable = false, insertable = false, updatable = false)
     private HumanAbility humanAbility;
+    
+    // Optional. Very rare case, when you can't set abilityId, you have to set an entire entity (because it has no id yet):
+    @PreUpdate
+    @PrePersist
+    private void updateAbilityId() {
+        if (undeadAbility != null) {
+            this.abilityId = undeadAbility.getId();
+        } else if (undeadAbility != null) {
+            this.abilityId = humanAbility.getId();
+        }
+    }
   }
 ```
 * Error "Value too long for type character varying(255)" (usually happens in tests, when all tables are automatically created)
