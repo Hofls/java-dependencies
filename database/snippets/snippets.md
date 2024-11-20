@@ -163,7 +163,11 @@
     
     public class JsonUtils {
         @SneakyThrows
-        public static <E extends Enum<E>> String enumToJson(List<E> enumList) {
+        public static <E extends Enum<E>> String enumToJson(E enumElement) {
+            return enumToJson(List.of(enumElement));
+        }
+        @SneakyThrows
+        public static <E extends Enum<E>> String enumToJson(List<E> enumElements) {
             var mapper = new ObjectMapper();
             return mapper.writeValueAsString(enumList);
         }
