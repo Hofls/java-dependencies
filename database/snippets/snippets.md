@@ -175,8 +175,12 @@
     public class UserRepository {
         @Query(nativeQuery = true, value = "SELECT * FROM user WHERE statuses @> CAST(:statuses AS jsonb)")
         List<User> findBy(@Param("statuses") String statuses);
+        
+        default List<User> findBy(List<Status> statuses) {
+            findBy(JsonUtils.enumToJson(statuses);
+        }
     }
     public class UserService {
-        var users = userRepository.findBy(JsonUtils.enumToJson(List.of(ACTIVE, WAITING)));
+        var users = userRepository.findBy(List.of(ACTIVE, WAITING));
     }
 ```
