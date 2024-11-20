@@ -152,3 +152,27 @@
     @Column(nullable = false, columnDefinition = "TEXT") // TEXT type is bigger than 255 characters
     private String name;
 ```
+* Find users that have both ACTIVE and WAITING statuses (jsonb) 
+```
+    @TypeDefs({@TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)})
+    public class User {
+        @Type(type = "jsonb")
+        @Column(columnDefinition = "jsonb")
+        private List<Status> statuses; // Example - '["POSTPONED", "ACTIVE", "WAITING]'
+    }
+    
+    public class JsonUtils {
+        @SneakyThrows
+        public static <E extends Enum<E>> String enumToJson(List<E> enumList) {
+            var mapper = new ObjectMapper();
+            return mapper.writeValueAsString(enumList);
+        }
+    }
+    public class UserRepository {
+        @Query(nativeQuery = true, value = "SELECT * FROM user WHERE statuses @> CAST(:statuses AS jsonb)")
+        List<User> findBy(@Param("statuses") String statuses);
+    }
+    public class UserService {
+        var users = userRepository.findBy(JsonUtils.enumToJson(List.of(ACTIVE, WAITING)));
+    }
+```
