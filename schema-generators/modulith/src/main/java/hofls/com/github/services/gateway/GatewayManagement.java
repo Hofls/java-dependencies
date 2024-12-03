@@ -12,9 +12,9 @@ import hofls.com.github.services.organization.OrganizationDTO;
 @RequestMapping("/api")
 public class GatewayManagement {
 
-    private DepartmentManagement departmentExternalAPI;
-    private EmployeeManagement employeeExternalAPI;
-    private OrganizationManagement organizationExternalAPI;
+    public DepartmentManagement departmentExternalAPI;
+    public EmployeeManagement employeeExternalAPI;
+    public OrganizationManagement organizationExternalAPI;
 
     public GatewayManagement(DepartmentManagement departmentExternalAPI,
                              EmployeeManagement employeeExternalAPI,
