@@ -184,3 +184,43 @@
         var users = userRepository.findBy(List.of(ACTIVE, WAITING));
     }
 ```
+* Search by jsonb:
+```
+    @Query(nativeQuery = true, value = """
+        SELECT special.*
+        FROM special_card special,
+             jsonb_array_elements(computer_params->'computer') AS computer
+        WHERE computer->>'computerId' = :computerId
+          AND computer->>'startAt' < :endDate
+          AND (computer->>'endAt' IS NULL OR computer->>'endAt' > :startDate)
+    """)
+    List<SpecialCard> findBycomputer(@Param("computerId") String computerId,
+                                  @Param("startDate") LocalDateTime startDate,
+                                  @Param("endDate") LocalDateTime endDate);
+                                  
+    Index:
+    CREATE INDEX special_computer_idx
+    ON special_card
+    USING gin ((computer_params->'computer') jsonb_path_ops);
+
+    Json example:
+    {
+    "id": 1,
+    "name": "Special Card 1",
+    "computer_params": {
+      "computer": [
+        {
+          "computerId": "comp123",
+          "startAt": "2023-01-01T10:00:00",
+          "endAt": "2023-01-10T10:00:00"
+        },
+        {
+          "computerId": "comp456",
+          "startAt": "2023-01-05T10:00:00",
+          "endAt": null
+        }
+      ]
+    }
+    
+    
+```
