@@ -186,6 +186,7 @@
 ```
 * Search by jsonb:
 ```
+    -- Warning! Couldn't find a way to create fast index for jsonb_array_elements 
     @Query(nativeQuery = true, value = """
         SELECT special.*
         FROM special_card special,
@@ -197,11 +198,6 @@
     List<SpecialCard> findBycomputer(@Param("computerId") String computerId,
                                   @Param("startDate") LocalDateTime startDate,
                                   @Param("endDate") LocalDateTime endDate);
-                                  
-    Index:
-    CREATE INDEX special_computer_idx
-    ON special_card
-    USING gin ((computer_params->'computer') jsonb_path_ops);
 
     Json example:
     {
@@ -221,4 +217,86 @@
         }
       ]
     }
+```
+* JSONB - Random
+```
+    SELECT '{"content":{"venous":17.2}}'::jsonb @@ '$.content.venous > 4';
+    
+    SELECT '{"content":{"date":"2023-01-02"}}'::jsonb @@ '$.content.date > "2023-01-01"';
+    
+    SELECT '{"content":{"venous":17.2, "status": "OK"}}'::jsonb @> '{"content": {"status": "OK"}}';
+    
+    -- 1 json element = 1 row in response
+    SELECT jsonb_array_elements('[{"action":"SIGNED"},{"action":"SAVED"}]'::jsonb);
+    
+    SELECT * FROM 
+        jsonb_array_elements('[{"action":"SIGNED", "status": "OK"}, {"action":"SAVED", "status": "DELETED"}]'::jsonb) AS computer
+    WHERE computer->>'action' = 'SIGNED' AND computer->>'status' = 'OK'
+```
+* JSONB - Query & Index
+```
+    {
+      "content": {
+        "status": "ACTIVE"
+        "weight": 84.3
+      }
+    }
+    
+    -- 1
+    SELECT *
+    FROM doc_card
+    WHERE (doc->'content'->>'status') = 'INACTIVE';
+    
+    CREATE INDEX doc_status_idx
+    ON doc_card ((doc->'content'->>'status'));
+    
+    -- 2 (Upper limit of cost can be scary, but execution time is still greatly improves)
+    SELECT *
+    FROM doc_card
+    WHERE (CAST(doc->'content'->>'weight' AS numeric)) > 80;
+    
+    CREATE INDEX doc_weight_idx
+    ON doc_card
+    ((CAST(doc->'content'->>'weight' AS numeric)));
+    
+    -- 3
+    SELECT *
+    FROM doc_card
+    WHERE doc @@ '$.content.weight > 44';
+    
+    SELECT *
+    FROM patient.doc_card e
+    WHERE doc @> '{"content": {"weight": 53.8}}'
+    
+    CREATE INDEX doc_idx ON doc_card
+    USING gin (doc);
+```
+* JSONB - Query & Index
+```
+    [
+       {
+          "action":"SIGNED",
+          "userId":"97fbd76a-bd5e-496b-a778-33b2dfa96e31",
+          "dateTime":"2023-07-26T08:45:00",
+          "userName":"John"
+       },
+       {
+          "action":"SAVED",
+          "userId":"97fbd76a-bd5e-496b-a778-33b2dfa96e31",
+          "dateTime":"2023-07-26T08:44:34",
+          "userName":"Helga"
+       }
+    ]
+    
+    -- 1
+    SELECT *
+    FROM doc_card
+    WHERE changelog @> '[{"action": "SIGNED"}]';
+    
+    SELECT *
+    FROM doc_card e
+    WHERE changelog @@ '$.dateTime > "2024-07-26T08:44:00"';
+    
+    CREATE INDEX doc_changelog_idx ON doc_card
+    USING gin (changelog);
 ```
