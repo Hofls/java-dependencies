@@ -1,9 +1,10 @@
 ### JSONB - Pure SQL
 * JSONB - Overview
 ```
-    SELECT '{"content":{"venous":17.2}}'::jsonb @@ '$.content.venous > 4';
     
     SELECT '{"content":{"date":"2023-01-02"}}'::jsonb @@ '$.content.date > "2023-01-01"';
+    
+    SELECT '{"content":{"venous":17.2, "failed": true}}'::jsonb @@ '$.content.venous > 4 && $.content.failed == true';
     
     SELECT '{"content":{"venous":17.2, "status": "OK"}}'::jsonb @> '{"content": {"status": "OK"}}';
     
