@@ -1,12 +1,13 @@
 ### JSONB - Pure SQL
 * JSONB - Overview
 ```
-    
     SELECT '{"content":{"date":"2023-01-02"}}'::jsonb @@ '$.content.date > "2023-01-01"';
+    SELECT '{"content":{"value":43}}'::jsonb @@ '$.content.value < 44';
     
     SELECT '{"content":{"venous":17.2, "failed": true}}'::jsonb @@ '$.content.venous > 4 && $.content.failed == true';
     
     SELECT '{"content":{"venous":17.2, "status": "OK"}}'::jsonb @> '{"content": {"status": "OK"}}';
+    SELECT '{"content":{"venous":17.2, "status": "OK"}}'::jsonb -> 'content'->>'status' = 'OK';
     
     SELECT '[{"action":"SIGNED", "status": "OK"}, {"action":"SAVED", "status": "DELETED"}]'::jsonb @> '[{"status": "OK"}]';
     
@@ -120,17 +121,18 @@
 ```
 * Search by JSONB:
 ```
-    -- Warning! Couldn't find a way to create fast index for jsonb_array_elements 
+    -- Warning! Couldn't find a way to create fast index for jsonb_array_elements
     @Query(nativeQuery = true, value = """
         SELECT special.*
         FROM special_card special,
              jsonb_array_elements(computer_params->'computer') AS computer
         WHERE 
-          -- This line is necessary for optimization (via index):
+          -- Next line is necessary for optimization (via index), generates json {"computer": ["computerId": "23"]}
           computer_params @> jsonb_build_object('computer', jsonb_build_array(jsonb_build_object('computerId', :computerId)))
           AND computer->>'computerId' = :computerId
-          AND computer->>'startAt' < :endDate
-          AND (computer->>'endAt' IS NULL OR computer->>'endAt' > :startDate)
+          -- Without CAST, PostgreSQL will compare VARCHAR and TIMESTAMP (works for dates, but breaks for time):
+          AND (CAST(computer->>'startAt' AS TIMESTAMP)) < :endDate 
+          AND (computer->>'endAt' IS NULL OR (CAST(computer->>'endAt' AS TIMESTAMP)) > :startDate)
     """)
     List<SpecialCard> findBycomputer(@Param("computerId") String computerId,
                                   @Param("startDate") LocalDateTime startDate,
