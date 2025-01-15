@@ -29,6 +29,9 @@
     ```
 * Composite id - `@IdClass`
 * Map multiple classes on one table - `@Embedded` and `@Embeddable`
+* What's the point of `repository.save() and repository.flush()`?
+  * flush() makes DB aware of changes (even if they are not commited yet)
+  * e.g. new copy of row won't trigger unique constraints, because old row was changed and flushed
 * Lazy field (often doesn't work, better use LAZY with @OneToOne / @ManyToOne):
     ```
     @Basic(fetch = FetchType.LAZY)
