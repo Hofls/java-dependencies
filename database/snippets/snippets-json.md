@@ -87,6 +87,28 @@
 ```
 
 ### JSONB - Java
+* Avoid `com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException: Unrecognized field`
+```
+    // Problem - you dropped deperecated field from jsonb UserAddressDto, but now DB throws errors. 
+    // Solution - ignore unknown fields
+    
+    @Data
+    @Entity
+    @DynamicUpdate
+    public class UserEntity {
+        @Type(type = "jsonb")
+        @Column(columnDefinition = "jsonb")
+        private UserAddressDto address;
+        
+        @Type(type = "jsonb")
+        @Column(columnDefinition = "jsonb")
+        private UserReportDto report;
+    }
+    
+    @Data
+    @JsonIgnoreProperties(ignoreUnknown = true) 
+    public class UserAddressDto {}
+```
 * Find users that have both ACTIVE and WAITING statuses (JSONB)
 ```
     @TypeDefs({@TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)})
@@ -161,4 +183,3 @@
       ]
     }
 ```
-
