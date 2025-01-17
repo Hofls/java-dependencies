@@ -89,7 +89,7 @@
 ### JSONB - Java
 * Avoid `com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException: Unrecognized field`
 ```
-    // Problem - you dropped deperecated field from jsonb UserAddressDto, but now DB throws errors. 
+    // Problem - you dropped deperecated field from jsonb UserAddressDto, but now DB throws errors
     // Solution - ignore unknown fields
     
     @Data

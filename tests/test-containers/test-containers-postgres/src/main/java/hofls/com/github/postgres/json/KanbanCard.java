@@ -16,7 +16,7 @@ import java.util.List;
 @Entity
 @Data
 @TypeDefs({
-        @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
+        @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class) // Usually everything works even without TypeDef
 })
 public class KanbanCard {
 
