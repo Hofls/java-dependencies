@@ -60,4 +60,12 @@ public class AsyncService {
         });
     }
 
+    /**
+     * Other multi-threaded concepts:
+     * ReentrantLock - call ".lock()", do computations, call "finally {unlock()}" (only 1 thread will do computations, while other threads wait)
+     * synchronized - only 1 thread will execute synchronized method, while other threads wait
+     * CountDownLatch - "new CountDownLatch(3)", launch threads and call ".countdown" at the end of each, then call ".wait()" (waiting stops after 3 threads are done)
+     * new FutureTask<>(callable) - enhances typical "new Thread().start", allows throwing exceptions and returning values
+     */
+
 }

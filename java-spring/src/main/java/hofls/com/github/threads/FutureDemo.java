@@ -1,4 +1,4 @@
-package hofls.com.github.completabale.future;
+package hofls.com.github.threads;
 
 import java.util.concurrent.CompletableFuture;
 

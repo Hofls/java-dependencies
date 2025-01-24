@@ -1,6 +1,6 @@
-package hofls.com.github.completable.future;
+package hofls.com.github.threads.async;
 
-import hofls.com.github.completabale.future.FutureDemo;
+import hofls.com.github.threads.FutureDemo;
 import org.junit.jupiter.api.Test;
 
 class FutureDemoTest {
