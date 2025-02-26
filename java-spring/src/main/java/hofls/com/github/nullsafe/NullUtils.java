@@ -1,11 +1,7 @@
 package hofls.com.github.nullsafe;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.function.Supplier;
-import java.util.stream.Collectors;
 
 public class NullUtils {
 
@@ -25,6 +21,12 @@ public class NullUtils {
         }
     }
 
+    public static void safe(Runnable runnable) {
+        try {
+            runnable.run();
+        } catch (IndexOutOfBoundsException | NullPointerException ignored) {}
+    }
+
     /** To avoid NullPointerException in cycles */
     public static <T> List<T> safe(List<T> list) {
         return list == null ? Collections.emptyList() : list;
@@ -36,6 +38,14 @@ public class NullUtils {
         }
 
         return elements.stream().filter(Objects::nonNull).collect(Collectors.toList());
+    }
+
+    public <T> Set<T> safe(Set<T> set) {
+        return set == null ? Collections.emptySet() : set;
+    }
+
+    public <K, V> Map<K, V> safe(Map<K, V> map) {
+        return map == null ? Collections.emptyMap() : map;
     }
 
 }
