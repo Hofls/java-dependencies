@@ -1,0 +1,43 @@
+// If redis is down - java app will not start (because listeners can't connect to redis, beans will not be created)
+// To fix it - create beans anyway, and then try to reconnect every 30 seconds)
+
+@Component
+@Slf4j
+@RequiredArgsConstructor
+public class RedisMessageListenerContainerBean extends RedisMessageListenerContainer {
+    private final RedisConnectionFactory connectionFactory;
+    private final RedisSettingsService redisSettingsService;
+    private final PurchaseSubscriber purchase;
+    private final LogoutSubscriber logout;
+
+    @Getter
+    private boolean initialized = false;
+
+    @PostConstruct
+    public void init(){
+        if (initialized) {
+            return;
+        }
+
+        setConnectionFactory(connectionFactory);
+        try (final var connection = connectionFactory.getConnection()) {
+        } catch (Exception e) {
+            log.error("Redis connection ERROR", e);
+            return;
+        }
+        createListeners();
+        initialized = true;
+        log.info("Redis connection SUCCESS");
+    }
+
+    private void createListeners(){
+        container.addMessageListener(new MessageListenerAdapter(purchase), purchase.getTopic());
+        container.addMessageListener(new MessageListenerAdapter(logout), logout.getTopic());
+    }
+
+    @Scheduled(initialDelay = 30 * 1000, fixedDelay = 2 * 60 * 1000)
+    public void checkRedisConnection(){
+        init();
+    }
+}
+
