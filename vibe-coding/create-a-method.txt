@@ -1,0 +1,108 @@
+package hofls.com.github.custom;
+
+import org.junit.jupiter.api.Test;
+
+import java.lang.reflect.*;
+import java.util.*;
+import java.util.stream.Collectors;
+
+/**
+ * 1. Create his class among junit tests (without adding to git)
+ * 2. Run printToConsole()
+ * 3. Copy output to LLM
+ * 4. Replace INSERT_REQUEST_HERE with a custom request
+ */
+public class MethodDependencyAnalyzer {
+    private static final Set<Class<?>> processedClasses = new HashSet<>();
+
+    @Test
+    public void printToConsole() throws Exception {
+        analyzeMethod(UserRepository.class, "updateUser");
+    }
+
+    public static void analyzeMethod(Class<?> clazz, String methodName) {
+        try {
+            for (Method method : clazz.getDeclaredMethods()) {
+                if (method.getName().equals(methodName)) {
+                    String llmRequest = "1. Using Java, write INSERT_REQUEST_HERE";
+                    System.out.println(llmRequest);
+
+                    String methodSignature = "2. Here is a method that you should work on - " + clazz.getSimpleName() + "." + method.getName() + "(" +
+                            Arrays.stream(method.getParameterTypes())
+                                    .map(Class::getSimpleName)
+                                    .collect(Collectors.joining(", ")) + ")";
+                    System.out.println(methodSignature);
+
+                    Set<Class<?>> relatedClasses = new HashSet<>();
+
+                    // Analyze method parameters
+                    for (Class<?> paramType : method.getParameterTypes()) {
+                        collectDependencies(paramType, relatedClasses);
+                    }
+
+                    // Analyze return type
+                    collectDependencies(method.getReturnType(), relatedClasses);
+
+                    // Print results
+                    System.out.println("3. Method parameters in great detail:");
+                    for (Class<?> cls : relatedClasses) {
+                        System.out.println("Class: " + cls.getName());
+                        if (cls.isEnum()) {
+                            System.out.println("  - Enum values: " + Arrays.stream(cls.getEnumConstants())
+                                    .map(Object::toString)
+                                    .collect(Collectors.joining(", ")));
+                        } else {
+                            for (Field field : cls.getDeclaredFields()) {
+                                Class<?> fieldType = field.getType();
+                                if (Collection.class.isAssignableFrom(fieldType)) {
+                                    Type genericType = field.getGenericType();
+                                    if (genericType instanceof ParameterizedType) {
+                                        Type[] actualTypeArguments = ((ParameterizedType) genericType).getActualTypeArguments();
+                                        for (Type typeArg : actualTypeArguments) {
+                                            if (typeArg instanceof Class<?>) {
+                                                collectDependencies((Class<?>) typeArg, relatedClasses);
+                                                System.out.println("  - " + field.getName() + " : List<" + ((Class<?>) typeArg).getName() + ">");
+                                            }
+                                        }
+                                    }
+                                } else {
+                                    System.out.println("  - " + field.getName() + " : " + fieldType.getName());
+                                    collectDependencies(fieldType, relatedClasses);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void collectDependencies(Class<?> clazz, Set<Class<?>> relatedClasses) {
+        if (clazz == null || processedClasses.contains(clazz) || clazz.isPrimitive() || clazz.getName().startsWith("java.")) {
+            return;
+        }
+
+        processedClasses.add(clazz);
+        relatedClasses.add(clazz);
+
+        // Process fields recursively
+        for (Field field : clazz.getDeclaredFields()) {
+            Class<?> fieldType = field.getType();
+            if (Collection.class.isAssignableFrom(fieldType)) {
+                Type genericType = field.getGenericType();
+                if (genericType instanceof ParameterizedType) {
+                    Type[] actualTypeArguments = ((ParameterizedType) genericType).getActualTypeArguments();
+                    for (Type typeArg : actualTypeArguments) {
+                        if (typeArg instanceof Class<?>) {
+                            collectDependencies((Class<?>) typeArg, relatedClasses);
+                        }
+                    }
+                }
+            } else {
+                collectDependencies(fieldType, relatedClasses);
+            }
+        }
+    }
+}
