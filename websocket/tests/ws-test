@@ -7,39 +7,26 @@ public abstract class ApplicationTest {
 
 }
 
-public class DictionaryVitalTest extends ApplicationTest {
+public class WebsocketClient {
 
     private static final String URL = "ws://localhost:8786/server/push";
-
     private static final CountDownLatch latch = new CountDownLatch(1);
-    private static String receivedMessage;
+    private static String request;
+    private static String actualResponse;
 
     @ClientEndpoint
-    public static class WebSocketClient {
+    public static class WebSocketClientEndpoint {
 
         @OnOpen
         public void onOpen(Session session) {
             System.out.println("WebSocket connected!");
-            String request = """
-                {
-                    "shortView":false,
-                    "dictionaryId":"special_indicators",
-                    "paginationRequest":{
-                        "page":0,
-                        "size":0
-                    },
-                    "requestId":"bafc657ea5d4c584af5940ba4de121cb#1739952146029",
-                    "sync":false,
-                    "stated":false
-                }
-            """;
-            session.getAsyncRemote().sendText(request);
+            session.getAsyncRemote().sendText(WebsocketClient.request);
         }
 
         @OnMessage
         public void onMessage(String message) {
             System.out.println("Received response: " + message);
-            receivedMessage = message;
+            actualResponse = message;
             latch.countDown();
         }
 
@@ -54,14 +41,29 @@ public class DictionaryVitalTest extends ApplicationTest {
         }
     }
 
-    @Test
-    void testWebSocket() throws Exception {
-        WebSocketContainer container = ContainerProvider.getWebSocketContainer();
-        try (Session session = container.connectToServer(WebSocketClient.class, new URI(URL))) {
+    public void assertWebsocket(String request, String expectedResponse) throws Exception {
+        WebsocketClient.request = request;
+        var container = ContainerProvider.getWebSocketContainer();
+
+        try (var session = container.connectToServer(WebSocketClientEndpoint.class, new URI(URL))) {
             boolean responseReceived = latch.await(3, TimeUnit.SECONDS);
             assertTrue(responseReceived, "WebSocket response not received in time");
-            assertNotNull(receivedMessage, "No message received from server");
+            assertEquals(actualResponse, expectedResponse);
         }
     }
 
 }
+
+
+public class DictionaryVitalTest extends ApplicationTest {
+
+    @Test
+    void testWebSocket() throws Exception {
+        String request = "{\"requestNum\":54, \"execute\":false}";
+        String response = "Hello world!";
+        new WebsocketClient().assertWebsocket(request, response);
+    }
+
+
+}
+
