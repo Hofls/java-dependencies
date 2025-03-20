@@ -54,7 +54,6 @@ public class WebsocketClient {
 
 }
 
-
 public class DictionaryVitalTest extends ApplicationTest {
 
     @Test
@@ -64,6 +63,4 @@ public class DictionaryVitalTest extends ApplicationTest {
         new WebsocketClient().assertWebsocket(request, response);
     }
 
-
 }
-
