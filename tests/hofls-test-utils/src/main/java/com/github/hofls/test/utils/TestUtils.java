@@ -16,6 +16,8 @@ import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -144,46 +146,36 @@ public class TestUtils {
 
     /** Prettify JSONs and compare them */
     public static void assertPrettyEqual(String expectedRaw, String actualRaw, List<String> ignoredFields) {
-        String expected = removeLinesWithField(toLF(prettyJson(expectedRaw)), ignoredFields);
-        String actual = removeLinesWithField(toLF(prettyJson(actualRaw)), ignoredFields);
+        String expected = toLF(prettyJson(expectedRaw, ignoredFields));
+        String actual = toLF(prettyJson(actualRaw, ignoredFields));
         assertEquals(expected, actual);
     }
 
-    public static String prettyJson(String rawJson) {
+    public static String prettyJson(String rawJson, List<String> ignoredFields) {
         try {
             Object jsonObject = objectMapper.readValue(rawJson, Object.class);
-            return objectWriter.writeValueAsString(jsonObject);
+            String sortedJson = objectWriter.writeValueAsString(sortJson(jsonObject));
+            JsonNode jsonNode = objectMapper.readTree(sortedJson);
+            removeFields(jsonNode, ignoredFields);
+            return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonNode);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-    private static String removeLinesWithField(String text, List<String> ignoredFields) {
-        if (CollectionUtils.isEmpty(ignoredFields)) {
-            return text;
-        }
-
-        StringBuilder builder = new StringBuilder();
-        for (String line : text.split(LF)) {
-            if (!isLineIgnored(line, ignoredFields)) {
-                builder.append(line).append(LF);
+    private static Object sortJson(Object json) {
+        if (json instanceof Map) {
+            Map<Object, Object> sortedMap = new TreeMap<>();
+            ((Map<?, ?>) json).forEach((key, value) -> sortedMap.put(key, sortJson(value)));
+            return sortedMap;
+        } else if (json instanceof List) {
+            List<Object> sortedList = new ArrayList<>();
+            for (Object item : (List<?>) json) {
+                sortedList.add(sortJson(item));
             }
+            return sortedList;
         }
-        return builder.toString();
-    }
-
-    private static boolean isLineIgnored(String line, List<String> ignoredFields) {
-        if (CollectionUtils.isEmpty(ignoredFields)) {
-            return false;
-        }
-
-        for (String ignoredField : ignoredFields) {
-            String ignored = "\"" + ignoredField + "\":";
-            if (line.contains(ignored)) {
-                return true;
-            }
-        }
-        return false;
+        return json;
     }
 
     /** Replaces CRLF with LF */

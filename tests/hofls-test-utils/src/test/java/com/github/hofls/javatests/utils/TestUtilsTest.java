@@ -64,8 +64,8 @@ class TestUtilsTest {
 
     @Test
     public void assertPrettyEqual(){
-        String actual = "{\"msg\": \"Hello!\", \"id\": 543719}";
-        String expected = "{\"msg\": \"Hello!\", \"id\": 19483}";
+        String actual = "{\"msg\": \"Hello!\", \"id\": 543719, \"async\": true}";
+        String expected = "{\"async\": true, \"msg\": \"Hello!\", \"id\": 19483}";
         TestUtils.assertPrettyEqual(expected, actual, Arrays.asList("id"));
     }
 
