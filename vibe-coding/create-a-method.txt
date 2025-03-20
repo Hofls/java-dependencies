@@ -7,8 +7,8 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * 1. Create his class among junit tests (without adding to git)
- * 2. Run printToConsole()
+ * 1. Create this class in tests folder (without adding to git)
+ * 2. Add class and method in printToConsole(), run it
  * 3. Copy output to LLM
  * 4. Replace INSERT_REQUEST_HERE with a custom request
  */

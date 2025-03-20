@@ -1,0 +1,67 @@
+
+@Slf4j
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+@TestPropertySource(properties = "server.port=8786")
+@ActiveProfiles("junit")
+public abstract class ApplicationTest {
+
+}
+
+public class DictionaryVitalTest extends ApplicationTest {
+
+    private static final String URL = "ws://localhost:8786/server/push";
+
+    private static final CountDownLatch latch = new CountDownLatch(1);
+    private static String receivedMessage;
+
+    @ClientEndpoint
+    public static class WebSocketClient {
+
+        @OnOpen
+        public void onOpen(Session session) {
+            System.out.println("WebSocket connected!");
+            String request = """
+                {
+                    "shortView":false,
+                    "dictionaryId":"special_indicators",
+                    "paginationRequest":{
+                        "page":0,
+                        "size":0
+                    },
+                    "requestId":"bafc657ea5d4c584af5940ba4de121cb#1739952146029",
+                    "sync":false,
+                    "stated":false
+                }
+            """;
+            session.getAsyncRemote().sendText(request);
+        }
+
+        @OnMessage
+        public void onMessage(String message) {
+            System.out.println("Received response: " + message);
+            receivedMessage = message;
+            latch.countDown();
+        }
+
+        @OnClose
+        public void onClose(Session session, CloseReason closeReason) {
+            System.out.println("WebSocket closed: " + closeReason.getCloseCode());
+        }
+
+        @OnError
+        public void onError(Session session, Throwable throwable) {
+            throwable.printStackTrace();
+        }
+    }
+
+    @Test
+    void testWebSocket() throws Exception {
+        WebSocketContainer container = ContainerProvider.getWebSocketContainer();
+        try (Session session = container.connectToServer(WebSocketClient.class, new URI(URL))) {
+            boolean responseReceived = latch.await(3, TimeUnit.SECONDS);
+            assertTrue(responseReceived, "WebSocket response not received in time");
+            assertNotNull(receivedMessage, "No message received from server");
+        }
+    }
+
+}
