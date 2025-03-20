@@ -6,6 +6,7 @@ import com.github.hofls.test.utils.TestUtils;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -59,6 +60,13 @@ class TestUtilsTest {
         JsonNode jsonMap = TestUtils.jsonToMap(jsonText);
         assertEquals("754342", jsonMap.get("id").asText());
         assertEquals("2021-06-23", jsonMap.get("birthDate").asText());
+    }
+
+    @Test
+    public void assertPrettyEqual(){
+        String actual = "{\"msg\": \"Hello!\", \"id\": 543719}";
+        String expected = "{\"msg\": \"Hello!\", \"id\": 19483}";
+        TestUtils.assertPrettyEqual(expected, actual, Arrays.asList("id"));
     }
 
 }

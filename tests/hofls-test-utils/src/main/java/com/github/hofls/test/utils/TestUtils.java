@@ -137,6 +137,27 @@ public class TestUtils {
 
     // -----------------------------------------------------------------------------
 
+    /** Prettify JSONs and compare them */
+    public static void assertPrettyEqual(String expectedRaw, String actualRaw) {
+        assertPrettyEqual(expectedRaw, actualRaw, null);
+    }
+
+    /** Prettify JSONs and compare them */
+    public static void assertPrettyEqual(String expectedRaw, String actualRaw, List<String> ignoredFields) {
+        String expected = removeLinesWithField(toLF(prettyJson(expectedRaw)), ignoredFields);
+        String actual = removeLinesWithField(toLF(prettyJson(actualRaw)), ignoredFields);
+        assertEquals(expected, actual);
+    }
+
+    public static String prettyJson(String rawJson) {
+        try {
+            Object jsonObject = objectMapper.readValue(rawJson, Object.class);
+            return objectMapper.writeValueAsString(jsonObject);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private static String removeLinesWithField(String text, List<String> ignoredFields) {
         if (CollectionUtils.isEmpty(ignoredFields)) {
             return text;
