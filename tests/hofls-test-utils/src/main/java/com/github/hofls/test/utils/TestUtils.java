@@ -152,7 +152,7 @@ public class TestUtils {
     public static String prettyJson(String rawJson) {
         try {
             Object jsonObject = objectMapper.readValue(rawJson, Object.class);
-            return objectMapper.writeValueAsString(jsonObject);
+            return objectWriter.writeValueAsString(jsonObject);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
