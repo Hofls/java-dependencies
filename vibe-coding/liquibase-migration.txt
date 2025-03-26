@@ -1,0 +1,34 @@
+1. Here is my liquibase migration, just take a look:
+
+<changeSet id="2024-10-14-classic-spf" author="INSERT_AUTHOR_HERE">
+	<createTable tableName="classic_spf">
+		<column name="id" type="UUID" defaultValueComputed="public.uuid_generate_v4()">
+			<constraints primaryKey="true" primaryKeyName="setting_pk"/>
+		</column>
+		<column name="assignment_date" type="DATE">
+			<constraints nullable="false" />
+		</column>
+		<column name="event_date_time" type="TIMESTAMP WITH TIME ZONE"/>
+		<column name="user_age" type="INTEGER">
+			<constraints nullable="false" />
+		</column>
+		<column name="requests_count" type="BIGINT"/>
+		<column name="patient_height" type="FLOAT8" />
+		<column name="status" type="text">
+			<constraints nullable="false" />
+		</column>
+		<column name="department_name" type="TEXT"/>
+		<column name="user_id" type="UUID">
+			<constraints nullable="false" />
+		</column>
+		<column name="editable" type="BOOLEAN">
+			<constraints nullable="false"/>
+		</column>
+		<column name="shop_id" type="UUID">
+			<constraints nullable="false" />
+		</column>
+	</createTable>
+</changeSet>
+
+2. Now create new liquibase migration, in the same style (using same types, same constraints etc)
+New table should have following fields:
