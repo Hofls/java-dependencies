@@ -8,23 +8,30 @@ import java.util.stream.Collectors;
 
 /**
  * 1. Create this class in tests folder (without adding to git)
- * 2. Add class and method in printToConsole(), run it
+ * 2. Add class and method in to @Test, run them
  * 3. Copy output to LLM
- * 4. Replace INSERT_REQUEST_HERE with a custom request
+ * 4. Optional - write custom request (INSERT_REQUEST_HERE)
  */
 public class MethodDependencyAnalyzer {
     private static final Set<Class<?>> processedClasses = new HashSet<>();
 
+    /** Ask LLM to generate a method */
     @Test
-    public void printToConsole() throws Exception {
+    public void methodToConsole() throws Exception {
         analyzeMethod(UserRepository.class, "updateUser");
+    }
+
+    /** Ask LLM to generate JSON example (for junit tests) */
+    @Test
+    public void classToConsole() throws Exception {
+        analyzeClass(UserUpdateRequest.class);
     }
 
     public static void analyzeMethod(Class<?> clazz, String methodName) {
         try {
             for (Method method : clazz.getDeclaredMethods()) {
                 if (method.getName().equals(methodName)) {
-                    String llmRequest = "1. Using Java, write INSERT_REQUEST_HERE";
+                    String llmRequest = "1. Using Java, implement method that INSERT_REQUEST_HERE";
                     System.out.println(llmRequest);
 
                     String methodSignature = "2. Here is a method that you should work on - " + clazz.getSimpleName() + "." + method.getName() + "(" +
@@ -45,37 +52,51 @@ public class MethodDependencyAnalyzer {
 
                     // Print results
                     System.out.println("3. Method parameters in great detail:");
-                    for (Class<?> cls : relatedClasses) {
-                        System.out.println("Class: " + cls.getName());
-                        if (cls.isEnum()) {
-                            System.out.println("  - Enum values: " + Arrays.stream(cls.getEnumConstants())
-                                    .map(Object::toString)
-                                    .collect(Collectors.joining(", ")));
-                        } else {
-                            for (Field field : cls.getDeclaredFields()) {
-                                Class<?> fieldType = field.getType();
-                                if (Collection.class.isAssignableFrom(fieldType)) {
-                                    Type genericType = field.getGenericType();
-                                    if (genericType instanceof ParameterizedType) {
-                                        Type[] actualTypeArguments = ((ParameterizedType) genericType).getActualTypeArguments();
-                                        for (Type typeArg : actualTypeArguments) {
-                                            if (typeArg instanceof Class<?>) {
-                                                collectDependencies((Class<?>) typeArg, relatedClasses);
-                                                System.out.println("  - " + field.getName() + " : List<" + ((Class<?>) typeArg).getName() + ">");
-                                            }
-                                        }
-                                    }
-                                } else {
-                                    System.out.println("  - " + field.getName() + " : " + fieldType.getName());
-                                    collectDependencies(fieldType, relatedClasses);
-                                }
-                            }
-                        }
-                    }
+                    classesToConsole(relatedClasses);
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public static void analyzeClass(Class<?> clazz) {
+        String llmRequest = "1. Give a JSON example for this java class:";
+        System.out.println(llmRequest);
+
+        Set<Class<?>> relatedClasses = new HashSet<>();
+        collectDependencies(clazz, relatedClasses);
+        classesToConsole(relatedClasses);
+    }
+
+    private static void classesToConsole(Set<Class<?>> relatedClasses) {
+        for (Class<?> cls : relatedClasses) {
+            System.out.println();
+            System.out.println("Class: " + cls.getName());
+            if (cls.isEnum()) {
+                System.out.println("  - Enum values: " + Arrays.stream(cls.getEnumConstants())
+                        .map(Object::toString)
+                        .collect(Collectors.joining(", ")));
+            } else {
+                for (Field field : cls.getDeclaredFields()) {
+                    Class<?> fieldType = field.getType();
+                    if (Collection.class.isAssignableFrom(fieldType)) {
+                        Type genericType = field.getGenericType();
+                        if (genericType instanceof ParameterizedType) {
+                            Type[] actualTypeArguments = ((ParameterizedType) genericType).getActualTypeArguments();
+                            for (Type typeArg : actualTypeArguments) {
+                                if (typeArg instanceof Class<?>) {
+                                    collectDependencies((Class<?>) typeArg, relatedClasses);
+                                    System.out.println("  - " + field.getName() + " : List<" + ((Class<?>) typeArg).getName() + ">");
+                                }
+                            }
+                        }
+                    } else {
+                        System.out.println("  - " + field.getName() + " : " + fieldType.getName());
+                        collectDependencies(fieldType, relatedClasses);
+                    }
+                }
+            }
         }
     }
 
