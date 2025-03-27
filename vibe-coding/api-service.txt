@@ -1,0 +1,54 @@
+1. Here is my typical java Api, just take a look:
+
+@Api(value = "ExampleApi", tags = "example", description = ExampleApi.description)
+@SwaggerDefinition(tags = @Tag(name = "example", description = ExampleApi.description))
+@io.swagger.v3.oas.annotations.tags.Tag(name = "ExampleApi", description = ExampleApi.description)
+public interface ExampleApi {
+
+    String description = "Operation assignment, card and protocol";
+    String BASE_PATH = "/v1/api/user/svp";
+
+    @ApiOperation(value = "Create assignment")
+    @Operation(summary = "Create assignment")
+    @PostMapping(BASE_PATH + "/assignment")
+    ApiResponse<UUID> createAssignment(
+            @RequestBody
+            @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Request to create an assignment", required = true)
+            @ApiParam(required = true) @Valid CreateAssignment request
+    );
+
+    @ApiOperation(value = "Get card")
+    @Operation(summary = "Get card")
+    @GetMapping(BASE_PATH + "/{id}")
+    ApiResponse<GetResponse> getCard(
+            @PathVariable("id")
+            @Parameter(description = "Identifier", required = true, in = ParameterIn.PATH)
+            @ApiParam(value = "Identifier", required = true) UUID id
+    );
+
+    @ApiOperation(value = "Edit assignment")
+    @Operation(summary = "Edit assignment")
+    @PutMapping(BASE_PATH + "/{id}/assignment/")
+    ApiResponse<Void> editAssignment(
+            @PathVariable("id")
+            @Parameter(description = "Identifier", required = true, in = ParameterIn.PATH)
+            @ApiParam(value = "Identifier", required = true)
+            UUID id,
+            @RequestBody
+            @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Request to edit an assignment", required = true)
+            @ApiParam(required = true) @Valid EditAssignment request
+    );
+
+    @ApiOperation(value = "Delete assignment")
+    @Operation(summary = "Delete assignment")
+    @DeleteMapping(BASE_PATH + "/{id}")
+    ApiResponse<Void> delete(
+            @PathVariable("ktaId")
+            @Parameter(description = "Card identifier", required = true, in = ParameterIn.PATH)
+            @ApiParam(value = "Card identifier", required = true) UUID id
+    );
+
+}
+
+2. Now create new service and api methods, in the same style (using same types, same annotations etc)
+New methods:

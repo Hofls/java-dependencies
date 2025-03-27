@@ -1,0 +1,70 @@
+1. Here is my typical java Dto, just take a look:
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@ApiModel(description = "Template")
+@Schema(description = "Template")
+public class TemplateDto {
+
+    @ApiModelProperty(value = "Template ID", example = "3298d8ab-39e6-4b86-8d59-1a4074dd978f")
+    @Schema(description = "Template ID", example = "3298d8ab-39e6-4b86-8d59-1a4074dd978f")
+    private UUID id;
+
+    @ApiModelProperty(value = "Edit date and time", example = "2022-02-27T15:46:35")
+    @Schema(description = "Edit date and time", example = "2022-02-27T15:46:35")
+    @JsonFormat(pattern = DateTimePatterns.LOCALDATETIME)
+    private LocalDateTime editDate;
+
+    @ApiModelProperty(value = "Observation date", example = "2021-01-01")
+    @Schema(description = "Observation date", example = "2021-01-01")
+    @JsonFormat(pattern = DateTimePatterns.LOCALDATE)
+    private LocalDate observationDate;
+
+    @ApiModelProperty(value = "Order of response output", example = "10")
+    @Schema(description = "Order of response output", example = "10")
+    private Integer order;
+
+    @ApiModelProperty(value = "BME code", example = "48948")
+    @Schema(description = "BME code", example = "48948")
+    private Long bmeCode;
+
+    @ApiModelProperty(value = "Temperature", example = "37.5")
+    @Schema(description = "Temperature", example = "37.5")
+    private Double temperature;
+
+    @ApiModelProperty(value = "LG card status", example = "SIGNED")
+    @Schema(description = "LG card status", example = "SIGNED")
+    private ELgStatus status;
+
+    @ApiModelProperty(value = "Features of the UE course", example = "No complications occurred")
+    @Schema(description = "Features of the UE course", example = "No complications occurred")
+    private String ueFeatures;
+
+    @ApiModelProperty(value = "Is the card signed", example = "false")
+    @Schema(description = "Is the card signed", example = "false")
+    private Boolean signed;
+
+    @ApiModelProperty(value = "Users")
+    @Schema(description = "Users")
+    private List<TemplateUser> users;
+
+    @Data
+    @ApiModel(description = "Template user")
+    @Schema(description = "Template user")
+    public static class TemplateUser {
+
+        @ApiModelProperty(value = "ICD-10 code", example = "K40.9")
+        @Schema(description = "ICD-10 code", example = "K40.9")
+        private String icd10Code;
+
+        @ApiModelProperty(value = "Detailed diagnosis description", example = "Ivanov I.V.")
+        @Schema(description = "Detailed diagnosis description", example = "Ivanov I.V.")
+        private String name;
+
+    }
+
+}
+
+2. Now create new java Dto, in the same style (using same types, same annotations etc)
+New dto should have following fields:
