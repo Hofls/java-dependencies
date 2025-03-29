@@ -1,0 +1,26 @@
+1. Here is code that i use to validate classes, just take a look:
+
+/** Throws an error if assert fails */
+public interface Validator {
+	 void isTrue(boolean condition);
+	 void isNull(Object object);
+	 void notNull(Object object);
+	 void notEmpty(String str);
+	 void empty(String str);
+	 void hasText(String str);
+}
+
+/**
+ * Necessary to avoid null checks. Usage example:
+ * for (var user : safe(users)) {}
+ * var links = safe(() -> response.getData().getAccount().getLinks());
+ */
+public class SafeUtils {
+	public static <T> Collection<T> safe(Collection<T> collection)
+	public static <T> Set<T> safe(Set<T> set)
+	public static <K, V> Map<K, V> safe(Map<K, V> map)
+	public static <T> T safe(Supplier<T> supplier);
+}
+
+2. Now write code to validate a following class, using Validator and SafeUtils
+
