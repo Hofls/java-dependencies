@@ -1,0 +1,14 @@
+1. Here is my typical java mapper, just take a look:
+@Mapper(
+        uses = {DateTimeMapper.class},
+        config = CommonMapperConfig.class
+)
+public interface FomoMapper {
+
+    @Mapping(target = "createDate", source = "creationDate")
+    @Mapping(target = "user", ignore = true)
+    FomoCardDto toCardDto(FomoCard entity);
+
+}
+
+2. Now create a new mapper, from ... to ...
