@@ -1,0 +1,47 @@
+1. Here is my typical java specification just take a look:
+
+@RequiredArgsConstructor
+public class FomoListSpecification implements Specification<FomoCard> {
+
+    private final FomoListRequest request;
+
+    @Override
+    public Predicate toPredicate(Root<FomoCard> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
+        final List<Predicate> predicates = new ArrayList<>();
+
+
+        if (request.getSigned() != null) {
+            if (request.getSigned()) {
+                predicates.add(criteriaBuilder.equal(root.get(FomoCard.Fields.status), FomoStatus.SIGNED));
+            } else {
+                predicates.add(criteriaBuilder.notEqual(root.get(FomoCard.Fields.status), FomoStatus.SIGNED));
+            }
+        }
+
+        if (request.getCreateDate() != null) {
+            predicates.add(criteriaBuilder.equal(root.get(FomoCard.Fields.createDate), request.getCreateDate()));
+        }
+
+        if (!CollectionUtils.isEmpty(request.getDepartmentIds())) {
+            predicates.add(criteriaBuilder.in(root.get(FomoCard.Fields.patient).get(Patient.Fields.departmentId)).value(request.getDepartmentIds().stream().filter(Objects::nonNull).toList()));
+        }
+
+        if (request.getAssignmentDateFrom() != null) {
+            predicates.add(criteriaBuilder.greaterThanOrEqualTo(root.get(FomoCard.Fields.assignmentDate), request.getAssignmentDateFrom()));
+        }
+
+        if (request.getAssignmentDateTo() != null) {
+            predicates.add(criteriaBuilder.lessThanOrEqualTo(root.get(FomoCard.Fields.assignmentDate), request.getAssignmentDateTo()));
+        }
+
+        if (!CollectionUtils.isEmpty(request.getUserIdList())) {
+            predicates.add(criteriaBuilder.in(root.get(FomoCard.Fields.userId)).value(request.getUserIdList()));
+        }
+
+        predicates.add(criteriaBuilder.notEqual(root.get(FomoCard.Fields.status), FomoStatus.CANCELED));
+
+        return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
+    }
+}
+
+2. Now create a new specification, that fill search for entities, based on request (dto)
