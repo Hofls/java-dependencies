@@ -13,10 +13,11 @@
     
 * Code generation:
   * Open CLI in a `codegen-test` folder
+  * Find swagger endpoint that produces JSON description (with paths, parameters, tags, responses etc)
   * Execute command:
   ```
   java -jar swagger-codegen-cli-3.0.68.jar generate ^
-    -i http://api.tpehrdb.m15.dzm/v2/api-docs ^
+    -i http://localhost:8080/v2/api-docs ^
     -l java ^
     -o .
   ```
