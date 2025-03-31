@@ -8,16 +8,17 @@
 
 #### Generate REST client (or use generated in `frontend` package)
 * Installation:
-    * [Download file](http://central.maven.org/maven2/io/swagger/swagger-codegen-cli/2.4.5/swagger-codegen-cli-2.4.5.jar)
-    * Move file to folder `%USERPROFILE%\swagger-codegen-cli\`
+    * [Download jar file](https://mvnrepository.com/artifact/io.swagger.codegen.v3/swagger-codegen-cli/3.0.68)
+    * Put file in a `codegen-test` folder
     
 * Code generation:
-```
-java -jar %USERPROFILE%\swagger-codegen-cli\swagger-codegen-cli-2.4.5.jar generate ^
-  -i http://localhost:8080/v2/api-docs?group=default ^
-  -l java ^
-  -o %USERPROFILE%/Desktop/swagger-client
-```
-Generated code will appear on the desktop, inside `swagger-rest-client` folder
+  * Open CLI in a `codegen-test` folder
+  * Execute command:
+  ```
+  java -jar swagger-codegen-cli-3.0.68.jar generate ^
+    -i http://api.tpehrdb.m15.dzm/v2/api-docs ^
+    -l java ^
+    -o .
+  ```
 
 #### Run `frontend` tests
