@@ -11,7 +11,8 @@
     java -jar swagger-codegen-cli-3.0.68.jar generate ^
       -i http://localhost:8080/v2/api-docs?group=default ^
       -l java ^
-      -o .
+      -o . ^
+      --additional-properties hideGenerationTimestamp=true
     ```
 * Run `frontend` tests
 
