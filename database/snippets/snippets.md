@@ -157,7 +157,7 @@
 ```
 * Delete rows from a table:
 ```
-  /** First selects all the rows for deletion, loads them in RAM, then for each row executes separate DELTE request */
+  /** First selects all the rows for deletion, loads them in RAM, then for each row executes a separate DELETE request */
   void deleteByCreationDateTimeBefore(OffsetDateTime monthAgo); // Very bad
   
   @Modifying
@@ -165,6 +165,6 @@
       DELETE FROM frontend_logs
       WHERE creation_date_time < (NOW() - INTERVAL '1 month')
   """)
-  void deleteOldErrors(); // Very good (no selects, no load on RAM, deletes everything in 1 request)
+  void deleteOldErrors(); // Very good (no selects, no load on RAM, deletes everything with 1 request)
   
 ```
