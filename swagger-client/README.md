@@ -1,5 +1,4 @@
 ### Swagger backend + client
-* Warning! `backend-springfox` is kinda dead, better use `backend-springdoc`
 * Run backend [README.md](backend-springdoc/README.md)
 * Generate REST client (or use generated in `frontend` package)
 * Code generation:
@@ -9,7 +8,7 @@
   * Execute command:
   ```
   java -jar swagger-codegen-cli-3.0.68.jar generate ^
-    -i http://localhost:8080/v2/api-docs?group=default ^
+    -i http://localhost:8080/v3/api-docs ^
     -l java ^
     -o . ^
     --additional-properties hideGenerationTimestamp=true
