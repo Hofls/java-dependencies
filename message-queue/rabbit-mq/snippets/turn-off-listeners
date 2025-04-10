@@ -1,0 +1,49 @@
+If you need to dynamically stop listening (e.g. there is a lot of pod replicas, only 1 should listen)
+PS If you have "auto-stop-on-fail" enabled, turn it off
+
+@Component
+public class RabbitSmuConsumer extends AbstractRabbitConsumer {
+
+    private final SmuCardService service;
+
+    @RabbitListener(
+            containerFactory = "userSmu",
+            queues = "${spring.rabbitmq.custom.userSmu.queue}")
+    @EnableRabbitRetryAndDlq(event = "userSmu",
+            directToDlqWhen = AmqpRejectAndDontRequeueException.class)
+    public void receiveUserSmu(final Message amqpMessage) throws Exception {
+        try {
+            acknowledgment(message);
+        } catch (Exception e) {
+            processException(amqpMessage, e);
+        }
+    }
+
+}
+
+@Component
+public class RabbitListenersService {
+
+    @Autowired
+    private RabbitListenerEndpointRegistry rabbitListenerEndpointRegistry;
+    private boolean listenersEnabled = true;
+
+    public void enableListeners() {
+        rabbitListenerEndpointRegistry.getListenerContainers().forEach(Lifecycle::start);
+        listenersEnabled = true;
+    }
+
+    public void disableListeners() {
+        rabbitListenerEndpointRegistry.getListenerContainers().forEach(Lifecycle::stop);
+        listenersEnabled = false;
+    }
+
+    public void toggleListeners() {
+        if (listenersEnabled) {
+            disableListeners();
+        } else {
+            enableListeners();
+        }
+    }
+
+}
