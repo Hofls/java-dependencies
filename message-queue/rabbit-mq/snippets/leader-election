@@ -52,7 +52,7 @@ public class RabbitConsumerService {
         if (updateTime == null) {
             return true; // DB is empty, only possible at first run
         }
-        var updateDeadline = getDatabaseTime().minusSeconds(14);
+        var updateDeadline = getDatabaseTime().minusSeconds(16);
         return updateTime.isBefore(updateDeadline);
     }
 
