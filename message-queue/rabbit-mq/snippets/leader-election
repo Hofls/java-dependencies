@@ -16,7 +16,7 @@ public class RabbitConsumerService {
 
     @Scheduled(fixedDelay = 5 * 1000)
     public void tryToTakeOver() {
-        if (shouldConsume() || isTimeToTakeOver()) {
+        if (isListener() || isTimeToTakeOver()) {
             takeOver();
         }
     }
