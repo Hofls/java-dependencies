@@ -1,0 +1,59 @@
+Not really an election - more like a takeover
+
+
+
+/**
+ * Only 1 replica should process rabbit messages, all others have enable = false
+ */
+@Service
+@Transactional
+@RequiredArgsConstructor
+public class RabbitConsumerService {
+
+    private final SystemPropertyRepository systemPropertyRepository;
+    private String propertyName = "RABBIT_CONSUMER_POD";
+    private String currentPodId = UUID.randomUUID().toString();
+
+    @Scheduled(fixedDelay = 5 * 1000)
+    public void tryToTakeOver() {
+        if (shouldConsume() || isTimeToTakeOver()) {
+            takeOver();
+        }
+    }
+
+    /** Is this replica the one who processes incoming Rabbit messages? */
+    public boolean isListener() {
+        var consumerPodId = systemPropertyRepository.findByName(propertyName).getValue();
+        return Objects.equals(currentPodId, consumerPodId);
+    }
+
+    /** This replica is processing, all others chill */
+    protected void takeOver() {
+        var property = systemPropertyRepository.findByName(propertyName);
+        property.setUpdateTime(getDatabaseTime());
+        property.setValue(currentPodId);
+        systemPropertyRepository.saveAndFlush(property);
+    }
+
+    /**
+     * True if no other replica is doing processing right now
+     */
+    protected boolean isTimeToTakeOver() {
+        var updateTime = systemPropertyRepository.findByName(propertyName).getUpdateTime();
+        if (updateTime == null) {
+            return true; // DB is empty, only possible at first run
+        }
+        var updateDeadline = getDatabaseTime().minusSeconds(14);
+        return updateTime.isBefore(updateDeadline);
+    }
+
+    /**
+     * It's very important to get current time from DB
+     * Because different replicas can have different time (depends on server/node)
+     */
+    protected OffsetDateTime getDatabaseTime() {
+        var nowLocal = systemPropertyRepository.getDatabaseTime().toLocalDateTime();
+        return DateTimeUtils.toOffsetDateTime(nowLocal);
+    }
+
+}
