@@ -48,7 +48,8 @@ public class RabbitConsumerService {
     }
 
     /**
-     * It's very important to get current time from DB
+     * It's very important to get current time from DB:
+     * @Query(value = "SELECT NOW()", nativeQuery = true) Timestamp getDatabaseTime();
      * Because different replicas can have different time (depends on server/node)
      */
     protected OffsetDateTime getDatabaseTime() {
