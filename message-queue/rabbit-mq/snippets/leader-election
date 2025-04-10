@@ -10,13 +10,16 @@ Not really an election - more like a takeover
 @RequiredArgsConstructor
 public class RabbitConsumerService {
 
+    private final RabbitListenerEndpointRegistry rabbitListenerEndpointRegistry;
     private final SystemPropertyRepository systemPropertyRepository;
     private String propertyName = "RABBIT_CONSUMER_POD";
     private String currentPodId = UUID.randomUUID().toString();
 
     @Scheduled(fixedDelay = 5 * 1000)
     public void tryToTakeOver() {
-        if (isListener() || isTimeToTakeOver()) {
+        if (isListener()) {
+            notifyOthers();
+        } else if (isTimeToTakeOver()) {
             takeOver();
         }
     }
@@ -27,8 +30,14 @@ public class RabbitConsumerService {
         return Objects.equals(currentPodId, consumerPodId);
     }
 
-    /** This replica is processing, all others chill */
+    /** This replica starts listening, all others chill */
     protected void takeOver() {
+        notifyOthers();
+        rabbitListenerEndpointRegistry.getListenerContainers().forEach(Lifecycle::start);
+    }
+
+    /** Send notification - "This replica is listening, all others should chill" */
+    protected void notifyOthers() {
         var property = systemPropertyRepository.findByName(propertyName);
         property.setUpdateTime(getDatabaseTime());
         property.setValue(currentPodId);
