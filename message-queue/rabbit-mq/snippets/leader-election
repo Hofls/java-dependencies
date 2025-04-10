@@ -5,6 +5,7 @@ Not really an election - more like a takeover
 /**
  * Only 1 replica should process rabbit messages, all others have enable = false
  */
+ @Slf4j
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -13,7 +14,8 @@ public class RabbitConsumerService {
     private final RabbitListenerEndpointRegistry rabbitListenerEndpointRegistry;
     private final SystemPropertyRepository systemPropertyRepository;
     private String propertyName = "RABBIT_CONSUMER_POD";
-    private String currentPodId = UUID.randomUUID().toString();
+    private String currentReplicaId = UUID.randomUUID().toString();
+    private boolean shouldBeListening = false;
 
     @Scheduled(fixedDelay = 5 * 1000)
     public void tryToTakeOver() {
@@ -22,25 +24,32 @@ public class RabbitConsumerService {
         } else if (isTimeToTakeOver()) {
             takeOver();
         }
+
+        if (shouldBeListening && !isListener()) {
+            log.error("This replica should be listening, but something went wrong. replicaId - " + currentReplicaId);
+            System.exit(1);
+        }
     }
 
     /** Is this replica the one who processes incoming Rabbit messages? */
     public boolean isListener() {
-        var consumerPodId = systemPropertyRepository.findByName(propertyName).getValue();
-        return Objects.equals(currentPodId, consumerPodId);
+        var listenerReplicaId = systemPropertyRepository.findByName(propertyName).getValue();
+        return Objects.equals(currentReplicaId, listenerReplicaId);
     }
 
     /** This replica starts listening, all others chill */
     protected void takeOver() {
         notifyOthers();
         rabbitListenerEndpointRegistry.getListenerContainers().forEach(Lifecycle::start);
+        shouldBeListening = true;
+        log.info("Replica starts listening - " + currentReplicaId);
     }
 
     /** Send notification - "This replica is listening, all others should chill" */
     protected void notifyOthers() {
         var property = systemPropertyRepository.findByName(propertyName);
         property.setUpdateTime(getDatabaseTime());
-        property.setValue(currentPodId);
+        property.setValue(currentReplicaId);
         systemPropertyRepository.saveAndFlush(property);
     }
 
