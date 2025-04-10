@@ -1,5 +1,5 @@
 If you need to dynamically stop listening (e.g. there is a lot of pod replicas, only 1 should listen)
-PS №1 If app should start with listeners disable - just add autoStartup = "false" to @RabbitListener
+PS №1 If app should start with listeners disabled - just add autoStartup = "false" to @RabbitListener
 PS №2 If you have "auto-stop-on-fail" enabled, turn it off
 
 @Component
