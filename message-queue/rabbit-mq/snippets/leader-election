@@ -9,11 +9,11 @@ Not really an election - more like a takeover
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class RabbitConsumerService {
+public class RabbitListenerService {
 
     private final RabbitListenerEndpointRegistry rabbitListenerEndpointRegistry;
     private final SystemPropertyRepository systemPropertyRepository;
-    private String propertyName = "RABBIT_CONSUMER_POD";
+    private String propertyName = "RABBIT_LISTENER_REPLICA";
     private String currentReplicaId = UUID.randomUUID().toString();
     private boolean shouldBeListening = false;
 
