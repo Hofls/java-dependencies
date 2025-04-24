@@ -8,7 +8,7 @@ public class NullUtils {
     public static <T> T safe(Supplier<T> supplier) {
         try {
             return supplier.get();
-        } catch (NullPointerException | IndexOutOfBoundsException e) {
+        } catch (NullPointerException | IndexOutOfBoundsException | NoSuchElementException e) {
             return null;
         }
     }
@@ -16,7 +16,7 @@ public class NullUtils {
     public static <T> T safe(Supplier<T> supplier, T defaultValue) {
         try {
             return supplier.get();
-        } catch (NullPointerException | IndexOutOfBoundsException e) {
+        } catch (NullPointerException | IndexOutOfBoundsException | NoSuchElementException e) {
             return defaultValue;
         }
     }
@@ -24,7 +24,7 @@ public class NullUtils {
     public static void safe(Runnable runnable) {
         try {
             runnable.run();
-        } catch (IndexOutOfBoundsException | NullPointerException ignored) {}
+        } catch (IndexOutOfBoundsException | NullPointerException | NoSuchElementException ignored) {}
     }
 
     /** To avoid NullPointerException in cycles */
