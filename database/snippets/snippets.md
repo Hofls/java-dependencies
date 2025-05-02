@@ -168,3 +168,6 @@
   void deleteOldErrors(); // Very good (no selects, no load on RAM, deletes everything with 1 request)
   
 ```
+* Error after deletion - "org.hibernate.StaleStateException: Batch update returned unexpected row count"
+  * Fix - `@Modifying(clearAutomatically = true)`
+* 
