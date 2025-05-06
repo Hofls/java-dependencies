@@ -8,7 +8,7 @@ import org.springframework.kafka.annotation.KafkaListener;
 @Service
 public class KafkaConsumer {
 
-    @KafkaListener(topics = "demo-topic", groupId = "group-id")
+    @KafkaListener(topics = "${spring.kafka.topics.greetings}", groupId = "${spring.kafka.consumer.group-id}")
     public void listen(String messageRaw) {
         var message = JsonConverter.jsonToObject(messageRaw, KafkaMessage.class);
         System.out.println("Received message: " + message);
