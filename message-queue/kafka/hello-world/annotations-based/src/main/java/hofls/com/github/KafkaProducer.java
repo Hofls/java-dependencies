@@ -13,8 +13,8 @@ public class KafkaProducer {
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
 
-    public void sendMessage(String message) {
+    public void sendMessage(KafkaMessage message) {
         System.out.println("Sending message: " + message);
-        kafkaTemplate.send(TOPIC, message);
+        kafkaTemplate.send(TOPIC, JsonConverter.objectToJson(message));
     }
 }
