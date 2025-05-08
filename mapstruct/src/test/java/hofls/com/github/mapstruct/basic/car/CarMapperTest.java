@@ -2,10 +2,11 @@ package hofls.com.github.mapstruct.basic.car;
 
 import hofls.com.github.mapstruct.basic.passenger.Passenger;
 import hofls.com.github.mapstruct.basic.passenger.PassengerDto;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CarMapperTest {
 
@@ -16,10 +17,10 @@ public class CarMapperTest {
 
         CarDto carDto = CarMapper.INSTANCE.carToDto(car);
 
-        Assert.assertEquals("Morris", carDto.getMake());
-        Assert.assertEquals(5, carDto.getSeatCount());
-        Assert.assertEquals("SEDAN", carDto.getType());
-        Assert.assertEquals(new PassengerDto("Donny", 23), carDto.getPassengers().get(0));
+        assertEquals("Morris", carDto.getMake());
+        assertEquals(5, carDto.getSeatCount());
+        assertEquals("SEDAN", carDto.getType());
+        assertEquals(new PassengerDto("Donny", 23), carDto.getPassengers().get(0));
     }
 
     @Test
@@ -29,10 +30,10 @@ public class CarMapperTest {
 
         Car car = CarMapper.INSTANCE.dtoToCar(carDto);
 
-        Assert.assertEquals("Volvo", car.getMake());
-        Assert.assertEquals(23, car.getNumberOfSeats());
-        Assert.assertEquals(ECarType.BUS, car.getType());
-        Assert.assertEquals(new Passenger("John", 34), car.getPassengers().get(0));
+        assertEquals("Volvo", car.getMake());
+        assertEquals(23, car.getNumberOfSeats());
+        assertEquals(ECarType.BUS, car.getType());
+        assertEquals(new Passenger("John", 34), car.getPassengers().get(0));
     }
 
 }

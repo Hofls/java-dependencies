@@ -1,10 +1,13 @@
 package hofls.com.github.mapstruct.misc;
 
-import org.junit.Assert;
-import org.junit.Test;
+
+
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class UserMapperTest {
 
@@ -17,8 +20,8 @@ public class UserMapperTest {
         privileges.add(new Privilege(23L));
         UserDto userDto = UserMapper.INSTANCE.oneTrueMethod(user, privileges);
 
-        Assert.assertEquals("John", userDto.getName());
-        Assert.assertEquals(Long.valueOf(23), userDto.getPrivileges().get(0).getId());
+        assertEquals("John", userDto.getName());
+        assertEquals(Long.valueOf(23), userDto.getPrivileges().get(0).getId());
     }
 
 
@@ -31,8 +34,8 @@ public class UserMapperTest {
 
         UserMapper.INSTANCE.copyProperties(user, userDto);
 
-        Assert.assertEquals("London", userDto.getCity());
-        Assert.assertEquals("John", userDto.getName());
+        assertEquals("London", userDto.getCity());
+        assertEquals("John", userDto.getName());
     }
 
     @Test
@@ -42,8 +45,8 @@ public class UserMapperTest {
 
         UserDto userDto = UserMapper.INSTANCE.toDto(user);
 
-        Assert.assertEquals("New York", userDto.getCity());
-        Assert.assertEquals("John", userDto.getName());
+        assertEquals("New York", userDto.getCity());
+        assertEquals("John", userDto.getName());
     }
 
 }
