@@ -1,11 +1,11 @@
 package hofls.com.github.rest.validation.types;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Negative;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Negative;
-import javax.validation.constraints.NotNull;
 
 @Data
 public class ObjectInPath {

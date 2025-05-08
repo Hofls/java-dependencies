@@ -3,9 +3,9 @@
  */
 
 plugins {
-    id 'org.springframework.boot' version '2.2.3.RELEASE'
-    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
     id 'java'
+    id 'org.springframework.boot' version '3.3.2'
+    id 'io.spring.dependency-management' version '1.1.6'
 }
 
 repositories {
@@ -18,11 +18,12 @@ test {
 }
 
 dependencies {
-    implementation(group: 'org.springframework.boot', name: 'spring-boot-starter-web', version:'2.2.2.RELEASE')
-    implementation 'org.springdoc:springdoc-openapi-ui:1.5.10'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0'
 
-    compileOnly 'org.projectlombok:lombok:1.18.8'
-    annotationProcessor 'org.projectlombok:lombok:1.18.8'
+    compileOnly 'org.projectlombok:lombok:1.18.34'
+    annotationProcessor 'org.projectlombok:lombok:1.18.34'
 
     implementation 'hofls.com.github:test-utils:0.1.0'
 
@@ -37,7 +38,6 @@ dependencies {
 }
 
 group = 'hofls.com.github'
-sourceCompatibility = '1.8'
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'

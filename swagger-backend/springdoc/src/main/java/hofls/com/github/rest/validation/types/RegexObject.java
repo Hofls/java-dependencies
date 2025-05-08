@@ -1,9 +1,9 @@
 package hofls.com.github.rest.validation.types;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
-import javax.validation.constraints.Pattern;
 
 @Data
 public class RegexObject {

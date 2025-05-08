@@ -1,13 +1,9 @@
 package hofls.com.github.rest.validation.types;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import lombok.Data;
-
-import javax.validation.Valid;
-import javax.validation.constraints.AssertTrue;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 @Data
 public class ObjectInBody {
@@ -25,16 +21,14 @@ public class ObjectInBody {
 
         @Min(55)
         @NotNull
-        @Schema(description = "32")
+        @Schema(example = "32")
         private Long fieldB;
 
-        @AssertTrue(message = "Values should be bigger!")
+        @AssertFalse(message = "Values should be good'")
         @Schema(hidden = true)
-        public boolean isValuesBigEnough() {
+        public boolean isValuesEvil() {
             // method name is crucial! if it doesn't start with "is" - nothing happens
-            boolean isFieldABigEnough = fieldA != null && fieldA.length() > 8;
-            boolean isFieldBbigEnough = fieldB > 100000;
-            return isFieldABigEnough && isFieldBbigEnough;
+            return "evil".equals(fieldA) || fieldB.equals(666L);
         }
 
     }
