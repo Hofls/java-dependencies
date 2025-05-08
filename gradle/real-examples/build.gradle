@@ -75,7 +75,6 @@ dependencies {
 
 group = 'com.svias.mobile.driver'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '15'
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'

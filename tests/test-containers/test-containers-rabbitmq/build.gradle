@@ -22,4 +22,3 @@ dependencies {
 }
 
 group = 'hofls.com.github'
-sourceCompatibility = '1.8'

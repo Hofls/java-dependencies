@@ -6,9 +6,6 @@ plugins {
 version = "1.0.2"
 group = "org.gradle.samples"
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-}
 
 repositories {
     mavenLocal()

@@ -20,7 +20,6 @@ dependencies {
 
 group = 'hofls.com.github'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
