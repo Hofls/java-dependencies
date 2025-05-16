@@ -20,7 +20,7 @@ public abstract class ApplicationTest {
 
 public class WebsocketClient {
 
-    private static final String URL = "ws://localhost:8786/server/push";
+    private static final String URL = "ws://localhost:8786/server/push"; // Use "wss://" for https
     private static final CountDownLatch latch = new CountDownLatch(1);
     private static String request;
     private static String actualResponse;
