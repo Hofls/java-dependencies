@@ -1,0 +1,14 @@
+// Store unique data (sessionId) per thread
+// Similar to @Autowired HttpServletRequest
+
+public class SocketService {
+	public static final ThreadLocal<String> currentSessionId = new ThreadLocal<>();
+}
+
+public class UsageDemo {
+    public void demo() {
+        SocketService.currentSessionId.set(session.getId());
+        SocketService.currentSessionId.get()
+        SocketService.currentSessionId.remove();
+    }
+}
