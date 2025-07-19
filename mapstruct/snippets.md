@@ -1,7 +1,14 @@
 ### Snippets
-* Why `expression = "java(..)"` is bad:
+* No need to specify full path to `UUID` package in `expression`:
+```
+@Mapper(config = CommonMapperConfig.class, imports = { UUID.class })
+public abstract class WaterPrescriptionMapper {
+  @Mapping(target = "userId", expression = "java(UUID.fromString(userDto.getStringId))")
+  public abstract User toDto(UserDto userDto);
+}
+```
+* Why complex `expression = "java(..)"` is bad:
   * There is no autocomplete, no syntax highlight, this "code" is not a part of automatic refactoring
-  * Requires full package name, e.g. `com.someit.app.features.registration.utils.RegistrationUtils.finish(date);`
   * Regular java code is a good alternative:
   ```
     public SvgAccountSheetDto toSvgDto(SvgAccount svgAccount) {
