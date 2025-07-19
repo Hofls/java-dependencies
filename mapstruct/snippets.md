@@ -2,7 +2,7 @@
 * No need to specify full path to `UUID` package in `expression`:
 ```
 @Mapper(config = CommonMapperConfig.class, imports = { UUID.class })
-public abstract class WaterPrescriptionMapper {
+public abstract class UserMapper {
   @Mapping(target = "userId", expression = "java(UUID.fromString(userDto.getStringId))")
   public abstract User toDto(UserDto userDto);
 }
