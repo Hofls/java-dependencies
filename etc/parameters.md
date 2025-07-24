@@ -1,5 +1,5 @@
 # Parameters
-* Insane defaults: Java uses only 25% of available RAM, even in docker/k8s. Fix:
+* Insane defaults - Java uses only 25% of available RAM, even in docker/k8s. Fix:
     * Absolute:
         * `–Xms256m` - initial heap size
         * `–Xmx1024m` - maximum heap size
