@@ -170,4 +170,12 @@
 ```
 * Error after deletion - "org.hibernate.StaleStateException: Batch update returned unexpected row count"
   * Fix - `@Modifying(clearAutomatically = true)`
-* 
+* You need save data into DB, calculate formulas, then revert transaction (while returning calculation result)?
+```
+  @Transactional(propagation = Propagation.REQUIRES_NEW)
+  public Double calculateAndRevert_v1(DshRequest request) {
+    saveToDb(request);
+    TransactionAspectSupport.currentTransactionStatus().setRollbackOnly(); // Or just throw an exception with calculation results
+    return calculateFormulas();
+  }
+```
