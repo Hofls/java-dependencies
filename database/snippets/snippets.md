@@ -1,4 +1,10 @@
 #### Snippets
+* Error `Transaction silently rolled back because it has been marked as rollback-only`
+  * Means that you threw an error and caught it, but hibernate still noticed error and marked transaction for rollback \
+    It is very bad, it means exception ignore doesn't work + real error text is hidden now \
+  * Fix - remove all excessive `@Transactional` annotations from methods (hibernate notices error via proxy)
+  * Test - Call problematic method, force it to throw exception, ignore it, check transaction status: \
+    `TransactionAspectSupport.currentTransactionStatus().isRollbackOnly();`
 * Get info about last invoice:
     ```
     private Predicate lastInvoice(Root<Invoice> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
