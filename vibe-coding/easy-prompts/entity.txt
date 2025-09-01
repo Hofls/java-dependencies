@@ -5,6 +5,7 @@
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldNameConstants
+@TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
 @Table(name = "classic_spf")
 public class ClassicSpf {
 
@@ -38,6 +39,14 @@ public class ClassicSpf {
 
     @Column(nullable = false)
     private Boolean editable;
+
+    @Type(type = "jsonb")
+    @Column(columnDefinition = "jsonb")
+    private Object content;
+
+    @Type(type = "jsonb")
+    @Column(columnDefinition = "jsonb")
+    private SpefCardDto spef;
 
     @JsonManagedReference
     @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "protocol" , fetch = FetchType.LAZY)

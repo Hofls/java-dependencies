@@ -24,6 +24,8 @@
 		<column name="editable" type="BOOLEAN">
 			<constraints nullable="false"/>
 		</column>
+        <column name="content" type="JSONB"/>
+        <column name="spef" type="JSONB"/>
 		<column name="shop_id" type="UUID">
 			<constraints nullable="false" />
 		</column>
