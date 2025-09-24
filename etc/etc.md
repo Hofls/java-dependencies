@@ -33,7 +33,7 @@
 * `Shenandoah` - low pause times, good for large heap sizes
 
 ### Dependency alternatives
-* `Spring` - micronaut, quarkus
+* `Spring` - micronaut, quarkus, helidon
   * Lose spring ecosystem, but gain fast startup time and low resources consumption (very niche)
 
 ### RAM
