@@ -1,4 +1,6 @@
-* [etc.md](/etc/etc.md)
-* [outdated.md](/etc/outdated.md)
-* [parameters.md](/etc/parameters.md)
-* [resources.md](/etc/resources.md)
+* Unusual root folders:
+  * [code-analysis](code-analysis)
+  * [design-patterns](design-patterns)
+  * [etc.md](/etc)
+  * [monitoring](monitoring)
+  * [schema-generators](schema-generators)
