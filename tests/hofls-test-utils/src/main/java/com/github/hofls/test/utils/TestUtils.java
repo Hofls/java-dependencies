@@ -2,6 +2,7 @@ package com.github.hofls.test.utils;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.core.util.DefaultIndenter;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.*;
@@ -78,6 +79,11 @@ public class TestUtils {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    /** Supports even something like Response<List<Patient>> */
+    public static <T> T readObjectFromFile(Class resourceFromClass, String filename, TypeReference<T> typeReference) throws IOException {
+        return objectMapper.readValue(IOUtils.toString(resourceFromClass.getResourceAsStream(filename)), typeReference);
     }
 
     public static <T> T readObjectFromFile(Class resourceFromClass, String filename, Class<T> clazz) throws IOException {

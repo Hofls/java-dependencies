@@ -1,5 +1,6 @@
 package com.github.hofls.javatests.utils;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.github.hofls.javatests.utils.dto.Person;
 import com.github.hofls.test.utils.TestUtils;
@@ -44,6 +45,13 @@ class TestUtilsTest {
         String expected = TestUtils.readFile(this.getClass(), "people.json");
         Person[] peopleArray = TestUtils.readObjectFromFile(this.getClass(), "people.json", Person[].class);
         List<Person> peopleList = Arrays.stream(peopleArray).collect(Collectors.toList());
+        TestUtils.assertEqualJson(expected, peopleList);
+    }
+
+    @Test
+    void readListFromFile2() throws Exception {
+        String expected = TestUtils.readFile(this.getClass(), "people.json");
+        List<Person> peopleList = TestUtils.readObjectFromFile(this.getClass(), "people.json", new TypeReference<>() {});
         TestUtils.assertEqualJson(expected, peopleList);
     }
 
