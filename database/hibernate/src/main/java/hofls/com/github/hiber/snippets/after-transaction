@@ -1,43 +1,33 @@
-// Send message to redis, after successful transaction/commit that changed status
-// Use @Transaction and call repository.save(entity), .save() is necessary because of AbstractAggregateRoot quirks
-// Alternative to AbstractAggregateRoot (no need to call .save() each time):
-  // ApplicationEventPublisher eventPublisher;
-  // eventPublisher.publishEvent(customEvent);
-
-
-@Entity
-@Table(name = "sick_card")
-public class SickCard extends AbstractAggregateRoot<SickCard>  {
-
-    public void changeStatus(SickStatus newStatus) {
-        if (this.status != newStatus) {
-            this.status = newStatus;
-            registerEvent(new SickChangeStatusEvent(id, newStatus));
-        }
-    }
-
-}
+// Send message to redis, but only after successful transaction/commit
 
 @Component
-public class SickEventListener {
+public class RefresherPublisher {
 
-    private final RedisPublisher redisPublisher;
+    @Value("${redis.channel.refresher}")
+    private String channel;
 
-    @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT) // If you use AbstractAggregateRoot, you must call repository.save(entity)
-    public void changeStatusSick(SickChangeStatusEvent event) {
-        redisPublisher.publishMessage(
-                new RefresherMessage(RefresherType.SICK, event.getId(), event.getStatus().name()));
+    @Autowired
+    private StringRedisTemplate redisTemplate;
+
+    @Deprecated // Bad method, sends notification about changes, even if transaction is slow or was rolled back
+    public void publishMessage(RefresherMessage message) {
+        redisTemplate.convertAndSend(channel, message.toJson());
     }
+
+    // Good method, sends notification only if transaction is successful (calls method afterCommit())
+    public void publishAfterTransaction(RefresherMessage message) {
+        DomainEventPublisher.publish(new RedisEvent(message));
+    }
+
+    @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
+    public void afterCommit(RedisEvent event) {
+        redisTemplate.convertAndSend(channel, event.getRefresherMessage().toJson());
+    }
+
 }
 
-public class SickChangeStatusEvent {
-    private UUID id;
-    private SickStatus status;
+@Data
+@AllArgsConstructor
+public class RedisEvent {
+    private RefresherMessage refresherMessage; // RefresherMessage is a custom class with custom fields
 }
-
-
-//
-// TESTS:
-Create facade for class SickEventListener, replace AFTER_COMMIT with AFTER_ROLLBACK
-In the test, force end transaction using TestTransaction.end();
-Now event will trigger, code will be executed
