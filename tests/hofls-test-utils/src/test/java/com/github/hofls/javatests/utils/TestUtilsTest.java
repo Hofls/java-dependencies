@@ -43,7 +43,7 @@ class TestUtilsTest {
     @Test
     void readListFromFile() throws Exception {
         String expected = TestUtils.readFile(this.getClass(), "people.json");
-        Person[] peopleArray = TestUtils.readObjectFromFile(this.getClass(), "people.json", Person[].class);
+        Person[] peopleArray = TestUtils.readObjectFromFile(this.getClass(), "people.json", Person[].class); // better use TypeReference
         List<Person> peopleList = Arrays.stream(peopleArray).collect(Collectors.toList());
         TestUtils.assertEqualJson(expected, peopleList);
     }
