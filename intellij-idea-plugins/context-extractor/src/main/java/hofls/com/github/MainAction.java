@@ -6,7 +6,6 @@ import com.intellij.notification.Notifications;
 import com.intellij.openapi.actionSystem.*;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.project.Project;
-import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.*;
 import org.jetbrains.annotations.NotNull;
 
@@ -70,26 +69,84 @@ public class MainAction extends AnAction {
         }
     }
 
+    /**
+     * Recursively append fields for a PsiType.
+     * Handles:
+     *  - arrays
+     *  - parameterized collections (List<T>, Set<T>, Collection<T>) -> expand T
+     *  - Map<K,V> -> show key/value and expand V
+     *  - normal classes -> list fields and recurse
+     *
+     * visited stores canonical text to avoid infinite recursion (including generics)
+     */
     private void appendTypeFields(PsiType type, StringBuilder sb, String indent, Set<String> visited) {
-        if (!(type instanceof PsiClassType classType)) {
+        if (type == null) return;
+
+        // Arrays: recurse into component type
+        if (type instanceof PsiArrayType arrayType) {
+            PsiType comp = arrayType.getComponentType();
+            sb.append(indent).append("- array of: ").append(comp.getPresentableText()).append("\n");
+            appendTypeFields(comp, sb, indent + "  ", visited);
             return;
         }
 
-        PsiClass psiClass = classType.resolve();
-        if (psiClass == null) {
-            return;
-        }
+        // Parameterized types & class types
+        if (type instanceof PsiClassType classType) {
+            // Avoid repeating the same concrete type (including generics) to prevent cycles.
+            String canonical = type.getCanonicalText();
+            if (visited.contains(canonical)) return;
+            visited.add(canonical);
 
-        String className = psiClass.getQualifiedName();
-        if (className == null || visited.contains(className) || className.startsWith("java.")) {
-            return; // skip primitives and cycles
-        }
+            PsiType[] typeArgs = classType.getParameters(); // generic args like Order in List<Order>
+            PsiClass psiClass = classType.resolve();
+            String qName = psiClass != null ? psiClass.getQualifiedName() : null;
 
-        visited.add(className);
-        for (PsiField field : psiClass.getAllFields()) {
-            sb.append(indent).append("- ").append(field.getName())
-                    .append(": ").append(field.getType().getPresentableText()).append("\n");
-            appendTypeFields(field.getType(), sb, indent + "  ", visited);
+            // Handle common collection interfaces by expanding their element type
+            if ("java.util.List".equals(qName) ||
+                    "java.util.Set".equals(qName) ||
+                    "java.util.Collection".equals(qName) ||
+                    "java.util.Optional".equals(qName)) {
+                if (typeArgs.length > 0) {
+                    PsiType elementType = typeArgs[0];
+                    sb.append(indent).append("- element: ").append(elementType.getPresentableText()).append("\n");
+                    appendTypeFields(elementType, sb, indent + "  ", visited);
+                } else {
+                    sb.append(indent).append("- element: (unknown)\n");
+                }
+                return;
+            }
+
+            // Handle Map<K,V> by showing key/value and expanding value
+            if ("java.util.Map".equals(qName)) {
+                if (typeArgs.length >= 2) {
+                    PsiType keyType = typeArgs[0];
+                    PsiType valueType = typeArgs[1];
+                    sb.append(indent).append("- key: ").append(keyType.getPresentableText()).append("\n");
+                    sb.append(indent).append("- value: ").append(valueType.getPresentableText()).append("\n");
+                    appendTypeFields(valueType, sb, indent + "  ", visited);
+                } else {
+                    sb.append(indent).append("- map: (unknown generics)\n");
+                }
+                return;
+            }
+
+            // For other java.* classes, skip expanding (String, Integer, etc.)
+            if (qName != null && qName.startsWith("java.")) {
+                return;
+            }
+
+            // If we resolved a custom class, iterate its fields
+            if (psiClass != null) {
+                for (PsiField field : psiClass.getAllFields()) {
+                    // skip synthetic/static if desired; currently include all instance fields
+                    sb.append(indent).append("- ").append(field.getName())
+                            .append(": ").append(field.getType().getPresentableText()).append("\n");
+                    appendTypeFields(field.getType(), sb, indent + "  ", visited);
+                }
+            } else {
+                // unresolved generic or type variable - try to print presentable text
+                sb.append(indent).append("- ").append(type.getPresentableText()).append("\n");
+            }
         }
     }
 
