@@ -1,0 +1,1 @@
+Use intellij idea plugin (context extractor)
