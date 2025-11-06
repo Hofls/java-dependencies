@@ -1,0 +1,19 @@
+<idea-plugin>
+    <id>com.hofls.context-extractor</id>
+    <name>Context Extractor</name>
+    <vendor>Hofls</vendor>
+
+    <idea-version since-build="242"/>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- If you want a tool window later, add here -->
+        <notificationGroup id="NotificationGroupId" displayType="BALLOON" toolWindowId="Event Log"/>
+    </extensions>
+
+    <actions>
+        <action id="MainActionId" class="hofls.com.github.MainAction" text="Extract context (for LLM)">
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt D"/>
+        </action>
+    </actions>
+</idea-plugin>
