@@ -1,0 +1,19 @@
+<idea-plugin>
+    <id>com.hofls.helloworld</id>
+    <name>Hello World</name>
+    <vendor>Hofls</vendor>
+
+    <idea-version since-build="242"/>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- If you want a tool window later, add here -->
+    </extensions>
+
+    <actions>
+        <action id="HelloWorldAction" class="hofls.com.github.HelloWorldAction" text="Hello world!"
+                description="Shows hello world popup menu">
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt D"/>
+        </action>
+    </actions>
+</idea-plugin>
