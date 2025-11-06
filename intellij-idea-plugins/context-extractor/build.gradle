@@ -13,6 +13,7 @@ repositories {
 intellij {
     version = '2024.2' // or your installed IDEA version
     type = 'IC'        // 'IC' = IntelliJ Community, 'IU' = Ultimate
+    plugins = ['java']
 }
 
 patchPluginXml {
