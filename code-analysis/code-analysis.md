@@ -3,7 +3,7 @@
   * Look at `/useful-info/backend/python/projects/api-usage`
 * Extract context for LLMs
   * Look at `/java-dependencies/intellij-idea-plugins/context-extractor`
-* Find top 100 big tests
+* Find 100 biggest tests
   * Look at `/useful-info/backend/python/projects/find-big-tests`
 
 ### Open source
