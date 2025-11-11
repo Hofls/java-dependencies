@@ -1,3 +1,11 @@
+### Custom
+* Find unused urls (rest methods)
+  * Look at `/useful-info/backend/python/projects/api-usage`
+* Extract context for LLMs
+  * Look at `/java-dependencies/intellij-idea-plugins/context-extractor`
+* Find top 100 big tests
+  * Look at `/useful-info/backend/python/projects/find-big-tests`
+
 ### Open source
 * Default code-analysis tools settings tend to be overly limiting, force programmer to jump through useless hoops. To fix it:
   * By default disable all checks
@@ -11,7 +19,3 @@
     * [error-prone](https://github.com/google/error-prone) - 6.8k stars, actively developed
     * [pmd](https://github.com/pmd/pmd) - 4.8k stars, actively developed
     * [spotbugs](https://github.com/spotbugs/spotbugs) - 3.4k stars, actively developed
-
-### Custom
-* Find unused urls (rest methods)
-  * Look at `/useful-info/backend/python/projects/api-usage`
