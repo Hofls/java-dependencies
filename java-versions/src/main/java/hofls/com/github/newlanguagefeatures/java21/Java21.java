@@ -6,14 +6,15 @@ import java.util.concurrent.Executors;
 
 public class Java21 {
 
-    // Virtual threads are way faster than OS threads
+    // Virtual threads are way faster than OS threads (alternative to new Thread)
     public static void virtualThreads() {
-        try(var executor = Executors.newVirtualThreadPerTaskExecutor()) {
+        Thread t = Thread.ofVirtual().start(() -> {
+            System.out.println("Virtual thread example №1");
+        });
+
+        try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {
             executor.submit(() -> {
-                try {
-                    System.out.println("Hello from virtual thread!");
-                    Thread.sleep(Duration.ofSeconds(1));
-                } catch (Exception ignored) {}
+                System.out.println("Virtual thread example №2");
             });
         }
     }
