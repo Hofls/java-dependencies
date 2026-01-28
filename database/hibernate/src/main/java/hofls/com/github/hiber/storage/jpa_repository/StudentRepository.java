@@ -1,6 +1,6 @@
 package hofls.com.github.hiber.storage.jpa_repository;
 
-import org.hibernate.jpa.TypedParameterValue;
+import org.hibernate.query.TypedParameterValue;
 import org.javers.spring.annotation.JaversSpringDataAuditable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -65,7 +65,7 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     @Query(nativeQuery = true, value = "SELECT * FROM student WHERE :studentIds is null OR id IN (:studentIds) ")
     List<Student> findNativeIn(@Param("studentIds") List<Long> studentIds);
     @Query(nativeQuery = true, value = "select * from student where :studentId is null OR id = :studentId")
-    List<Student> findNativeByParam(@Param("studentId") TypedParameterValue studentId);
+    List<Student> findNativeByParam(@Param("studentId") Long studentId);
     @Query(nativeQuery = true, value = "select * from student where :status is null OR status = CAST(:status AS text)")
     List<Student> findNativeByEnum(@Param("status") Status status); // Or use "String status"
     @Query(nativeQuery = true, value = "select * from student where (:statuses) is null OR status IN (:statuses)")

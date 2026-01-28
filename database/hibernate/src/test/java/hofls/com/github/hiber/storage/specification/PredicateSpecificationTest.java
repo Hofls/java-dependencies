@@ -4,7 +4,7 @@ import hofls.com.github.hiber.storage.junit.BaseTest;
 import hofls.com.github.hiber.storage.junit.BaseWithTransaction;
 import org.junit.jupiter.api.Test;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

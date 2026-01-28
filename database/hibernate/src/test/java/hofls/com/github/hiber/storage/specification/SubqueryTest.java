@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.util.Assert;
 
-import javax.annotation.Resource;
-import javax.persistence.EntityManager;
+import jakarta.annotation.Resource;
+import jakarta.persistence.EntityManager;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

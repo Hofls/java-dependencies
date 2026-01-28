@@ -2,7 +2,7 @@ package hofls.com.github.hiber.storage.fields.demo;
 
 import lombok.Data;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Data

@@ -3,9 +3,9 @@
  */
 
 plugins {
-    id 'org.springframework.boot' version '2.2.2.RELEASE'
-    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
     id 'java'
+    id 'org.springframework.boot' version '3.3.2'
+    id 'io.spring.dependency-management' version '1.1.6'
 }
 
 repositories {
@@ -14,27 +14,28 @@ repositories {
 }
 
 dependencies {
-    implementation(group: 'org.springframework.boot', name: 'spring-boot-starter-web', version:'2.2.2.RELEASE')
-    implementation 'org.springframework.data:spring-data-jpa:2.2.2.RELEASE'
-    implementation 'org.hibernate:hibernate-entitymanager:5.4.10.Final'
-    implementation 'com.h2database:h2:1.4.200'
-    implementation 'org.postgresql:postgresql:42.2.9'
-    testImplementation('org.springframework.boot:spring-boot-starter-test') {
-        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-    }
-    compileOnly 'org.projectlombok:lombok:1.18.8'
-    annotationProcessor 'org.projectlombok:lombok:1.18.8'
+    // Spring Boot starters (LET BOOT MANAGE VERSIONS)
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    implementation 'com.h2database:h2'
+    implementation 'org.postgresql:postgresql'
+
+    compileOnly 'org.projectlombok:lombok:1.18.32'
+    annotationProcessor 'org.projectlombok:lombok:1.18.32'
 
     // JSON:
-    implementation 'com.vladmihalcea:hibernate-types-52:2.9.11'
+    implementation 'com.vladmihalcea:hibernate-types-60:2.21.1'
 
-    // Audit:
-    implementation 'org.javers:javers-spring-boot-starter-sql:5.13.0'
+    // Audit
+    implementation 'org.javers:javers-spring-boot-starter-sql:7.6.0'
 
     // To generate model on build. (Classes like Campus_, Student_)
     // Also consider using @FieldNameConstants (lombok)
-    annotationProcessor('org.hibernate:hibernate-jpamodelgen:5.4.10.Final')
+    annotationProcessor 'org.hibernate.orm:hibernate-jpamodelgen:6.5.2.Final'
 }
+
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'

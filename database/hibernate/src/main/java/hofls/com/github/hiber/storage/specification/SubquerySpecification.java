@@ -4,7 +4,7 @@ package hofls.com.github.hiber.storage.specification;
 import lombok.AllArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
 
-import javax.persistence.criteria.*;
+import jakarta.persistence.criteria.*;
 
 /*
 select * from employee e0

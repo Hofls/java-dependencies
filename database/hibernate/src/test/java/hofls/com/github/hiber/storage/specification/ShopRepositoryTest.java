@@ -5,7 +5,7 @@ import hofls.com.github.hiber.storage.junit.BaseWithTransaction;
 import org.junit.jupiter.api.Test;
 import org.springframework.data.jpa.domain.Specification;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

@@ -2,13 +2,13 @@ package hofls.com.github.hiber.demo.unversal_search;
 
 import hofls.com.github.hiber.demo.universal_search.*;
 import hofls.com.github.hiber.storage.junit.BaseWithTransaction;
+import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
-import javax.annotation.Resource;
 import java.time.LocalDate;
 import java.util.Arrays;
 

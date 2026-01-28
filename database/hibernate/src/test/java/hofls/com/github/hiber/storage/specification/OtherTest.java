@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.util.Assert;
 
-import javax.annotation.Resource;
-import javax.persistence.EntityManager;
+import jakarta.annotation.Resource;
+import jakarta.persistence.EntityManager;
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -36,7 +36,7 @@ public class OtherTest extends BaseWithTransaction {
         shopRepository.saveAndFlush(shop);
 
         Shop actualShop = shopRepository.findById(shop.getId()).get();
-        Assert.notEmpty(actualShop.getEmployees());
+        assertTrue(!actualShop.getEmployees().isEmpty());
     }
 
     @Test
@@ -82,7 +82,7 @@ public class OtherTest extends BaseWithTransaction {
         shop = shopRepository.findById(shop.getId()).get();
         entityManager.refresh(shop); // Without this line assertion will fail
 
-        Assert.notEmpty(shop.getEmployees());
+        assertTrue(!shop.getEmployees().isEmpty());
     }
 
 }

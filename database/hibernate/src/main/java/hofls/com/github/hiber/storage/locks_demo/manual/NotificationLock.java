@@ -3,7 +3,7 @@ package hofls.com.github.hiber.storage.locks_demo.manual;
 
 import lombok.Data;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Data

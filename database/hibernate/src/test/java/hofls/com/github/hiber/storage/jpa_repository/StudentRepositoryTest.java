@@ -3,7 +3,7 @@ package hofls.com.github.hiber.storage.jpa_repository;
 import hofls.com.github.hiber.storage.junit.BaseWithTransaction;
 import org.junit.jupiter.api.Test;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

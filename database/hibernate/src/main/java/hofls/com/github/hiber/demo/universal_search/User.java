@@ -3,7 +3,7 @@ package hofls.com.github.hiber.demo.universal_search;
 
 import lombok.Data;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity

@@ -3,10 +3,10 @@ package hofls.com.github.hiber.storage.locks_demo.optimistic_lock;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Version;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Version;
 
 
 @Entity

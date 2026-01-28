@@ -5,7 +5,7 @@ import hofls.com.github.hiber.storage.fields.json.TrelloCardRepository;
 import hofls.com.github.hiber.storage.junit.BaseWithTransaction;
 import org.junit.jupiter.api.Test;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 import java.util.Arrays;
 
