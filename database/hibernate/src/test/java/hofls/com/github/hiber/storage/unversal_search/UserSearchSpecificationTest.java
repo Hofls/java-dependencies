@@ -1,9 +1,8 @@
-package hofls.com.github.hiber.demo.unversal_search;
+package hofls.com.github.hiber.storage.unversal_search;
 
-import hofls.com.github.hiber.demo.universal_search.*;
 import hofls.com.github.hiber.storage.junit.BaseWithTransaction;
+import hofls.com.github.hiber.storage.universal_search.*;
 import jakarta.annotation.Resource;
-import org.junit.jupiter.api.Test;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;

@@ -1,7 +1,7 @@
 -- there is "AGE" function in POSTGRES, but there is no such function in H2DB, so lets create one
-CREATE ALIAS AGE FOR "hofls.com.github.hiber.demo.sql_file_report.VisitCountTest.age";
+CREATE ALIAS AGE FOR "hofls.com.github.hiber.storage.sql_file_report.VisitCountTest.age";
 -- there is "DATE_PART" function in POSTGRES, but there is no such function in H2DB, so lets create one
-CREATE ALIAS DATE_PART FOR "hofls.com.github.hiber.demo.sql_file_report.VisitCountTest.datePart";
+CREATE ALIAS DATE_PART FOR "hofls.com.github.hiber.storage.sql_file_report.VisitCountTest.datePart";
 
 -- this visit is excluded from report (because of branch_id)
 INSERT INTO visit (id, branch_id, birth_date, accident_date)

@@ -1,4 +1,4 @@
-package hofls.com.github.hiber.demo.universal_search;
+package hofls.com.github.hiber.storage.universal_search;
 
 
 import lombok.Data;

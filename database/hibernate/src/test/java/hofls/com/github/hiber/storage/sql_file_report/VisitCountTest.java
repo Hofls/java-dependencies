@@ -1,6 +1,8 @@
-package hofls.com.github.hiber.demo.sql_file_report;
+package hofls.com.github.hiber.storage.sql_file_report;
 
 import hofls.com.github.hiber.storage.junit.BaseWithTransaction;
+import hofls.com.github.hiber.storage.sql_file_report.VisitCount;
+import hofls.com.github.hiber.storage.sql_file_report.VisitCountRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.jdbc.Sql;
