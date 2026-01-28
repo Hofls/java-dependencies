@@ -1,6 +1,7 @@
 package hofls.com.github.hiber.storage.silent_rollback;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
@@ -14,6 +15,12 @@ public class AddressService {
 
     @Transactional(noRollbackFor = RuntimeException.class)
     public String solutionNoRollback() {
+        if (true) throw new RuntimeException("Address service is unavailable");
+        return null;
+    }
+
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public String solutionRequiresNew() {
         if (true) throw new RuntimeException("Address service is unavailable");
         return null;
     }

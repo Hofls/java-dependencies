@@ -25,4 +25,9 @@ public class SilentRollbackTest extends BaseTest {
         assertEquals("John", userService.solutionNoRollback());
     }
 
+    @Test
+    public void solutionRequiresNew() {
+        assertEquals("John", userService.solutionRequiresNew());
+    }
+
 }

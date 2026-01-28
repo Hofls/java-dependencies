@@ -28,6 +28,14 @@ public class UserService {
         return "John" + address;
     }
 
+    @Transactional
+    public String solutionRequiresNew() {
+        String address = "";
+        try {
+            address = addressService.solutionRequiresNew();
+        } catch (Exception ignored) {}
+        return "John" + address;
+    }
 
 
 }
