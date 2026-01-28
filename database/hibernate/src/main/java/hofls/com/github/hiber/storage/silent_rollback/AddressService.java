@@ -9,20 +9,22 @@ public class AddressService {
 
     @Transactional
     public String problemStatement() {
-        if (true) throw new RuntimeException("Address service is unavailable");
-        return null;
+        throw new RuntimeException("Address service is unavailable");
     }
 
     @Transactional(noRollbackFor = RuntimeException.class)
     public String solutionNoRollback() {
-        if (true) throw new RuntimeException("Address service is unavailable");
-        return null;
+        throw new RuntimeException("Address service is unavailable");
     }
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public String solutionRequiresNew() {
-        if (true) throw new RuntimeException("Address service is unavailable");
-        return null;
+        throw new RuntimeException("Address service is unavailable");
+    }
+
+    @TransactionalNoRollback
+    public String solutionCustomAnnotation() {
+        throw new RuntimeException("Address service is unavailable");
     }
 
 }

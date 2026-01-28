@@ -30,4 +30,9 @@ public class SilentRollbackTest extends BaseTest {
         assertEquals("John", userService.solutionRequiresNew());
     }
 
+    @Test
+    public void solutionCustomAnnotation() {
+        assertEquals("John", userService.solutionCustomAnnotation());
+    }
+
 }

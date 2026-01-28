@@ -37,5 +37,13 @@ public class UserService {
         return "John" + address;
     }
 
+    @Transactional
+    public String solutionCustomAnnotation() {
+        String address = "";
+        try {
+            address = addressService.solutionCustomAnnotation();
+        } catch (Exception ignored) {}
+        return "John" + address;
+    }
 
 }
