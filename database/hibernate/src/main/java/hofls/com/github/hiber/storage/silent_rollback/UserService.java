@@ -14,13 +14,20 @@ public class UserService {
     public String problemStatement() {
         String address = "";
         try {
-            address = addressService.findAddress();
-        } catch (Exception ignored) {
-            // Unable to find address, but that's ok
-        }
-
-        return "John from " + address;
+            address = addressService.problemStatement();
+        } catch (Exception ignored) {}
+        return "John" + address;
     }
+
+    @Transactional
+    public String solutionNoRollback() {
+        String address = "";
+        try {
+            address = addressService.solutionNoRollback();
+        } catch (Exception ignored) {}
+        return "John" + address;
+    }
+
 
 
 }
