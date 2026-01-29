@@ -8,7 +8,7 @@ Simple template of Spring Boot Admin application.
 Technology stack: 
 * `Java` as a programming language
 * `Spring Boot` for simple creation of Java Spring application
-* `Spring Boot Actuator` to gather and expose metrics
+* `Spring Boot Actuator` to gather and expose metrics (located also in separate root level package)
 * `Spring Boot Admin` to receive metrics and create web-interface for admin
 
 ### How to run

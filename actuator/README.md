@@ -1,4 +1,7 @@
-Easy application monitoring (with special prometheus endpoints!)
+Info:
+* Easy application monitoring (with special prometheus endpoints!)
+* Bunch of scripts that use actuator are in `useful-info` repository
+* More info at `spring-boot-admin`
 
 To run:
 * Execute `bootRun`
