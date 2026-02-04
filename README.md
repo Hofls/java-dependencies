@@ -1,6 +1,8 @@
-* Unusual root folders:
+* Important root folders:
+  * [etc.md](etc)
   * [code-analysis](code-analysis)
-  * [design-patterns](design-patterns)
-  * [etc.md](/etc)
   * [monitoring](monitoring)
-  * [schema-generators](schema-generators)
+  * [vibe-coding](vibe-coding)
+  * [project-templates](project-templates)
+  * [java-spring](java-spring)
+  * [database](database)
