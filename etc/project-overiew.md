@@ -8,7 +8,7 @@
   * E2E tests (more at `useful-info` -> `playwright`)
   * Load tests (more at `useful-info` -> `load-testing`)
   * [dependency-scanners](../code-analysis/dependency-scanners)
-  * Automatic security audit
+  * Automatic security audit (more at `useful-info` -> `penetration-testing`)
   * More info:
     * Repo `useful-info`, file `code-review.md`
     * Repo `useful-info`, file `project-review.md`
