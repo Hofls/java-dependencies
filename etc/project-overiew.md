@@ -7,7 +7,7 @@
   * [checkstyle](../code-analysis/checkstyle)
   * E2E tests (more at `useful-info` -> `playwright`)
   * Load tests (more at `useful-info` -> `load-testing`)
-  * Dependency vulnerability scanning
+  * [dependency-scanners](../code-analysis/dependency-scanners)
   * Automatic security audit
   * More info:
     * Repo `useful-info`, file `code-review.md`
