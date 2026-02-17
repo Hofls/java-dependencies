@@ -5,7 +5,7 @@ import java.util.List;
 
 public class SchemaGenerator {
 
-    public record DBEntity(String name, List<DBField> fields) {}
+    public record DBEntity(String name, List<DBField> fields, String type) {}
 
     public record DBField(String cyrillicName, String englishName, String type) {}
 

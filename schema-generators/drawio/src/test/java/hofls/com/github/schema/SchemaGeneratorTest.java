@@ -23,14 +23,14 @@ class SchemaGeneratorTest {
         userFields.add(new SchemaGenerator.DBField("Комментарий", "comment", "String"));
         userFields.add(new SchemaGenerator.DBField("Заметка", "notice", "String"));
         userFields.add(new SchemaGenerator.DBField("Дата и время назначения на вечерние спец. процедуры", "eveningAssignedAt", "OffsetDateTime"));
-        tables.add(new SchemaGenerator.DBEntity("Аккаунт пользователя", userFields));
+        tables.add(new SchemaGenerator.DBEntity("Аккаунт пользователя", userFields, "class"));
 
         List<SchemaGenerator.DBField> productFields = new ArrayList<>();
         productFields.add(new SchemaGenerator.DBField("Идентификатор", "id", "UUID"));
         productFields.add(new SchemaGenerator.DBField("Наименование", "title", "String"));
         productFields.add(new SchemaGenerator.DBField("Цена", "price", "Double"));
         productFields.add(new SchemaGenerator.DBField("В наличии", "isAvailable", "Boolean"));
-        tables.add(new SchemaGenerator.DBEntity("Продукт", productFields));
+        tables.add(new SchemaGenerator.DBEntity("Продукт", productFields, "class"));
 
         return tables;
     }
