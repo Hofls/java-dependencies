@@ -15,27 +15,16 @@ public class SchemaGenerator {
 
     public void generate(List<Table> tables) {
         StringBuilder xml = new StringBuilder();
-        xml.append("<mxfile host=\"Electron\" version=\"21.0.0\">");
-        xml.append("<diagram name=\"DynamicSchema\">");
-        xml.append("<mxGraphModel dx=\"1000\" dy=\"1000\" grid=\"1\" gridSize=\"10\" guides=\"1\" tooltips=\"1\" connect=\"1\" arrows=\"1\" fold=\"1\" page=\"1\">");
-        xml.append("<root>");
-        xml.append("<mxCell id=\"0\" />");
-        xml.append("<mxCell id=\"1\" parent=\"0\" />");
+        addRootStart(xml);
 
         int xPosition = 40;
-
         for (int t = 0; t < tables.size(); t++) {
             Table table = tables.get(t);
             String tableId = "table_" + t;
-
-            // Calculate layout
             int dynamicWidth = calculateWidth(table);
             int totalHeight = HEADER_HEIGHT + (table.fields.size() * ROW_HEIGHT);
 
-            // Add Table Container
             addTable(xml, table, tableId, xPosition, dynamicWidth, totalHeight);
-
-            // Add Rows
             for (int f = 0; f < table.fields.size(); f++) {
                 addRow(xml, table.fields.get(f), tableId, f, dynamicWidth);
             }
@@ -43,8 +32,17 @@ public class SchemaGenerator {
             xPosition += (dynamicWidth + SPACING);
         }
 
-        xml.append("</root></mxGraphModel></diagram></mxfile>");
+        addRootEnd(xml);
         saveToFile(xml.toString(), "dynamic_schema.drawio");
+    }
+
+    private void addRootStart(StringBuilder xml) {
+        xml.append("<mxfile host=\"Electron\" version=\"21.0.0\">");
+        xml.append("<diagram name=\"DynamicSchema\">");
+        xml.append("<mxGraphModel dx=\"1000\" dy=\"1000\" grid=\"1\" gridSize=\"10\" guides=\"1\" tooltips=\"1\" connect=\"1\" arrows=\"1\" fold=\"1\" page=\"1\">");
+        xml.append("<root>");
+        xml.append("<mxCell id=\"0\" />");
+        xml.append("<mxCell id=\"1\" parent=\"0\" />");
     }
 
     private void addTable(StringBuilder xml, Table table, String id, int x, int width, int height) {
@@ -71,6 +69,10 @@ public class SchemaGenerator {
         xml.append(String.format("<mxGeometry y=\"%d\" width=\"%d\" height=\"%d\" as=\"geometry\" />",
                 yOffset, width, ROW_HEIGHT));
         xml.append("</mxCell>");
+    }
+
+    private void addRootEnd(StringBuilder xml) {
+        xml.append("</root></mxGraphModel></diagram></mxfile>");
     }
 
     private int calculateWidth(Table table) {
