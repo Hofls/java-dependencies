@@ -54,8 +54,10 @@ public class SchemaGenerator {
             style.append("fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#000000;");
         }
 
+        var enumPrefix = (table.type().equals("enum") ? "enum - " : "");
+        var header = table.cyrillicName +  " (" + enumPrefix + table.englishName + ")";
         xml.append(String.format("<mxCell id=\"%s\" value=\"%s\" style=\"%s\" vertex=\"1\" parent=\"1\">",
-                id, table.englishName, style.toString()));
+                id, header, style.toString()));
         xml.append(String.format("<mxGeometry x=\"%d\" y=\"80\" width=\"%d\" height=\"%d\" as=\"geometry\" />",
                 x, width, height));
         xml.append("</mxCell>");

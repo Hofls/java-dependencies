@@ -1,6 +1,6 @@
 package hofls.com.github.scanner.entity;
 
-/** The best products ever */
+/** The best product ever */
 public class Product {
     /** Unique product */
     private String sku;
