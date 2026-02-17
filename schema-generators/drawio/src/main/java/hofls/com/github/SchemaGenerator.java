@@ -34,7 +34,7 @@ public class SchemaGenerator {
 
             // Heuristic: ~7 pixels per char + padding. Minimum 180px.
             int dynamicWidth = Math.max(180, (maxChars * 6) + 40);
-            int rowHeight = 22;
+            int rowHeight = 14;
             int headerHeight = 30;
             int totalHeight = headerHeight + (table.fields.size() * rowHeight);
 
