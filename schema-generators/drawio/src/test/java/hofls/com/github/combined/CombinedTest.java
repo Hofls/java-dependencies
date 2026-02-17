@@ -14,7 +14,7 @@ class CombinedTest {
         var classes = PackageScanner.findClassesInPackage("hofls.com.github.scanner.entity");
         var tables = new ArrayList<SchemaGenerator.DBEntity>();
         for (var clazz : classes) {
-            tables.add(SourceScanner.readFromSource(clazz));
+            tables.addAll(SourceScanner.readAllFromSource(clazz));
         }
         SchemaGenerator.generate(tables);
     }

@@ -1,5 +1,7 @@
 package hofls.com.github.scanner.entity;
 
+import hofls.com.github.scanner.enums.EStatus;
+
 public class UserAccount {
     /** Identifier */
     private int id;

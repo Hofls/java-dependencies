@@ -11,8 +11,16 @@ class SourceScannerTest {
 
     @Test
     void scanEntity() {
-        var table = SourceScanner.readFromSource(UserAccount.class);
-        System.out.println(table);
+        var entities = SourceScanner.readAllFromSource(UserAccount.class);
+
+        entities.forEach(entity -> {
+            System.out.println("Entity: " + entity.name());
+            entity.fields().forEach(f ->
+                    System.out.println("  Field: [Cyrillic: " + f.cyrillicName() +
+                            ", English: " + f.englishName() +
+                            ", Type: " + f.type() + "]")
+            );
+        });
     }
 
 }

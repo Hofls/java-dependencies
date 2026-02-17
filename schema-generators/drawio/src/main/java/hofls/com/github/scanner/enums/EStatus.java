@@ -1,4 +1,4 @@
-package hofls.com.github.scanner.entity;
+package hofls.com.github.scanner.enums;
 
 public enum EStatus {
     ONLINE("Was seen not more than 15 minutes ago"),
