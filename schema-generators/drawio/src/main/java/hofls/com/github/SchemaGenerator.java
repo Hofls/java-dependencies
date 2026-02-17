@@ -1,51 +1,76 @@
 package hofls.com.github;
 
 import java.io.FileWriter;
+import java.lang.reflect.Field;
+import java.util.List;
 
 public class SchemaGenerator {
 
-    public void generate() {
-        String tableName = "UserAccount";
-        String[][] columns = {
-                {"id", "INT (PK)"},
-                {"username", "VARCHAR(50)"},
-                {"email", "VARCHAR(100)"},
-                {"created_at", "TIMESTAMP"}
-        };
+    record Table(String name, List<Field> fields) {}
 
+    record Field(String cyrillicName, String englishName, String type) {}
+
+    public void generate(List<Table> tables) {
         StringBuilder xml = new StringBuilder();
         xml.append("<mxfile host=\"Electron\" version=\"21.0.0\">");
-        xml.append("<diagram name=\"FixedTable\">");
+        xml.append("<diagram name=\"DatabaseSchema\">");
         xml.append("<mxGraphModel dx=\"1000\" dy=\"1000\" grid=\"1\" gridSize=\"10\" guides=\"1\" tooltips=\"1\" connect=\"1\" arrows=\"1\" fold=\"1\" page=\"1\">");
         xml.append("<root>");
         xml.append("<mxCell id=\"0\" />");
         xml.append("<mxCell id=\"1\" parent=\"0\" />");
 
-        // 1. Table Container Style: added 'whiteSpace=wrap' and 'html=1'
-        String tableStyle = "shape=table;startSize=30;container=1;collapsible=0;childLayout=0;fixedRows=1;rowLines=1;fontStyle=1;align=center;";
-        xml.append(String.format("<mxCell id=\"table_1\" value=\"%s\" style=\"%s\" vertex=\"1\" parent=\"1\">", tableName, tableStyle));
-        xml.append(String.format("<mxGeometry x=\"100\" y=\"100\" width=\"220\" height=\"%d\" as=\"geometry\" />", 30 + (columns.length * 30)));
-        xml.append("</mxCell>");
+        int xOffset = 40; // Horizontal spacing between tables
 
-        // 2. Generate Rows
-        for (int i = 0; i < columns.length; i++) {
-            String colText = columns[i][0] + " : " + columns[i][1];
+        for (int t = 0; t < tables.size(); t++) {
+            Table table = tables.get(t);
+            String tableId = "table_" + t;
 
-            // Row Style: horizontal=1 ensures the text isn't vertical.
-            // align=left + spacingLeft=10 makes it look like a real DB tool.
-            String rowStyle = "shape=tableRow;horizontal=1;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;align=left;verticalAlign=middle;spacingLeft=10;whiteSpace=wrap;";
+            // UI Constants
+            int rowHeight = 22; // Compact row spacing
+            int headerHeight = 30;
+            int tableWidth = 240;
+            int totalHeight = headerHeight + (table.fields.size() * rowHeight);
 
-            xml.append(String.format("<mxCell id=\"row_%d\" value=\"%s\" style=\"%s\" vertex=\"1\" parent=\"table_1\">", i, colText, rowStyle));
-            // y starts at 30 (below header) and increments by 30
-            xml.append(String.format("<mxGeometry y=\"%d\" width=\"220\" height=\"30\" as=\"geometry\" />", 30 + (i * 30)));
+            // Table Style: Rounded corners, centered header
+            String tableStyle = "shape=table;startSize=" + headerHeight + ";container=1;collapsible=0;childLayout=0;" +
+                    "fixedRows=1;rowLines=1;fontStyle=1;align=center;rounded=1;arcSize=12;whiteSpace=wrap;html=1;";
+
+            xml.append(String.format("<mxCell id=\"%s\" value=\"%s\" style=\"%s\" vertex=\"1\" parent=\"1\">",
+                    tableId, table.name, tableStyle));
+            xml.append(String.format("<mxGeometry x=\"%d\" y=\"80\" width=\"%d\" height=\"%d\" as=\"geometry\" />",
+                    xOffset, tableWidth, totalHeight));
             xml.append("</mxCell>");
+
+            // Generate Rows
+            for (int f = 0; f < table.fields.size(); f++) {
+                Field field = table.fields.get(f);
+                String label = String.format("+ %s (%s): %s", field.cyrillicName, field.englishName, field.type);
+
+                // Row Style: Align left, padding for text, transparent background
+                String rowStyle = "shape=tableRow;horizontal=1;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;" +
+                        "collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" +
+                        "align=left;verticalAlign=middle;spacingLeft=10;whiteSpace=wrap;html=1;fontSize=11;";
+
+                int yOffset = headerHeight + (f * rowHeight);
+                xml.append(String.format("<mxCell id=\"%s_row_%d\" value=\"%s\" style=\"%s\" vertex=\"1\" parent=\"%s\">",
+                        tableId, f, label, rowStyle, tableId));
+                xml.append(String.format("<mxGeometry y=\"%d\" width=\"%d\" height=\"%d\" as=\"geometry\" />",
+                        yOffset, tableWidth, rowHeight));
+                xml.append("</mxCell>");
+            }
+
+            xOffset += (tableWidth + 60); // Move next table to the right
         }
 
         xml.append("</root></mxGraphModel></diagram></mxfile>");
 
-        try (FileWriter writer = new FileWriter("database_fixed.drawio")) {
-            writer.write(xml.toString());
-            System.out.println("Fixed diagram generated: database_fixed.drawio");
+        saveToFile(xml.toString(), "schema_output.drawio");
+    }
+
+    private void saveToFile(String content, String filename) {
+        try (FileWriter writer = new FileWriter(filename)) {
+            writer.write(content);
+            System.out.println("Diagram successfully exported to: " + filename);
         } catch (Exception e) {
             e.printStackTrace();
         }
