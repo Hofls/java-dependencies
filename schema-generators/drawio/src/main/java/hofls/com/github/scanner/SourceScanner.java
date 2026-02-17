@@ -9,7 +9,7 @@ import java.nio.file.Paths;
 
 public class SourceScanner {
 
-    public static SchemaGenerator.DBTable readFromSource(Class<?> clazz) {
+    public static SchemaGenerator.DBEntity readFromSource(Class<?> clazz) {
         try {
             // 1. Get the project root directory
             String userDir = System.getProperty("user.dir");
@@ -34,7 +34,7 @@ public class SourceScanner {
                     }))
                     .toList();
 
-            return new SchemaGenerator.DBTable(clazz.getSimpleName(), fieldRecords);
+            return new SchemaGenerator.DBEntity(clazz.getSimpleName(), fieldRecords);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

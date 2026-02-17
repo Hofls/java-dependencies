@@ -1,0 +1,1 @@
+Run CombinedTest, import generated schema into drawio

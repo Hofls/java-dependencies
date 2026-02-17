@@ -9,4 +9,6 @@ public class UserAccount {
     private String email;
     /** Finalized creation date */
     private java.util.Date createdAt;
+    /** Current status */
+    private EStatus status;
 }

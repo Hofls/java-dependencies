@@ -5,7 +5,7 @@ import java.util.List;
 
 public class SchemaGenerator {
 
-    public record DBTable(String name, List<DBField> fields) {}
+    public record DBEntity(String name, List<DBField> fields) {}
 
     public record DBField(String cyrillicName, String englishName, String type) {}
 
@@ -13,13 +13,13 @@ public class SchemaGenerator {
     private static final int HEADER_HEIGHT = 30;
     private static final int SPACING = 50;
 
-    public static void generate(List<DBTable> tables) {
+    public static void generate(List<DBEntity> tables) {
         StringBuilder xml = new StringBuilder();
         addRootStart(xml);
 
         int xPosition = 40;
         for (int t = 0; t < tables.size(); t++) {
-            DBTable table = tables.get(t);
+            DBEntity table = tables.get(t);
             String tableId = "table_" + t;
             int dynamicWidth = calculateWidth(table);
             int totalHeight = HEADER_HEIGHT + (table.fields.size() * ROW_HEIGHT);
@@ -45,7 +45,7 @@ public class SchemaGenerator {
         xml.append("<mxCell id=\"1\" parent=\"0\" />");
     }
 
-    private static void addTable(StringBuilder xml, DBTable table, String id, int x, int width, int height) {
+    private static void addTable(StringBuilder xml, DBEntity table, String id, int x, int width, int height) {
         String style = "shape=table;startSize=" + HEADER_HEIGHT + ";container=1;collapsible=0;childLayout=0;" +
                 "fixedRows=1;rowLines=1;fontStyle=1;align=center;rounded=1;arcSize=12;whiteSpace=wrap;html=1;";
 
@@ -75,7 +75,7 @@ public class SchemaGenerator {
         xml.append("</root></mxGraphModel></diagram></mxfile>");
     }
 
-    private static int calculateWidth(DBTable table) {
+    private static int calculateWidth(DBEntity table) {
         int maxChars = table.name.length();
         for (DBField f : table.fields) {
             String fullString = "+ " + f.cyrillicName + " (" + f.englishName + "): " + f.type;
