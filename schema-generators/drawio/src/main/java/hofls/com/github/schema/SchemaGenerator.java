@@ -46,11 +46,16 @@ public class SchemaGenerator {
     }
 
     private static void addTable(StringBuilder xml, DBEntity table, String id, int x, int width, int height) {
-        String style = "shape=table;startSize=" + HEADER_HEIGHT + ";container=1;collapsible=0;childLayout=0;" +
-                "fixedRows=1;rowLines=1;fontStyle=1;align=center;rounded=1;arcSize=12;whiteSpace=wrap;html=1;";
+        // Base style
+        StringBuilder style = new StringBuilder("shape=table;startSize=" + HEADER_HEIGHT + ";container=1;collapsible=0;childLayout=0;" +
+                "fixedRows=1;rowLines=1;fontStyle=1;align=center;rounded=1;arcSize=12;whiteSpace=wrap;html=1;");
+
+        if ("enum".equalsIgnoreCase(table.type())) {
+            style.append("fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#000000;");
+        }
 
         xml.append(String.format("<mxCell id=\"%s\" value=\"%s\" style=\"%s\" vertex=\"1\" parent=\"1\">",
-                id, table.name, style));
+                id, table.name, style.toString()));
         xml.append(String.format("<mxGeometry x=\"%d\" y=\"80\" width=\"%d\" height=\"%d\" as=\"geometry\" />",
                 x, width, height));
         xml.append("</mxCell>");
