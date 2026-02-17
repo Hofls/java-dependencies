@@ -10,7 +10,7 @@ import java.util.List;
 class SourceScannerTest {
 
     @Test
-    void generate() throws Exception {
+    void scanEntity() {
         var table = SourceScanner.readFromSource(UserAccount.class);
         System.out.println(table);
     }

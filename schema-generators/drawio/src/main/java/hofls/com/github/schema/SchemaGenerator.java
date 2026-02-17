@@ -13,7 +13,7 @@ public class SchemaGenerator {
     private static final int HEADER_HEIGHT = 30;
     private static final int SPACING = 50;
 
-    public void generate(List<DBTable> tables) {
+    public static void generate(List<DBTable> tables) {
         StringBuilder xml = new StringBuilder();
         addRootStart(xml);
 
@@ -36,7 +36,7 @@ public class SchemaGenerator {
         saveToFile(xml.toString(), "dynamic_schema.drawio");
     }
 
-    private void addRootStart(StringBuilder xml) {
+    private static void addRootStart(StringBuilder xml) {
         xml.append("<mxfile host=\"Electron\" version=\"21.0.0\">");
         xml.append("<diagram name=\"DynamicSchema\">");
         xml.append("<mxGraphModel dx=\"1000\" dy=\"1000\" grid=\"1\" gridSize=\"10\" guides=\"1\" tooltips=\"1\" connect=\"1\" arrows=\"1\" fold=\"1\" page=\"1\">");
@@ -45,7 +45,7 @@ public class SchemaGenerator {
         xml.append("<mxCell id=\"1\" parent=\"0\" />");
     }
 
-    private void addTable(StringBuilder xml, DBTable table, String id, int x, int width, int height) {
+    private static void addTable(StringBuilder xml, DBTable table, String id, int x, int width, int height) {
         String style = "shape=table;startSize=" + HEADER_HEIGHT + ";container=1;collapsible=0;childLayout=0;" +
                 "fixedRows=1;rowLines=1;fontStyle=1;align=center;rounded=1;arcSize=12;whiteSpace=wrap;html=1;";
 
@@ -56,7 +56,7 @@ public class SchemaGenerator {
         xml.append("</mxCell>");
     }
 
-    private void addRow(StringBuilder xml, DBField field, String tableId, int index, int width) {
+    private static void addRow(StringBuilder xml, DBField field, String tableId, int index, int width) {
         String label = String.format("+ %s (%s): %s", field.cyrillicName, field.englishName, field.type);
         String style = "shape=tableRow;horizontal=1;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;" +
                 "collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" +
@@ -71,11 +71,11 @@ public class SchemaGenerator {
         xml.append("</mxCell>");
     }
 
-    private void addRootEnd(StringBuilder xml) {
+    private static void addRootEnd(StringBuilder xml) {
         xml.append("</root></mxGraphModel></diagram></mxfile>");
     }
 
-    private int calculateWidth(DBTable table) {
+    private static int calculateWidth(DBTable table) {
         int maxChars = table.name.length();
         for (DBField f : table.fields) {
             String fullString = "+ " + f.cyrillicName + " (" + f.englishName + "): " + f.type;
@@ -85,7 +85,7 @@ public class SchemaGenerator {
         return Math.max(180, (maxChars * 6) + 40);
     }
 
-    private void saveToFile(String content, String filename) {
+    private static void saveToFile(String content, String filename) {
         try (FileWriter writer = new FileWriter(filename)) {
             writer.write(content);
             System.out.println("Diagram successfully exported to: " + filename);

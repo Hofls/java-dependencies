@@ -9,7 +9,7 @@ class SchemaGeneratorTest {
 
     @Test
     void generate() {
-        new SchemaGenerator().generate(getTables());
+        SchemaGenerator.generate(getTables());
     }
 
     private List<SchemaGenerator.DBTable> getTables() {
