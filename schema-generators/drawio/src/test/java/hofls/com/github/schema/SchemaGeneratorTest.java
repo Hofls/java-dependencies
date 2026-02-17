@@ -16,21 +16,21 @@ class SchemaGeneratorTest {
         List<SchemaGenerator.DBEntity> tables = new ArrayList<>();
 
         List<SchemaGenerator.DBField> userFields = new ArrayList<>();
-        userFields.add(new SchemaGenerator.DBField("Идентификатор", "id", "UUID"));
-        userFields.add(new SchemaGenerator.DBField("Имя пользователя", "username", "String"));
-        userFields.add(new SchemaGenerator.DBField("Дата и время назначения на утренние спец. процедуры", "morningAssignedAt", "OffsetDateTime"));
-        userFields.add(new SchemaGenerator.DBField("Почта", "email", "String"));
-        userFields.add(new SchemaGenerator.DBField("Комментарий", "comment", "String"));
-        userFields.add(new SchemaGenerator.DBField("Заметка", "notice", "String"));
-        userFields.add(new SchemaGenerator.DBField("Дата и время назначения на вечерние спец. процедуры", "eveningAssignedAt", "OffsetDateTime"));
-        tables.add(new SchemaGenerator.DBEntity("Аккаунт пользователя", userFields, "class"));
+        userFields.add(new SchemaGenerator.DBField("Unique Identifier", "id", "UUID"));
+        userFields.add(new SchemaGenerator.DBField("Username / Login", "username", "String"));
+        userFields.add(new SchemaGenerator.DBField("Morning Special Procedure Scheduled Timestamp", "morningAssignedAt", "OffsetDateTime"));
+        userFields.add(new SchemaGenerator.DBField("Primary Email Address", "email", "String"));
+        userFields.add(new SchemaGenerator.DBField("Administrative Comments", "comment", "String"));
+        userFields.add(new SchemaGenerator.DBField("Internal User Notes", "notice", "String"));
+        userFields.add(new SchemaGenerator.DBField("Evening Special Procedure Scheduled Timestamp", "eveningAssignedAt", "OffsetDateTime"));
+        tables.add(new SchemaGenerator.DBEntity("User Account", "Account", userFields, "class"));
 
         List<SchemaGenerator.DBField> productFields = new ArrayList<>();
-        productFields.add(new SchemaGenerator.DBField("Идентификатор", "id", "UUID"));
-        productFields.add(new SchemaGenerator.DBField("Наименование", "title", "String"));
-        productFields.add(new SchemaGenerator.DBField("Цена", "price", "Double"));
-        productFields.add(new SchemaGenerator.DBField("В наличии", "isAvailable", "Boolean"));
-        tables.add(new SchemaGenerator.DBEntity("Продукт", productFields, "class"));
+        productFields.add(new SchemaGenerator.DBField("Product Unique Identifier", "id", "UUID"));
+        productFields.add(new SchemaGenerator.DBField("Product Title / Nomenclature", "title", "String"));
+        productFields.add(new SchemaGenerator.DBField("Unit Retail Price", "price", "Double"));
+        productFields.add(new SchemaGenerator.DBField("Current Inventory Availability Status", "isAvailable", "Boolean"));
+        tables.add(new SchemaGenerator.DBEntity("Product Information", "Product", productFields, "class"));
 
         return tables;
     }

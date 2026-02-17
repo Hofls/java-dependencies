@@ -14,7 +14,7 @@ class SourceScannerTest {
         var entities = SourceScanner.readAllFromSource(UserAccount.class);
 
         entities.forEach(entity -> {
-            System.out.println("Entity: " + entity.name() + ", Type: " + entity.type());
+            System.out.println("Entity: " + entity.englishName() + ", Type: " + entity.type());
             entity.fields().forEach(f ->
                     System.out.println("  Field: [Cyrillic: " + f.cyrillicName() +
                             ", English: " + f.englishName() +

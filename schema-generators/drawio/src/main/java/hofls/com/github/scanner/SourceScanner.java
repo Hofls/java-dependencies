@@ -47,7 +47,7 @@ public class SourceScanner {
                         return new SchemaGenerator.DBField(comment, v.getNameAsString(), v.getTypeAsString());
                     })).toList();
 
-            return new SchemaGenerator.DBEntity(clazz.getSimpleName(), fields, "class");
+            return new SchemaGenerator.DBEntity("TODO", clazz.getSimpleName(), fields, "class");
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -73,7 +73,7 @@ public class SourceScanner {
                 return new SchemaGenerator.DBField(cyrillicName, englishName, null);
             }).toList();
 
-            return new SchemaGenerator.DBEntity(enumClazz.getSimpleName(), enumFields, "enum");
+            return new SchemaGenerator.DBEntity("TODO", enumClazz.getSimpleName(), enumFields, "enum");
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

@@ -1,5 +1,6 @@
 package hofls.com.github.scanner.entity;
 
+/** Long lasting session */
 public class UserSession {
     /** Unique session token */
     private String sessionToken;

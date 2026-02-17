@@ -5,7 +5,7 @@ import java.util.List;
 
 public class SchemaGenerator {
 
-    public record DBEntity(String name, List<DBField> fields, String type) {}
+    public record DBEntity(String cyrillicName, String englishName, List<DBField> fields, String type) {}
 
     public record DBField(String cyrillicName, String englishName, String type) {}
 
@@ -55,7 +55,7 @@ public class SchemaGenerator {
         }
 
         xml.append(String.format("<mxCell id=\"%s\" value=\"%s\" style=\"%s\" vertex=\"1\" parent=\"1\">",
-                id, table.name, style.toString()));
+                id, table.englishName, style.toString()));
         xml.append(String.format("<mxGeometry x=\"%d\" y=\"80\" width=\"%d\" height=\"%d\" as=\"geometry\" />",
                 x, width, height));
         xml.append("</mxCell>");
@@ -81,7 +81,7 @@ public class SchemaGenerator {
     }
 
     private static int calculateWidth(DBEntity table) {
-        int maxChars = table.name.length();
+        int maxChars = table.englishName.length();
         for (DBField f : table.fields) {
             String fullString = "+ " + f.cyrillicName + " (" + f.englishName + "): " + f.type;
             maxChars = Math.max(maxChars, fullString.length());

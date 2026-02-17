@@ -19,14 +19,14 @@ public class RetryUtils {
                 if (retry == maxRetriesCount) {
                     throw e; // FAIL
                 }
-                TimeUnit.SECONDS.sleep(1); // Ждем какое-то время, может ошибка уйдёт
+                TimeUnit.SECONDS.sleep(1); // Wait for some time, maybe error will go away
             }
         }
         return null; // shouldn't be reached
     }
 
     public interface Action<R> {
-        /** Выполняет действие */
+        /** Executes an action */
         R execute() throws Exception;
     }
 }
