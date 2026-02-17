@@ -1,25 +1,25 @@
-package hofls.com.github;
+package hofls.com.github.schema;
 
 import java.io.FileWriter;
 import java.util.List;
 
 public class SchemaGenerator {
 
-    record Table(String name, List<Field> fields) {}
+    public record DBTable(String name, List<DBField> fields) {}
 
-    record Field(String cyrillicName, String englishName, String type) {}
+    public record DBField(String cyrillicName, String englishName, String type) {}
 
     private static final int ROW_HEIGHT = 14;
     private static final int HEADER_HEIGHT = 30;
     private static final int SPACING = 50;
 
-    public void generate(List<Table> tables) {
+    public void generate(List<DBTable> tables) {
         StringBuilder xml = new StringBuilder();
         addRootStart(xml);
 
         int xPosition = 40;
         for (int t = 0; t < tables.size(); t++) {
-            Table table = tables.get(t);
+            DBTable table = tables.get(t);
             String tableId = "table_" + t;
             int dynamicWidth = calculateWidth(table);
             int totalHeight = HEADER_HEIGHT + (table.fields.size() * ROW_HEIGHT);
@@ -45,7 +45,7 @@ public class SchemaGenerator {
         xml.append("<mxCell id=\"1\" parent=\"0\" />");
     }
 
-    private void addTable(StringBuilder xml, Table table, String id, int x, int width, int height) {
+    private void addTable(StringBuilder xml, DBTable table, String id, int x, int width, int height) {
         String style = "shape=table;startSize=" + HEADER_HEIGHT + ";container=1;collapsible=0;childLayout=0;" +
                 "fixedRows=1;rowLines=1;fontStyle=1;align=center;rounded=1;arcSize=12;whiteSpace=wrap;html=1;";
 
@@ -56,7 +56,7 @@ public class SchemaGenerator {
         xml.append("</mxCell>");
     }
 
-    private void addRow(StringBuilder xml, Field field, String tableId, int index, int width) {
+    private void addRow(StringBuilder xml, DBField field, String tableId, int index, int width) {
         String label = String.format("+ %s (%s): %s", field.cyrillicName, field.englishName, field.type);
         String style = "shape=tableRow;horizontal=1;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;" +
                 "collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" +
@@ -75,9 +75,9 @@ public class SchemaGenerator {
         xml.append("</root></mxGraphModel></diagram></mxfile>");
     }
 
-    private int calculateWidth(Table table) {
+    private int calculateWidth(DBTable table) {
         int maxChars = table.name.length();
-        for (Field f : table.fields) {
+        for (DBField f : table.fields) {
             String fullString = "+ " + f.cyrillicName + " (" + f.englishName + "): " + f.type;
             maxChars = Math.max(maxChars, fullString.length());
         }
