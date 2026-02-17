@@ -62,7 +62,9 @@ public class SchemaGenerator {
     }
 
     private static void addRow(StringBuilder xml, DBField field, String tableId, int index, int width) {
-        String label = String.format("+ %s (%s): %s", field.cyrillicName, field.englishName, field.type);
+        String label = field.type != null
+                ? String.format("+ %s (%s): %s", field.cyrillicName, field.englishName, field.type)
+                : String.format("+ %s (%s)", field.cyrillicName, field.englishName);
         String style = "shape=tableRow;horizontal=1;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;" +
                 "collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" +
                 "align=left;verticalAlign=middle;spacingLeft=10;whiteSpace=wrap;html=1;fontSize=11;";

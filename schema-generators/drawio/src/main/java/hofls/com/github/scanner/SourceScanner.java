@@ -39,6 +39,9 @@ public class SourceScanner {
             var classDecl = cu.getClassByName(clazz.getSimpleName())
                     .orElseThrow(() -> new RuntimeException("Class not found"));
 
+            // Extract class-level comment
+            String classComment = extractComment(classDecl);
+
             var fields = classDecl.getFields().stream()
                     .flatMap(fd -> fd.getVariables().stream().map(v -> {
                         String comment = fd.getJavadocComment()
@@ -47,7 +50,7 @@ public class SourceScanner {
                         return new SchemaGenerator.DBField(comment, v.getNameAsString(), v.getTypeAsString());
                     })).toList();
 
-            return new SchemaGenerator.DBEntity("TODO", clazz.getSimpleName(), fields, "class");
+            return new SchemaGenerator.DBEntity(classComment, clazz.getSimpleName(), fields, "class");
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -60,23 +63,34 @@ public class SourceScanner {
             EnumDeclaration enumDecl = cu.getEnumByName(enumClazz.getSimpleName())
                     .orElseThrow(() -> new RuntimeException("Enum not found"));
 
+            // Extract enum-level comment
+            String enumComment = extractComment(enumDecl);
+
             var enumFields = enumDecl.getEntries().stream().map(entry -> {
-                // Extract the constructor argument (e.g., "Not on the network")
-                // This assumes the first argument is the 'title'
                 String cyrillicName = entry.getArguments().isNonEmpty()
                         ? entry.getArguments().get(0).toString().replace("\"", "")
                         : entry.getNameAsString();
 
                 String englishName = entry.getNameAsString();
 
-                // type = null as requested
                 return new SchemaGenerator.DBField(cyrillicName, englishName, null);
             }).toList();
 
-            return new SchemaGenerator.DBEntity("TODO", enumClazz.getSimpleName(), enumFields, "enum");
+            return new SchemaGenerator.DBEntity(enumComment, enumClazz.getSimpleName(), enumFields, "enum");
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    /**
+     * Helper to extract Javadoc or a regular comment from a declaration.
+     */
+    private static String extractComment(com.github.javaparser.ast.body.TypeDeclaration<?> decl) {
+        return decl.getJavadocComment()
+                .map(comment -> comment.parse().toText().trim()) // Clean Javadoc
+                .orElseGet(() -> decl.getComment()
+                        .map(comment -> comment.getContent().trim()) // Fallback to normal comment
+                        .orElse(decl.getNameAsString())); // Fallback to class name
     }
 
     private static Path getSourcePath(Class<?> clazz) {
