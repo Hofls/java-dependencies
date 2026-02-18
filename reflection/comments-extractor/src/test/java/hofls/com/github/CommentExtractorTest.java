@@ -8,7 +8,10 @@ class CommentExtractorTest {
     @Test
     void printComments() {
         var entity = CommentExtractor.readFromSource(Product.class);
-        entity.fields().forEach(f -> System.out.println(f.comment()));
+        entity.fields().forEach(f -> {
+            System.out.println(f.comment());
+            System.out.println();
+        });
     }
 
 }
