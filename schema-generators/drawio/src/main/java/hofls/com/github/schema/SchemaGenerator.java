@@ -10,7 +10,7 @@ public class SchemaGenerator {
     public record DBField(String cyrillicName, String englishName, String type) {}
 
     private static final int ROW_HEIGHT = 14;
-    private static final int HEADER_HEIGHT = 30;
+    private static final int HEADER_HEIGHT = 35;
     private static final int SPACING = 50;
 
     public static void generate(List<DBEntity> entities) {
@@ -73,11 +73,16 @@ public class SchemaGenerator {
         }
 
         var enumPrefix = (entity.type().equals("enum") ? "enum - " : "");
-        var header = entity.cyrillicName +  " (" + enumPrefix + entity.englishName + ")";
+
+        // Use &lt;br/&gt; instead of <br/> to keep the XML valid
+        var header = String.format("%s&lt;br/&gt;(%s%s)",
+                entity.cyrillicName,
+                enumPrefix,
+                entity.englishName);
 
         xml.append(String.format("<mxCell id=\"%s\" value=\"%s\" style=\"%s\" vertex=\"1\" parent=\"1\">",
                 id, header, style.toString()));
-        // Use the dynamic 'y' parameter here instead of hardcoded 80
+
         xml.append(String.format("<mxGeometry x=\"%d\" y=\"%d\" width=\"%d\" height=\"%d\" as=\"geometry\" />",
                 x, y, width, height));
         xml.append("</mxCell>");
@@ -111,7 +116,7 @@ public class SchemaGenerator {
             maxChars = Math.max(maxChars, fullString.length());
         }
         // Heuristic: ~6 pixels per char + padding.
-        return Math.max(180, (maxChars * 6) + 40);
+        return Math.max(180, (maxChars * 6));
     }
 
     private static void saveToFile(String content, String filename) {
