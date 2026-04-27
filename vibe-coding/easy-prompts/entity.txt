@@ -1,19 +1,29 @@
 1. Here is my java @Entity, just take a look:
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.*;
+import lombok.experimental.FieldNameConstants;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
+
+import jakarta.persistence.*;
+
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.UUID;
+
 @Data
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldNameConstants
-@TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
 @Table(name = "classic_spf")
 public class ClassicSpf {
 
     @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    @Setter(AccessLevel.PROTECTED)
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(updatable = false, nullable = false)
-    @Type(type = "pg-uuid")
     private UUID id;
 
     @Column(nullable = false)
@@ -24,7 +34,7 @@ public class ClassicSpf {
     @Column(nullable = false)
     private Integer userAge;
 
-	private Long requestsCount;
+    private Long requestsCount;
 
     private Double patientHeight;
 
@@ -40,11 +50,11 @@ public class ClassicSpf {
     @Column(nullable = false)
     private Boolean editable;
 
-    @Type(type = "jsonb")
+    @JdbcTypeCode(SqlTypes.JSON)
     @Column(columnDefinition = "jsonb")
     private Object content;
 
-    @Type(type = "jsonb")
+    @JdbcTypeCode(SqlTypes.JSON)
     @Column(columnDefinition = "jsonb")
     private SpefCardDto spef;
 
