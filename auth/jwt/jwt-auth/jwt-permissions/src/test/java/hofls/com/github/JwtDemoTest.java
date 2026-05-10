@@ -4,12 +4,15 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import hofls.com.github.jwt.JwtService;
 import org.junit.jupiter.api.Test;
 
-class JwtDemoTest {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class JwtDemoTest {
 
     @Test
-    void jwt_lifecycle() throws Exception {
+    public void jwt_lifecycle() throws Exception {
         String jwt = JwtService.createJWT();
         DecodedJWT decodedJWT = JwtService.decodeJWT(jwt);
+        assertEquals("John Doe", decodedJWT.getClaim("name").asString());
     }
 
 }

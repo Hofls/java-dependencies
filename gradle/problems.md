@@ -55,3 +55,12 @@
             }
         }
         ```
+
+### Tests not found
+* Problem - `No matching tests found in any candidate test task`
+* Solution:
+```
+test {
+    useJUnitPlatform()
+}
+```
