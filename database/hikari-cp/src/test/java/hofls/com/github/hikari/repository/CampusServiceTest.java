@@ -1,8 +1,8 @@
 package hofls.com.github.hikari.repository;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CampusServiceTest extends BaseTest {
 
@@ -25,5 +25,4 @@ public class CampusServiceTest extends BaseTest {
         Campus campus = repository.findAll().get(0);
         assertEquals("New name", campus.getName());
     }
-
 }
