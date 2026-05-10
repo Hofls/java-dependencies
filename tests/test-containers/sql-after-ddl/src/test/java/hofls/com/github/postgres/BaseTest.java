@@ -1,12 +1,12 @@
 package hofls.com.github.postgres;
 
-import org.junit.runner.RunWith;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 import org.testcontainers.containers.PostgreSQLContainer;
 
@@ -17,7 +17,7 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = Application.class)
 @ActiveProfiles("junit")
 @Transactional
@@ -32,7 +32,7 @@ abstract class BaseTest {
         // Postgres JDBC driver uses JUL; disable it to avoid annoying, irrelevant, stderr logs during connection testing:
         LogManager.getLogManager().getLogger("").setLevel(Level.OFF);
         // Container:
-        postgresContainer = new PostgreSQLContainer<>("postgres:9.6.12");
+        postgresContainer = new PostgreSQLContainer<>("postgres:15-alpine");
         postgresContainer.start();
 
         registry.add("spring.datasource.url", postgresContainer::getJdbcUrl);
