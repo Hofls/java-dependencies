@@ -3,7 +3,7 @@ package hofls.com.github;
 import hofls.com.github.service.CsvReader;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 import java.util.List;
 
 @Service
