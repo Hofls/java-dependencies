@@ -1,0 +1,1 @@
+* Old school way of defining java beans - [beans.xml](src/main/resources/beans.xml)
