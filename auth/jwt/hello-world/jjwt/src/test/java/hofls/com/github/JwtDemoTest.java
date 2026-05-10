@@ -4,6 +4,8 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 class JwtDemoTest {
 
     @Test
@@ -11,6 +13,7 @@ class JwtDemoTest {
         JwtDemo jwtDemo = new JwtDemo();
         String jwt = jwtDemo.createJWT();
         Jws<Claims> claims = jwtDemo.decodeJWT(jwt);
+        assertEquals("John Doe", claims.getPayload().get("name"));
     }
 
 }
