@@ -1,5 +1,5 @@
 * Run `bootRun --args='--spring.profiles.active=to-file'`
-    * Check file - `C:\var\log\example.log`
+    * Check file - `C:\var\log\discount-system\example.log`
 * Run `bootRun --args='--spring.profiles.active=to-console'`
     * Check console
 * Run `bootRun --args='--spring.profiles.active=to-console-and-file'`
