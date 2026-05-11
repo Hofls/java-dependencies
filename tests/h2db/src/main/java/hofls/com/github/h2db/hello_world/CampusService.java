@@ -2,7 +2,7 @@ package hofls.com.github.h2db.hello_world;
 
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 @Service
 public class CampusService {
