@@ -2,6 +2,7 @@ package hofls.com.github.postgres.json;
 
 import hofls.com.github.postgres.BaseTest;
 import hofls.com.github.postgres.json.parameters.IParameters;
+import hofls.com.github.postgres.json.parameters.ObjectMapperUtils;
 import hofls.com.github.postgres.json.parameters.ParametersA;
 import hofls.com.github.postgres.json.parameters.ParametersUtils;
 import org.junit.jupiter.api.Test;
@@ -41,7 +42,7 @@ public class KanbanCardRepositoryTest extends BaseTest {
     public void parameters_test() {
         KanbanCard card = new KanbanCard();
         card.setCardType(KanbanCard.CardType.TYPE_A);
-        card.setParameters(new ParametersA("12.45.55.77", "8080"));
+        card.setParameters(ObjectMapperUtils.toJsonNode(new ParametersA("12.45.55.77", "8080")));
 
         repository.save(card);
 

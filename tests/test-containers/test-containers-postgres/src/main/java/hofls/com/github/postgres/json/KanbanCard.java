@@ -1,6 +1,7 @@
 package hofls.com.github.postgres.json;
 
 
+import com.fasterxml.jackson.databind.JsonNode;
 import io.hypersistence.utils.hibernate.type.json.JsonBinaryType;
 import hofls.com.github.postgres.json.protocols.Protocol;
 import lombok.Data;
@@ -24,7 +25,7 @@ public class KanbanCard {
     private Info info;
 
     @JdbcTypeCode(SqlTypes.JSON)
-    private Object parameters;
+    private JsonNode parameters;
 
     @Column
     @Enumerated(EnumType.STRING)
