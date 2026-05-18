@@ -1,0 +1,58 @@
+
+import org.junit.jupiter.api.Test;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import ru.otr.dr.directory.app.junit.DatabaseTest;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+// Don't forget to enable batch in application.yml:
+// spring.jpa.properties.hibernate.jdbc.batch_size=20
+public class BatchExceptionTest extends DatabaseTest {
+
+    @PersistenceContext
+    private EntityManager entityManager;
+
+    @Test
+    public void testCouldNotExecuteBatch() {
+
+        try {
+            // existing row
+            entityManager.persist(new TestBatchEntity(1));
+            entityManager.flush();
+            entityManager.clear();
+
+            // duplicate PK queued in batch
+            entityManager.persist(new TestBatchEntity(1));
+
+            entityManager.flush(); // Should throw "ConstraintViolationException: could not execute batch"
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            throw e;
+        }
+    }
+
+    @Entity
+    @Table(name = "test_batch_entity")
+    public static class TestBatchEntity {
+
+        @Id
+        private Integer id;
+
+        public TestBatchEntity() {
+        }
+
+        public TestBatchEntity(Integer id) {
+            this.id = id;
+        }
+
+        public Integer getId() {
+            return id;
+        }
+
+        public void setId(Integer id) {
+            this.id = id;
+        }
+    }
+}
