@@ -1,0 +1,60 @@
+
+import jakarta.persistence.*;
+import org.junit.jupiter.api.Test;
+import ru.otr.dr.directory.app.junit.DatabaseTest;
+
+// Don't forget to enable batch in application.yml:
+// spring.jpa.properties.hibernate.jdbc.batch_size=20
+public class BatchExceptionTest extends DatabaseTest {
+
+    @PersistenceContext
+    private EntityManager entityManager;
+
+    @Test
+    public void testGenericJDBCException() {
+
+        try {
+            entityManager.persist(new TestBatchEntity(1, "valid"));
+            entityManager.persist(new TestBatchEntity(2, "THIS_STRING_IS_TOO_LONG"));
+            entityManager.flush(); // Should throw "DataException: could not execute batch"
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            throw e;
+        }
+    }
+
+    @Entity
+    @Table(name = "test_batch_entity")
+    public static class TestBatchEntity {
+
+        @Id
+        private Integer id;
+
+        @Column(length = 5)
+        private String value;
+
+        public TestBatchEntity() {
+        }
+
+        public TestBatchEntity(Integer id, String value) {
+            this.id = id;
+            this.value = value;
+        }
+
+        public Integer getId() {
+            return id;
+        }
+
+        public void setId(Integer id) {
+            this.id = id;
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+        public void setValue(String value) {
+            this.value = value;
+        }
+    }
+}
