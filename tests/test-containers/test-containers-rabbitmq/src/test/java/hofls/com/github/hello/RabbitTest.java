@@ -3,13 +3,12 @@ package hofls.com.github.hello;
 import hofls.com.github.hello.rabbit.MessageListener;
 import hofls.com.github.hello.rabbit.MessageProducer;
 import hofls.com.github.hello.rabbit.RabbitMQConfig;
-import org.junit.Test;
-import org.springframework.amqp.core.QueueInformation;
+import org.junit.jupiter.api.Test;
 import org.springframework.amqp.rabbit.core.RabbitAdmin;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RabbitTest extends BaseTest {
 
