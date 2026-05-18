@@ -14,7 +14,7 @@ public class ObjectMapperUtils {
             .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
             .registerModule(new JavaTimeModule());
 
-    public <T> T toObject(Object from, Class<T> to) {
+    public static <T> T toObject(Object from, Class<T> to) {
         return objectMapper.convertValue(from, to);
     }
 

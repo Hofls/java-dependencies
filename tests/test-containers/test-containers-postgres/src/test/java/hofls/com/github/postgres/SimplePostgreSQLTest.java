@@ -1,6 +1,7 @@
 package hofls.com.github.postgres;
 
-import org.junit.Test;
+
+import org.junit.jupiter.api.Test;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

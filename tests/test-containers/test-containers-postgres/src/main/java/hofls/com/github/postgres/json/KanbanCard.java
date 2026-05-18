@@ -1,43 +1,36 @@
 package hofls.com.github.postgres.json;
 
 
-import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
+import io.hypersistence.utils.hibernate.type.json.JsonBinaryType;
 import hofls.com.github.postgres.json.protocols.Protocol;
 import lombok.Data;
-import org.hibernate.annotations.Type;
-import org.hibernate.annotations.TypeDef;
-import org.hibernate.annotations.TypeDefs;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.List;
 
 // 1. If you want to use dates with jsonb - to set format use @JsonFormat, or set default format for all (ctrl+f "Alternative №1 to @JsonFormat")
 // 2. If json structure have changed (e.g. class field got deleted), jackson will throw error during deserialization. To avoid it use @JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
 @Data
-@TypeDefs({
-        @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class) // Usually everything works even without TypeDef
-})
 public class KanbanCard {
 
     @Id
     @GeneratedValue
     private long id;
 
-    @Type(type = "jsonb")
-    @Column(columnDefinition = "jsonb")
+    @JdbcTypeCode(SqlTypes.JSON)
     private Info info;
 
-    @Type(type = "jsonb")
-    @Column(columnDefinition = "jsonb")
+    @JdbcTypeCode(SqlTypes.JSON)
     private Object parameters;
 
     @Column
     @Enumerated(EnumType.STRING)
     private CardType cardType;
 
-    @Type(type = "jsonb")
-    @Column(columnDefinition = "jsonb")
+    @JdbcTypeCode(SqlTypes.JSON)
     private List<Protocol> protocols;
 
     @Data

@@ -3,8 +3,8 @@
  */
 
 plugins {
-    id 'org.springframework.boot' version '2.4.1'
-    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+    id 'org.springframework.boot' version '3.2.5'
+    id 'io.spring.dependency-management' version '1.1.4'
     id 'java'
 }
 
@@ -16,18 +16,28 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    testImplementation 'org.postgresql:postgresql:42.2.9'
+    testImplementation 'org.postgresql:postgresql:42.7.2'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'org.testcontainers:postgresql:1.15.1'
+    testImplementation 'org.testcontainers:postgresql:1.19.7'
 
-    compileOnly 'org.projectlombok:lombok:1.18.8'
-    annotationProcessor 'org.projectlombok:lombok:1.18.8'
+    compileOnly 'org.projectlombok:lombok:1.18.32'
+    annotationProcessor 'org.projectlombok:lombok:1.18.32'
 
     // JSONB:
-    implementation 'com.vladmihalcea:hibernate-types-52:2.9.11'
+    implementation 'io.hypersistence:hypersistence-utils-hibernate-63:3.7.3'
 }
 
 group = 'hofls.com.github'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'

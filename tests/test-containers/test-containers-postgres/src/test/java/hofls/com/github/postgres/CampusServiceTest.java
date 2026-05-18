@@ -2,7 +2,7 @@ package hofls.com.github.postgres;
 
 import hofls.com.github.postgres.campus.Campus;
 import hofls.com.github.postgres.campus.CampusService;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;

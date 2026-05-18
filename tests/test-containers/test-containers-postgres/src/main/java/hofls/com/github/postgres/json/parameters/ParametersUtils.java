@@ -8,18 +8,14 @@ import java.util.LinkedHashMap;
 @UtilityClass
 public class ParametersUtils {
 
-    public IParameters extractParameters(KanbanCard card) {
-        // Alternative to mapping:
-        LinkedHashMap<String, String> parameters = (LinkedHashMap<String, String>) card.getParameters();
-        String description = parameters.get("description");
-
-        // Mapping:
+    public static IParameters extractParameters(KanbanCard card) {
+        if (card.getCardType() == null) return null;
+        
         if (card.getCardType().equals(KanbanCard.CardType.TYPE_A)) {
             return ObjectMapperUtils.toObject(card.getParameters(), ParametersA.class);
         } else if (card.getCardType().equals(KanbanCard.CardType.TYPE_B)) {
             return ObjectMapperUtils.toObject(card.getParameters(), ParametersB.class);
         }
-
         return null;
     }
 

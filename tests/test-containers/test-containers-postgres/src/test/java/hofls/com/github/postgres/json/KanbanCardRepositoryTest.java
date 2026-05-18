@@ -1,15 +1,13 @@
 package hofls.com.github.postgres.json;
 
-
-
 import hofls.com.github.postgres.BaseTest;
 import hofls.com.github.postgres.json.parameters.IParameters;
 import hofls.com.github.postgres.json.parameters.ParametersA;
 import hofls.com.github.postgres.json.parameters.ParametersUtils;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.test.context.jdbc.Sql;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 import java.io.IOException;
 import java.util.Arrays;
