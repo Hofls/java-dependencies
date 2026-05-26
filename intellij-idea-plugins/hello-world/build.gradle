@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id 'org.jetbrains.intellij' version '1.17.3'
+    id 'org.jetbrains.intellij.platform' version '2.16.0'
 }
 
 group = 'com.example'
@@ -8,20 +8,25 @@ version = '1.0.0'
 
 repositories {
     mavenCentral()
+
+    intellijPlatform {
+        defaultRepositories()
+    }
 }
 
-intellij {
-    version = '2024.2' // or your installed IDEA version
-    type = 'IC'        // 'IC' = IntelliJ Community, 'IU' = Ultimate
+dependencies {
+    intellijPlatform {
+        intellijIdeaCommunity('2024.2')
+
+        bundledPlugin('com.intellij.java')
+    }
 }
 
-patchPluginXml {
-    sinceBuild = '241'
-    untilBuild = '242.*'
-}
-
-tasks {
-    runIde {
-        // You can run the plugin inside a sandboxed IntelliJ
+intellijPlatform {
+    pluginConfiguration {
+        ideaVersion {
+            sinceBuild = '242'
+            untilBuild = '999.*'
+        }
     }
 }
