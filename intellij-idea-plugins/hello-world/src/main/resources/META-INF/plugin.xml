@@ -3,7 +3,7 @@
     <name>Hello World</name>
     <vendor>Hofls</vendor>
 
-    <idea-version since-build="242"/>
+    <idea-version since-build="242" until-build="999.*"/>
 
     <extensions defaultExtensionNs="com.intellij">
         <!-- If you want a tool window later, add here -->
