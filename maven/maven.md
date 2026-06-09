@@ -8,6 +8,8 @@
 * To run spring boot `jar` in container - look at `devops` repository
 * Skip tests: `mvn package -Dmaven.test.skip`
 * Local repository location: `/root/.m2/repository`
+* Avoid logs spam when building on server - `mvn clean package --batch-mode --no-transfer-progress`
+  * Spam example - `Progress (4): 1.0/1.4 MB | 1.3/2.1 MB | 654/892 kB | 4.8 kB`
 * To generate `pom.xml` from `build.gradle`
     * Add `id 'maven'` to `plugins` section
     * Run `gradle bootJar`, run `gradle install`
