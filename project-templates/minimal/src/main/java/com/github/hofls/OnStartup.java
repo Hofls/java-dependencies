@@ -1,4 +1,4 @@
-package hofls.com.github;
+package com.github.hofls;
 
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
