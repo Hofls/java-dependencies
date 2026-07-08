@@ -26,8 +26,9 @@ public class LiveTestService {
         businessEndpointCounterFailure = prometheusMeterRegistry.counter("liveTest." + ShopController.BUSINESS_ENDPOINT + ".failure.total");
     }
 
-    // To run multiple scheduled methods at the same time
-    // Add to application.properties - spring.task.scheduling.pool.size=10
+    // If 20 different methods are scheduled for execution, each will be executed in its own thread without problems?
+    // Nope, by default only 1 thread for scheduled, while this method executes, all other scheduled methods wait for their turn
+    // To run multiple scheduled methods at the same time add to application.properties - spring.task.scheduling.pool.size=10
     @Scheduled(initialDelayString = "${live-test.initialDelay}", fixedRateString = "${live-test.fixedRate}")
     // fixedRate = old one still running? dont care, run new one
     // fixedDelay = wait for old one to finish, delay, run new one
