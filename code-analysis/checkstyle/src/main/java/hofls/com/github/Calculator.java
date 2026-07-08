@@ -1,4 +1,4 @@
-package hofls.com.github;
+package com.github.hofls;
 
 public class Calculator {
 

@@ -6,7 +6,7 @@ plugins {
     id 'net.ltgt.errorprone' version '4.0.1'
 }
 
-group = 'hofls.com.github'
+group = 'com.github.hofls'
 version = '0.0.1-SNAPSHOT'
 
 java {

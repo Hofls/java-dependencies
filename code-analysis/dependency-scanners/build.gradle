@@ -6,7 +6,7 @@ plugins {
     id("se.patrikerdes.use-latest-versions") version "0.2.19"
 }
 
-group = 'hofls.com.github'
+group = 'com.github.hofls'
 version = '0.0.1-SNAPSHOT'
 
 java {
