@@ -4,7 +4,7 @@ plugins {
     id 'nu.studer.jooq' version '8.2'
 }
 
-group = 'hofls.com.github'
+group = 'com.github.hofls'
 version = '0.0.1-SNAPSHOT'
 
 repositories {
@@ -69,5 +69,5 @@ sourceSets {
 }
 
 application {
-    mainClassName = 'hofls.com.github.App'
+    mainClassName = 'com.github.hofls.App'
 }

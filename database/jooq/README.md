@@ -20,5 +20,5 @@
   * Gradle - `gradlew clean generateJooq`
 * Mark `target/generated-sources` folder in IDEA
 * Run app:
-  * Maven - `mvn compile exec:java -Dexec.mainClass=hofls.com.github.App`
+  * Maven - `mvn compile exec:java -Dexec.mainClass=com.github.hofls.App`
   * Gradle - `gradlew run`
