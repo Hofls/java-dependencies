@@ -9,7 +9,7 @@ plugins {
     id 'com.gorylenko.gradle-git-properties' version '2.4.2' // Adds git data to /actuator/info
 }
 
-group = 'hofls.com.github'
+group = 'com.github.hofls'
 
 repositories {
     mavenLocal()
