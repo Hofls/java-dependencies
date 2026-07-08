@@ -1,4 +1,4 @@
-package hofls.com.github;
+package com.github.hofls;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

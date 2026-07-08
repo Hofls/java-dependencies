@@ -1,4 +1,4 @@
-package hofls.com.github;
+package com.github.hofls;
 
 import org.mvel2.MVEL;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
