@@ -52,4 +52,4 @@
     * `@Value("#{message.length() > 10 ? 'Message is long' : 'Message is short'}")`
     * `@PreAuthorize("hasRole('ROLE_A') or hasRole('ROLE_B')")`
 * `AOP` (Aspect-oriented programming) - execute code before/after method invocation, for example:
-    * `@AfterThrowing(pointcut  = "execution(* hofls.com.github.aspect..*(..))", throwing = "exception")`
+    * `@AfterThrowing(pointcut  = "execution(* com.github.hofls.aspect..*(..))", throwing = "exception")`

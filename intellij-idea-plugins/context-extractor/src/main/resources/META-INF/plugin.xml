@@ -11,7 +11,7 @@
     </extensions>
 
     <actions>
-        <action id="MainActionId" class="hofls.com.github.MainAction" text="Extract context (for LLM)">
+        <action id="MainActionId" class="com.github.hofls.MainAction" text="Extract context (for LLM)">
             <add-to-group group-id="EditorPopupMenu" anchor="last"/>
             <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt D"/>
         </action>

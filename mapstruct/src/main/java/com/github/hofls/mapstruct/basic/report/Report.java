@@ -1,0 +1,21 @@
+package com.github.hofls.mapstruct.basic.report;
+
+import lombok.Data;
+
+@Data
+public class Report {
+
+    private HeaderSettings headerSettings;
+    private FooterSettings footerSettings;
+
+    @Data
+    public static class HeaderSettings {
+        private boolean showLogo;
+    }
+
+    @Data
+    public static class FooterSettings {
+        private boolean showPageNumber;
+    }
+
+}

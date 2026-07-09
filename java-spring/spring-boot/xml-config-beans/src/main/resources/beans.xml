@@ -4,9 +4,9 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="demoSource" class="hofls.com.github.data.DemoSource" />
+    <bean id="demoSource" class="com.github.hofls.data.DemoSource" />
 
-    <bean id="demoService" class="hofls.com.github.data.DemoService">
+    <bean id="demoService" class="com.github.hofls.data.DemoService">
         <constructor-arg ref="demoSource" />
     </bean>
 

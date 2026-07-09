@@ -10,7 +10,7 @@
     </extensions>
 
     <actions>
-        <action id="HelloWorldAction" class="hofls.com.github.HelloWorldAction" text="Hello world!"
+        <action id="HelloWorldAction" class="com.github.hofls.HelloWorldAction" text="Hello world!"
                 description="Shows hello world popup menu">
             <add-to-group group-id="EditorPopupMenu" anchor="last"/>
             <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt D"/>
