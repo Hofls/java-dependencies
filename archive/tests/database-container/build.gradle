@@ -33,7 +33,7 @@ task stopPostgress(type: Exec) {
 tasks.test.dependsOn("runPostgress")
 tasks.test.finalizedBy("stopPostgress")
 
-group = 'hofls.com.github'
+group = 'com.github.hofls'
 sourceCompatibility = '1.8'
 
 tasks.withType(JavaCompile) {

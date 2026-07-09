@@ -1,0 +1,26 @@
+package com.github.hofls.jgroups.logout;
+
+import com.github.hofls.jgroups.purchase.Purchase;
+import org.jgroups.JChannel;
+import org.jgroups.Message;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+
+@Component
+public class LogoutSender {
+
+    @Autowired
+    @Qualifier("LogoutJChannel")
+    private JChannel channel;
+
+    public void sendMessage() {
+        try {
+            System.out.println("Send logout event");
+            channel.send(new Message(null, "{userId: 7261}"));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+}

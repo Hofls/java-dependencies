@@ -22,7 +22,7 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.18.8'
 }
 
-group = 'hofls.com.github'
+group = 'com.github.hofls'
 sourceCompatibility = '1.8'
 
 tasks.withType(JavaCompile) {

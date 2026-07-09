@@ -4,7 +4,7 @@
     <property name="logs.directory" value="/var/log/rest-backend" />
 
     <logger level="INFO" name="org.springframework" />
-    <logger level="DEBUG" name="hofls.com.github" />
+    <logger level="DEBUG" name="com.github.hofls" />
 
     <springProfile name="!run-locally">
         <!-- ALL: -->
@@ -35,7 +35,7 @@
                 <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %replace(%-5level){'ERROR', 'ERROR_LOG'} %logger{36} - %msg%n</pattern>
             </encoder>
         </appender>
-        <logger level="INFO" additivity="false" name="hofls.com.github.rest" >
+        <logger level="INFO" additivity="false" name="com.github.hofls.rest" >
             <appender-ref ref="REST_SERVICES"/>
         </logger>
     </springProfile>
