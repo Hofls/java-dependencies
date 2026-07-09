@@ -32,4 +32,4 @@ test {
     useJUnitPlatform()
 }
 
-group = 'hofls.com.github'
+group = 'com.github.hofls'

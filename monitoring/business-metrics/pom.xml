@@ -11,7 +11,7 @@
         <relativePath />
     </parent>
 
-    <groupId>hofls.com.github</groupId>
+    <groupId>com.github.hofls</groupId>
     <artifactId>business-metrics</artifactId>
     <version>1.0.0</version>
 

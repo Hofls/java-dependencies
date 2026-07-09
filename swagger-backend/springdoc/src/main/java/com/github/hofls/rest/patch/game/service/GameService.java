@@ -1,0 +1,36 @@
+package com.github.hofls.rest.patch.game.service;
+
+import com.github.hofls.rest.patch.common.IPatchService;
+import com.github.hofls.rest.patch.common.PatchListService;
+import com.github.hofls.rest.patch.game.dto.Game;
+import com.github.hofls.rest.patch.game.dto.GamePatch;
+import com.github.hofls.rest.patch.game.mapper.GameMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+
+@Service
+public class GameService implements IPatchService<Game.Mark, GamePatch.Mark> {
+
+    @Autowired
+    private PatchListService<Game.Mark, GamePatch.Mark> patchService;
+
+    public void applyPatch(Game entity, GamePatch patch) {
+        GameMapper.INSTANCE.toEntity(entity, patch);
+
+        if (entity.getMarks() == null) entity.setMarks(new ArrayList<>());
+        patchService.applyPatch(entity.getMarks(), patch.getMarks(), this);
+    }
+
+    @Override
+    public void toEntity(Game.Mark entity, GamePatch.Mark patch) {
+        GameMapper.INSTANCE.toEntity(entity, patch);
+    }
+
+    @Override
+    public Game.Mark newEntity() {
+        return new Game.Mark();
+    }
+
+}

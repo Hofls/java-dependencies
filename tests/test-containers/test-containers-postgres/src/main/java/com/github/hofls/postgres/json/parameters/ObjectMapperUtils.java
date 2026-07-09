@@ -1,0 +1,26 @@
+package com.github.hofls.postgres.json.parameters;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.MapperFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import lombok.experimental.UtilityClass;
+
+@UtilityClass
+public class ObjectMapperUtils {
+
+    private static final ObjectMapper objectMapper = new ObjectMapper()
+            .configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true)
+            .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
+            .registerModule(new JavaTimeModule());
+
+    public static <T> T toObject(Object from, Class<T> to) {
+        return objectMapper.convertValue(from, to);
+    }
+
+    public JsonNode toJsonNode(Object object) {
+        return object != null ? objectMapper.valueToTree(object) : null;
+    }
+
+}

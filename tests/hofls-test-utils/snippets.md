@@ -2,7 +2,7 @@
 * Alternative №1 to @JsonFormat annotation (configure default format for all dates) \
 Works with spring-web (swagger) and with hibernate (jsonb) \
 Source - https://stackoverflow.com/questions/67147652/jsonb-ignores-jackson-serialization-inclusion \
-Create hibernate.properties in resources folder with text "hibernate.types.jackson.object.mapper=hofls.com.github.config.JacksonConfig" \
+Create hibernate.properties in resources folder with text "hibernate.types.jackson.object.mapper=com.github.hofls.config.JacksonConfig" \
 For new hibernate versions consider using JSON_FORMAT_MAPPER - https://stackoverflow.com/questions/66656772/use-jackson-objectmapper-configured-by-spring-boot-in-hibernate
 ```
 @Configuration // @Configuration and @Bean are needed for spring-web (Swagger); hibernate (jsonb) works without them

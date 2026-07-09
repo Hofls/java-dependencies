@@ -42,7 +42,7 @@ tasks.withType(com.github.spotbugs.SpotBugsTask) {
 }
 
 pitest {
-    targetClasses = ['hofls.com.github.*']
+    targetClasses = ['com.github.hofls.*']
     outputFormats = ['HTML']
     timestampedReports = false
     mutationThreshold = 100

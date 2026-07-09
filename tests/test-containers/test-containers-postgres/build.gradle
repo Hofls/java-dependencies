@@ -27,7 +27,7 @@ dependencies {
     implementation 'io.hypersistence:hypersistence-utils-hibernate-63:3.7.3'
 }
 
-group = 'hofls.com.github'
+group = 'com.github.hofls'
 
 java {
     toolchain {

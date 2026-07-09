@@ -1,4 +1,4 @@
-package hofls.com.github.custom;
+package com.github.hofls.custom;
 
 import org.junit.jupiter.api.Test;
 

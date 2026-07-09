@@ -25,7 +25,7 @@ dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.34'
     annotationProcessor 'org.projectlombok:lombok:1.18.34'
 
-    implementation 'hofls.com.github:test-utils:0.1.0'
+    implementation 'com.github.hofls:test-utils:0.1.0'
 
     implementation 'commons-io:commons-io:2.6' /* For IOUtils */
 
@@ -37,7 +37,7 @@ dependencies {
     }
 }
 
-group = 'hofls.com.github'
+group = 'com.github.hofls'
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
