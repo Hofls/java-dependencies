@@ -1,0 +1,23 @@
+// Do the same for Repository, Service, Specification etc:
+classes().that()
+    .resideInAPackage("..controller..")
+    .should()
+    .beAnnotatedWith(RestController.class)
+    .andShould()
+    .haveSimpleNameEndingWith("Controller")
+    .because("Все классы в пакете controller должны быть с аннотацией RestController и содержать 'Controller' в имени");
+
+noClasses().that()
+    .resideOutsideOfPackage("..controller..")
+    .should()
+    .beAnnotatedWith(RestController.class)
+    .andShould().haveSimpleNameEndingWith("Controller")
+    .because("Все классы за пределами пакета controller не должны содержать аннотацию @RestController и 'Controller' в имени");
+
+//
+classes().that()
+    .areAnnotatedWith(Transactional.class)
+    .should()
+    .beAnnotatedWith(Service.class)
+    .orShould().beAnnotatedWith(AppModuleContract.class)
+    .because("Аннотацию @Transactional можно использовать только в классах с аннотацией @Service или @ModuleContract");
