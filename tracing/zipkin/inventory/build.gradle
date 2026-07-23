@@ -4,7 +4,13 @@
 
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '2.1.3.RELEASE'
+    id 'org.springframework.boot' version '3.2.0'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
 }
 
 repositories {
@@ -13,9 +19,9 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-web:2.1.6.RELEASE'
-    implementation 'org.springframework.cloud:spring-cloud-starter-sleuth:2.1.3.RELEASE'
-    implementation 'org.springframework.cloud:spring-cloud-sleuth-zipkin:2.1.3.RELEASE'
+    implementation 'org.springframework.boot:spring-boot-starter-web:3.2.0'
+    implementation 'io.micrometer:micrometer-tracing-bridge-brave:1.2.0'
+    implementation 'io.zipkin.reporter2:zipkin-reporter-brave:2.16.4'
 }
 
 group = 'com.github.hofls'

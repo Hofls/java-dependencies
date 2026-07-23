@@ -5,8 +5,8 @@ spring:
     name: shop-backend
   zipkin:
     baseUrl: http://75.343.45.66:9411
-  sleuth:
-    sampler:
+
+management:
+  tracing:
+    sampling:
       probability: 1.0
-    web:
-      additionalSkipPattern: /skip-endpoint.*|/another-one.*
