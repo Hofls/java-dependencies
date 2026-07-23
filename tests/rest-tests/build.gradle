@@ -3,10 +3,16 @@
  */
 
 plugins {
-    id 'org.springframework.boot' version '2.2.3.RELEASE'
-    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+    id 'org.springframework.boot' version '3.2.5'
+    id 'io.spring.dependency-management' version '1.1.4'
     id 'java'
     id 'war'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
 }
 
 repositories {
@@ -15,14 +21,11 @@ repositories {
 }
 
 dependencies {
-    implementation(group: 'org.springframework.boot', name: 'spring-boot-starter-web') {
-        exclude(module: 'tomcat-embed-websocket') /* Because of this exclusion - app is able to run on any application server (otherwise it runs only on Tomcat) */
+    implementation('org.springframework.boot:spring-boot-starter-web') {
+        exclude module: 'tomcat-embed-websocket'
     }
-    testImplementation('org.springframework.boot:spring-boot-starter-test') {
-        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-    }
-    implementation(group: 'org.springframework.boot', name: 'spring-boot-starter-webflux')
-    implementation(group: 'org.springframework.boot', name: 'spring-boot-starter-test')
+    implementation('org.springframework.boot:spring-boot-starter-webflux')
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
 }
 
 group = 'com.github.hofls'
