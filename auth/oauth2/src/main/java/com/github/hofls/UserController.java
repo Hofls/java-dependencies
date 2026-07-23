@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Collections;
 import java.util.Map;
 
-@SpringBootApplication
 @RequestMapping("/user")
 @RestController
 public class UserController {
