@@ -1,3 +1,12 @@
+#### Getting Started
+* Alternative to bundled Maven from IntelliJ IDEA 
+* Download maven (.zip), unzip anywhere
+* Fill system environment variables:
+  * JAVA_HOME = C:\Programs\Programming\jdk-25.0.2
+  * PATH += C:\Programs\Programming\apache-maven-3.9.16\bin
+  * PATH += C:\Programs\Programming\jdk-25.0.2\bin
+* Try to run a test via cmd - `mvn -pl ms-shop-service test -Dtest=CalculatorServiceTest`
+
 #### Info
 * Warning: better use gradle, but if you must use maven - here it goes
 * Update dependencies to the latest versions: `mvn versions:use-latest-releases`
